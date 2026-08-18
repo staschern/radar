@@ -23,7 +23,8 @@
 |---|---|
 | Версия ТЗ | **v1.2** (2026-08-18) |
 | Радар | ✅ выпуск №1 — [18.08.2026](reports/radar/RU_Market_Morning_Radar_2026-08-18.html) · расписание: будни 09:00 мск |
-| Портфель | ✅ **день 0 — 18.08.2026** · [отчёт](reports/portfolio/RU_Model_Portfolio_2026-08-18.html) · транш 1 из 3 |
+| Портфель | ✅ **день 0 — 18.08.2026** · [отчёт](reports/portfolio/RU_Model_Portfolio_2026-08-18.html) · транш 1 из 3 · 999 500 ₽ |
+| Данные | ✅ MOEX ISS + ЦБ РФ подключены напрямую (`scripts/fetch_market_data.py`) |
 | Инвестпрофиль | ✅ [закрыт](docs/knowledge/investor_profile.md): агрессивный, рост капитала, 5+ лет, ИИС типа Б, валютная защита |
 | Портфель: ребалансировка | **пятницы**, сразу после радара |
 | Портфель: взносы | **2 500 ₽ каждую пятницу**, распределяются сразу |
@@ -48,8 +49,9 @@
 │   └── portfolio/     RU_Model_Portfolio_YYYY-MM-DD.html
 ├── templates/
 │   └── radar_template.html      Дизайн-система и опорная разметка
-└── scripts/
-    └── fetch_market_data.py     Загрузчик котировок (MOEX ISS + ЦБ)
+├── scripts/
+│   └── fetch_market_data.py     Загрузчик котировок (MOEX ISS + ЦБ)
+└── data/quotes/                 Выгрузки котировок по датам
 ```
 
 **Начать здесь:** [docs/README.md](docs/README.md) — полная навигация.
@@ -79,5 +81,5 @@
 - [ ] Сверить актуальные ограничения для неквала ([regulatory_notes](docs/knowledge/regulatory_notes.md))
 - [x] Выпустить первый радар
 - [x] Зафиксировать день 0 портфеля (18.08.2026)
-- [ ] **Разрешить домены в окружении** (`iss.moex.com`, `*.moex.com`, `*.cbr.ru`) — блокирует переоценку портфеля. Инструкция: [network_and_data_access.md](docs/knowledge/network_and_data_access.md)
+- [x] Разрешить домены в окружении — сделано 18.08, цены входа дня 0 зафиксированы
 - [ ] Подключить почтовый коннектор в Cowork (доставка на paladin_cool@inbox.ru)
