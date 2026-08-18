@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Взносы, циклы рынка и фиксация прибыли</title>
+<style>
+  :root{--bg:#0a0e16;--card:#131a26;--card-2:#0f1520;--line:#232d3d;--text:#e8edf5;--muted:#8a97ab;--dim:#5d6879;--gold:#e0a95c;--blue:#5b9bf5;--up:#5bd88a;--down:#e08a8a}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:"Inter","Helvetica Neue",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:28px 20px 64px}
+  .hero{border:1px solid var(--line);border-radius:14px;background:linear-gradient(160deg,#141c2b 0%,var(--card) 60%);padding:30px 28px;margin-bottom:22px}
+  .eyebrow{color:var(--gold);font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600}
+  h1{margin:10px 0 6px;font-size:clamp(28px,5vw,44px);line-height:1.1;font-weight:800;letter-spacing:-.02em}
+  .hero .date{color:var(--muted);font-size:14px}
+  .trigger{margin-top:16px;padding:14px 16px;border-left:3px solid var(--gold);background:rgba(224,169,92,.07);border-radius:0 10px 10px 0;font-size:16px}
+  .pulse{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:12px;margin-top:20px}
+  .metric{background:var(--card-2);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .metric .k{color:var(--muted);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+  .metric .v{font-size:23px;font-weight:700;margin-top:6px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+  .metric .d{font-size:13px;margin-top:2px;font-weight:600}
+  .up{color:var(--up)}.down{color:var(--down)}.flat{color:var(--muted)}
+  .metric.accent .v{color:var(--gold)}
+  section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px 26px;margin-bottom:18px}
+  h2{margin:0 0 4px;font-size:20px;font-weight:700;color:var(--gold);letter-spacing:-.01em}
+  .sub{color:var(--muted);font-size:13px;margin-bottom:18px}
+  h3{margin:22px 0 8px;font-size:15px;font-weight:700}
+  h3:first-of-type{margin-top:14px}
+  p{margin:8px 0}
+  .tag{display:inline-block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:999px;font-weight:700;vertical-align:middle}
+  .tag.fact{background:rgba(91,155,245,.14);color:var(--blue);border:1px solid rgba(91,155,245,.3)}
+  .tag.est{background:rgba(224,169,92,.12);color:var(--gold);border:1px solid rgba(224,169,92,.3)}
+  .est-note{color:var(--dim);font-size:12px;font-style:italic}
+  .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:12px}
+  table{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
+  th{text-align:left;color:var(--muted);font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:0 12px 10px 0;border-bottom:1px solid var(--line);white-space:nowrap}
+  td{padding:11px 12px 11px 0;border-bottom:1px solid rgba(35,45,61,.55);vertical-align:top}
+  tbody tr:last-child td{border-bottom:none}
+  tr.total td{border-top:1px solid var(--line);font-weight:700}
+  .num{font-variant-numeric:tabular-nums;white-space:nowrap}
+  .ticker{font-weight:700}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+  .fact{background:var(--card-2);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .fact .n{color:var(--gold);font-size:12px;font-weight:700;letter-spacing:.1em}
+  .fact p{margin:8px 0 0;font-size:14px}
+  .warn{border:1px solid rgba(224,138,138,.4);background:rgba(224,138,138,.07);border-radius:12px;padding:16px 18px;margin-top:14px}
+  .warn strong{color:var(--down)}
+  .legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:12px;font-size:12px;color:var(--muted)}
+  .legend i{display:inline-block;width:14px;height:3px;border-radius:2px;margin-right:6px;vertical-align:middle}
+  .foot{display:flex;justify-content:space-between;gap:14px;margin-top:20px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px}
+  .disclaimer{margin-top:26px;padding:16px 18px;border:1px solid var(--line);border-radius:12px;background:var(--card-2);color:var(--muted);font-size:12px;line-height:1.6}
+  ul{margin:8px 0;padding-left:20px}li{margin:5px 0}
+  @media print{body{background:var(--bg)}.wrap{max-width:none;padding:0}section,.hero,.fact,.metric{break-inside:avoid;page-break-inside:avoid}h2{break-after:avoid}}
+  @media (max-width:560px){section{padding:18px 16px}.wrap{padding:16px 12px 40px}.hero{padding:22px 18px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">Модельный портфель · Расширенный расчёт</div>
+    <h1>Взносы, циклы рынка и фиксация прибыли</h1>
+    <div class="date">18 августа 2026 · данные MOEX ISS: IMOEX с 1997 (348 мес), MCFTR и RGBITR</div>
+    <div class="trigger"><strong>Короткий ответ на главный вопрос.</strong> Правило «зафиксировать после роста — откупить на падении» <strong>не даёт устойчивого выигрыша</strong>: лучший порог на одном историческом периоде оказывается убыточным на другом. При этом обычная ребалансировка постоянной доли 70/30 стабильно обыгрывает buy&hold на обоих периодах и режет просадку в полтора раза — без всякого угадывания.</div>
+  </header>
+
+  <section>
+    <h2>Часть 1. Итог через 20 лет по размеру взноса</h2>
+    <div class="sub">Старт с нуля, доли профиля, доход реинвестируется. Сценарии те же, что в предыдущем расчёте <span class="tag fact">факт</span></div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Взнос/нед</th><th>В месяц</th><th>Внесёте</th><th>Негативный<br>5,48%</th><th>Базовый<br>9,71%</th><th>Позитивный<br>11,86%</th><th>Базовый<br>в сегодняшних ₽</th><th>20 млн через</th></tr></thead>
+        <tbody>
+          <tr><td class="ticker">2 500 ₽</td><td class="num">10 833</td><td class="num">2 600 000</td><td class="num down">4 642 647</td><td class="num" style="color:#e0a95c">7 543 482</td><td class="num up">9 738 458</td><td class="num">1 536 248</td><td class="num">30 лет</td></tr>
+          <tr><td class="ticker">5 000 ₽</td><td class="num">21 667</td><td class="num">5 200 000</td><td class="num down">9 285 294</td><td class="num" style="color:#e0a95c">15 086 964</td><td class="num up">19 476 916</td><td class="num">3 072 497</td><td class="num">23 лет</td></tr>
+          <tr><td class="ticker">10 000 ₽</td><td class="num">43 333</td><td class="num">10 400 000</td><td class="num down">18 570 587</td><td class="num" style="color:#e0a95c">30 173 928</td><td class="num up">38 953 832</td><td class="num">6 144 994</td><td class="num">17 лет</td></tr>
+          <tr><td class="ticker">20 000 ₽</td><td class="num">86 667</td><td class="num">20 800 000</td><td class="num down">37 141 175</td><td class="num" style="color:#e0a95c">60 347 857</td><td class="num up">77 907 665</td><td class="num">12 289 988</td><td class="num">12 лет</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Результат линеен по взносу: удвоение взноса ровно удваивает итог. Нелинеен только <strong>срок достижения цели</strong> — вот здесь и прячется главный рычаг.</p>
+    <div class="warn">
+      <p><strong>20 000 ₽/нед — это 86 667 ₽ в месяц.</strong> Такой взнос даёт 60 млн ₽ через 20 лет в базовом сценарии, но требует откладывать больше миллиона рублей в год без перерывов два десятилетия. Практическая проблема здесь не в доходности, а в том, что регулярность взноса на таком уровне выдерживают немногие: любой пропущенный год выбивает из расчёта заметную часть итога.</p>
+    </div>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 1</span></div>
+  </section>
+
+  <section>
+    <h2>Часть 2. Сколько растёт рынок между коррекциями</h2>
+    <div class="sub">IMOEX, месячные закрытия 1997–2026. Медвежий рынок = просадка ≥20% от пика <span class="tag fact">факт</span></div>
+    <h3>Фазы роста: от дна до следующего пика</h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>От (дно)</th><th>До (пик)</th><th>Рост</th><th>Месяцев</th><th>Годовых</th></tr></thead>
+        <tbody>
+          <tr><td class="num">2001-09</td><td class="num">2004-03</td><td class="num up">+285%</td><td class="num">30</td><td class="num">72%</td></tr>
+          <tr><td class="num">2004-07</td><td class="num">2008-05</td><td class="num up">+283%</td><td class="num">46</td><td class="num">42%</td></tr>
+          <tr><td class="num">2008-11</td><td class="num">2011-03</td><td class="num up">+197%</td><td class="num">28</td><td class="num">59%</td></tr>
+          <tr><td class="num">2014-04</td><td class="num">2021-10</td><td class="num up">+218%</td><td class="num">90</td><td class="num">17%</td></tr>
+          <tr><td class="num">2022-09</td><td class="num">2024-04</td><td class="num up">+77%</td><td class="num">19</td><td class="num">44%</td></tr>
+          <tr><td class="num">2024-10</td><td class="num">2025-02</td><td class="num up">+25%</td><td class="num">4</td><td class="num">95%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="pulse">
+      <div class="metric accent"><div class="k">Медианный рост цикла</div><div class="v">+197%</div><div class="d flat">с 2003 года, n=5</div></div>
+      <div class="metric"><div class="k">Медианная длительность</div><div class="v">28 мес</div><div class="d flat">≈2,3 года</div></div>
+      <div class="metric"><div class="k">Разброс роста</div><div class="v">+25…+285%</div><div class="d flat">вот в чём проблема</div></div>
+      <div class="metric"><div class="k">Дивиденды сверх цены</div><div class="v up">+7,3 п.п.</div><div class="d flat">MCFTR минус IMOEX, 2016–2026</div></div>
+    </div>
+    <h3>Фазы падения</h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>От (пик)</th><th>До (дно)</th><th>Падение</th><th>Месяцев</th></tr></thead>
+        <tbody>
+          <tr><td class="num">2004-03</td><td class="num">2004-07</td><td class="num down">-22%</td><td class="num">4</td></tr>
+          <tr><td class="num">2008-05</td><td class="num">2008-11</td><td class="num down">-68%</td><td class="num">6</td></tr>
+          <tr><td class="num">2011-03</td><td class="num">2014-04</td><td class="num down">-28%</td><td class="num">37</td></tr>
+          <tr><td class="num">2021-10</td><td class="num">2022-09</td><td class="num down">-53%</td><td class="num">11</td></tr>
+          <tr><td class="num">2024-04</td><td class="num">2024-10</td><td class="num down">-26%</td><td class="num">6</td></tr>
+          <tr><td class="num">2025-02</td><td class="num">2026-08</td><td class="num down">-33%</td><td class="num">18</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>С 2003 года: среднее падение <strong>−38%</strong>, медиана −31%, средняя длительность 14 месяцев (медиана 8). Всего за 29 лет — <strong>13 медвежьих рынков</strong>, то есть примерно один раз в 2,2 года.</p>
+    <div class="warn">
+      <p><strong>Здесь и ломается идея «фиксировать на среднем росте».</strong> Медианный рост цикла с 2003 года — около <strong>+197%</strong>. Фиксировать «когда достигнут средний рост» означает ждать, пока рынок утроится. А разброс от +25% до +285% означает, что порог, сработавший в прошлом цикле, в следующем либо не наступит вовсе, либо наступит на середине движения.</p>
+      <p>Цикл 2024-10 → 2025-02 вырос всего на 25% и развернулся. Цикл 2014-04 → 2021-10 рос 90 месяцев и дал +218%. Одно правило не может обслуживать оба.</p>
+    </div>
+    <div class="foot"><span>Пик и дно определяются задним числом — в реальном времени они не видны</span><span>Блок 2</span></div>
+  </section>
+
+  <section>
+    <h2>Часть 3. Бэктест стратегии фиксации</h2>
+    <div class="sub">Взнос 10 833 ₽/мес. Правило: при росте от последнего минимума на X% продаём половину акций в ОФЗ, откупаем тремя частями при просадках 10%, 20%, 30% от максимума. Без заглядывания вперёд <span class="tag fact">факт</span></div>
+
+    <h3>Период 1: фактические данные MCFTR + RGBITR, 2016–2026 (9,8 лет)</h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Стратегия</th><th>Итог, ₽</th><th>× к взносам</th><th>Макс. просадка</th><th>vs Buy&amp;hold</th></tr></thead>
+        <tbody>
+          <tr><td class="ticker">Buy &amp; hold</td><td class="num">1 559 171</td><td class="num">1,22×</td><td class="num down">−44,0%</td><td class="num">—</td></tr>
+          <tr><td class="ticker">Фиксация при +30%</td><td class="num">1 424 113</td><td class="num">1,11×</td><td class="num down">−41,9%</td><td class="num down">−8,7%</td></tr>
+          <tr><td class="ticker">Фиксация при +50%</td><td class="num">1 484 354</td><td class="num">1,16×</td><td class="num down">−41,1%</td><td class="num down">−4,8%</td></tr>
+          <tr><td class="ticker">Фиксация при +75%</td><td class="num">1 593 771</td><td class="num">1,25×</td><td class="num down">−40,7%</td><td class="num up">+2,2%</td></tr>
+          <tr><td class="ticker">Фиксация при +100%</td><td class="num">1 682 681</td><td class="num">1,32×</td><td class="num down">−38,1%</td><td class="num up">+7,9%</td></tr>
+          <tr><td class="ticker">Фиксация при +150%</td><td class="num">1 593 812</td><td class="num">1,25×</td><td class="num down">−37,6%</td><td class="num up">+2,2%</td></tr>
+          <tr class="total"><td>Постоянные 70/30, ребаланс раз в год</td><td class="num">1 687 946</td><td class="num">1,32×</td><td class="num up">−30,6%</td><td class="num up">+8,3%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Период 2: реконструкция 2003–2026 (23,6 года) <span class="tag est">допущение</span></h3>
+    <p class="est-note">MCFTR существует только с ноября 2016 года. Чтобы захватить кризисы 2008 и 2014, ряд достроен назад как IMOEX плюс 4% дивидендной доходности. Это допущение: реальная дивдоходность 2000-х отличалась от 4%.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Стратегия</th><th>Итог, ₽</th><th>× к взносам</th><th>Макс. просадка</th><th>vs Buy&amp;hold</th></tr></thead>
+        <tbody>
+          <tr><td class="ticker">Buy &amp; hold</td><td class="num">8 964 377</td><td class="num">2,91×</td><td class="num down">−65,7%</td><td class="num">—</td></tr>
+          <tr><td class="ticker">Фиксация при +30%</td><td class="num">8 224 755</td><td class="num">2,67×</td><td class="num down">−65,4%</td><td class="num down">−8,3%</td></tr>
+          <tr><td class="ticker">Фиксация при +50%</td><td class="num">8 933 056</td><td class="num">2,90×</td><td class="num down">−65,4%</td><td class="num down">−0,3%</td></tr>
+          <tr><td class="ticker">Фиксация при +75%</td><td class="num">9 906 511</td><td class="num">3,22×</td><td class="num down">−65,1%</td><td class="num up">+10,5%</td></tr>
+          <tr><td class="ticker">Фиксация при +100%</td><td class="num">8 568 916</td><td class="num">2,79×</td><td class="num down">−65,0%</td><td class="num down">−4,4%</td></tr>
+          <tr><td class="ticker">Фиксация при +150%</td><td class="num">8 022 806</td><td class="num">2,61×</td><td class="num down">−63,1%</td><td class="num down">−10,5%</td></tr>
+          <tr class="total"><td>Постоянные 70/30, ребаланс раз в год</td><td class="num">10 055 966</td><td class="num">3,26×</td><td class="num up">−49,1%</td><td class="num up">+12,2%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Почему это приговор правилу, а не подтверждение</h3>
+    <p>Сопоставьте две строки. На фактических данных лучший порог — <strong>+100%</strong> (+7,9%), а +75% даёт всего +2,2%. На длинном периоде всё наоборот: лучший порог — <strong>+75%</strong> (+10,5%), а +100% уже <strong>убыточен</strong> (−4,4%).</p>
+    <p>Порог, выигравший на одной истории, проигрывает на другой. Это <strong>подгонка под прошлое</strong>: выбрать «правильное» число можно только зная ответ заранее. В момент принятия решения вы не знаете, какой из двух периодов больше похож на будущий.</p>
+    <p>Усиление доли фиксации это подтверждает: при фиксации 100% акционной части результаты растягиваются в обе стороны — на факте от −16,9% до +14,7%, на реконструкции от −20,3% до +20,4%. Рычаг усиливает ставку, а не улучшает стратегию.</p>
+    <div class="foot"><span>Расчёт воспроизводим: scripts/backtest_timing.py</span><span>Блок 3</span></div>
+  </section>
+
+  <section>
+    <h2>Что работает вместо этого</h2>
+    <div class="sub">Тот же эффект без угадывания порогов</div>
+    <p><strong>Постоянная доля 70/30 с ежегодной ребалансировкой обыграла buy&amp;hold на обоих периодах</strong> — на +8,3% и +12,2% — и снизила максимальную просадку с −44% до −30,6% и с −65,7% до −49,1%.</p>
+    <p>Механизм тот же, ради которого затевается фиксация: ребалансировка автоматически продаёт то, что выросло, и покупает то, что упало. Разница в том, что триггером служит <strong>календарь и отклонение от целевой доли</strong>, а не догадка о фазе цикла. Угадывать не нужно — правило срабатывает само.</p>
+    <div class="cards">
+      <div class="fact"><div class="n">01</div><p><strong>Ребалансировка уже встроена в ваш портфель.</strong> Еженедельный взнос по правилу «в класс с наибольшим недовесом» — это и есть непрерывная ребалансировка. Она работает с первого дня, без отдельного решения.</p></div>
+      <div class="fact"><div class="n">02</div><p><strong>Взносы сами усредняют цену входа.</strong> При регулярных покупках падение рынка — это скидка на будущие взносы. Фиксация прибыли этот механизм ломает: вы уходите в кэш ровно тогда, когда взносы работали бы лучше всего.</p></div>
+      <div class="fact"><div class="n">03</div><p><strong>Просадка снижается коридорами профиля.</strong> Если −44% некомфортно — вопрос не в таймингe, а в целевой доле акций. Снижение с 70% до 55% даёт предсказуемый эффект, в отличие от правила фиксации.</p></div>
+      <div class="fact"><div class="n">04</div><p><strong>Что действительно можно взять из циклов.</strong> Не сигнал к продаже, а календарь ожиданий: медвежий рынок случается примерно раз в 2,2 года, средняя глубина −38%, средняя длительность 14 месяцев. Это помогает не паниковать, а не торговать.</p></div>
+    </div>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 4</span></div>
+  </section>
+
+  <section>
+    <h2>Прямые ответы на заданные вопросы</h2>
+    <ul>
+      <li><strong>«Средний рост до следующей большой коррекции»</strong> — с 2003 года медиана <strong>+197% за 28 месяцев</strong>, среднее +160% за 37 месяцев. Но разброс +25…+285% делает среднее непригодным как торговый сигнал.</li>
+      <li><strong>«На каких доходностях фиксировать»</strong> — если всё же фиксировать, исторически наименее плохи пороги <strong>+75…+100%</strong> от последнего дна. Ниже +50% правило стабильно проигрывает на обоих периодах: вы выходите на середине движения. Но и в лучшей точке выигрыш не воспроизводится между периодами.</li>
+      <li><strong>«Насколько выиграет такая стратегия»</strong> — от <strong>−17% до +20%</strong> к buy&amp;hold в зависимости от порога и периода. Знак результата определяется выбором порога, а выбрать его заранее нечем.</li>
+      <li><strong>«Что делать вместо»</strong> — держать целевые доли и ребалансировать по календарю. Это дало +8…+12% и просадку в полтора раза меньше на обоих периодах, и именно это уже заложено в правило распределения еженедельного взноса.</li>
+    </ul>
+    <div class="foot"><span>Данные: MOEX ISS на 18.08.2026 · scripts/backtest_timing.py, scripts/projection.py</span><span>Блок 5</span></div>
+  </section>
+
+  <div class="disclaimer">
+    <strong>Дисклеймер.</strong> Материал носит информационно-аналитический характер и <strong>не является индивидуальной инвестиционной рекомендацией</strong>. Бэктест показывает, как правило повело бы себя на прошлых данных, и <strong>не предсказывает будущее</strong>: два протестированных периода — это две реализации истории, а не выборка, достаточная для статистического вывода. Реконструкция ряда до 2016 года содержит допущение о дивидендной доходности 4% годовых. Проекции — арифметика при заданных допущениях о доходности, а не прогноз. Пики и впадины циклов определены задним числом; в реальном времени они не наблюдаемы. Все расчёты воспроизводимы скриптами в репозитории.
+  </div>
+</div>
+</body>
+</html>
