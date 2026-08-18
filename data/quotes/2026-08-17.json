@@ -1,0 +1,130 @@
+{
+ "date": "2026-08-17",
+ "fetched_at": "2026-08-18T11:13:04",
+ "source": "MOEX ISS + CBR",
+ "boards": {
+  "shares": {
+   "GMKN": {
+    "close": 112.98,
+    "open": 114.76,
+    "volume": 49309470,
+    "name": "ГМКНорНик",
+    "lotsize": 10
+   },
+   "GOLD": {
+    "close": 3.05,
+    "open": 3.0105,
+    "volume": 162911365,
+    "name": "GOLD ETF",
+    "lotsize": 1
+   },
+   "LKOH": {
+    "close": 4221.5,
+    "open": 4310,
+    "volume": 1754690,
+    "name": "ЛУКОЙЛ",
+    "lotsize": 1
+   },
+   "LQDT": {
+    "close": 2.0635,
+    "open": 2.0634,
+    "volume": 1554399553,
+    "name": "LQDT ETF",
+    "lotsize": 1
+   },
+   "MOEX": {
+    "close": 150.46,
+    "open": 153.95,
+    "volume": 8504360,
+    "name": "МосБиржа",
+    "lotsize": 10
+   },
+   "PLZL": {
+    "close": 1104.8,
+    "open": 1099,
+    "volume": 6243830,
+    "name": "Полюс",
+    "lotsize": 1
+   },
+   "ROSN": {
+    "close": 312.6,
+    "open": 316,
+    "volume": 13576401,
+    "name": "Роснефть",
+    "lotsize": 1
+   },
+   "SBER": {
+    "close": 271,
+    "open": 273.4,
+    "volume": 40961941,
+    "name": "Сбербанк",
+    "lotsize": 1
+   },
+   "SNGSP": {
+    "close": 41.715,
+    "open": 41.62,
+    "volume": 62587260,
+    "name": "Сургнфгз-п",
+    "lotsize": 10
+   },
+   "T": {
+    "close": 252.76,
+    "open": 255.4,
+    "volume": 35666378,
+    "name": "Т-Техно ао",
+    "lotsize": 1
+   },
+   "YDEX": {
+    "close": 3592,
+    "open": 3692.5,
+    "volume": 943051,
+    "name": "ЯНДЕКС",
+    "lotsize": 1
+   }
+  },
+  "bonds": {
+   "SU26238RMFS4": {
+    "close": 53.147,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 26238",
+    "yield_close": 15.68,
+    "matdate": "2041-05-15",
+    "facevalue": 1000,
+    "accrued_int": 14.98,
+    "lotsize": 1
+   },
+   "SU26243RMFS4": {
+    "close": 69.5,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 26243",
+    "yield_close": 16.11,
+    "matdate": "2038-05-19",
+    "facevalue": 1000,
+    "accrued_int": 20.68,
+    "lotsize": 1
+   }
+  },
+  "index": {
+   "IMOEX": {
+    "close": 2093.22,
+    "open": 2103.39,
+    "volume": null,
+    "name": "Индекс МосБиржи"
+   },
+   "RGBI": {
+    "close": 113.3,
+    "open": 114.22,
+    "volume": null,
+    "name": "Индекс Мосбиржи гос обл RGBI"
+   }
+  }
+ },
+ "cbr": {
+  "USD": 84.5449,
+  "EUR": 97.5141,
+  "CNY": 12.4789
+ },
+ "errors": []
+}

@@ -31,11 +31,19 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT_DIR = ROOT / "data" / "quotes"
 
 # Режимы торгов, покрывающие допустимую вселенную активов (ТЗ Портфель §5)
+# БПИФ торгуются в том же режиме TQBR, что и акции — отдельного борда для них нет
+# (проверено 2026-08-18: у LQDT, TGLD, GOLD, AKMM primary board = TQBR).
 BOARDS = {
-    "shares": ("stock", "shares", "TQBR"),   # акции
+    "shares": ("stock", "shares", "TQBR"),   # акции и БПИФ
     "bonds":  ("stock", "bonds", "TQOB"),    # ОФЗ
-    "etf":    ("stock", "shares", "TQTF"),   # БПИФ (золото, денежный рынок)
     "index":  ("stock", "index", "SNDX"),    # индексы (IMOEX, RGBI)
+}
+
+# Ограничение колонок обязательно: полный ответ по TQBR (500+ бумаг) рвёт соединение.
+COLUMNS = {
+    "shares": "SECID,SHORTNAME,CLOSE,OPEN,VOLUME",
+    "bonds":  "SECID,SHORTNAME,CLOSE,YIELDCLOSE,MATDATE,FACEVALUE",
+    "index":  "SECID,SHORTNAME,CLOSE,OPEN",
 }
 
 
@@ -43,32 +51,42 @@ class Blocked(Exception):
     """Домен недоступен из-за сетевой политики окружения."""
 
 
-def get(url: str, timeout: int = 45) -> dict | str:
-    """GET с уважением к HTTPS_PROXY и CA-бандлу окружения."""
+def get(url: str, timeout: int = 40, tries: int = 3, encoding: str = "utf-8"):
+    """GET с уважением к HTTPS_PROXY и CA-бандлу окружения.
+
+    ISS периодически рвёт соединение на больших ответах, поэтому повторяем с
+    нарастающей паузой. Отказ политики egress не ретраим — он не пройдёт.
+    """
+    import time
     req = urllib.request.Request(url, headers={"User-Agent": "radar/1.0"})
-    try:
-        with urllib.request.urlopen(req, timeout=timeout) as r:
-            raw = r.read().decode("utf-8", "replace")
-    except urllib.error.HTTPError as e:
-        if e.code in (403, 407):
-            raise Blocked(f"{url} → HTTP {e.code}: отказ политики egress") from e
-        raise
-    except (urllib.error.URLError, OSError) as e:
-        msg = str(e)
-        if "403" in msg or "CONNECT" in msg or "tunnel" in msg.lower():
-            raise Blocked(f"{url} → отказ политики egress ({msg})") from e
-        raise
-    return json.loads(raw) if url.endswith("json") or ".json?" in url else raw
+    for attempt in range(tries):
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                raw = r.read().decode(encoding, "replace")
+            break
+        except urllib.error.HTTPError as e:
+            if e.code in (403, 407):
+                raise Blocked(f"{url} → HTTP {e.code}: отказ политики egress") from e
+            if attempt == tries - 1:
+                raise
+        except (urllib.error.URLError, OSError) as e:
+            msg = str(e)
+            if "403" in msg or "tunnel" in msg.lower():
+                raise Blocked(f"{url} → отказ политики egress ({msg})") from e
+            if attempt == tries - 1:
+                raise
+        time.sleep(1.5 * (attempt + 1))
+    return json.loads(raw) if ".json" in url else raw
 
 
-def iss_board(engine: str, market: str, board: str, date: str) -> list[dict]:
+def iss_board(engine: str, market: str, board: str, date: str, columns: str) -> list[dict]:
     """Итоги торгов по режиму за дату. Пустой список = торгов не было."""
-    url = (f"{ISS}/history/engines/{engine}/markets/{market}/boards/{board}"
-           f"/securities.json?date={date}&iss.meta=off&iss.only=history&start=0")
     rows, start = [], 0
     while True:
-        page = get(url.replace("start=0", f"start={start}"))
-        block = page.get("history", {})
+        url = (f"{ISS}/history/engines/{engine}/markets/{market}/boards/{board}"
+               f"/securities.json?date={date}&iss.meta=off&iss.only=history"
+               f"&history.columns={columns}&start={start}")
+        block = get(url).get("history", {})
         cols, data = block.get("columns", []), block.get("data", [])
         if not data:
             break
@@ -79,25 +97,31 @@ def iss_board(engine: str, market: str, board: str, date: str) -> list[dict]:
     return rows
 
 
-def iss_lotsizes(engine: str, market: str, board: str) -> dict[str, int]:
-    """Размеры лотов — из справочника инструментов, а не из истории торгов."""
+def iss_lotsize(engine: str, market: str, board: str, secid: str) -> int | None:
+    """Размер лота одной бумаги. В истории торгов его нет — только в справочнике.
+
+    Запрашиваем поштучно: выгрузка справочника целиком по TQBR (500+ бумаг)
+    занимает минуты и часто обрывается.
+    """
     url = (f"{ISS}/engines/{engine}/markets/{market}/boards/{board}"
-           f"/securities.json?iss.meta=off&iss.only=securities"
+           f"/securities/{secid}.json?iss.meta=off&iss.only=securities"
            f"&securities.columns=SECID,LOTSIZE")
-    block = get(url).get("securities", {})
-    cols, data = block.get("columns", []), block.get("data", [])
-    out = {}
-    for row in data:
-        rec = dict(zip(cols, row))
-        if rec.get("LOTSIZE"):
-            out[rec["SECID"]] = rec["LOTSIZE"]
-    return out
+    data = get(url).get("securities", {}).get("data", [])
+    return data[0][1] if data else None
+
+
+def iss_accrued_int(secid: str) -> float | None:
+    """НКД по облигации: цена в истории торгов чистая, без накопленного купона."""
+    url = (f"{ISS}/engines/stock/markets/bonds/boards/TQOB/securities/{secid}.json"
+           f"?iss.meta=off&iss.only=securities&securities.columns=SECID,ACCRUEDINT")
+    data = get(url).get("securities", {}).get("data", [])
+    return data[0][1] if data else None
 
 
 def cbr_rates(date: str) -> dict:
     """Официальные курсы ЦБ на дату (курс устанавливается на следующий день)."""
     d = dt.date.fromisoformat(date).strftime("%d/%m/%Y")
-    xml = get(f"{CBR}?date_req={d}")
+    xml = get(f"{CBR}?date_req={d}", encoding="cp1251")  # ЦБ отдаёт windows-1251
     import re
     out = {}
     for m in re.finditer(
@@ -152,17 +176,30 @@ def main() -> int:
 
     for name, (engine, market, board) in BOARDS.items():
         try:
-            rows = iss_board(engine, market, board, args.date)
-            lots = iss_lotsizes(engine, market, board) if name != "index" else {}
+            rows = iss_board(engine, market, board, args.date, COLUMNS[name])
             out = {}
             for r in rows:
                 sec = r.get("SECID")
                 if not sec or (wanted and sec not in wanted):
                     continue
-                out[sec] = {"close": r.get("CLOSE") or r.get("LEGALCLOSEPRICE"),
-                            "open": r.get("OPEN"), "volume": r.get("VOLUME"),
-                            "value": r.get("VALTODAY"), "lotsize": lots.get(sec),
-                            "name": r.get("SHORTNAME")}
+                rec = {"close": r.get("CLOSE"), "open": r.get("OPEN"),
+                       "volume": r.get("VOLUME"), "name": r.get("SHORTNAME")}
+                if name == "bonds":
+                    rec.update(yield_close=r.get("YIELDCLOSE"), matdate=r.get("MATDATE"),
+                               facevalue=r.get("FACEVALUE"))
+                out[sec] = rec
+            # Лоты и НКД тянем только для запрошенных бумаг: поштучный запрос
+            # на 500 инструментов занял бы минуты.
+            if wanted and name != "index":
+                for sec in out:
+                    try:
+                        if name == "bonds":
+                            out[sec]["accrued_int"] = iss_accrued_int(sec)
+                            out[sec]["lotsize"] = 1
+                        else:
+                            out[sec]["lotsize"] = iss_lotsize(engine, market, board, sec)
+                    except Exception as e:
+                        result["errors"].append(f"{sec}: детали не получены: {e}")
             result["boards"][name] = out
             print(f"  {name:8} {board:6} — инструментов: {len(out)}")
         except Blocked as e:
