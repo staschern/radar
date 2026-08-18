@@ -20,7 +20,11 @@ import json
 import pathlib
 
 DATA = pathlib.Path(__file__).resolve().parent.parent / "data" / "quotes"
-BUY_LEVELS = (0.10, 0.20, 0.30)   # просадки от максимума, на которых откупаем
+# Просадки от максимума, на которых откупаем. Значения по умолчанию подобраны
+# по исторической статистике коррекций IMOEX (средняя −38%, медиана −31%):
+# начинаем чуть раньше средней и добираем глубже. Ранний откуп (−10/−20/−30)
+# систематически проигрывает — проверено, см. docs/knowledge/research_log.md.
+BUY_LEVELS = (0.30, 0.38, 0.45)
 DIV_YIELD_PRE2016 = 0.04          # реконструкция дивидендов до 2016 — допущение
 
 
@@ -44,16 +48,20 @@ def synth_total_return(imoex: list[tuple[str, float]],
     return out
 
 
-def run(stocks, bonds, monthly, mode, x_pct=None, fix=0.5):
-    """Один прогон. mode: 'hold' | 'rule'. Возвращает метрики."""
+def run(stocks, bonds, monthly, mode, x_pct=None, fix=0.5, levels=BUY_LEVELS):
+    """Один прогон. mode: 'hold' | 'rule'. Возвращает метрики.
+
+    Зафиксированные средства не лежат мёртвым грузом: они переводятся в
+    облигации и всё время работают по их доходности.
+    """
     s_units = b_units = 0.0          # «паи» акций и облигаций
     contributed = 0.0
     run_min = stocks[0][1]
     run_max = stocks[0][1]
     armed = True                      # можно ли фиксировать в текущем цикле
     bought_back = set()               # какие уровни откупа уже сработали
-    peak_at_fix = None
-    equity = []
+    fixes = 0                         # сколько раз правило вообще сработало
+    equity, out_share = [], []
 
     for i, (date, px) in enumerate(stocks):
         pb = bonds[i][1]
@@ -72,24 +80,26 @@ def run(stocks, bonds, monthly, mode, x_pct=None, fix=0.5):
                 s_units -= sell
                 b_units += sell * px / pb
                 armed = False
-                peak_at_fix = px
+                fixes += 1
                 bought_back = set()
                 run_max = px
             elif not armed and b_units > 0:
                 dd = px / run_max - 1
-                for k, lvl in enumerate(BUY_LEVELS):
+                for k, lvl in enumerate(levels):
                     if dd <= -lvl and lvl not in bought_back:
                         bought_back.add(lvl)
                         # откупаем равными долями оставшегося буфера
-                        left = len(BUY_LEVELS) - k
+                        left = len(levels) - k
                         buy = b_units / left
                         b_units -= buy
                         s_units += buy * pb / px
-                if b_units < 1e-9 or len(bought_back) == len(BUY_LEVELS):
+                if b_units < 1e-9 or len(bought_back) == len(levels):
                     b_units = max(b_units, 0.0)
                     armed = True
                     run_min = px
-        equity.append(s_units * px + b_units * pb)
+        total = s_units * px + b_units * pb
+        equity.append(total)
+        out_share.append(b_units * pb / total if total else 0.0)
 
     final = equity[-1]
     years = (len(stocks) - 1) / 12
@@ -99,7 +109,8 @@ def run(stocks, bonds, monthly, mode, x_pct=None, fix=0.5):
         if peak:
             mdd = min(mdd, v / peak - 1)
     return dict(final=final, contributed=contributed, years=years,
-                multiple=final / contributed, mdd=mdd * 100)
+                multiple=final / contributed, mdd=mdd * 100, fixes=fixes,
+                out_share=sum(out_share) / len(out_share) * 100)
 
 
 def fmt(x): return f"{x:,.0f}".replace(",", " ")
@@ -109,17 +120,21 @@ def report(stocks, bonds, monthly, fix, label):
     print(f"\n{'='*78}\n{label}: {stocks[0][0]} → {stocks[-1][0]} "
           f"({(len(stocks)-1)/12:.1f} лет), взнос {fmt(monthly)} ₽/мес\n{'='*78}")
     hold = run(stocks, bonds, monthly, "hold")
-    print(f"{'Стратегия':<28}{'Итог, ₽':>14}{'× к взносам':>13}{'Макс. просадка':>16}{'vs Buy&hold':>13}")
+    print(f"{'Стратегия':<26}{'Итог, ₽':>13}{'× взн.':>9}{'Просадка':>11}"
+          f"{'vs B&H':>10}{'Сраб.':>7}")
     print("-" * 78)
-    print(f"{'Buy & hold':<28}{fmt(hold['final']):>14}{hold['multiple']:>12.2f}×"
-          f"{hold['mdd']:>15.1f}%{'—':>13}")
-    for x in (0.30, 0.50, 0.75, 1.00, 1.50):
+    print(f"{'Buy & hold':<26}{fmt(hold['final']):>13}{hold['multiple']:>8.2f}×"
+          f"{hold['mdd']:>10.1f}%{'—':>10}{'—':>7}")
+    for x in (0.50, 0.60, 0.75, 0.90, 1.00):
         r = run(stocks, bonds, monthly, "rule", x, fix)
         diff = (r["final"] / hold["final"] - 1) * 100
-        print(f"{'Фиксация при +' + str(int(x*100)) + '%':<28}{fmt(r['final']):>14}"
-              f"{r['multiple']:>12.2f}×{r['mdd']:>15.1f}%{diff:>+12.1f}%")
-    print(f"\nФиксируется {fix:.0%} акционной части. Откуп — тремя равными частями "
-          f"при просадках {', '.join(f'{l:.0%}' for l in BUY_LEVELS)} от максимума.")
+        print(f"{'Фиксация при +' + str(int(x*100)) + '%':<26}{fmt(r['final']):>13}"
+              f"{r['multiple']:>8.2f}×{r['mdd']:>10.1f}%{diff:>+9.1f}%{r['fixes']:>7}")
+    print(f"\nФиксируется {fix:.0%} акционной части, откуп тремя частями при просадках "
+          f"{', '.join(f'{l:.0%}' for l in BUY_LEVELS)} от максимума.")
+    print("Колонка «Сраб.» — сколько раз правило вообще запускалось за период. "
+          "Это и есть\nразмер выборки: два-три события не позволяют говорить о "
+          "статистической значимости.")
 
 
 def main():
