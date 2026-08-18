@@ -46,11 +46,13 @@
 │   └── daily/                   Человекочитаемые сводки дня (~40 строк)
 ├── reports/
 │   ├── radar/         RU_Market_Morning_Radar_YYYY-MM-DD.html
-│   └── portfolio/     RU_Model_Portfolio_YYYY-MM-DD.html
+│   ├── portfolio/     RU_Model_Portfolio_YYYY-MM-DD.html
+│   └── analysis/      Разовые аналитические расчёты
 ├── templates/
 │   └── radar_template.html      Дизайн-система и опорная разметка
 ├── scripts/
-│   └── fetch_market_data.py     Загрузчик котировок (MOEX ISS + ЦБ)
+│   ├── fetch_market_data.py     Загрузчик котировок (MOEX ISS + ЦБ)
+│   └── projection.py            Проекция портфеля при регулярных взносах
 └── data/quotes/                 Выгрузки котировок по датам
 ```
 
