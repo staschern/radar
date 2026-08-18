@@ -21,7 +21,7 @@
 
 | | |
 |---|---|
-| Версия ТЗ | **v1.2** (2026-08-18) |
+| Версия ТЗ | **v1.3** (2026-08-18) |
 | Радар | ✅ выпуск №1 — [18.08.2026](reports/radar/RU_Market_Morning_Radar_2026-08-18.html) · расписание: будни 09:00 мск |
 | Портфель | ✅ **день 0 — 18.08.2026** · [отчёт](reports/portfolio/RU_Model_Portfolio_2026-08-18.html) · транш 1 из 3 · 999 500 ₽ |
 | Данные | ✅ MOEX ISS + ЦБ РФ подключены напрямую (`scripts/fetch_market_data.py`) |
@@ -42,7 +42,8 @@
 ├── data/
 │   ├── watchlist_config.json    Фиксированный список тикеров (пуст)
 │   ├── radar_history.jsonl      1 строка на день — машинная сводка
-│   ├── portfolio_history.jsonl  1 строка на пересмотр портфеля
+│   ├── portfolio_history.jsonl  1 строка на пересмотр основного портфеля
+│   ├── control_portfolio_history.jsonl  То же для контрольного портфеля
 │   └── daily/                   Человекочитаемые сводки дня (~40 строк)
 ├── reports/
 │   ├── radar/         RU_Market_Morning_Radar_YYYY-MM-DD.html

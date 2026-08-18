@@ -20,6 +20,7 @@
 | Документ | Что внутри |
 |---|---|
 | [knowledge/investor_profile.md](knowledge/investor_profile.md) | ⏳ Анкета инвестпрофиля — **блокирует старт портфеля** |
+| [knowledge/market_cycles.md](knowledge/market_cycles.md) | Циклы рынка, текущие просадки, следствия |
 | [knowledge/methodology.md](knowledge/methodology.md) | Расчёт дельт, оценка риска 0–100, пороги флага пересмотра |
 | [knowledge/data_schemas.md](knowledge/data_schemas.md) | Схемы всех файлов в `data/` |
 | [knowledge/daily_summary_template.md](knowledge/daily_summary_template.md) | Шаблон дневной сводки |
