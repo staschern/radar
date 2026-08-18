@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Модельный портфель — день 0, 18 августа 2026</title>
+<style>
+  :root{--bg:#0a0e16;--card:#131a26;--card-2:#0f1520;--line:#232d3d;--text:#e8edf5;--muted:#8a97ab;--dim:#5d6879;--gold:#e0a95c;--blue:#5b9bf5;--up:#5bd88a;--down:#e08a8a}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:"Inter","Helvetica Neue",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:28px 20px 64px}
+  .hero{border:1px solid var(--line);border-radius:14px;background:linear-gradient(160deg,#141c2b 0%,var(--card) 60%);padding:30px 28px;margin-bottom:22px}
+  .eyebrow{color:var(--gold);font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600}
+  h1{margin:10px 0 6px;font-size:clamp(28px,5vw,44px);line-height:1.1;font-weight:800;letter-spacing:-.02em}
+  .hero .date{color:var(--muted);font-size:14px}
+  .trigger{margin-top:16px;padding:14px 16px;border-left:3px solid var(--gold);background:rgba(224,169,92,.07);border-radius:0 10px 10px 0;font-size:16px}
+  .pulse{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:12px;margin-top:20px}
+  .metric{background:var(--card-2);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .metric .k{color:var(--muted);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+  .metric .v{font-size:24px;font-weight:700;margin-top:6px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+  .metric .d{font-size:13px;margin-top:2px;font-weight:600}
+  .up{color:var(--up)}.down{color:var(--down)}.flat{color:var(--muted)}
+  .metric.accent .v{color:var(--gold)}
+  .nodata{color:var(--dim);font-style:italic;font-weight:400}
+  section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px 26px;margin-bottom:18px}
+  h2{margin:0 0 4px;font-size:20px;font-weight:700;color:var(--gold);letter-spacing:-.01em}
+  .sub{color:var(--muted);font-size:13px;margin-bottom:18px}
+  h3{margin:22px 0 8px;font-size:15px;font-weight:700}
+  h3:first-of-type{margin-top:14px}
+  p{margin:8px 0}
+  .tag{display:inline-block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:999px;font-weight:700;vertical-align:middle}
+  .tag.fact{background:rgba(91,155,245,.14);color:var(--blue);border:1px solid rgba(91,155,245,.3)}
+  .tag.est{background:rgba(224,169,92,.12);color:var(--gold);border:1px solid rgba(224,169,92,.3)}
+  .est-note{color:var(--dim);font-size:12px;font-style:italic}
+  .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:12px}
+  table{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
+  th{text-align:left;color:var(--muted);font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:0 12px 10px 0;border-bottom:1px solid var(--line);white-space:nowrap}
+  td{padding:11px 12px 11px 0;border-bottom:1px solid rgba(35,45,61,.55);vertical-align:top}
+  tbody tr:last-child td{border-bottom:none}
+  tr.total td{border-top:1px solid var(--line);font-weight:700;border-bottom:none}
+  .ticker{font-weight:700;letter-spacing:.02em;white-space:nowrap}
+  .num{font-variant-numeric:tabular-nums;white-space:nowrap}
+  .cls{color:var(--muted);font-size:12px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+  .fact{background:var(--card-2);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .fact .n{color:var(--gold);font-size:12px;font-weight:700;letter-spacing:.1em}
+  .fact p{margin:8px 0 0;font-size:14px}
+  .warn{border:1px solid rgba(224,138,138,.4);background:rgba(224,138,138,.07);border-radius:12px;padding:16px 18px;margin-top:14px}
+  .warn strong{color:var(--down)}
+  .bar-row{display:flex;align-items:center;gap:12px;margin:10px 0}
+  .bar-row .lbl{min-width:150px;font-size:13px}
+  .bar-row .track{flex:1;height:22px;background:#1b2433;border-radius:6px;overflow:hidden;position:relative}
+  .bar-row .fill{height:100%;border-radius:6px}
+  .bar-row .val{min-width:100px;text-align:right;font-variant-numeric:tabular-nums;font-size:13px;font-weight:600}
+  .foot{display:flex;justify-content:space-between;gap:14px;margin-top:20px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px}
+  .disclaimer{margin-top:26px;padding:16px 18px;border:1px solid var(--line);border-radius:12px;background:var(--card-2);color:var(--muted);font-size:12px;line-height:1.6}
+  ul{margin:8px 0;padding-left:20px}li{margin:5px 0}
+  @media print{body{background:var(--bg)}.wrap{max-width:none;padding:0}section,.hero,.fact,.metric{break-inside:avoid;page-break-inside:avoid}h2{break-after:avoid}}
+  @media (max-width:560px){section{padding:18px 16px}.wrap{padding:16px 12px 40px}.hero{padding:22px 18px}.bar-row .lbl{min-width:96px;font-size:12px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow">Модельный портфель · День 0</div>
+    <h1>Старт в санкционной просадке</h1>
+    <div class="date">Вторник, 18 августа 2026 · тип пересмотра: <strong>старт</strong> · ИИС типа Б, неквалифицированный инвестор</div>
+    <div class="trigger"><strong>Решение.</strong> Портфель стартует на 1 000 000 ₽ поэтапно: акции набираются тремя траншами, из них первый (28% портфеля) — сегодня. Облигации и золото берутся сразу на целевые доли, свободные 47% работают в фонде денежного рынка по ставке около ключевой.</div>
+    <div class="pulse">
+      <div class="metric"><div class="k">Стоимость</div><div class="v">999 500 ₽</div><div class="d flat">после комиссий</div></div>
+      <div class="metric"><div class="k">Вложено всего</div><div class="v">1 000 000 ₽</div><div class="d flat">взносов пока нет</div></div>
+      <div class="metric"><div class="k">Прибыль</div><div class="v down">−500 ₽</div><div class="d down">−0,05% · комиссия входа</div></div>
+      <div class="metric accent"><div class="k">TWR с дня 0</div><div class="v">0,00%</div><div class="d flat">точка отсчёта</div></div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Распределение на день 0</h2>
+    <div class="sub">Транш 1 из 3. Доли указаны от портфеля в 1 000 000 ₽.</div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Класс</th><th>Инструмент</th><th>Доля сейчас</th><th>Сумма, ₽</th><th>Целевая доля</th><th>Роль в портфеле</th></tr></thead>
+        <tbody>
+          <tr><td class="cls">Акции</td><td class="ticker">SBER</td><td class="num">5,2%</td><td class="num">52 000</td><td class="num">13%</td><td>Барометр сектора и всего рынка, максимальная ликвидность</td></tr>
+          <tr><td class="cls">Акции</td><td class="ticker">LKOH</td><td class="num">4,8%</td><td class="num">48 000</td><td class="num">12%</td><td>Экспортёр, валютная выручка, дивидендная база</td></tr>
+          <tr><td class="cls">Акции</td><td class="ticker">SNGSP</td><td class="num">3,2%</td><td class="num">32 000</td><td class="num">8%</td><td>Прямой хедж от ослабления рубля через валютную «кубышку»</td></tr>
+          <tr><td class="cls">Акции</td><td class="ticker">PLZL</td><td class="num">3,2%</td><td class="num">32 000</td><td class="num">8%</td><td>Золото + экспорт: двойная защита в санкционном сценарии</td></tr>
+          <tr><td class="cls">Акции</td><td class="ticker">GMKN</td><td class="num">2,8%</td><td class="num">28 000</td><td class="num">7%</td><td>Экспорт металлов, диверсификация от нефти</td></tr>
+          <tr><td class="cls">Акции</td><td class="ticker">ROSN</td><td class="num">2,8%</td><td class="num">28 000</td><td class="num">7%</td><td>Нефть, вторая опора нефтегазового блока</td></tr>
+          <tr><td class="cls">Акции</td><td class="ticker">T</td><td class="num">2,4%</td><td class="num">24 000</td><td class="num">6%</td><td>История роста в финансовом секторе</td></tr>
+          <tr><td class="cls">Акции</td><td class="ticker">MOEX</td><td class="num">2,0%</td><td class="num">20 000</td><td class="num">5%</td><td>Бенефициар высокой ключевой ставки и оборотов</td></tr>
+          <tr><td class="cls">Акции</td><td class="ticker">YDEX</td><td class="num">1,6%</td><td class="num">16 000</td><td class="num">4%</td><td>Внутренний технологический рост</td></tr>
+          <tr><td class="cls">Облигации</td><td class="ticker">ОФЗ 26238</td><td class="num">7,0%</td><td class="num">70 000</td><td class="num">7%</td><td>Длинная дюрация: ставка на снижение ключевой ставки</td></tr>
+          <tr><td class="cls">Облигации</td><td class="ticker">ОФЗ 26243</td><td class="num">6,0%</td><td class="num">60 000</td><td class="num">6%</td><td>То же, но с меньшей дюрацией — сглаживает риск</td></tr>
+          <tr><td class="cls">Золото</td><td class="ticker">БПИФ на золото</td><td class="num">12,0%</td><td class="num">120 000</td><td class="num">12%</td><td>Защита от ослабления рубля и системного риска</td></tr>
+          <tr><td class="cls">Кэш</td><td class="ticker">Фонд денежного рынка</td><td class="num">47,0%</td><td class="num">469 500</td><td class="num">5%</td><td>5% — рабочий резерв, 42% — зарезервировано под транши 2 и 3</td></tr>
+          <tr class="total"><td colspan="2">Итого</td><td class="num">100%</td><td class="num">999 500</td><td class="num">100%</td><td class="est-note">Комиссия входа 0,05% ≈ 500 ₽ списана из денежного рынка</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="foot"><span>Модельный портфель, не реальные сделки, не индивидуальная инвестиционная рекомендация</span><span>Блок 1</span></div>
+  </section>
+
+  <section>
+    <h2>Распределение по классам активов</h2>
+    <div class="sub">Фактические доли на день 0 против коридоров инвестпрофиля</div>
+    <div class="bar-row"><div class="lbl">Акции</div><div class="track"><div class="fill" style="width:28%;background:#5b9bf5"></div></div><div class="val">28% <span class="est-note">(цель 70%)</span></div></div>
+    <div class="bar-row"><div class="lbl">Облигации</div><div class="track"><div class="fill" style="width:13%;background:#5bd88a"></div></div><div class="val">13% <span class="est-note">(цель 13%)</span></div></div>
+    <div class="bar-row"><div class="lbl">Золото</div><div class="track"><div class="fill" style="width:12%;background:#e0a95c"></div></div><div class="val">12% <span class="est-note">(цель 12%)</span></div></div>
+    <div class="bar-row"><div class="lbl">Денежный рынок</div><div class="track"><div class="fill" style="width:47%;background:#8a97ab"></div></div><div class="val">47% <span class="est-note">(цель 5%)</span></div></div>
+
+    <div class="warn">
+      <p><strong>Отклонение от профиля — осознанное и временное.</strong> Доля акций 28% при коридоре 60–80% и доля кэша 47% при коридоре 0–20% выходят за границы профиля. Причина — решение о поэтапном входе тремя траншами. Портфель вернётся в коридоры после транша 3; до этого момента каждый еженедельный отчёт будет показывать это отклонение явно.</p>
+      <p><strong>Второе следствие:</strong> валютно-чувствительная экспозиция (экспортёры + золото) сейчас 28,8% против ориентира профиля ≥40%. При полном входе она составит 54%. Если рубль резко ослабнет до траншей 2–3, транш 2 будет направлен приоритетно в экспортёров, чтобы закрыть этот разрыв быстрее.</p>
+    </div>
+    <div class="foot"><span>Соответствие профилю проверяется при каждом пересмотре</span><span>Блок 2</span></div>
+  </section>
+
+  <section>
+    <h2>Обоснование решений</h2>
+    <div class="sub">На основе радара от 18.08.2026 и инвестпрофиля</div>
+
+    <h3>Почему акции — поэтапно, а облигации и золото — сразу</h3>
+    <p>Радар зафиксировал незавершённый санкционный сюжет: анонсирован «самый масштабный с 2022 года» пакет ЕС, но ни состав, ни сроки неизвестны <span class="tag est">оценка 68/100</span>. Это неопределённость, которая разрешится в ближайшие недели в одну или другую сторону — классический случай, когда поэтапный вход в самый волатильный класс оправдан.</p>
+    <p>С облигациями логика обратная. Доходность ОФЗ 10 лет — 15,89%, 30 лет — 16,18% при ключевой ставке 14,00% и годовой инфляции 6,05%. Реальная доходность около 10 п.п. Покупая длинные ОФЗ, мы фиксируем купон на весь горизонт: ждать здесь означает рисковать тем, что окно закроется при первом же смягчении риторики ЦБ. Золото берётся сразу как прямой ответ на запрос профиля о защите от рубля — оно работает именно в том сценарии, которого мы опасаемся.</p>
+
+    <h3>Почему такой состав акционной части</h3>
+    <ul>
+      <li><strong>Экспортёры — 42% из 70% целевой доли акций</strong> (LKOH, SNGSP, ROSN, GMKN, PLZL). Прямое исполнение требования профиля о защите от ослабления рубля. Радар это подтвердил на практике: 17 августа при падении индекса на 2% SNGSP вырос на 1,23%, PLZL — на 0,82%.</li>
+      <li><strong>SBER 13%</strong> — максимальная доля, разрешённая ограничением на одного эмитента (15%). Ликвидность позволяет быстро менять позицию, если санкционный сюжет ударит по банкам.</li>
+      <li><strong>MOEX 5%</strong> — бенефициар высокой ставки: чем дольше ЦБ держит 14%, тем выше процентный доход биржи. Естественный хедж против сценария «ставка не снижается», который бьёт по остальному портфелю.</li>
+      <li><strong>T, YDEX — 10% суммарно.</strong> Истории роста, отвечающие цели «рост капитала» на горизонте 5+ лет. Доля ограничена: радар показал, что именно такие бумаги теряют больше всего в risk-off (POSI −4,56%, VKCO −4,75%, WUSH −4,70%).</li>
+    </ul>
+    <p class="est-note">Проверка ограничений: максимум на эмитента 13% (лимит 15%) · нефтегаз 27%, финансы 24%, металлы и золото 15% (лимит на отрасль 35%). Все в пределах.</p>
+
+    <h3>Что этот портфель проиграет</h3>
+    <p>Если санкционный сюжет разрешится благополучно уже на этой неделе, портфель отстанет от рынка: 47% в денежном рынке не участвуют в отскоке. Это прямая цена поэтапного входа, и она принята сознательно.</p>
+    <div class="foot"><span>Аналитическая оценка, не индивидуальная инвестиционная рекомендация</span><span>Блок 3</span></div>
+  </section>
+
+  <section>
+    <h2>План траншей 2 и 3</h2>
+    <div class="sub">По 21% портфеля каждый. Триггеры заданы заранее, чтобы решение не принималось задним числом.</div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Транш</th><th>Объём</th><th>Условия запуска — любое из</th><th>Безусловный срок</th></tr></thead>
+        <tbody>
+          <tr><td class="ticker">Транш 2</td><td class="num">21% ≈ 210 000 ₽</td>
+            <td>① IMOEX закрывается выше 2136 два дня подряд · ② IMOEX опускается ниже 2000 · ③ опубликован состав пакета ЕС и он не затрагивает расчётную инфраструктуру и экспортные каналы</td>
+            <td class="num">18.09.2026</td></tr>
+          <tr><td class="ticker">Транш 3</td><td class="num">21% ≈ 210 000 ₽</td>
+            <td>Те же условия, оцениваются заново · либо месяц после транша 2</td>
+            <td class="num">16.10.2026</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>Почему у траншей есть безусловные дедлайны.</strong> Поэтапный вход без срока — это не управление риском, а бессрочное ожидание «более удачного момента». Профиль с горизонтом 5+ лет и снятым ограничением просадки такого ожидания не предполагает: к 16 октября целевая доля акций будет набрана независимо от того, что происходит на рынке.</p>
+    <div class="foot"><span>Уровни — условия исполнения плана, а не сигналы к сделкам</span><span>Блок 4</span></div>
+  </section>
+
+  <section>
+    <h2>Ограничение: нет доступа к котировкам</h2>
+    <div class="sub">Открытый технический вопрос, влияющий на переоценку портфеля</div>
+    <div class="warn">
+      <p><strong>Цены входа по отдельным бумагам на 18.08.2026 зафиксировать не удалось.</strong> Источники котировок (МосБиржа и её открытый API, mfd.ru, smart-lab, Ведомости, Коммерсантъ, beststocks) недоступны из рабочего окружения — блокируются сетевым прокси. Веб-поиск отдаёт цены только на произвольные прошлые даты: SBER 281,39 ₽ на 03.08 и 283,78 ₽ на 09.08, LKOH 4 383,5 ₽ на 15.07, ROSN 349,85 ₽ на 07.08, PLZL 1 032,8 ₽ на 16.07, SNGSP 43,21 ₽ на 13.08.</p>
+      <p>В соответствии с правилом проекта «нет данных вместо выдуманного числа» цены входа и количество лотов в этом отчёте <strong>не проставлены</strong>. День 0 зафиксирован в долях и суммах — этого достаточно, чтобы структура портфеля была определена однозначно.</p>
+      <p><strong>Что это блокирует:</strong> расчёт рыночной переоценки в следующую пятницу. Без цен входа и текущих цен нельзя посчитать ни <code>total_value</code>, ни TWR.</p>
+      <p><strong>Варианты решения</strong> (нужно выбрать до 21.08): ① разблокировать <code>iss.moex.com</code> в окружении — открытый API биржи закрывает задачу полностью; ② заказчик присылает цены из терминала брокера раз в неделю; ③ переоценивать акционную часть по индексу IMOEX вместо отдельных бумаг — воспроизводимо, но теряется точность по эмитентам.</p>
+    </div>
+    <div class="foot"><span>Ограничение зафиксировано в docs/knowledge/research_log.md</span><span>Блок 5</span></div>
+  </section>
+
+  <section>
+    <h2>Гипотезы этого решения</h2>
+    <div class="sub">Проверяемые утверждения с признаками подтверждения — для оценки качества рассуждений, а не только результата <span class="tag est">оценка</span></div>
+    <div class="cards">
+      <div class="fact"><div class="n">Г1</div><p><strong>Длинные ОФЗ под ~16% — лучшая точка входа цикла.</strong><br>Подтвердится, если к 16.11.2026 доходность ОФЗ 10л опустится ниже 15,0%. Опровергнется, если поднимется выше 17,0% или ЦБ развернёт цикл вверх.</p></div>
+      <div class="fact"><div class="n">Г2</div><p><strong>Экспортёры и золото защищают портфель в санкционном сценарии.</strong><br>Подтвердится, если при следующем падении IMOEX ≥3% за день блок экспортёров и золота покажет результат лучше индекса минимум на 2 п.п.</p></div>
+      <div class="fact"><div class="n">Г3</div><p><strong>Поэтапный вход оправдан именно сейчас.</strong><br>Подтвердится, если транши 2–3 будут исполнены по IMOEX ниже 2093. Опровергнется, если к дедлайнам индекс окажется выше — тогда ожидание стоило нам денег, и это будет записано прямо.</p></div>
+    </div>
+    <div class="foot"><span>Гипотезы проверяются в каждом еженедельном отчёте</span><span>Блок 6</span></div>
+  </section>
+
+  <section>
+    <h2>Что дальше</h2>
+    <ul>
+      <li><strong>Пятница, 21.08</strong> — первая плановая ребалансировка сразу после утреннего радара. Зачисляется первый взнос 2 500 ₽. По правилу распределения он пойдёт в класс с наибольшим недовесом — сейчас это акции, но 2 500 ₽ не хватит на лот большинства бумаг, поэтому взнос с высокой вероятностью будет накоплен в фонде денежного рынка до суммы, достаточной для покупки лота.</li>
+      <li><strong>До 21.08</strong> — решить вопрос с источником котировок, иначе переоценка портфеля невозможна.</li>
+      <li><strong>До транша 2</strong> — провести сверку актуальных ограничений для неквалифицированного инвестора и подобрать конкретный БПИФ на золото с проверкой комиссии; сейчас позиция обозначена родовым названием.</li>
+      <li><strong>Ежедневно</strong> — радар отслеживает флаг внепланового пересмотра. Пороги описаны в методологии §4.</li>
+    </ul>
+    <div class="foot"><span>Модельный портфель, не реальные сделки</span><span>Блок 7</span></div>
+  </section>
+
+  <div class="disclaimer">
+    <strong>Дисклеймер.</strong> Это <strong>модельный (гипотетический) портфель</strong>, ведущийся в учебно-аналитических целях. Реальные сделки не совершаются, реальные денежные средства не размещаются. Материал <strong>не является индивидуальной инвестиционной рекомендацией</strong>: он не учитывает полную финансовую ситуацию читателя и подготовлен как аналитическое упражнение на основе заявленного инвестиционного профиля. Состав портфеля отражает допустимую вселенную активов для неквалифицированного инвестора по состоянию на дату отчёта; правила доступа периодически меняются и подлежат ежеквартальной сверке. Цены входа не зафиксированы из-за недоступности источников котировок — см. блок 5. Любые оценки и гипотезы могут оказаться ошибочными.
+  </div>
+
+</div>
+</body>
+</html>
