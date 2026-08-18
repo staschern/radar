@@ -24,6 +24,7 @@
 | [knowledge/data_schemas.md](knowledge/data_schemas.md) | Схемы всех файлов в `data/` |
 | [knowledge/daily_summary_template.md](knowledge/daily_summary_template.md) | Шаблон дневной сводки |
 | [knowledge/data_sources.md](knowledge/data_sources.md) | Источники, приоритеты, подвохи |
+| [knowledge/network_and_data_access.md](knowledge/network_and_data_access.md) | ⏳ Настройка сетевого доступа и MOEX ISS API |
 | [knowledge/regulatory_notes.md](knowledge/regulatory_notes.md) | Ограничения для неквала + журнал сверок |
 | [knowledge/portfolio_decisions_log.md](knowledge/portfolio_decisions_log.md) | Решения по портфелю и проверяемые гипотезы |
 | [knowledge/ideas_backlog.md](knowledge/ideas_backlog.md) | Идеи и улучшения вне текущего ТЗ |

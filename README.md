@@ -46,8 +46,10 @@
 ├── reports/
 │   ├── radar/         RU_Market_Morning_Radar_YYYY-MM-DD.html
 │   └── portfolio/     RU_Model_Portfolio_YYYY-MM-DD.html
-└── templates/
-    └── radar_template.html      Дизайн-система и опорная разметка
+├── templates/
+│   └── radar_template.html      Дизайн-система и опорная разметка
+└── scripts/
+    └── fetch_market_data.py     Загрузчик котировок (MOEX ISS + ЦБ)
 ```
 
 **Начать здесь:** [docs/README.md](docs/README.md) — полная навигация.
@@ -77,5 +79,5 @@
 - [ ] Сверить актуальные ограничения для неквала ([regulatory_notes](docs/knowledge/regulatory_notes.md))
 - [x] Выпустить первый радар
 - [x] Зафиксировать день 0 портфеля (18.08.2026)
-- [ ] **Решить вопрос с источником котировок до 21.08** — блокирует переоценку портфеля
+- [ ] **Разрешить домены в окружении** (`iss.moex.com`, `*.moex.com`, `*.cbr.ru`) — блокирует переоценку портфеля. Инструкция: [network_and_data_access.md](docs/knowledge/network_and_data_access.md)
 - [ ] Подключить почтовый коннектор в Cowork (доставка на paladin_cool@inbox.ru)
