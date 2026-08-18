@@ -43,18 +43,28 @@
 | Поле | Тип | Описание |
 |---|---|---|
 | `date` | string | `YYYY-MM-DD` |
-| `total_value` | number | Стоимость портфеля, ₽, **с рыночной переоценкой** |
-| `change_pct_since_start` | number | Изменение с дня 0, % |
-| `change_rub_since_start` | number | Изменение с дня 0, ₽ |
+| `total_value` | number | Стоимость портфеля, ₽, **с рыночной переоценкой**, после зачисления взноса |
+| `contribution` | number | Взнос этой даты, ₽ (0, если пересмотр не пятничный) |
+| `contributions_total` | number | Сумма всех взносов с дня 0 |
+| `net_invested` | number | `1 000 000 + contributions_total` — вложено всего |
+| `pnl_rub` | number | `total_value − net_invested` — фактическая прибыль, ₽ |
+| `pnl_pct` | number | `pnl_rub / net_invested × 100`, % |
+| `twr_pct` | number | Time-Weighted Return с дня 0, % — [methodology §9](methodology.md) |
+| `value_before_contribution` | number | Стоимость **до** зачисления взноса — нужна для расчёта TWR |
+| `drawdown_pct` | number | Текущая просадка от пика по кривой TWR, % (≤0) |
 | `trigger` | string | `start` \| `weekly` \| `adhoc` \| `profile_change` |
 | `reason` | string | Краткая причина пересмотра / основной драйвер решения |
-| `allocations` | array | `[{"class":"акции","ticker":"SBER","pct":15,"value":151575}, …]` |
+| `contribution_to` | string | Куда направлен взнос (класс/тикер или «денежный рынок») |
+| `allocations` | array | `[{"class":"акции","ticker":"SBER","pct":15,"value":151575,"lots":5}, …]` |
 | `report` | string | Относительный путь к HTML-отчёту |
 
 **Правила**
 - Сумма `pct` по всем позициям = 100 (допуск округления ±0.5).
 - Класс — одно из: `акции`, `облигации`, `золото`, `кэш`.
-- Первая строка всегда `"trigger":"start"` и фиксирует день 0.
+- Первая строка всегда `"trigger":"start"`, фиксирует день 0, `contribution: 0`,
+  `net_invested: 1000000`, `twr_pct: 0`.
+- `twr_pct` **нельзя** заменять на `pnl_pct` при сравнении с IMOEX — см. methodology §9.
+- Позиции хранят целое число лотов; дробные лоты не используются.
 
 ## 3. `data/watchlist_config.json`
 Фиксированный слой watchlist. **Стартует пустым.** Правится только по указанию
