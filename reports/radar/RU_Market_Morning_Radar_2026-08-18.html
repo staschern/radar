@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Утренний радар — 18 августа 2026</title>
+<style>
+  :root{--bg:#0a0e16;--card:#131a26;--card-2:#0f1520;--line:#232d3d;--text:#e8edf5;--muted:#8a97ab;--dim:#5d6879;--gold:#e0a95c;--blue:#5b9bf5;--up:#5bd88a;--down:#e08a8a}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:"Inter","Helvetica Neue",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:28px 20px 64px}
+  .hero{border:1px solid var(--line);border-radius:14px;background:linear-gradient(160deg,#141c2b 0%,var(--card) 60%);padding:30px 28px;margin-bottom:22px}
+  .eyebrow{color:var(--gold);font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600}
+  h1{margin:10px 0 6px;font-size:clamp(28px,5vw,44px);line-height:1.1;font-weight:800;letter-spacing:-.02em}
+  .hero .date{color:var(--muted);font-size:14px}
+  .trigger{margin-top:16px;padding:14px 16px;border-left:3px solid var(--gold);background:rgba(224,169,92,.07);border-radius:0 10px 10px 0;font-size:16px}
+  .pulse{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:12px;margin-top:20px}
+  .metric{background:var(--card-2);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .metric .k{color:var(--muted);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+  .metric .v{font-size:24px;font-weight:700;margin-top:6px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+  .metric .d{font-size:13px;margin-top:2px;font-weight:600}
+  .up{color:var(--up)}.down{color:var(--down)}.flat{color:var(--muted)}
+  .metric.accent .v{color:var(--gold)}.metric.fx .v{color:var(--blue)}
+  .nodata{color:var(--dim);font-style:italic;font-weight:400}
+  section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px 26px;margin-bottom:18px}
+  h2{margin:0 0 4px;font-size:20px;font-weight:700;color:var(--gold);letter-spacing:-.01em}
+  .sub{color:var(--muted);font-size:13px;margin-bottom:18px}
+  h3{margin:22px 0 8px;font-size:15px;font-weight:700}
+  h3:first-of-type{margin-top:14px}
+  p{margin:8px 0}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+  .fact{background:var(--card-2);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .fact .n{color:var(--gold);font-size:12px;font-weight:700;letter-spacing:.1em}
+  .fact p{margin:8px 0 0;font-size:14px}
+  .src{color:var(--dim);font-size:11px;margin-top:8px;display:block}
+  .tag{display:inline-block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:999px;font-weight:700;vertical-align:middle}
+  .tag.fact{background:rgba(91,155,245,.14);color:var(--blue);border:1px solid rgba(91,155,245,.3)}
+  .tag.est{background:rgba(224,169,92,.12);color:var(--gold);border:1px solid rgba(224,169,92,.3)}
+  .est-note{color:var(--dim);font-size:12px;font-style:italic}
+  .score{display:flex;align-items:center;gap:14px;margin:16px 0 6px}
+  .score .bar{flex:1;height:8px;background:#1b2433;border-radius:999px;overflow:hidden}
+  .score .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--down));border-radius:999px}
+  .score .num{font-size:26px;font-weight:800;color:var(--gold);min-width:76px;text-align:right;font-variant-numeric:tabular-nums}
+  .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:12px}
+  table{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
+  th{text-align:left;color:var(--muted);font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:0 12px 10px 0;border-bottom:1px solid var(--line);white-space:nowrap}
+  td{padding:11px 12px 11px 0;border-bottom:1px solid rgba(35,45,61,.55);vertical-align:top}
+  tbody tr:last-child td{border-bottom:none}
+  .ticker{font-weight:700;letter-spacing:.02em;white-space:nowrap}
+  .num{font-variant-numeric:tabular-nums}
+  .scen{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:var(--card-2)}
+  .scen .h{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .scen .name{font-weight:700}
+  .scen .p{font-size:20px;font-weight:800;color:var(--gold);font-variant-numeric:tabular-nums}
+  .scen.base{border-left:3px solid var(--gold)}.scen.pos{border-left:3px solid var(--up)}.scen.neg{border-left:3px solid var(--down)}
+  .scen dl{margin:10px 0 0;font-size:13px}
+  .scen dt{color:var(--muted);font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-top:8px}
+  .scen dd{margin:2px 0 0}
+  .chain{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:14px}
+  .chain .node{background:var(--card-2);border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:13px;font-weight:600}
+  .chain .arrow{color:var(--gold);font-size:18px;line-height:1}
+  .empty{border:1px dashed var(--line);border-radius:12px;padding:20px;color:var(--muted);font-size:14px;text-align:center;background:rgba(35,45,61,.16)}
+  .empty code{color:var(--gold);font-size:13px}
+  .foot{display:flex;justify-content:space-between;gap:14px;margin-top:20px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px}
+  .disclaimer{margin-top:26px;padding:16px 18px;border:1px solid var(--line);border-radius:12px;background:var(--card-2);color:var(--muted);font-size:12px;line-height:1.6}
+  ul{margin:8px 0;padding-left:20px}li{margin:4px 0}
+  @media print{body{background:var(--bg)}.wrap{max-width:none;padding:0}section,.hero,.fact,.scen,.metric{break-inside:avoid;page-break-inside:avoid}h2{break-after:avoid}}
+  @media (max-width:560px){section{padding:18px 16px}.wrap{padding:16px 12px 40px}.hero{padding:22px 18px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow">Утренний радар · Российский рынок</div>
+    <h1>Санкционный анонс добил отскок</h1>
+    <div class="date">Вторник, 18 августа 2026 · данные на закрытие основной сессии 17.08, курсы ЦБ на 18.08</div>
+    <div class="trigger"><strong>Триггер дня.</strong> Рынок третью сессию подряд теряет высоту и закрепляется ниже 2100 после заявления главы дипломатии ЕС о подготовке самого масштабного с 2022 года пакета санкций; долговой рынок сдаёт быстрее акций.</div>
+    <div class="pulse">
+      <div class="metric"><div class="k">IMOEX</div><div class="v">2093,22</div><div class="d down">−2,02% за день · −2,02% за неделю</div></div>
+      <div class="metric fx"><div class="k">USD/RUB · ЦБ</div><div class="v">85,0136</div><div class="d down">+0,55% (+0,47 ₽)</div></div>
+      <div class="metric fx"><div class="k">CNY/RUB · ЦБ</div><div class="v">12,6275</div><div class="d down">+1,19%</div></div>
+      <div class="metric accent"><div class="k">Ключевая ставка</div><div class="v">14,00%</div><div class="d flat">без изменений · заседание 11.09</div></div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Три главных факта дня</h2>
+    <div class="sub">Проверяемые утверждения с источником. Интерпретация — в блоках ниже.</div>
+    <div class="cards">
+      <div class="fact"><div class="n">01</div>
+        <p>Индекс МосБиржи закрыл основную сессию 17 августа на <strong>2093,22 п. (−2,02%)</strong>, РТС — 775,65 п. (−2,56%). Это третья подряд убыточная сессия после обвала 14 августа, когда IMOEX потерял 4,29% — сильнейшее дневное падение с 26 сентября 2022 года.</p>
+        <span class="src">Источник: Ведомости, Интерфакс, ПРАЙМ, mfd.ru</span></div>
+      <div class="fact"><div class="n">02</div>
+        <p>Глава дипломатии ЕС Кая Каллас в интервью Die Welt 17 августа заявила, что готовящийся пакет санкций против России станет <strong>самым масштабным с 2022 года</strong>: число подсанкционных физлиц, компаний и организаций вырастет единовременно примерно на треть. Сроки принятия и перечень мер не названы.</p>
+        <span class="src">Источник: Die Welt (через Ведомости, EADaily, ОСН)</span></div>
+      <div class="fact"><div class="n">03</div>
+        <p>Индекс гособлигаций <strong>RGBI пробил 114 п. впервые с 24 июля</strong>, опускаясь в течение 17 августа до 113,38 п. (−0,72%). Доходность 10-летних ОФЗ поднялась к <strong>15,89%</strong>, 30-летних — к 16,18% при ключевой ставке 14,00%.</p>
+        <span class="src">Источник: МосБиржа, Ведомости, smart-lab</span></div>
+    </div>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 2</span></div>
+  </section>
+
+  <section>
+    <h2>Рыночная панель</h2>
+    <div class="sub">Акции и облигации — закрытие/внутридневные значения 17.08.2026. Валюта — официальные курсы ЦБ РФ на 18.08.2026. Сырьё — 17.08.2026.</div>
+    <div class="pulse">
+      <div class="metric"><div class="k">РТС</div><div class="v">775,65</div><div class="d down">−2,56%</div></div>
+      <div class="metric"><div class="k">RGBI</div><div class="v">≈113,4</div><div class="d down">−0,72% (внутри дня)</div></div>
+      <div class="metric"><div class="k">ОФЗ 10 лет</div><div class="v">15,89%</div><div class="d down">рост доходности</div></div>
+      <div class="metric"><div class="k">ОФЗ до 1 года</div><div class="v">13,6–13,8%</div><div class="d flat">ниже ключевой ставки</div></div>
+      <div class="metric"><div class="k">RUONIA</div><div class="v">13,98%</div><div class="d flat">14.08: 13,99%</div></div>
+      <div class="metric"><div class="k">Brent</div><div class="v">88,31</div><div class="d down">−0,24% · $/барр.</div></div>
+      <div class="metric accent"><div class="k">Золото, спот</div><div class="v">≈4388</div><div class="d up">$/унц. · дек. фьючерс 4440</div></div>
+      <div class="metric"><div class="k">EUR/RUB · ЦБ</div><div class="v">98,3352</div><div class="d down">+0,84%</div></div>
+    </div>
+
+    <h3>Движения дня, 17.08</h3>
+    <svg viewBox="0 0 640 224" width="100%" role="img" aria-label="Изменение котировок акций за 17 августа 2026 в процентах">
+      <line x1="340" y1="0" x2="340" y2="212" stroke="#232d3d" stroke-width="1"/>
+      <text x="0" y="16" fill="#e8edf5" font-size="13" font-weight="700">BSPB</text>
+      <rect x="106.4" y="4" width="233.6" height="16" rx="4" fill="#e08a8a"/><text x="98.4" y="16" fill="#8a97ab" font-size="12" text-anchor="end">−5,19%</text>
+      <text x="0" y="42" fill="#e8edf5" font-size="13" font-weight="700">UWGN</text>
+      <rect x="115.4" y="30" width="224.6" height="16" rx="4" fill="#e08a8a"/><text x="107.4" y="42" fill="#8a97ab" font-size="12" text-anchor="end">−4,99%</text>
+      <text x="0" y="68" fill="#e8edf5" font-size="13" font-weight="700">VKCO</text>
+      <rect x="126.2" y="56" width="213.8" height="16" rx="4" fill="#e08a8a"/><text x="118.2" y="68" fill="#8a97ab" font-size="12" text-anchor="end">−4,75%</text>
+      <text x="0" y="94" fill="#e8edf5" font-size="13" font-weight="700">WUSH</text>
+      <rect x="128.5" y="82" width="211.5" height="16" rx="4" fill="#e08a8a"/><text x="120.5" y="94" fill="#8a97ab" font-size="12" text-anchor="end">−4,70%</text>
+      <text x="0" y="120" fill="#e8edf5" font-size="13" font-weight="700">POSI</text>
+      <rect x="134.8" y="108" width="205.2" height="16" rx="4" fill="#e08a8a"/><text x="126.8" y="120" fill="#8a97ab" font-size="12" text-anchor="end">−4,56%</text>
+      <text x="0" y="146" fill="#e8edf5" font-size="13" font-weight="700">ALRS</text>
+      <rect x="160.4" y="134" width="179.6" height="16" rx="4" fill="#e08a8a"/><text x="152.4" y="146" fill="#8a97ab" font-size="12" text-anchor="end">−3,99%</text>
+      <text x="0" y="172" fill="#e8edf5" font-size="13" font-weight="700">SNGSP</text>
+      <rect x="340" y="160" width="55.4" height="16" rx="4" fill="#5bd88a"/><text x="403.4" y="172" fill="#8a97ab" font-size="12">+1,23%</text>
+      <text x="0" y="198" fill="#e8edf5" font-size="13" font-weight="700">PLZL</text>
+      <rect x="340" y="186" width="36.9" height="16" rx="4" fill="#5bd88a"/><text x="384.9" y="198" fill="#8a97ab" font-size="12">+0,82%</text>
+    </svg>
+    <p class="est-note">Ширина бара пропорциональна модулю изменения. Также в плюсе — GMKN (+0,28%). Данные по объёмам торгов по отдельным бумагам — нет данных, поэтому устойчивость движений оценивалась по новостному основанию, а не по обороту.</p>
+
+    <h3>Контекст</h3>
+    <p>Падение широкого рынка и одновременный рост экспортёров и золотодобытчиков — типичная картина «санкционного» дня: рубль слабеет, и валютная выручка переоценивается вверх, тогда как внутренние истории (банки, ритейл, IT, транспорт) продают без разбора.</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 3</span></div>
+  </section>
+
+  <section>
+    <h2>Ключевое событие дня</h2>
+    <div class="sub">Анонс нового пакета санкций ЕС — «самого масштабного с 2022 года»</div>
+
+    <h3><span class="tag fact">факт</span> Что известно</h3>
+    <p>17 августа в интервью немецкому изданию Die Welt верховный представитель ЕС по иностранным делам Кая Каллас заявила, что готовящийся пакет ограничений станет самым масштабным с 2022 года, и число подсанкционных лиц и организаций вырастет единовременно примерно на треть. Предыдущий, 21-й пакет ЕС был согласован 23 июля 2026 года и, в частности, запретил транзакции ещё с 32 российскими банками.</p>
+
+    <h3><span class="tag est">оценка</span> Что ещё не факт</h3>
+    <p>Не названы ни сроки принятия, ни конкретный перечень мер, ни отрасли. Неизвестно, будет ли пакет затрагивать вторичные санкции, экспортные каналы или расчётную инфраструктуру — а именно от этого зависит, транслируется ли он в финансовый результат эмитентов или остаётся расширением списков. Заявление на этом этапе — заявление о намерении, а не принятое решение: пакет требует согласования всех стран ЕС.</p>
+
+    <h3>Рыночный механизм</h3>
+    <p>Санкционный анонс поднимает требуемую доходность по рублёвым активам. Первым реагирует долговой рынок — RGBI пробил 114 быстрее, чем акции пробили 2100. Далее растёт спрос на валюту, рубль слабеет, что механически поддерживает экспортёров и золотодобытчиков и одновременно ухудшает перспективы дальнейшего смягчения ДКП: ослабление рубля проинфляционно.</p>
+
+    <h3>Чувствительные бумаги <span class="tag est">оценка</span></h3>
+    <p><strong>Под давлением:</strong> банки с внешними расчётами (BSPB и сектор в целом), внутренние IT и потребительские истории (POSI, VKCO, LENT, WUSH), эмитенты с высокой долговой нагрузкой — им рост доходностей ОФЗ дороже всего. <strong>С поддержкой:</strong> экспортёры с валютной выручкой (SNGSP) и золотодобытчики (PLZL, UGLD) — за счёт курса и цены золота.</p>
+
+    <div class="score">
+      <div class="num">68</div>
+      <div class="bar"><div class="fill" style="width:68%"></div></div>
+    </div>
+    <p class="est-note">Оценка влияния 0–100 — аналитическая эвристика (охват / необратимость / неожиданность / скорость), методология §3. Высокий охват (весь рынок) и быстрая реакция, но низкая необратимость: это анонс, а не вступившее в силу решение. Не факт и не прогноз.</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 4</span></div>
+  </section>
+
+  <section>
+    <h2>Валюта и ликвидность</h2>
+    <div class="sub">Курс ЦБ на 18.08.2026 · данные по ликвидности банковского сектора на 13.08.2026</div>
+    <p>ЦБ повысил официальные курсы: доллар — <strong>85,0136 ₽ (+0,47 ₽, +0,55%)</strong>, юань — <strong>12,6275 ₽ (+1,19%)</strong>, евро — 98,3352 ₽ (+0,84%). Юань растёт быстрее доллара, что для расчётной практики российского импорта важнее номинальной пары USD/RUB.</p>
+    <p><strong>Структурный дефицит ликвидности банковского сектора к 13 августа достиг рекордных ≈2,7 трлн ₽</strong> — максимум с марта 2022 года. Динамика года: 587 млрд ₽ в начале 2026-го, свыше 1 трлн ₽ в апреле, 2–2,7 трлн ₽ в июле–августе. ЦБ в мае повышал прогноз дефицита на 2026 год до 2,4–3,6 трлн ₽; основной драйвер оттока — рост наличных в обращении.</p>
+    <p class="est-note"><span class="tag est">оценка</span> Рекордный дефицит ликвидности удерживает ставки денежного рынка вблизи ключевой (RUONIA 13,98% при ставке 14,00%) и ограничивает пространство для быстрого смягчения ДКП. Ежедневные операции ЦБ на валютном рынке за 17.08 — <span class="nodata">нет данных</span> на момент подготовки отчёта.</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 5</span></div>
+  </section>
+
+  <section>
+    <h2>Инфляция и ставка</h2>
+    <div class="sub">Росстат / Минэкономразвития · последняя опубликованная неделя 4–10 августа</div>
+    <div class="pulse">
+      <div class="metric"><div class="k">Недельный ИПЦ</div><div class="v up">−0,06%</div><div class="d up">дефляция</div></div>
+      <div class="metric"><div class="k">Годовая инфляция</div><div class="v">6,05%</div><div class="d up">с 6,11%</div></div>
+      <div class="metric"><div class="k">С начала года</div><div class="v">4,84%</div><div class="d flat">накопленным итогом</div></div>
+      <div class="metric accent"><div class="k">Ключевая ставка</div><div class="v">14,00%</div><div class="d flat">с 24.07 (−0,25 п.п.)</div></div>
+    </div>
+    <p>Вторая подряд неделя дефляции: с 28 июля по 3 августа цены снизились на 0,02%, с 4 по 10 августа — на 0,06%. Годовая инфляция замедлилась с 6,11% до 6,05%. Драйверы — удешевление топлива и сезонное снижение цен на плодоовощную продукцию.</p>
+    <p class="est-note"><span class="tag est">оценка</span> Инфляционная картина сама по себе поддерживает продолжение цикла смягчения — реальная ставка около 8 п.п. остаётся жёсткой. Но дефляция носит сезонный характер, а ослабление рубля работает в обратную сторону. Ближайшее заседание ЦБ — 11 сентября; консенсус аналитиков (SberCIB) склоняется к сохранению 14,00%.</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 6</span></div>
+  </section>
+
+  <section>
+    <h2>ОФЗ и кривая доходности</h2>
+    <div class="sub">Значения 17.08.2026</div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Участок кривой</th><th>Доходность</th><th>Комментарий</th></tr></thead>
+        <tbody>
+          <tr><td>До 1 года</td><td class="num">13,63–13,82%</td><td>Ниже ключевой ставки — рынок всё ещё закладывает смягчение на коротком горизонте</td></tr>
+          <tr><td>ОФЗ 26232 (окт. 2027)</td><td class="num">13,49%</td><td>Минимальная доходность по последней сделке</td></tr>
+          <tr><td>10 лет</td><td class="num">15,89%</td><td>Выше ключевой ставки на ≈1,9 п.п.</td></tr>
+          <tr><td>30 лет</td><td class="num">16,18%</td><td>Длинный конец продают агрессивнее всего</td></tr>
+          <tr><td>ОФЗ 26245 (окт. 2040)</td><td class="num">16,16%</td><td>Максимальная доходность по последней сделке</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="est-note"><span class="tag est">оценка</span> Кривая имеет выраженный положительный наклон: короткий конец ниже ключевой ставки, длинный — почти на 2 п.п. выше. Это сигнал, что рынок готов верить в снижение ставки на горизонте года, но требует всё большей премии за длинный политический риск. RGBI ниже 114 — уровень, на котором индекс был в последний раз 24 июля, то есть весь эффект июльского снижения ставки долговым рынком отыгран назад.</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 7</span></div>
+  </section>
+
+  <section>
+    <h2>Корпоративные истории</h2>
+    <div class="sub">Отдельные сюжеты 17.08 · подробный календарь — блок 13</div>
+    <div class="cards">
+      <div class="fact"><div class="n">SNGSP</div>
+        <p><span class="tag fact">факт</span> Префы «Сургутнефтегаза» +1,23% — лидер роста дня. <br><span class="tag est">оценка</span> Двойная поддержка: ослабление рубля переоценивает валютную «кубышку», нефть держится около $88.</p></div>
+      <div class="fact"><div class="n">PLZL</div>
+        <p><span class="tag fact">факт</span> «Полюс» +0,82% на фоне золота около $4388/унц. <br><span class="tag est">оценка</span> Классическая защитная реакция: золото плюс слабый рубль дают двойной эффект в рублёвой выручке.</p></div>
+      <div class="fact"><div class="n">BSPB</div>
+        <p><span class="tag fact">факт</span> Банк «Санкт-Петербург» −5,19% — худший результат дня; отчёт по МСФО за I полугодие ожидается 22 августа. <br><span class="tag est">оценка</span> Санкционный риск для банковского сектора после запрета транзакций с 32 банками в 21-м пакете читается рынком как незавершённый.</p></div>
+    </div>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 8</span></div>
+  </section>
+
+  <section>
+    <h2>Логика обратной связи</h2>
+    <div class="sub">Как связаны сегодняшние события. <span class="tag est">оценка</span></div>
+    <div class="chain">
+      <div class="node">Анонс санкций ЕС</div><div class="arrow">→</div>
+      <div class="node">Рост риск-премии</div><div class="arrow">→</div>
+      <div class="node">Распродажа ОФЗ<br>RGBI &lt;114, 10л 15,89%</div><div class="arrow">→</div>
+      <div class="node">Спрос на валюту<br>USD 85,01 · CNY 12,63</div><div class="arrow">→</div>
+      <div class="node">Экспортёры и золото<br>в плюсе против рынка</div>
+    </div>
+    <p class="est-note" style="margin-top:14px">Обратная связь второго порядка: ослабление рубля проинфляционно → сокращает пространство для снижения ключевой ставки 11 сентября → давит на длинные ОФЗ ещё сильнее. Схема отражает предполагаемый механизм, а не установленную причинность.</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 9</span></div>
+  </section>
+
+  <section>
+    <h2>Техническая карта индекса</h2>
+    <div class="sub">IMOEX, ключевые отметки последних сессий. <span class="tag est">оценка</span></div>
+    <svg viewBox="0 0 640 200" width="100%" role="img" aria-label="Динамика индекса МосБиржи с 13 по 17 августа 2026">
+      <line x1="40" y1="30" x2="620" y2="30" stroke="#232d3d" stroke-dasharray="4 4"/><text x="40" y="24" fill="#8a97ab" font-size="11">2232 — закрытие 13.08, точка отсчёта падения</text>
+      <line x1="40" y1="88" x2="620" y2="88" stroke="#e0a95c" stroke-dasharray="4 4" opacity=".6"/><text x="40" y="82" fill="#e0a95c" font-size="11">2136 — закрытие 14.08, ближайшее сопротивление</text>
+      <line x1="40" y1="128" x2="620" y2="128" stroke="#5b9bf5" stroke-dasharray="4 4" opacity=".7"/><text x="40" y="122" fill="#5b9bf5" font-size="11">2093 — закрытие 17.08</text>
+      <line x1="40" y1="160" x2="620" y2="160" stroke="#e08a8a" stroke-dasharray="4 4" opacity=".6"/><text x="40" y="154" fill="#e08a8a" font-size="11">2060–2088 — зона внутридневных минимумов, ближайшая поддержка</text>
+      <polyline points="60,30 200,88 340,110 480,128 560,140" fill="none" stroke="#e8edf5" stroke-width="2.5" stroke-linejoin="round"/>
+      <circle cx="60" cy="30" r="4" fill="#e8edf5"/><circle cx="200" cy="88" r="4" fill="#e08a8a"/><circle cx="560" cy="140" r="4" fill="#5b9bf5"/>
+      <text x="46" y="188" fill="#5d6879" font-size="11">13.08</text><text x="186" y="188" fill="#5d6879" font-size="11">14.08</text><text x="540" y="188" fill="#5d6879" font-size="11">17.08</text>
+    </svg>
+    <p class="est-note">Схема иллюстративная: она показывает взаимное расположение уровней, а не масштабированный график котировок. С закрытия 13 августа индекс потерял около 6,2%.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Зона</th><th>Уровень</th><th>Что подтверждает</th><th>Что отменяет</th></tr></thead>
+        <tbody>
+          <tr><td>Сопротивление</td><td class="num">2136–2150</td><td>Закрытие выше 2136 — возврат к докризисной отметке пятницы</td><td>Отбой вниз в первой половине дня</td></tr>
+          <tr><td>Поддержка</td><td class="num">2060–2088</td><td>Удержание зоны два дня подряд — формирование базы</td><td>Закрытие ниже 2060 — открывает путь к 2000–2050</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="est-note">Ширина рынка (доля растущих бумаг) — <span class="nodata">нет данных</span>. Уровни — аналитическая оценка на основе экстремумов последних сессий, а не команда на сделку.</p>
+    <div class="foot"><span>Уровни — зоны подтверждения гипотез, не сигналы к сделкам</span><span>Блок 10</span></div>
+  </section>
+
+  <section>
+    <h2>Watchlist I · Фиксированный список</h2>
+    <div class="sub">Список задаётся пользователем в <code>data/watchlist_config.json</code>.</div>
+    <div class="empty">
+      Фиксированный список пуст — ведётся только динамический слой (Watchlist II).<br>
+      Чтобы бумага отслеживалась ежедневно с уровнями и статусом, сообщите её тикер — он будет добавлен в <code>data/watchlist_config.json</code>.<br><br>
+      <span class="est-note">Кандидаты по итогам сегодняшнего дня <span class="tag est">оценка</span>: SNGSP и PLZL — как валютный и золотой хедж; ALRS и VKCO — как индикаторы санкционной чувствительности; SBER — как барометр банковского сектора. Решение за вами: агент не добавляет тикеры самостоятельно.</span>
+    </div>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 11</span></div>
+  </section>
+
+  <section>
+    <h2>Watchlist II · Импульсные истории</h2>
+    <div class="sub">Топ-движения 17.08. Формируется агентом автоматически.</div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Тикер</th><th>Δ день</th><th>Что произошло</th><th>Устойчивость движения <span class="tag est">оценка</span></th></tr></thead>
+        <tbody>
+          <tr><td class="ticker">BSPB</td><td class="num down">−5,19%</td><td>Банк «Санкт-Петербург», худший результат дня</td><td>Зависит от деталей пакета ЕС; отчёт МСФО 22.08 — ближайший катализатор</td></tr>
+          <tr><td class="ticker">UWGN</td><td class="num down">−4,99%</td><td>ОВК</td><td>Низколиквидная история, движение может не иметь фундаментального основания</td></tr>
+          <tr><td class="ticker">VKCO</td><td class="num down">−4,75%</td><td>ВК; падала и 14.08 (−4,3%)</td><td>Устойчивое давление вторую сессию — внутренняя IT-история без валютной защиты</td></tr>
+          <tr><td class="ticker">WUSH</td><td class="num down">−4,70%</td><td>Вуш Холдинг</td><td>Бумага роста в фазе risk-off; движение вероятно продолжится при пробое 2060 по индексу</td></tr>
+          <tr><td class="ticker">POSI</td><td class="num down">−4,56%</td><td>Группа Позитив</td><td>То же основание: внутренний спрос, высокая бета к индексу</td></tr>
+          <tr><td class="ticker">ALRS</td><td class="num down">−3,99%</td><td>АЛРОСА; падала и 14.08 (−3,4%)</td><td>Санкционно-чувствительный экспортёр — курс не компенсирует ограничения сбыта</td></tr>
+          <tr><td class="ticker">SNGSP</td><td class="num up">+1,23%</td><td>Сургутнефтегаз, префы — лидер роста</td><td>Пока рубль слабеет, поддержка сохраняется; разворот курса снимет её</td></tr>
+          <tr><td class="ticker">PLZL</td><td class="num up">+0,82%</td><td>Полюс, вслед за золотом</td><td>Устойчиво при золоте выше $4300 и слабом рубле</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="est-note">Также в плюсе: GMKN (+0,28%). Данные по объёмам — нет данных, поэтому фильтр ликвидности к списку не применялся; UWGN отмечена как потенциально низколиквидная.</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 12</span></div>
+  </section>
+
+  <section>
+    <h2>Календарь недели</h2>
+    <div class="sub">18–22 августа 2026</div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Дата</th><th>Событие</th></tr></thead>
+        <tbody>
+          <tr><td class="ticker">Вт, 18.08</td><td>Россети — отчёт РСБУ за I полугодие</td></tr>
+          <tr><td class="ticker">Ср, 19.08</td><td>МТС — МСФО за I полугодие · МТС Банк — МСФО за II квартал</td></tr>
+          <tr><td class="ticker">Чт, 20.08</td><td>Росстат — недельные данные по инфляции · Европлан и Циан — МСФО за I полугодие · Т-Технологии — СД по дивидендам · начало торгов акциями ПАО «Фикс Прайс»</td></tr>
+          <tr><td class="ticker">Пт, 21.08</td><td>Т-Технологии, МГКЛ, Софтлайн — МСФО за I полугодие · <strong>Новатэк — СД по дивидендам</strong></td></tr>
+          <tr><td class="ticker">Сб, 22.08</td><td>Аренадата, Банк «Санкт-Петербург» — МСФО за I полугодие</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="est-note">Даты корпоративных событий переносятся — сверяйте с сайтами эмитентов. Ключевые точки недели <span class="tag est">оценка</span>: недельная инфляция в четверг (третья подряд дефляционная неделя усилила бы аргумент за снижение ставки 11 сентября) и совет директоров Новатэка по дивидендам в пятницу.</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 13</span></div>
+  </section>
+
+  <section>
+    <h2>Причинно-следственная схема: почему падают именно эти бумаги</h2>
+    <div class="sub">Тот же день с другого ракурса. <span class="tag est">оценка</span></div>
+    <div class="chain">
+      <div class="node">Слабый рубль<br>85,01 ₽/$</div><div class="arrow">→</div>
+      <div class="node">Валютная выручка<br>дороже в рублях</div><div class="arrow">→</div>
+      <div class="node">SNGSP, PLZL, GMKN<br>против рынка вверх</div>
+    </div>
+    <div class="chain">
+      <div class="node">Доходность ОФЗ 10л<br>15,89%</div><div class="arrow">→</div>
+      <div class="node">Дороже стоимость<br>капитала</div><div class="arrow">→</div>
+      <div class="node">Истории роста<br>POSI, WUSH, VKCO вниз</div>
+    </div>
+    <p class="est-note" style="margin-top:14px">Один и тот же санкционный импульс расщепляет рынок на две части: экспортёров он поддерживает через курс, а внутренние истории бьёт дважды — через риск-премию и через удорожание фондирования. Это объясняет, почему падение индекса на 2% сопровождалось падением отдельных бумаг на 5%.</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 14</span></div>
+  </section>
+
+  <section>
+    <h2>Три сценария на 18 августа</h2>
+    <div class="sub">Вероятности в сумме 100%. У каждого сценария — наблюдаемый триггер, чтобы завтра можно было проверить, сбылся ли он. <span class="tag est">оценка</span></div>
+    <div class="cards">
+      <div class="scen base">
+        <div class="h"><span class="name">Базовый</span><span class="p">55%</span></div>
+        <dl><dt>Триггер</dt><dd>В течение дня не появляется конкретики по составу пакета ЕС; геополитический фон без новых заявлений</dd>
+            <dt>Что происходит</dt><dd>Рынок стабилизируется около 2100, попытки отскока гасятся продажами; RGBI около 113–114</dd>
+            <dt>Диапазон IMOEX</dt><dd class="num">2060–2130</dd></dl>
+      </div>
+      <div class="scen pos">
+        <div class="h"><span class="name">Позитивный</span><span class="p">20%</span></div>
+        <dl><dt>Триггер</dt><dd>Сообщения о возобновлении переговорного трека либо опровержение заявленного масштаба пакета</dd>
+            <dt>Что происходит</dt><dd>Технический отскок после трёх сессий падения, закрытие гэпа к пятничному уровню</dd>
+            <dt>Диапазон IMOEX</dt><dd class="num">2130–2180</dd></dl>
+      </div>
+      <div class="scen neg">
+        <div class="h"><span class="name">Негативный</span><span class="p">25%</span></div>
+        <dl><dt>Триггер</dt><dd>Публикация деталей пакета — банки, экспортные каналы, вторичные санкции — или новые жёсткие заявления сторон</dd>
+            <dt>Что происходит</dt><dd>Пробой 2060, ускорение продаж в ОФЗ, USD/RUB выше 86</dd>
+            <dt>Диапазон IMOEX</dt><dd class="num">2000–2060</dd></dl>
+      </div>
+    </div>
+    <h3>Что подтвердилось из прошлого раза</h3>
+    <p>Это первый выпуск радара — предыдущих сценариев для проверки нет. Начиная со следующего выпуска в этом блоке будет отчёт о том, какие сценарии сбылись, а какие нет, включая промахи: он существует для калибровки качества прогнозов, а не для их украшения.</p>
+    <div class="foot"><span>Сценарии — вероятностные суждения, не прогноз и не рекомендация</span><span>Блок 15</span></div>
+  </section>
+
+  <section>
+    <h2>Итоговый watchlist и главный риск</h2>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Инструмент</th><th>Ключевой уровень</th><th>Что подтверждает</th><th>Что отменяет</th></tr></thead>
+        <tbody>
+          <tr><td class="ticker">IMOEX</td><td class="num">2060 / 2136</td><td>Удержание 2060 два дня — база для отскока</td><td>Закрытие ниже 2060 — цель 2000–2050</td></tr>
+          <tr><td class="ticker">RGBI</td><td class="num">114</td><td>Возврат выше 114 — снятие части санкционной премии в долге</td><td>Закрепление ниже 113 — рынок закладывает паузу ЦБ 11.09</td></tr>
+          <tr><td class="ticker">USD/RUB</td><td class="num">86</td><td>Уход выше 86 — усиление позиции экспортёров, давление на ОФЗ</td><td>Возврат ниже 84 — снятие валютной премии</td></tr>
+          <tr><td class="ticker">ОФЗ 10л</td><td class="num">16,00%</td><td>Пробой 16% — рынок отказывается от идеи снижения ставки</td><td>Возврат ниже 15,5% — восстановление веры в смягчение</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>Главный риск</h3>
+    <p>Публикация конкретного содержания пакета ЕС до заседания ЦБ 11 сентября. Опасен не сам факт расширения списков, а попадание в пакет расчётной инфраструктуры или экспортных каналов: это превратит анонс из премии за неопределённость в изменение денежных потоков эмитентов и одновременно ударит по рублю, закрыв окно для снижения ключевой ставки.</p>
+    <h3>Методология</h3>
+    <p class="est-note">Дельты: «за день» — к закрытию предыдущего торгового дня (14.08); «за неделю» — к закрытию пятницы предыдущей недели, которой для понедельника 17.08 также является 14 августа, поэтому обе дельты совпадают. Для контекста: с закрытия 13.08 (2232 п.) индекс потерял около 6,2%. Оценка влияния 0–100 и уровни — эвристики, описанные в <code>docs/knowledge/methodology.md</code>. Данные, которых нет в открытых источниках на момент подготовки, помечены «нет данных» и не восстанавливались по предыдущим значениям.</p>
+    <div class="foot"><span>Внеплановый пересмотр портфеля требуется: <strong>нет</strong> — ни один порог методологии §4 не сработал</span><span>Блок 16</span></div>
+  </section>
+
+  <div class="disclaimer">
+    <strong>Дисклеймер.</strong> Материал носит информационно-аналитический характер и <strong>не является индивидуальной инвестиционной рекомендацией</strong>. Указанные уровни — зоны подтверждения гипотез, а не сигналы к совершению сделок. Факты отделены от оценок и сценариев соответствующими пометками; оценки получены эвристически и могут быть ошибочны. Данные собраны из открытых источников (МосБиржа, Банк России, Росстат, Ведомости, Интерфакс, ПРАЙМ, smart-lab, investing.com) по состоянию на утро 18 августа 2026 года и могли измениться к моменту чтения. Значения, помеченные «≈», являются внутридневными и могут отличаться от официального закрытия. Автор не несёт ответственности за решения, принятые на основе этого материала.
+  </div>
+
+</div>
+</body>
+</html>
