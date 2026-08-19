@@ -29,6 +29,7 @@
 | [knowledge/regulatory_notes.md](knowledge/regulatory_notes.md) | Ограничения для неквала + журнал сверок |
 | [knowledge/portfolio_decisions_log.md](knowledge/portfolio_decisions_log.md) | Решения по портфелю и проверяемые гипотезы |
 | [knowledge/external_views.md](knowledge/external_views.md) | Внешние мнения аналитиков и каналов (мнения ≠ факты) |
+| [knowledge/analyst_scorecard.md](knowledge/analyst_scorecard.md) | Учёт исходов идей: что у кого сбылось |
 | [knowledge/ideas_backlog.md](knowledge/ideas_backlog.md) | Идеи и улучшения вне текущего ТЗ |
 | [knowledge/research_log.md](knowledge/research_log.md) | Журнал исследований, включая отрицательные результаты |
 
@@ -56,6 +57,8 @@
 | Что-то выяснили (в т.ч. «не работает») | `knowledge/research_log.md` |
 | Появилась идея вне ТЗ | `knowledge/ideas_backlog.md` |
 | Заказчик прислал внешнее мнение | `knowledge/external_views.md` |
+| Прислана идея с уровнями | `data/watchlist_config.json` (тикер + уровни) и `knowledge/analyst_scorecard.md` |
+| Уровень из идеи достигнут | `outcome` в watchlist_config + запись в scorecard |
 | Уточнили метод расчёта | `knowledge/methodology.md` + запись в research_log |
 | Изменился watchlist | `data/watchlist_config.json` + причина в `history` |
 | Пересмотрен портфель | `data/portfolio_history.jsonl` + `knowledge/portfolio_decisions_log.md` |
