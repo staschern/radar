@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Утренний радар — 19 августа 2026</title>
+<style>
+  :root{--bg:#0a0e16;--card:#131a26;--card-2:#0f1520;--line:#232d3d;--text:#e8edf5;--muted:#8a97ab;--dim:#5d6879;--gold:#e0a95c;--blue:#5b9bf5;--up:#5bd88a;--down:#e08a8a}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:"Inter","Helvetica Neue",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:28px 20px 64px}
+  .hero{border:1px solid var(--line);border-radius:14px;background:linear-gradient(160deg,#141c2b 0%,var(--card) 60%);padding:30px 28px;margin-bottom:22px}
+  .eyebrow{color:var(--gold);font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600}
+  h1{margin:10px 0 6px;font-size:clamp(28px,5vw,44px);line-height:1.1;font-weight:800;letter-spacing:-.02em}
+  .hero .date{color:var(--muted);font-size:14px}
+  .trigger{margin-top:16px;padding:14px 16px;border-left:3px solid var(--gold);background:rgba(224,169,92,.07);border-radius:0 10px 10px 0;font-size:16px}
+  .pulse{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:12px;margin-top:20px}
+  .metric{background:var(--card-2);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .metric .k{color:var(--muted);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+  .metric .v{font-size:24px;font-weight:700;margin-top:6px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+  .metric .d{font-size:13px;margin-top:2px;font-weight:600}
+  .up{color:var(--up)}.down{color:var(--down)}.flat{color:var(--muted)}
+  .metric.accent .v{color:var(--gold)}.metric.fx .v{color:var(--blue)}
+  .nodata{color:var(--dim);font-style:italic;font-weight:400}
+  section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px 26px;margin-bottom:18px}
+  h2{margin:0 0 4px;font-size:20px;font-weight:700;color:var(--gold);letter-spacing:-.01em}
+  .sub{color:var(--muted);font-size:13px;margin-bottom:18px}
+  h3{margin:22px 0 8px;font-size:15px;font-weight:700}
+  h3:first-of-type{margin-top:14px}
+  p{margin:8px 0}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+  .fact{background:var(--card-2);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .fact .n{color:var(--gold);font-size:12px;font-weight:700;letter-spacing:.1em}
+  .fact p{margin:8px 0 0;font-size:14px}
+  .src{color:var(--dim);font-size:11px;margin-top:8px;display:block}
+  .tag{display:inline-block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:999px;font-weight:700;vertical-align:middle}
+  .tag.fact{background:rgba(91,155,245,.14);color:var(--blue);border:1px solid rgba(91,155,245,.3)}
+  .tag.est{background:rgba(224,169,92,.12);color:var(--gold);border:1px solid rgba(224,169,92,.3)}
+  .est-note{color:var(--dim);font-size:12px;font-style:italic}
+  .score{display:flex;align-items:center;gap:14px;margin:16px 0 6px}
+  .score .bar{flex:1;height:8px;background:#1b2433;border-radius:999px;overflow:hidden}
+  .score .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--down));border-radius:999px}
+  .score .num{font-size:26px;font-weight:800;color:var(--gold);min-width:76px;text-align:right;font-variant-numeric:tabular-nums}
+  .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:12px}
+  table{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
+  th{text-align:left;color:var(--muted);font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:0 12px 10px 0;border-bottom:1px solid var(--line);white-space:nowrap}
+  td{padding:11px 12px 11px 0;border-bottom:1px solid rgba(35,45,61,.55);vertical-align:top}
+  tbody tr:last-child td{border-bottom:none}
+  .ticker{font-weight:700;letter-spacing:.02em;white-space:nowrap}
+  .num{font-variant-numeric:tabular-nums}
+  .scen{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:var(--card-2)}
+  .scen .h{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .scen .name{font-weight:700}
+  .scen .p{font-size:20px;font-weight:800;color:var(--gold);font-variant-numeric:tabular-nums}
+  .scen.base{border-left:3px solid var(--gold)}.scen.pos{border-left:3px solid var(--up)}.scen.neg{border-left:3px solid var(--down)}
+  .scen dl{margin:10px 0 0;font-size:13px}
+  .scen dt{color:var(--muted);font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-top:8px}
+  .scen dd{margin:2px 0 0}
+  .chain{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:14px}
+  .chain .node{background:var(--card-2);border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:13px;font-weight:600}
+  .chain .arrow{color:var(--gold);font-size:18px;line-height:1}
+  .empty{border:1px dashed var(--line);border-radius:12px;padding:20px;color:var(--muted);font-size:14px;text-align:center;background:rgba(35,45,61,.16)}
+  .empty code{color:var(--gold);font-size:13px}
+  .foot{display:flex;justify-content:space-between;gap:14px;margin-top:20px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px}
+  .disclaimer{margin-top:26px;padding:16px 18px;border:1px solid var(--line);border-radius:12px;background:var(--card-2);color:var(--muted);font-size:12px;line-height:1.6}
+  ul{margin:8px 0;padding-left:20px}li{margin:4px 0}
+  @media print{body{background:var(--bg)}.wrap{max-width:none;padding:0}section,.hero,.fact,.scen,.metric{break-inside:avoid;page-break-inside:avoid}h2{break-after:avoid}}
+  @media (max-width:560px){section{padding:18px 16px}.wrap{padding:16px 12px 40px}.hero{padding:22px 18px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow">Утренний радар · Российский рынок</div>
+    <h1>Отскок на иранской нефти</h1>
+    <div class="date">Среда, 19 августа 2026 · данные на закрытие 18.08, курсы ЦБ на 19.08</div>
+    <div class="trigger"><strong>Триггер дня.</strong> Рынок развернулся после трёх сессий падения: Brent выше $91 на обострении Иран–США, 92% ликвидных бумаг закрылись в плюсе, ни одна акция индекса не снизилась. Драйвер внешний и к российской повестке отношения не имеет.</div>
+    <div class="pulse">
+      <div class="metric"><div class="k">IMOEX</div><div class="v">2148,13</div><div class="d up">+2,59% за день</div></div>
+      <div class="metric fx"><div class="k">USD/RUB · ЦБ</div><div class="v">85,1645</div><div class="d down">+0,18%</div></div>
+      <div class="metric fx"><div class="k">CNY/RUB · ЦБ</div><div class="v">12,6240</div><div class="d up">−0,03%</div></div>
+      <div class="metric accent"><div class="k">Ключевая ставка</div><div class="v">14,00%</div><div class="d flat">заседание 11.09</div></div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Три главных факта дня</h2>
+    <div class="sub">Проверяемые утверждения с источником. Интерпретация — в блоках ниже.</div>
+    <div class="cards">
+      <div class="fact"><div class="n">01</div>
+        <p>IMOEX закрылся на <strong>2148,13 п. (+2,59%)</strong>, РТС — 794,34 (+2,41%). Отыграна половина падения предыдущих трёх сессий. <strong>Ни одна акция индекса не снизилась</strong>, из 95 ликвидных бумаг выросли 87.</p>
+        <span class="src">Источник: MOEX ISS, Коммерсантъ</span></div>
+      <div class="fact"><div class="n">02</div>
+        <p>Brent поднялся выше <strong>$91,14</strong> — максимум с 30 июля, третья сессия роста. Причина: Иран заявил о переходе к наступательной военной позиции после срыва переговоров, США исключили продление временного соглашения. Риск для Ормузского пролива.</p>
+        <span class="src">Источник: Reuters через профильные агрегаторы</span></div>
+      <div class="fact"><div class="n">03</div>
+        <p>Долговой рынок развернулся вместе с акциями: <strong>RGBI 113,70 (+0,35%)</strong>, доходность ОФЗ 26238 снизилась с 15,68% до <strong>15,61%</strong>, ОФЗ 26243 — с 16,11% до 16,02%. Оборот ликвидных акций — 131,6 млрд ₽.</p>
+        <span class="src">Источник: MOEX ISS</span></div>
+    </div>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 2</span></div>
+  </section>
+
+  <section>
+    <h2>Рыночная панель</h2>
+    <div class="sub">Закрытие 18.08.2026 · курсы ЦБ на 19.08 · источник: MOEX ISS, Банк России</div>
+    <div class="pulse">
+      <div class="metric"><div class="k">РТС</div><div class="v">794,34</div><div class="d up">+2,41%</div></div>
+      <div class="metric"><div class="k">RGBI</div><div class="v">113,70</div><div class="d up">+0,35%</div></div>
+      <div class="metric"><div class="k">ОФЗ 26238</div><div class="v">15,61%</div><div class="d up">было 15,68%</div></div>
+      <div class="metric"><div class="k">ОФЗ 26243</div><div class="v">16,02%</div><div class="d up">было 16,11%</div></div>
+      <div class="metric"><div class="k">Brent</div><div class="v">91,14</div><div class="d up">максимум с 30.07</div></div>
+      <div class="metric accent"><div class="k">Золото (GOLD)</div><div class="v">2,978</div><div class="d down">−2,36%</div></div>
+      <div class="metric fx"><div class="k">EUR/RUB · ЦБ</div><div class="v">98,7312</div><div class="d down">+0,40%</div></div>
+      <div class="metric"><div class="k">Доля растущих</div><div class="v up">92%</div><div class="d flat">87 из 95 бумаг</div></div>
+    </div>
+
+    <h3>Движения дня, 18.08 (оборот &gt; 100 млн ₽)</h3>
+<svg viewBox="0 0 640 280" width="100%" role="img" aria-label="Движения акций 18 августа 2026">
+      <line x1="330" y1="0" x2="330" y2="266" stroke="#232d3d"/>
+      <text x="0" y="16" fill="#e8edf5" font-size="13" font-weight="700">CBOM</text>
+      <rect x="330" y="4" width="247.7" height="16" rx="4" fill="#5bd88a"/><text x="585.6" y="16" fill="#8a97ab" font-size="12">+19.05%</text>
+      <text x="0" y="42" fill="#e8edf5" font-size="13" font-weight="700">UNAC</text>
+      <rect x="330" y="30" width="204.1" height="16" rx="4" fill="#5bd88a"/><text x="542.1" y="42" fill="#8a97ab" font-size="12">+15.70%</text>
+      <text x="0" y="68" fill="#e8edf5" font-size="13" font-weight="700">SMLT</text>
+      <rect x="330" y="56" width="167.0" height="16" rx="4" fill="#5bd88a"/><text x="505.0" y="68" fill="#8a97ab" font-size="12">+12.85%</text>
+      <text x="0" y="94" fill="#e8edf5" font-size="13" font-weight="700">SGZH</text>
+      <rect x="330" y="82" width="133.4" height="16" rx="4" fill="#5bd88a"/><text x="471.4" y="94" fill="#8a97ab" font-size="12">+10.26%</text>
+      <text x="0" y="120" fill="#e8edf5" font-size="13" font-weight="700">IRKT</text>
+      <rect x="330" y="108" width="132.9" height="16" rx="4" fill="#5bd88a"/><text x="470.9" y="120" fill="#8a97ab" font-size="12">+10.22%</text>
+      <text x="0" y="146" fill="#e8edf5" font-size="13" font-weight="700">ALRS</text>
+      <rect x="330" y="134" width="124.4" height="16" rx="4" fill="#5bd88a"/><text x="462.4" y="146" fill="#8a97ab" font-size="12">+9.57%</text>
+      <text x="0" y="172" fill="#e8edf5" font-size="13" font-weight="700">GOLD</text>
+      <rect x="299.3" y="160" width="30.7" height="16" rx="4" fill="#e08a8a"/><text x="291.3" y="172" fill="#8a97ab" font-size="12" text-anchor="end">-2.36%</text>
+      <text x="0" y="198" fill="#e8edf5" font-size="13" font-weight="700">SBGD</text>
+      <rect x="305.7" y="186" width="24.3" height="16" rx="4" fill="#e08a8a"/><text x="297.7" y="198" fill="#8a97ab" font-size="12" text-anchor="end">-1.87%</text>
+      <text x="0" y="224" fill="#e8edf5" font-size="13" font-weight="700">AKGP</text>
+      <rect x="320.2" y="212" width="9.8" height="16" rx="4" fill="#e08a8a"/><text x="312.2" y="224" fill="#8a97ab" font-size="12" text-anchor="end">-0.75%</text>
+      <text x="0" y="250" fill="#e8edf5" font-size="13" font-weight="700">SBRB</text>
+      <rect x="327.5" y="238" width="2.5" height="16" rx="4" fill="#e08a8a"/><text x="319.5" y="250" fill="#8a97ab" font-size="12" text-anchor="end">-0.19%</text>
+</svg>    <p class="est-note">Впервые в отчётах применён фильтр ликвидности: в выборку попали только бумаги с оборотом свыше 100 млн ₽. Раньше данных по объёмам не было — теперь они приходят напрямую с биржи.</p>
+
+    <h3>Контекст</h3>
+    <p>Картина зеркальна вчерашней: 17 августа падало всё, кроме экспортёров и золота, — сегодня растёт всё, кроме золота. <strong>Единственные снизившиеся бумаги — золотые фонды</strong> (GOLD −2,36%, SBGD −1,87%, AKGP −0,75%). Это классический risk-on: защитный актив продают, когда возвращается аппетит к риску.</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 3</span></div>
+  </section>
+
+  <section>
+    <h2>Ключевое событие дня</h2>
+    <div class="sub">Нефть выше $91 на обострении Иран–США</div>
+
+    <h3><span class="tag fact">факт</span> Что известно</h3>
+    <p>Brent прибавил 0,3% до $91,14 за баррель в ходе азиатской сессии 18 августа — максимум с 30 июля, третья сессия роста подряд. Иран уведомил крупные державы о переходе к полностью наступательной военной позиции после того, как переговоры о постоянном урегулировании конфликта с США и Израилем зашли в тупик. Вашингтон исключил продление временного соглашения о прекращении огня.</p>
+
+    <h3><span class="tag est">оценка</span> Что ещё не факт</h3>
+    <p>Неизвестно, перейдёт ли риторика в реальные перебои поставок. Ормузский пролив, через который проходит значимая доля мировой торговли нефтью, пока работает штатно. Рынок закладывает премию за риск, а не факт нарушения поставок — премия снимается быстро, если напряжение спадёт.</p>
+
+    <h3>Рыночный механизм</h3>
+    <p>Для России дорогая нефть — прямой канал поддержки: растёт экспортная выручка, укрепляются бюджетные ожидания, дорожают акции нефтяников. Но <strong>драйвер полностью внешний</strong>. Санкционный сюжет, обваливший рынок 14–17 августа, никуда не делся: пакет ЕС по-прежнему анонсирован без деталей и сроков.</p>
+
+    <h3>Чувствительные бумаги <span class="tag est">оценка</span></h3>
+    <p>Прямые бенефициары — нефтяники: ROSN (+1,09%), LKOH (+1,58%), SNGSP (+0,55%). Обратная сторона — золото: при устойчивом risk-on золотодобытчики и фонды на золото отдают часть роста, накопленного за санкционную неделю.</p>
+
+    <div class="score">
+      <div class="num">45</div>
+      <div class="bar"><div class="fill" style="width:45%"></div></div>
+    </div>
+    <p class="est-note">Оценка влияния 0–100 — аналитическая эвристика (методология §3). Высокий охват и быстрая реакция, но низкая необратимость: премия за геополитический риск снимается так же быстро, как возникла. Ниже вчерашних 68 — событие поддерживает рынок, но не меняет его структуру.</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 4</span></div>
+  </section>
+
+  <section>
+    <h2>Watchlist I · Фиксированный список</h2>
+    <div class="sub">Тикеры и уровни задаются в <code>data/watchlist_config.json</code>. Идеи аналитиков — с указанием автора и даты.</div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Тикер</th><th>Цена</th><th>Δ день</th><th>Оборот</th><th>Зона добора</th><th>До неё</th><th>Сопротивление</th><th>До него</th><th>Статус идеи</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="ticker">ROSN</td>
+            <td class="num">316,00</td>
+            <td class="num up">+1,09%</td>
+            <td class="num">3 912 млн ₽</td>
+            <td class="num">260–270 ₽</td>
+            <td class="num down">−14,6…−17,7%</td>
+            <td class="num">350 ₽</td>
+            <td class="num up">+10,8%</td>
+            <td>Ждём</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>Источник идеи:</strong> Александр Полярный, <strong>получено 18.08.2026</strong> (дата публикации не указана). Уведомление на покупку выставлено в зоне 260–270 ₽, первое серьёзное сопротивление — 350 ₽.</p>
+    <p class="est-note">ROSN входит в модельный портфель: 89 акций, средняя цена входа 312,60 ₽, текущая доходность позиции +1,09%. До первой ступени фиксации (+75% по правилу ТЗ §10) очень далеко; правило откупа неактивно — фиксаций не было. Зона добора аналитика находится ниже нашей цены входа на 15–18% и по смыслу совпадает с логикой траншей 2–3.</p>
+    <div class="foot"><span>Чужие уровни приводятся с атрибуцией и не являются нашей рекомендацией</span><span>Блок 11</span></div>
+  </section>
+
+  <section>
+    <h2>Watchlist II · Импульсные истории</h2>
+    <div class="sub">Топ-движения 18.08 среди бумаг с оборотом свыше 100 млн ₽</div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Тикер</th><th>Δ день</th><th>Оборот</th><th>Что произошло</th><th>Устойчивость <span class="tag est">оценка</span></th></tr></thead>
+        <tbody>
+          <tr><td class="ticker">CBOM</td><td class="num up">+19,05%</td><td class="num">1 670 млн</td><td>МКБ, обновление исторического максимума (≈14,5 ₽)</td><td>Движение без явного новостного повода в открытых источниках. Требует осторожности: рост на 19% за сессию у банка второго эшелона</td></tr>
+          <tr><td class="ticker">UNAC</td><td class="num up">+15,70%</td><td class="num">147 млн</td><td>ОАК</td><td>Малый оборот при большом движении — спекулятивная история</td></tr>
+          <tr><td class="ticker">SMLT</td><td class="num up">+12,85%</td><td class="num">11 130 млн</td><td>Самолёт, крупнейший оборот дня среди лидеров роста</td><td>См. блок «проверка мнений» ниже</td></tr>
+          <tr><td class="ticker">SGZH</td><td class="num up">+10,26%</td><td class="num">997 млн</td><td>Сегежа</td><td>Высокая бета к рынку, растёт сильнее индекса в отскоках</td></tr>
+          <tr><td class="ticker">IRKT</td><td class="num up">+10,22%</td><td class="num">199 млн</td><td>Яковлев</td><td>То же основание, что у UNAC — авиастроительный сегмент</td></tr>
+          <tr><td class="ticker">GOLD</td><td class="num down">−2,36%</td><td class="num">229 млн</td><td>БПИФ на золото — худший результат дня</td><td>Ожидаемо при risk-on; в портфеле это 12% (целевая доля)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 12</span></div>
+  </section>
+
+  <section>
+    <h2>Проверка внешних мнений</h2>
+    <div class="sub">Что сегодняшние данные говорят об идеях из журнала <code>external_views.md</code></div>
+    <div class="cards">
+      <div class="fact"><div class="n">SMLT</div>
+        <p><strong>Андрей Чеберяченко</strong> (получено 18.08.2026): «проблемы в отрасли и компании вряд ли позволят расти... <strong>возможны сквизы, возможны спекульские идеи</strong>. Но оснований, чтобы сложился тренд к росту, пока что нет».</p>
+        <p><span class="tag est">наблюдение</span> Бумага выросла на 12,85% при обороте 11,1 млрд ₽ — крупнейшем среди лидеров роста. Прямых новостей по эмитенту в открытых источниках нет, отраслевой фон остаётся тяжёлым: число сделок в первом полугодии 2026 упало до 39 тысяч. Это похоже именно на сквиз, о котором предупреждал автор, — то есть <strong>движение не противоречит его тезису</strong>.</p></div>
+      <div class="fact"><div class="n">Тузов</div>
+        <p><strong>Артём Тузов</strong> (получено 18.08.2026): сценарий системного роста ставки и обесценения рубля; защита — флоатеры и линкеры вместо длинных ОФЗ-ПД.</p>
+        <p><span class="tag est">наблюдение</span> Сегодняшний день работает против сценария: доходности длинных ОФЗ снизились (26238: 15,68% → 15,61%), RGBI вырос. Одна сессия ничего не доказывает — тезис проверяется на горизонте до заседания ЦБ 11.09.</p></div>
+    </div>
+    <p class="est-note">Накопление таких проверок — основа <code>analyst_scorecard.md</code>. Выводы о точности авторов будут делаться после 8–10 закрытых идей, не раньше.</p>
+    <div class="foot"><span>Мнения приводятся с атрибуцией; проверка ведётся по фактическим данным</span><span>Блок 8</span></div>
+  </section>
+
+  <section>
+    <h2>Техническая карта индекса</h2>
+    <div class="sub">IMOEX, ключевые отметки. <span class="tag est">оценка</span></div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Зона</th><th>Уровень</th><th>Что подтверждает</th><th>Что отменяет</th></tr></thead>
+        <tbody>
+          <tr><td>Сопротивление</td><td class="num">2180–2200</td><td>Закрытие выше 2180 — отскок перерастает в разворот</td><td>Отбой вниз при падении нефти</td></tr>
+          <tr><td>Ближайшая опора</td><td class="num">2093</td><td>Вчерашнее закрытие; удержание выше — база отскока цела</td><td>Возврат ниже 2093 — отскок был техническим</td></tr>
+          <tr><td>Критическая поддержка</td><td class="num">2060</td><td>Уровень из вчерашнего отчёта, не тронут</td><td>Пробой открывает 2000–2050</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>Что изменилось со вчера.</strong> Сценарий «пробой 2060» (вероятность 25%) не реализовался, зона поддержки устояла. Ширина рынка 92% — сильный признак: отскок не выборочный, а фронтальный.</p>
+    <div class="foot"><span>Уровни — зоны подтверждения гипотез, не сигналы к сделкам</span><span>Блок 10</span></div>
+  </section>
+
+  <section>
+    <h2>Три сценария на 19 августа</h2>
+    <div class="sub">Вероятности в сумме 100%. <span class="tag est">оценка</span></div>
+    <div class="cards">
+      <div class="scen base">
+        <div class="h"><span class="name">Базовый</span><span class="p">50%</span></div>
+        <dl><dt>Триггер</dt><dd>Нефть удерживается выше $90, новых санкционных деталей нет</dd>
+            <dt>Что происходит</dt><dd>Закрепление в диапазоне, часть отскока фиксируется</dd>
+            <dt>Диапазон IMOEX</dt><dd class="num">2120–2180</dd></dl>
+      </div>
+      <div class="scen pos">
+        <div class="h"><span class="name">Позитивный</span><span class="p">25%</span></div>
+        <dl><dt>Триггер</dt><dd>Дальнейший рост нефти либо сигналы деэскалации по санкциям</dd>
+            <dt>Что происходит</dt><dd>Пробой 2180, движение к 2200+</dd>
+            <dt>Диапазон IMOEX</dt><dd class="num">2180–2230</dd></dl>
+      </div>
+      <div class="scen neg">
+        <div class="h"><span class="name">Негативный</span><span class="p">25%</span></div>
+        <dl><dt>Триггер</dt><dd>Разрядка вокруг Ирана и откат нефти либо публикация состава пакета ЕС</dd>
+            <dt>Что происходит</dt><dd>Возврат под 2093, отскок оказывается техническим</dd>
+            <dt>Диапазон IMOEX</dt><dd class="num">2050–2120</dd></dl>
+      </div>
+    </div>
+    <h3>Что подтвердилось из вчерашних сценариев</h3>
+    <p><strong>Не сбылся ни один в чистом виде.</strong> Базовый сценарий (55%) предполагал диапазон 2060–2130 при отсутствии новостей — рынок ушёл выше, к 2148. Позитивный (20%) давал 2130–2180 и угадал диапазон, но <strong>по неверной причине</strong>: он опирался на возобновление переговоров или опровержение масштаба санкций, а сработала иранская нефть, которой в сценариях не было вовсе.</p>
+    <p class="est-note">Вывод для калибровки: сценарии были построены исключительно вокруг санкционного сюжета и не учитывали внешние сырьевые драйверы. Диапазон угадан, механизм — нет. Засчитывается как частичное попадание с ошибкой в причине.</p>
+    <div class="foot"><span>Сценарии — вероятностные суждения, не прогноз и не рекомендация</span><span>Блок 15</span></div>
+  </section>
+
+  <section>
+    <h2>Итог и главный риск</h2>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Инструмент</th><th>Ключевой уровень</th><th>Что подтверждает</th><th>Что отменяет</th></tr></thead>
+        <tbody>
+          <tr><td class="ticker">IMOEX</td><td class="num">2093 / 2180</td><td>Удержание 2093 — база отскока цела</td><td>Возврат ниже — отскок технический</td></tr>
+          <tr><td class="ticker">Brent</td><td class="num">$90</td><td>Удержание выше — поддержка нефтяникам сохраняется</td><td>Уход ниже $88 снимает основной драйвер дня</td></tr>
+          <tr><td class="ticker">ROSN</td><td class="num">350 ₽</td><td>Сопротивление по идее А. Полярного (получено 18.08)</td><td>Уход к 260–270 — зона добора по той же идее</td></tr>
+          <tr><td class="ticker">RGBI</td><td class="num">114</td><td>Возврат выше 114 — санкционная премия в долге снимается</td><td>Повторный уход ниже 113</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>Главный риск</h3>
+    <p>Отскок держится на внешнем и обратимом факторе. Премия за иранский риск в нефти снимается за одну сессию при первых признаках деэскалации, а санкционный сюжет ЕС — причина падения 14–17 августа — остаётся неразрешённым: ни состав пакета, ни сроки до сих пор не названы. Рост на 2,6% при ширине 92% выглядит убедительно, но фундаментально ничего не изменилось.</p>
+    <h3>Методология</h3>
+    <p class="est-note">Все рыночные данные получены напрямую с MOEX ISS (закрытие 18.08) и с сайта Банка России (курсы на 19.08). Дельты по индексу — к закрытию предыдущего торгового дня. Впервые применён фильтр ликвидности для динамического watchlist: порог оборота 100 млн ₽. Оценки и уровни помечены как аналитические.</p>
+    <div class="foot"><span>Внеплановый пересмотр портфеля требуется: <strong>нет</strong> — пороги методологии §4 не сработали</span><span>Блок 16</span></div>
+  </section>
+
+  <div class="disclaimer">
+    <strong>Дисклеймер.</strong> Материал носит информационно-аналитический характер и <strong>не является индивидуальной инвестиционной рекомендацией</strong>. Указанные уровни — зоны подтверждения гипотез, а не сигналы к совершению сделок. Уровни, приписанные внешним аналитикам, приводятся с указанием автора и даты получения и отражают их суждения, а не наши. Факты отделены от оценок и сценариев соответствующими пометками. Данные получены из первичных источников (MOEX ISS, Банк России) и открытых источников по состоянию на утро 19 августа 2026 года. Автор не несёт ответственности за решения, принятые на основе этого материала.
+  </div>
+
+</div>
+</body>
+</html>
