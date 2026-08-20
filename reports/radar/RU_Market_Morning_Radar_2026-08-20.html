@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Утренний радар — 20 августа 2026</title>
+<style>
+  :root{--bg:#0a0e16;--card:#131a26;--card-2:#0f1520;--line:#232d3d;--text:#e8edf5;--muted:#8a97ab;--dim:#5d6879;--gold:#e0a95c;--blue:#5b9bf5;--up:#5bd88a;--down:#e08a8a}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:"Inter","Helvetica Neue",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:28px 20px 64px}
+  .hero{border:1px solid var(--line);border-radius:14px;background:linear-gradient(160deg,#141c2b 0%,var(--card) 60%);padding:30px 28px;margin-bottom:22px}
+  .eyebrow{color:var(--gold);font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600}
+  h1{margin:10px 0 6px;font-size:clamp(28px,5vw,44px);line-height:1.1;font-weight:800;letter-spacing:-.02em}
+  .hero .date{color:var(--muted);font-size:14px}
+  .trigger{margin-top:16px;padding:14px 16px;border-left:3px solid var(--gold);background:rgba(224,169,92,.07);border-radius:0 10px 10px 0;font-size:16px}
+  .pulse{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:12px;margin-top:20px}
+  .metric{background:var(--card-2);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .metric .k{color:var(--muted);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+  .metric .v{font-size:24px;font-weight:700;margin-top:6px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+  .metric .d{font-size:13px;margin-top:2px;font-weight:600}
+  .up{color:var(--up)}.down{color:var(--down)}.flat{color:var(--muted)}
+  .metric.accent .v{color:var(--gold)}.metric.fx .v{color:var(--blue)}
+  .nodata{color:var(--dim);font-style:italic;font-weight:400}
+  section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px 26px;margin-bottom:18px}
+  h2{margin:0 0 4px;font-size:20px;font-weight:700;color:var(--gold);letter-spacing:-.01em}
+  .sub{color:var(--muted);font-size:13px;margin-bottom:18px}
+  h3{margin:22px 0 8px;font-size:15px;font-weight:700}
+  h3:first-of-type{margin-top:14px}
+  p{margin:8px 0}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+  .fact{background:var(--card-2);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .fact .n{color:var(--gold);font-size:12px;font-weight:700;letter-spacing:.1em}
+  .fact p{margin:8px 0 0;font-size:14px}
+  .src{color:var(--dim);font-size:11px;margin-top:8px;display:block}
+  .tag{display:inline-block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:999px;font-weight:700;vertical-align:middle}
+  .tag.fact{background:rgba(91,155,245,.14);color:var(--blue);border:1px solid rgba(91,155,245,.3)}
+  .tag.est{background:rgba(224,169,92,.12);color:var(--gold);border:1px solid rgba(224,169,92,.3)}
+  .est-note{color:var(--dim);font-size:12px;font-style:italic}
+  .score{display:flex;align-items:center;gap:14px;margin:16px 0 6px}
+  .score .bar{flex:1;height:8px;background:#1b2433;border-radius:999px;overflow:hidden}
+  .score .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--down));border-radius:999px}
+  .score .num{font-size:26px;font-weight:800;color:var(--gold);min-width:76px;text-align:right;font-variant-numeric:tabular-nums}
+  .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:12px}
+  table{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
+  th{text-align:left;color:var(--muted);font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:0 12px 10px 0;border-bottom:1px solid var(--line);white-space:nowrap}
+  td{padding:11px 12px 11px 0;border-bottom:1px solid rgba(35,45,61,.55);vertical-align:top}
+  tbody tr:last-child td{border-bottom:none}
+  .ticker{font-weight:700;letter-spacing:.02em;white-space:nowrap}
+  .num{font-variant-numeric:tabular-nums}
+  .scen{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:var(--card-2)}
+  .scen .h{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .scen .name{font-weight:700}
+  .scen .p{font-size:20px;font-weight:800;color:var(--gold);font-variant-numeric:tabular-nums}
+  .scen.base{border-left:3px solid var(--gold)}.scen.pos{border-left:3px solid var(--up)}.scen.neg{border-left:3px solid var(--down)}
+  .scen dl{margin:10px 0 0;font-size:13px}
+  .scen dt{color:var(--muted);font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-top:8px}
+  .scen dd{margin:2px 0 0}
+  .chain{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:14px}
+  .chain .node{background:var(--card-2);border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:13px;font-weight:600}
+  .chain .arrow{color:var(--gold);font-size:18px;line-height:1}
+  .empty{border:1px dashed var(--line);border-radius:12px;padding:20px;color:var(--muted);font-size:14px;text-align:center;background:rgba(35,45,61,.16)}
+  .empty code{color:var(--gold);font-size:13px}
+  .foot{display:flex;justify-content:space-between;gap:14px;margin-top:20px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px}
+  .disclaimer{margin-top:26px;padding:16px 18px;border:1px solid var(--line);border-radius:12px;background:var(--card-2);color:var(--muted);font-size:12px;line-height:1.6}
+  ul{margin:8px 0;padding-left:20px}li{margin:4px 0}
+  @media print{body{background:var(--bg)}.wrap{max-width:none;padding:0}section,.hero,.fact,.scen,.metric{break-inside:avoid;page-break-inside:avoid}h2{break-after:avoid}}
+  @media (max-width:560px){section{padding:18px 16px}.wrap{padding:16px 12px 40px}.hero{padding:22px 18px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow">Утренний радар · Российский рынок</div>
+    <h1>Ротация в золото, инфляция ускорилась</h1>
+    <div class="date">Четверг, 20 августа 2026 · данные на закрытие 19.08, курсы ЦБ на 20.08</div>
+    <div class="trigger"><strong>Триггер дня.</strong> Рынок вырос третий день подряд, но состав роста сменился: вместо нефтяников вперёд вышли золотодобытчики и металлурги. При этом годовая инфляция <strong>ускорилась</strong> до 6,13% — несмотря на третью подряд неделю дефляции.</div>
+    <div class="pulse">
+      <div class="metric"><div class="k">IMOEX</div><div class="v">2172,38</div><div class="d up">+1,13% за день</div></div>
+      <div class="metric fx"><div class="k">USD/RUB · ЦБ</div><div class="v">85,1293</div><div class="d up">−0,04%</div></div>
+      <div class="metric"><div class="k">Годовая инфляция</div><div class="v down">6,13%</div><div class="d down">было 6,05%</div></div>
+      <div class="metric accent"><div class="k">Ключевая ставка</div><div class="v">14,00%</div><div class="d flat">заседание 11.09</div></div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Три главных факта дня</h2>
+    <div class="sub">Проверяемые утверждения с источником.</div>
+    <div class="cards">
+      <div class="fact"><div class="n">01</div>
+        <p><strong>Годовая инфляция ускорилась с 6,05% до 6,13%</strong> — при том что за неделю 11–17 августа цены снизились на 0,02%, третью неделю подряд. Плодоовощная продукция подешевела на 2,1%. С начала года цены выросли на 4,67%.</p>
+        <span class="src">Источник: Росстат, МЭР (через Ведомости, Коммерсантъ)</span></div>
+      <div class="fact"><div class="n">02</div>
+        <p>IMOEX 2172,38 <strong>(+1,13%)</strong> — третий день роста. Но ширина сузилась: выросли <strong>47 из 80</strong> ликвидных бумаг (59%) против 92% накануне. Оборот снизился со 131,6 до 103,4 млрд ₽.</p>
+        <span class="src">Источник: MOEX ISS</span></div>
+      <div class="fact"><div class="n">03</div>
+        <p>Золото на мировом рынке — <strong>$4 490,71</strong> за унцию, ЦБ поднял учётную цену до 12 063,52 ₽/г. Золотодобытчики повели рынок: SELG +7,48%, <strong>PLZL +6,65%</strong> при обороте 6,8 млрд ₽ — крупнейшем за день.</p>
+        <span class="src">Источник: MOEX ISS, Банк России, ПРАЙМ</span></div>
+    </div>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 2</span></div>
+  </section>
+
+  <section>
+    <h2>Рыночная панель</h2>
+    <div class="sub">Закрытие 19.08.2026 · курсы ЦБ на 20.08 · источник: MOEX ISS, Банк России, Росстат</div>
+    <div class="pulse">
+      <div class="metric"><div class="k">RGBI</div><div class="v">113,91</div><div class="d up">+0,18%</div></div>
+      <div class="metric"><div class="k">ОФЗ 26238</div><div class="v">15,63%</div><div class="d down">было 15,61%</div></div>
+      <div class="metric"><div class="k">ОФЗ 26243</div><div class="v">16,00%</div><div class="d up">было 16,02%</div></div>
+      <div class="metric accent"><div class="k">Золото</div><div class="v">4 490,71</div><div class="d up">$/унц.</div></div>
+      <div class="metric fx"><div class="k">CNY/RUB · ЦБ</div><div class="v">12,6301</div><div class="d down">+0,05%</div></div>
+      <div class="metric fx"><div class="k">EUR/RUB · ЦБ</div><div class="v">98,5457</div><div class="d up">−0,19%</div></div>
+      <div class="metric"><div class="k">Недельный ИПЦ</div><div class="v up">−0,02%</div><div class="d up">3-я неделя дефляции</div></div>
+      <div class="metric"><div class="k">Доля растущих</div><div class="v">59%</div><div class="d down">было 92%</div></div>
+    </div>
+
+    <h3>Движения дня, 19.08 (оборот &gt; 100 млн ₽)</h3>
+<svg viewBox="0 0 640 254" width="100%" role="img" aria-label="Движения акций 19 августа 2026">
+      <line x1="330" y1="0" x2="330" y2="240" stroke="#232d3d"/>
+      <text x="0" y="16" fill="#e8edf5" font-size="13" font-weight="700">SELG</text>
+      <rect x="330" y="4" width="164.6" height="16" rx="4" fill="#5bd88a"/><text x="502.6" y="16" fill="#8a97ab" font-size="12">+7.48%</text>
+      <text x="0" y="42" fill="#e8edf5" font-size="13" font-weight="700">PLZL</text>
+      <rect x="330" y="30" width="146.3" height="16" rx="4" fill="#5bd88a"/><text x="484.3" y="42" fill="#8a97ab" font-size="12">+6.65%</text>
+      <text x="0" y="68" fill="#e8edf5" font-size="13" font-weight="700">ASTR</text>
+      <rect x="330" y="56" width="137.3" height="16" rx="4" fill="#5bd88a"/><text x="475.3" y="68" fill="#8a97ab" font-size="12">+6.24%</text>
+      <text x="0" y="94" fill="#e8edf5" font-size="13" font-weight="700">GMKN</text>
+      <rect x="330" y="82" width="94.6" height="16" rx="4" fill="#5bd88a"/><text x="432.6" y="94" fill="#8a97ab" font-size="12">+4.30%</text>
+      <text x="0" y="120" fill="#e8edf5" font-size="13" font-weight="700">MAGN</text>
+      <rect x="330" y="108" width="90.6" height="16" rx="4" fill="#5bd88a"/><text x="428.6" y="120" fill="#8a97ab" font-size="12">+4.12%</text>
+      <text x="0" y="146" fill="#e8edf5" font-size="13" font-weight="700">CBOM</text>
+      <rect x="102.5" y="134" width="227.5" height="16" rx="4" fill="#e08a8a"/><text x="94.5" y="146" fill="#8a97ab" font-size="12" text-anchor="end">-10.34%</text>
+      <text x="0" y="172" fill="#e8edf5" font-size="13" font-weight="700">SNGSP</text>
+      <rect x="278.1" y="160" width="51.9" height="16" rx="4" fill="#e08a8a"/><text x="270.1" y="172" fill="#8a97ab" font-size="12" text-anchor="end">-2.36%</text>
+      <text x="0" y="198" fill="#e8edf5" font-size="13" font-weight="700">SFIN</text>
+      <rect x="286.0" y="186" width="44.0" height="16" rx="4" fill="#e08a8a"/><text x="278.0" y="198" fill="#8a97ab" font-size="12" text-anchor="end">-2.00%</text>
+      <text x="0" y="224" fill="#e8edf5" font-size="13" font-weight="700">CNYM</text>
+      <rect x="291.7" y="212" width="38.3" height="16" rx="4" fill="#e08a8a"/><text x="283.7" y="224" fill="#8a97ab" font-size="12" text-anchor="end">-1.74%</text>
+</svg>    <h3>Контекст</h3>
+    <p>Третий день роста, но природа его изменилась. 18 августа поднимался весь рынок на нефти — ширина 92%. 19 августа ширина упала до 59%, и вперёд вышли <strong>золото и металлы</strong>: SELG, PLZL, GMKN, MAGN. Нефтяники, вчерашние лидеры, ушли в минус: ROSN −0,21%, LKOH −0,44%, SNGSP −2,36%.</p>
+    <p>CBOM, вчера прибавивший 19,05%, откатился на <strong>−10,34%</strong>. Движение без фундаментального основания отыграно назад за одну сессию — вчерашняя пометка «требует осторожности» оказалась уместной.</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 3</span></div>
+  </section>
+
+  <section>
+    <h2>Ключевое событие дня</h2>
+    <div class="sub">Годовая инфляция ускорилась вопреки недельной дефляции</div>
+
+    <h3><span class="tag fact">факт</span> Что известно</h3>
+    <p>За неделю 11–17 августа цены снизились на 0,02% — третья подряд неделя дефляции. Продовольствие подешевело на 0,1%, плодоовощная продукция — на 2,1%. Но <strong>в годовом выражении инфляция выросла с 6,05% до 6,13%</strong>. С начала августа цены снизились на 0,08%, с начала года выросли на 4,67%.</p>
+
+    <h3>Рыночный механизм</h3>
+    <p>Противоречие объясняется базой сравнения: недельная дефляция сезонная (овощи), а год назад в этот период цены росли медленнее, поэтому годовой показатель поднялся. Для ЦБ важна именно годовая динамика и её тренд — а тренд впервые за несколько недель развернулся вверх.</p>
+
+    <h3><span class="tag est">оценка</span> Что это меняет</h3>
+    <p>До заседания 11 сентября осталось три недели. Ускорение годовой инфляции — аргумент против дальнейшего снижения ключевой ставки, хотя одна точка тренда не делает. Реакция долгового рынка была сдержанной: RGBI прибавил 0,18%, доходность ОФЗ 26238 практически не изменилась (15,61% → 15,63%). Рынок пока не закладывает разворот цикла.</p>
+
+    <div class="score">
+      <div class="num">55</div>
+      <div class="bar"><div class="fill" style="width:55%"></div></div>
+    </div>
+    <p class="est-note">Оценка влияния 0–100 (методология §3). Выше вчерашних 45: событие затрагивает ключевую переменную для всего портфеля — траекторию ставки, — но одна недельная публикация не переломная. Ниже 68 от 18.08: санкционный анонс имел больший охват.</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 4</span></div>
+  </section>
+
+  <section>
+    <h2>Проверка внешних мнений</h2>
+    <div class="sub">Что данные говорят об идеях из журнала <code>external_views.md</code></div>
+
+    <h3>Голубков (GOLUBKOV Economics), получено 20.08.2026 — денежный навес и девальвация</h3>
+    <p><strong>Тезис.</strong> Денежная масса M2 выросла со 65,3 трлн ₽ (январь 2022) до 135,8 трлн ₽ (август 2026) — <strong>+108%</strong>, при росте реального ВВП на 9%. «Денежный навес» +91% отразился на ценах, но почти не отразился на курсе: USD/RUB за тот же период прибавил лишь ~9%. Отсюда вывод автора: <strong>впереди значительное пространство для девальвации, до конца года USD/RUB выше 100</strong>.</p>
+    <p><span class="tag fact">проверено</span> Числовые утверждения автора сверены с данными ЦБ и подтверждаются:</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Утверждение автора</th><th>Проверка по данным ЦБ</th><th>Итог</th></tr></thead>
+        <tbody>
+          <tr><td>С конца мая рубль потерял почти 20% к доллару</td><td>30.05.2026: 71,02 → 20.08: 85,13 = <strong>+19,9%</strong></td><td class="up">точно</td></tr>
+          <tr><td>С января 2025 по май 2026 рубль укрепился почти на 40%</td><td>101,68 → 71,02: рубль укрепился на <strong>43,2%</strong></td><td class="up">подтверждается, автор даже занизил</td></tr>
+          <tr><td>USD/RUB на 17.08 — 84,55</td><td>Курс ЦБ на 17.08: <strong>84,5449</strong></td><td class="up">точно</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><span class="tag est">оценка</span> Автор аккуратен с цифрами — это само по себе повод отнестись к прогнозу серьёзнее. Прогноз USD/RUB &gt; 100 до конца 2026 зарегистрирован в <code>analyst_scorecard.md</code> как проверяемый: от текущих 85,13 требуется <strong>+17,5% за ~4,5 месяца</strong>.</p>
+
+    <h3>Что сегодняшний день говорит о споре по ставке</h3>
+    <p>Три автора уже высказались о направлении ключевой ставки, и они расходятся:</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Автор</th><th>Позиция</th><th>Сегодняшние данные</th></tr></thead>
+        <tbody>
+          <tr><td>Артём Тузов (18.08)</td><td>Системный рост ставки и инфляции</td><td class="up">в его пользу: годовая инфляция ускорилась</td></tr>
+          <tr><td>Голубков (20.08)</td><td>Реальная ставка 1–2%, при росте инфляции уйдёт в минус → девальвация</td><td class="up">в его пользу: тот же факт</td></tr>
+          <tr><td>Юрий Козлов (19.08)</td><td>ЦБ продолжит смягчение, выиграют закредитованные</td><td class="down">против: ускорение инфляции сужает пространство</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="est-note">Наша позиция — длинные ОФЗ-ПД 13% портфеля — совпадает с Козловым. Сегодняшний факт работает против неё, но долговой рынок отреагировал спокойно. Гипотеза Г1 проверяется до 16.11.2026, ключевая точка — заседание 11 сентября. Это первое наблюдение не в нашу пользу; фиксируем, не реагируем.</p>
+    <div class="foot"><span>Мнения приводятся с атрибуцией; проверка ведётся по первичным данным</span><span>Блок 8</span></div>
+  </section>
+
+  <section>
+    <h2>Watchlist I · Фиксированный список</h2>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Тикер</th><th>Цена</th><th>Δ день</th><th>Оборот</th><th>Зона добора</th><th>До неё</th><th>Сопротивление</th><th>До него</th><th>Статус</th></tr></thead>
+        <tbody>
+          <tr><td class="ticker">ROSN</td><td class="num">315,35</td><td class="num down">−0,21%</td><td class="num">2 022 млн ₽</td><td class="num">260–270 ₽</td><td class="num down">−14,4…−17,6%</td><td class="num">350 ₽</td><td class="num up">+11,0%</td><td>Ждём</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="est-note">Источник идеи: <strong>Александр Полярный</strong>, получено 18.08.2026 (дата публикации не указана). За два дня с момента получения бумага прошла путь 316,00 → 315,35 — расстояние до обоих уровней практически не изменилось.</p>
+    <div class="foot"><span>Чужие уровни приводятся с атрибуцией</span><span>Блок 11</span></div>
+  </section>
+
+  <section>
+    <h2>Watchlist II · Импульсные истории</h2>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Тикер</th><th>Δ день</th><th>Оборот</th><th>Что произошло</th><th>Устойчивость <span class="tag est">оценка</span></th></tr></thead>
+        <tbody>
+          <tr><td class="ticker">SELG</td><td class="num up">+7,48%</td><td class="num">605 млн</td><td>Селигдар, золотодобыча</td><td>Следует за ценой золота; при откате металла отдаст быстрее крупных</td></tr>
+          <tr><td class="ticker">PLZL</td><td class="num up">+6,65%</td><td class="num">6 792 млн</td><td>Полюс, крупнейший оборот дня</td><td>В портфеле 8%. Рост на металле, а не на корпоративных новостях — дивидендов не будет до 2030</td></tr>
+          <tr><td class="ticker">ASTR</td><td class="num up">+6,24%</td><td class="num">4 203 млн</td><td>Астра</td><td>IT вне золотой темы — вероятно, корпоративный повод; проверить</td></tr>
+          <tr><td class="ticker">GMKN</td><td class="num up">+4,30%</td><td class="num">4 084 млн</td><td>Норникель</td><td>В портфеле 7%. Металлы плюс слабый рубль — работает как задумано</td></tr>
+          <tr><td class="ticker">CBOM</td><td class="num down">−10,34%</td><td class="num">1 067 млн</td><td>МКБ, откат после вчерашних +19,05%</td><td>Движение отыграно за сессию — подтверждает вчерашнюю осторожную оценку</td></tr>
+          <tr><td class="ticker">SNGSP</td><td class="num down">−2,36%</td><td class="num">1 788 млн</td><td>Сургутнефтегаз-п</td><td>В портфеле 8%. Курс стабилен, нефтяная тема остыла — логичный откат</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 12</span></div>
+  </section>
+
+  <section>
+    <h2>Портфель: как отработали позиции</h2>
+    <div class="sub">Модельный портфель, день 0 — 18.08.2026. Проверка гипотезы Г2</div>
+    <p>Гипотеза Г2 из журнала решений: <em>«экспортёры и золото защищают портфель в санкционном сценарии»</em>. Сегодня был не санкционный день, а ротационный, но наблюдение полезное: <strong>золотой блок portfolio вытянул день</strong> — PLZL +6,65%, GMKN +4,30%, GOLD +2,74% при том, что банки и нефтяники ушли в минус.</p>
+    <p class="est-note">Отдельно к вчерашней находке про PLZL: дивидендов не будет до 2030 года, но рост на 6,65% пришёл от цены металла — то есть позиция работает именно как ставка на золото, чем она по факту и является. Это аргумент к разбору 21.08: если PLZL — чистая ставка на металл, часть доли логичнее держать в GOLD, где нет корпоративного риска.</p>
+    <div class="foot"><span>Модельный портфель, не реальные сделки</span><span>Блок 8а</span></div>
+  </section>
+
+  <section>
+    <h2>Три сценария на 20 августа</h2>
+    <div class="sub">Вероятности в сумме 100%. <span class="tag est">оценка</span></div>
+    <div class="cards">
+      <div class="scen base">
+        <div class="h"><span class="name">Базовый</span><span class="p">50%</span></div>
+        <dl><dt>Триггер</dt><dd>Золото удерживается выше $4 400, новых макроданных нет</dd>
+            <dt>Что происходит</dt><dd>Боковик после трёх дней роста, ротация продолжается</dd>
+            <dt>Диапазон IMOEX</dt><dd class="num">2140–2200</dd></dl>
+      </div>
+      <div class="scen pos">
+        <div class="h"><span class="name">Позитивный</span><span class="p">25%</span></div>
+        <dl><dt>Триггер</dt><dd>Новый рост золота или нефти, возврат широты рынка выше 75%</dd>
+            <dt>Что происходит</dt><dd>Пробой 2200, закрепление выше</dd>
+            <dt>Диапазон IMOEX</dt><dd class="num">2200–2250</dd></dl>
+      </div>
+      <div class="scen neg">
+        <div class="h"><span class="name">Негативный</span><span class="p">25%</span></div>
+        <dl><dt>Триггер</dt><dd>Детали пакета ЕС, откат сырья или жёсткие сигналы ЦБ по инфляции</dd>
+            <dt>Что происходит</dt><dd>Фиксация трёхдневного роста, возврат к 2100</dd>
+            <dt>Диапазон IMOEX</dt><dd class="num">2090–2140</dd></dl>
+      </div>
+    </div>
+    <h3>Что подтвердилось из вчерашних сценариев</h3>
+    <p><strong>Базовый сбылся.</strong> Прогноз: 2120–2180 при удержании нефти выше $90 и отсутствии санкционных деталей. Факт: <strong>2172,38</strong> — внутри диапазона, механизм тот самый. Первое чистое попадание за три выпуска.</p>
+    <p class="est-note">Отличие от 19.08, когда диапазон угадали по неверной причине: здесь совпали и диапазон, и условие. Но отмечу честно — базовый сценарий с диапазоном 60 пунктов при вероятности 50% угадать нетрудно; ценность подтверждения умеренная.</p>
+    <div class="foot"><span>Сценарии — вероятностные суждения, не прогноз</span><span>Блок 15</span></div>
+  </section>
+
+  <section>
+    <h2>Итог и главный риск</h2>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Инструмент</th><th>Ключевой уровень</th><th>Что подтверждает</th><th>Что отменяет</th></tr></thead>
+        <tbody>
+          <tr><td class="ticker">IMOEX</td><td class="num">2200 / 2140</td><td>Закрепление выше 2200 — тренд, а не отскок</td><td>Уход под 2140 — фиксация роста</td></tr>
+          <tr><td class="ticker">Золото</td><td class="num">$4 400</td><td>Удержание — поддержка PLZL, GMKN, GOLD (32% портфеля)</td><td>Откат ниже снимает драйвер дня</td></tr>
+          <tr><td class="ticker">USD/RUB</td><td class="num">100 ₽</td><td>Прогноз Голубкова до конца 2026 (получено 20.08)</td><td>Укрепление ниже 80 — тезис о навесе не работает</td></tr>
+          <tr><td class="ticker">ОФЗ 26238</td><td class="num">16,0%</td><td>Пробой вверх — рынок отказался от идеи снижения ставки</td><td>Возврат ниже 15,3% — вера в смягчение крепнет</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>Главный риск</h3>
+    <p>Сужение ширины рынка при продолжении роста. Индекс прибавляет третий день, но участвует уже меньше 60% бумаг против 92% в начале отскока, а оборот падает. Такая конфигурация чаще предшествует остановке движения, чем его продолжению. Плюс ускорение годовой инфляции за три недели до заседания ЦБ — фактор, который рынок пока игнорирует.</p>
+    <h3>Методология</h3>
+    <p class="est-note">Биржевые данные — MOEX ISS (закрытие 19.08), курсы — Банк России (на 20.08), инфляция — Росстат/МЭР. Фильтр ликвидности для динамического watchlist: оборот свыше 100 млн ₽. Числовые утверждения аналитиков проверяются по первичным источникам и помечаются результатом проверки.</p>
+    <div class="foot"><span>Внеплановый пересмотр портфеля: <strong>нет</strong> · завтра пятница — плановая ребалансировка обоих портфелей</span><span>Блок 16</span></div>
+  </section>
+
+  <div class="disclaimer">
+    <strong>Дисклеймер.</strong> Материал носит информационно-аналитический характер и <strong>не является индивидуальной инвестиционной рекомендацией</strong>. Уровни — зоны подтверждения гипотез, а не сигналы к сделкам. Прогнозы и уровни, приписанные внешним аналитикам, приводятся с указанием автора и даты получения и отражают их суждения, а не наши; проверка их числовых утверждений по первичным источникам не означает согласия с выводами. Данные получены из первичных источников по состоянию на утро 20 августа 2026 года.
+  </div>
+
+</div>
+</body>
+</html>
