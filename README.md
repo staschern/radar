@@ -22,7 +22,7 @@
 
 | | |
 |---|---|
-| Версия ТЗ | **v1.4** (2026-08-18) |
+| Версия ТЗ | **v1.7** (2026-08-20) |
 | Радар | ✅ выпуски [18.08](reports/radar/RU_Market_Morning_Radar_2026-08-18.html) и [19.08](reports/radar/RU_Market_Morning_Radar_2026-08-19.html) · **запуск ручной, по запросу** |
 | Портфель | ✅ **день 0 — 18.08.2026** · [отчёт](reports/portfolio/RU_Model_Portfolio_2026-08-18.html) · транш 1 из 3 · 999 500 ₽ |
 | Данные | ✅ MOEX ISS + ЦБ РФ подключены напрямую (`scripts/fetch_market_data.py`) |
