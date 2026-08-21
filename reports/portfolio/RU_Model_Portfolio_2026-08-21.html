@@ -74,7 +74,7 @@
     <div class="eyebrow">Портфели · Плановая ребалансировка</div>
     <h1>Первая пятница: два портфеля</h1>
     <div class="date">Пятница, 21 августа 2026 · тип пересмотра: плановый · цены на закрытие 20.08</div>
-    <div class="trigger"><strong>Главное.</strong> Облигационная часть модельного портфеля перестроена: длинные ОФЗ больше не занимают все 100% — 40% переведено в короткие корпоративные выпуски. Средневзвешенная дюрация снизилась с 6,6 до <strong>4,30 года</strong>. Контрольный портфель стартовал с нуля первым взносом 5 000 ₽.</div>
+    <div class="trigger"><strong>Главное.</strong> В таблицы добавлены три колонки по запросу заказчика: доходность позиции от средней цены, расстояние до ступени фиксации и до ступени добора. Облигационная часть модельного портфеля перестроена: длинные ОФЗ больше не занимают все 100% — 40% переведено в короткие корпоративные выпуски. Средневзвешенная дюрация снизилась с 6,6 до <strong>4,30 года</strong>. Контрольный портфель стартовал с нуля первым взносом 5 000 ₽.</div>
     <div class="pulse">
       <div class="metric"><div class="k">Модельный</div><div class="v">1 004 188 ₽</div><div class="d up">+0,17% с дня 0</div></div>
       <div class="metric"><div class="k">Вложено</div><div class="v">1 002 500 ₽</div><div class="d flat">старт + взнос</div></div>
@@ -120,28 +120,29 @@
     <h2>Модельный портфель после ребалансировки</h2>
     <div class="tablewrap">
       <table>
-        <thead><tr><th>Класс</th><th>Инструмент</th><th>Цена</th><th>Количество</th><th>Сумма, ₽</th><th>Доля</th></tr></thead>
+        <thead><tr><th>Класс</th><th>Инструмент</th><th>Средняя цена</th><th>Текущая</th><th>Кол-во</th><th>Сумма, ₽</th><th>Доля</th><th>Доходность позиции</th><th>До фиксации</th><th>До добора</th></tr></thead>
         <tbody>
-          <tr><td class="cls">Акции</td><td class="ticker">Сбербанк</td><td class="num">271.11</td><td class="num">191</td><td class="num">51 782</td><td class="num">5.16%</td></tr>
-          <tr><td class="cls">Акции</td><td class="ticker">ЛУКОЙЛ</td><td class="num">4185.50</td><td class="num">11</td><td class="num">46 040</td><td class="num">4.58%</td></tr>
-          <tr><td class="cls">Акции</td><td class="ticker">Сургутнефтегаз-п</td><td class="num">40.09</td><td class="num">790</td><td class="num">31 675</td><td class="num">3.15%</td></tr>
-          <tr><td class="cls">Акции</td><td class="ticker">Полюс</td><td class="num">1150.40</td><td class="num">28</td><td class="num">32 211</td><td class="num">3.21%</td></tr>
-          <tr><td class="cls">Акции</td><td class="ticker">Норникель</td><td class="num">119.84</td><td class="num">240</td><td class="num">28 762</td><td class="num">2.86%</td></tr>
-          <tr><td class="cls">Акции</td><td class="ticker">Роснефть</td><td class="num">315.55</td><td class="num">89</td><td class="num">28 084</td><td class="num">2.80%</td></tr>
-          <tr><td class="cls">Акции</td><td class="ticker">Т-Технологии</td><td class="num">254.28</td><td class="num">94</td><td class="num">23 902</td><td class="num">2.38%</td></tr>
-          <tr><td class="cls">Акции</td><td class="ticker">МосБиржа</td><td class="num">152.79</td><td class="num">130</td><td class="num">19 863</td><td class="num">1.98%</td></tr>
-          <tr><td class="cls">Акции</td><td class="ticker">Яндекс</td><td class="num">3602.00</td><td class="num">4</td><td class="num">14 408</td><td class="num">1.43%</td></tr>
-          <tr><td class="cls">Обл. корп.</td><td class="ticker">ВЭБ2Р-50</td><td class="num">1025.79</td><td class="num">17</td><td class="num">17 438</td><td class="num">1.74%</td></tr>
-          <tr><td class="cls">Обл. корп.</td><td class="ticker">Газпн3P13R</td><td class="num">1001.92</td><td class="num">17</td><td class="num">17 033</td><td class="num">1.70%</td></tr>
-          <tr><td class="cls">Обл. корп.</td><td class="ticker">РостелP16R</td><td class="num">1027.75</td><td class="num">17</td><td class="num">17 472</td><td class="num">1.74%</td></tr>
-          <tr><td class="cls">Обл. ОФЗ</td><td class="ticker">ОФЗ 26238</td><td class="num">547,93</td><td class="num">81</td><td class="num">44 382</td><td class="num">4,42%</td></tr>
-          <tr><td class="cls">Обл. ОФЗ</td><td class="ticker">ОФЗ 26243</td><td class="num">717,70</td><td class="num">47</td><td class="num">33 732</td><td class="num">3,36%</td></tr>
-          <tr><td class="cls">Золото</td><td class="ticker">GOLD (ВИМ)</td><td class="num">3,0325</td><td class="num">39 344</td><td class="num">119 311</td><td class="num">11,88%</td></tr>
-          <tr><td class="cls">Кэш</td><td class="ticker">LQDT</td><td class="num">2,0657</td><td class="num">231 443</td><td class="num">478 091</td><td class="num">47,61%</td></tr>
-          <tr class="total"><td colspan="4">Итого</td><td class="num">1 004 188</td><td class="num">100%</td></tr>
+          <tr><td class="cls">Акции</td><td class="ticker">Сбербанк</td><td class="num">271.00</td><td class="num">271.11</td><td class="num">191</td><td class="num">51 782</td><td class="num">5.16%</td><td class="num up">+0.04%</td><td class="num">+74.9%</td><td class="num">—</td></tr>
+          <tr><td class="cls">Акции</td><td class="ticker">ЛУКОЙЛ</td><td class="num">4 221.50</td><td class="num">4 185.50</td><td class="num">11</td><td class="num">46 040</td><td class="num">4.58%</td><td class="num down">-0.85%</td><td class="num">+76.5%</td><td class="num">—</td></tr>
+          <tr><td class="cls">Акции</td><td class="ticker">Сургутнефтегаз-п</td><td class="num">41.65</td><td class="num">40.09</td><td class="num">790</td><td class="num">31 675</td><td class="num">3.15%</td><td class="num down">-3.74%</td><td class="num">+81.8%</td><td class="num">—</td></tr>
+          <tr><td class="cls">Акции</td><td class="ticker">Полюс</td><td class="num">1 104.80</td><td class="num">1 150.40</td><td class="num">28</td><td class="num">32 211</td><td class="num">3.21%</td><td class="num up">+4.13%</td><td class="num">+68.1%</td><td class="num">—</td></tr>
+          <tr><td class="cls">Акции</td><td class="ticker">Норникель</td><td class="num">112.98</td><td class="num">119.84</td><td class="num">240</td><td class="num">28 762</td><td class="num">2.86%</td><td class="num up">+6.07%</td><td class="num">+65.0%</td><td class="num">—</td></tr>
+          <tr><td class="cls">Акции</td><td class="ticker">Роснефть</td><td class="num">312.60</td><td class="num">315.55</td><td class="num">89</td><td class="num">28 084</td><td class="num">2.80%</td><td class="num up">+0.94%</td><td class="num">+73.4%</td><td class="num">—</td></tr>
+          <tr><td class="cls">Акции</td><td class="ticker">Т-Технологии</td><td class="num">252.76</td><td class="num">254.28</td><td class="num">94</td><td class="num">23 902</td><td class="num">2.38%</td><td class="num up">+0.60%</td><td class="num">+74.0%</td><td class="num">—</td></tr>
+          <tr><td class="cls">Акции</td><td class="ticker">МосБиржа</td><td class="num">150.46</td><td class="num">152.79</td><td class="num">130</td><td class="num">19 863</td><td class="num">1.98%</td><td class="num up">+1.55%</td><td class="num">+72.3%</td><td class="num">—</td></tr>
+          <tr><td class="cls">Акции</td><td class="ticker">Яндекс</td><td class="num">3 592.00</td><td class="num">3 602.00</td><td class="num">4</td><td class="num">14 408</td><td class="num">1.43%</td><td class="num up">+0.28%</td><td class="num">+74.5%</td><td class="num">—</td></tr>
+          <tr><td class="cls">Обл. ОФЗ</td><td class="ticker">ОФЗ 26238</td><td class="num">546.45</td><td class="num">547.93</td><td class="num">81</td><td class="num">44 382</td><td class="num">4.42%</td><td class="num up">+0.27%</td><td class="num" colspan="2">YTM 15.67% · дюрация 7.1 г</td></tr>
+          <tr><td class="cls">Обл. ОФЗ</td><td class="ticker">ОФЗ 26243</td><td class="num">715.68</td><td class="num">717.70</td><td class="num">47</td><td class="num">33 732</td><td class="num">3.36%</td><td class="num up">+0.28%</td><td class="num" colspan="2">YTM 16.10% · дюрация 6.1 г</td></tr>
+          <tr><td class="cls">Обл. корп.</td><td class="ticker">ВЭБ2Р-50</td><td class="num">1 025.79</td><td class="num">1 025.79</td><td class="num">17</td><td class="num">17 438</td><td class="num">1.74%</td><td class="num flat">0 00%</td><td class="num" colspan="2">YTM 16.16% · дюрация 0.59 г</td></tr>
+          <tr><td class="cls">Обл. корп.</td><td class="ticker">Газпн3P13R</td><td class="num">1 001.92</td><td class="num">1 001.92</td><td class="num">17</td><td class="num">17 033</td><td class="num">1.70%</td><td class="num flat">0 00%</td><td class="num" colspan="2">YTM 15.83% · дюрация 1.33 г</td></tr>
+          <tr><td class="cls">Обл. корп.</td><td class="ticker">РостелP16R</td><td class="num">1 027.75</td><td class="num">1 027.75</td><td class="num">17</td><td class="num">17 472</td><td class="num">1.74%</td><td class="num flat">0 00%</td><td class="num" colspan="2">YTM 14.73% · дюрация 0.61 г</td></tr>
+          <tr><td class="cls">Золото</td><td class="ticker">GOLD (ВИМ)</td><td class="num">3.0500</td><td class="num">3.0325</td><td class="num">39 344</td><td class="num">119 311</td><td class="num">11.88%</td><td class="num down">-0.57%</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td class="cls">Кэш</td><td class="ticker">LQDT</td><td class="num">2.0635</td><td class="num">2.0657</td><td class="num">231 443</td><td class="num">478 092</td><td class="num">47.61%</td><td class="num up">+0.11%</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr class="total"><td colspan="5">Итого</td><td class="num">1 004 188</td><td class="num">100%</td><td class="num up">+0 17%</td><td colspan="2" class="est-note">правило фиксации неактивно</td></tr>
         </tbody>
       </table>
     </div>
+    <p class="est-note"><strong>Доходность позиции</strong> считается от средневзвешенной цены покупки с учётом всех докупок и включает накопленный купонный доход по облигациям; дивидендов по акциям с момента входа не было. <strong>До фиксации</strong> — сколько процентов роста осталось до первой ступени правила §10 (+75% доходности позиции). <strong>До добора</strong> — сколько процентов падения от максимума после фиксации осталось до первой ступени откупа (−20%); заполняется только для бумаг, где фиксация уже была.</p>
     <h3>По классам активов</h3>
     <div class="tablewrap">
       <table>
@@ -174,13 +175,13 @@
     <div class="sub">Начало с нуля, первый взнос 5 000 ₽, повторяет решения модельного пропорционально объёму</div>
     <div class="tablewrap">
       <table>
-        <thead><tr><th>Класс</th><th>Инструмент</th><th>Цена</th><th>Количество</th><th>Сумма, ₽</th><th>Доля</th><th>Цель</th></tr></thead>
+        <thead><tr><th>Класс</th><th>Инструмент</th><th>Средняя цена</th><th>Текущая</th><th>Кол-во</th><th>Сумма, ₽</th><th>Доля</th><th>Доходность позиции</th><th>До фиксации</th><th>До добора</th></tr></thead>
         <tbody>
-          <tr><td class="cls">Акции</td><td class="ticker">Сбербанк</td><td class="num">271,11</td><td class="num">5</td><td class="num">1 355,55</td><td class="num">27,12%</td><td class="num">28%</td></tr>
-          <tr><td class="cls">Облигации</td><td class="ticker">ОФЗ 26238</td><td class="num">547,93</td><td class="num">1</td><td class="num">547,93</td><td class="num">10,96%</td><td class="num">13%</td></tr>
-          <tr><td class="cls">Золото</td><td class="ticker">GOLD (ВИМ)</td><td class="num">3,0325</td><td class="num">197</td><td class="num">597,40</td><td class="num">11,95%</td><td class="num">12%</td></tr>
-          <tr><td class="cls">Кэш</td><td class="ticker">LQDT</td><td class="num">2,0657</td><td class="num">1 208</td><td class="num">2 495,37</td><td class="num">49,93%</td><td class="num">47%</td></tr>
-          <tr class="total"><td colspan="4">Итого (комиссия 2,50 ₽, остаток 1,25 ₽)</td><td class="num">4 997,50</td><td class="num">100%</td><td class="num"></td></tr>
+          <tr><td class="cls">Акции</td><td class="ticker">Сбербанк</td><td class="num">271.1100</td><td class="num">271.1100</td><td class="num">5</td><td class="num">1 355.55</td><td class="num">27.12%</td><td class="num flat">0 00%</td><td class="num">+75 0%</td><td class="num">—</td></tr>
+          <tr><td class="cls">Облигации</td><td class="ticker">ОФЗ 26238</td><td class="num">547.9300</td><td class="num">547.9300</td><td class="num">1</td><td class="num">547.93</td><td class="num">10.96%</td><td class="num flat">0 00%</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td class="cls">Золото</td><td class="ticker">GOLD (ВИМ)</td><td class="num">3.0325</td><td class="num">3.0325</td><td class="num">197</td><td class="num">597.40</td><td class="num">11.95%</td><td class="num flat">0 00%</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td class="cls">Кэш</td><td class="ticker">LQDT</td><td class="num">2.0657</td><td class="num">2.0657</td><td class="num">1 208</td><td class="num">2 495.37</td><td class="num">49.93%</td><td class="num flat">0 00%</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr class="total"><td colspan="5">Итого (комиссия 2 50 ₽  остаток 1 25 ₽)</td><td class="num">4 997.50</td><td class="num">100%</td><td class="num down">−0 05%</td><td colspan="2" class="est-note">куплено сегодня</td></tr>
         </tbody>
       </table>
     </div>
