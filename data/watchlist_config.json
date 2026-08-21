@@ -8,6 +8,9 @@
     "NFAZ",
     "RGSS",
     "ROSN",
+    "RU000A1062M5",
+    "RU000A106XD7",
+    "RU000A108RQ7",
     "TATN",
     "TUZA"
   ],
@@ -183,6 +186,65 @@
       "outcome": null,
       "price_at_idea": 90.4,
       "listing_level": 3
+    },
+    "RU000A1062M5": {
+      "name": "Селигдар GOLD01",
+      "asset_class": "золото",
+      "analyst": "Юрий Козлов",
+      "received": "2026-08-21",
+      "published": "2026-08-21",
+      "idea_type": "instrument",
+      "levels_provided": false,
+      "price_at_idea_pct": 93.97,
+      "price_at_idea_rub": 11371,
+      "grams_per_bond": 0.9371,
+      "maturity": "2028-03-31",
+      "coupon_pct": 5.5,
+      "ytm_in_gold_pct": 9.0,
+      "listing_level": 2,
+      "turnover_median_60d_mln": 12.33,
+      "universe_eligible": true,
+      "note": "Номинал = 1 грамм золота, проверено (номинал/спот 0,99-1,00). Доходность биржи выражена в золоте, а не в рублях. Преимущество над фондом GOLD +9,7 п.п. годовых к погашению. Лимит ТЗ §15 (3% на эмитента) допускает 2 бумаги. Кандидат на часть золотой доли",
+      "outcome": null
+    },
+    "RU000A108RQ7": {
+      "name": "Селигдар GOLD03",
+      "asset_class": "золото",
+      "analyst": "Юрий Козлов",
+      "received": "2026-08-21",
+      "published": "2026-08-21",
+      "idea_type": "instrument",
+      "levels_provided": false,
+      "price_at_idea_pct": 96.51,
+      "price_at_idea_rub": 11701,
+      "grams_per_bond": 0.9643,
+      "maturity": "2029-09-14",
+      "coupon_pct": 5.5,
+      "ytm_in_gold_pct": 6.1,
+      "listing_level": 3,
+      "turnover_median_60d_mln": 8.12,
+      "universe_eligible": true,
+      "note": "Номинал = 1 грамм, привязка подтверждена. Проходит по обороту, но третий уровень листинга и срок 3,07 года против 1,61 у GOLD01. Резервный вариант",
+      "outcome": null
+    },
+    "RU000A106XD7": {
+      "name": "Селигдар GOLD02",
+      "asset_class": "золото",
+      "analyst": "Юрий Козлов",
+      "received": "2026-08-21",
+      "published": "2026-08-21",
+      "idea_type": "instrument",
+      "levels_provided": false,
+      "price_at_idea_pct": 96.65,
+      "price_at_idea_rub": 10514,
+      "maturity": "2030-01-03",
+      "coupon_pct": 5.5,
+      "listing_level": 2,
+      "turnover_median_60d_mln": 3.07,
+      "universe_eligible": false,
+      "universe_note": "Оборот 3,07 млн ₽ ниже порога ТЗ §15 (5 млн). Плюс аномалия номинала: отношение к номиналу GOLD01 скачком стало ровно 0,9000 с 09.07.2026, причина не установлена",
+      "anomaly": "face_ratio_0.9_since_2026-07-09",
+      "outcome": null
     }
   },
   "history": [
@@ -246,6 +308,33 @@
       "reason": "Техническая идея аналитика с уровнями: поддержка 76.0, цель 120.0. НЕ проходит по вселенной ТЗ §5 (листинг 3 уровня) — только наблюдение, покупка исключена",
       "analyst": "Александр Полярный",
       "idea_type": "technical"
+    },
+    {
+      "date": "2026-08-21",
+      "action": "add",
+      "ticker": "RU000A1062M5",
+      "name": "Селигдар GOLD01",
+      "reason": "Инструментальная идея аналитика без ценовых уровней: золотые облигации как замена части фонда золота. Кандидат на покупку",
+      "analyst": "Юрий Козлов",
+      "idea_type": "instrument"
+    },
+    {
+      "date": "2026-08-21",
+      "action": "add",
+      "ticker": "RU000A108RQ7",
+      "name": "Селигдар GOLD03",
+      "reason": "Инструментальная идея аналитика без ценовых уровней: золотые облигации как замена части фонда золота. Кандидат на покупку",
+      "analyst": "Юрий Козлов",
+      "idea_type": "instrument"
+    },
+    {
+      "date": "2026-08-21",
+      "action": "add",
+      "ticker": "RU000A106XD7",
+      "name": "Селигдар GOLD02",
+      "reason": "Инструментальная идея аналитика без ценовых уровней: золотые облигации как замена части фонда золота. Наблюдение, покупка исключена: Оборот 3,07 млн ₽ ниже порога ТЗ §15 (5 млн). Плюс аномалия номинала: отношение к номиналу GOLD01 скачком стало ровно 0,9000 с 09.07.2026, причина не установлена",
+      "analyst": "Юрий Козлов",
+      "idea_type": "instrument"
     }
   ],
   "macro_forecasts": [

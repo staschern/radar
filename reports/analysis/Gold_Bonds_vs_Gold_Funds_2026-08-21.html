@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Золотые облигации против фондов золота — 21.08.2026</title>
+<style>
+  :root{
+    --bg:#0a0e16; --card:#131a26; --card-2:#0f1520; --line:#232d3d;
+    --text:#e8edf5; --muted:#8a97ab; --dim:#5d6879;
+    --gold:#e0a95c; --blue:#5b9bf5; --up:#5bd88a; --down:#e08a8a;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:"Inter","Helvetica Neue",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1040px; margin:0 auto; padding:28px 20px 64px}
+
+  /* ── Титул ───────────────────────────────────────────── */
+  .hero{border:1px solid var(--line); border-radius:14px; background:
+    linear-gradient(160deg,#141c2b 0%,var(--card) 60%); padding:30px 28px; margin-bottom:22px}
+  .eyebrow{color:var(--gold); font-size:12px; letter-spacing:.16em; text-transform:uppercase; font-weight:600}
+  h1{margin:10px 0 6px; font-size:clamp(28px,5vw,44px); line-height:1.1; font-weight:800; letter-spacing:-.02em}
+  .hero .date{color:var(--muted); font-size:14px}
+  .trigger{margin-top:16px; padding:14px 16px; border-left:3px solid var(--gold);
+    background:rgba(224,169,92,.07); border-radius:0 10px 10px 0; font-size:16px}
+
+  /* ── Пульс / метрики ─────────────────────────────────── */
+  .pulse{display:grid; grid-template-columns:repeat(auto-fit,minmax(148px,1fr)); gap:12px; margin-top:20px}
+  .metric{background:var(--card-2); border:1px solid var(--line); border-radius:12px; padding:14px 16px}
+  .metric .k{color:var(--muted); font-size:11px; letter-spacing:.1em; text-transform:uppercase}
+  .metric .v{font-size:24px; font-weight:700; margin-top:6px; letter-spacing:-.02em}
+  .metric .d{font-size:13px; margin-top:2px; font-weight:600}
+  .up{color:var(--up)} .down{color:var(--down)} .flat{color:var(--muted)}
+  .metric.accent .v{color:var(--gold)}
+  .metric.fx .v{color:var(--blue)}
+  .nodata{color:var(--dim); font-style:italic; font-weight:400}
+
+  /* ── Секции ──────────────────────────────────────────── */
+  section{background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:24px 26px; margin-bottom:18px}
+  h2{margin:0 0 4px; font-size:20px; font-weight:700; color:var(--gold); letter-spacing:-.01em}
+  .sub{color:var(--muted); font-size:13px; margin-bottom:18px}
+  h3{margin:22px 0 8px; font-size:15px; font-weight:700}
+
+  .cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px}
+  .fact{background:var(--card-2); border:1px solid var(--line); border-radius:12px; padding:16px 18px}
+  .fact .n{color:var(--gold); font-size:12px; font-weight:700; letter-spacing:.1em}
+  .fact p{margin:8px 0 0; font-size:14px}
+
+  /* ── Факт vs оценка ──────────────────────────────────── */
+  .tag{display:inline-block; font-size:10px; letter-spacing:.1em; text-transform:uppercase;
+    padding:3px 8px; border-radius:999px; font-weight:700; vertical-align:middle}
+  .tag.fact{background:rgba(91,155,245,.14); color:var(--blue); border:1px solid rgba(91,155,245,.3)}
+  .tag.est{background:rgba(224,169,92,.12); color:var(--gold); border:1px solid rgba(224,169,92,.3)}
+  .est-note{color:var(--dim); font-size:12px; font-style:italic}
+
+  /* ── Оценка риска ────────────────────────────────────── */
+  .score{display:flex; align-items:center; gap:14px; margin:14px 0}
+  .score .bar{flex:1; height:8px; background:#1b2433; border-radius:999px; overflow:hidden}
+  .score .fill{height:100%; background:linear-gradient(90deg,var(--gold),var(--down)); border-radius:999px}
+  .score .num{font-size:26px; font-weight:800; color:var(--gold); min-width:76px; text-align:right}
+
+  /* ── Таблицы ─────────────────────────────────────────── */
+  .tablewrap{overflow-x:auto; -webkit-overflow-scrolling:touch; margin-top:12px}
+  table{width:100%; border-collapse:collapse; font-size:14px; min-width:560px}
+  th{text-align:left; color:var(--muted); font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+    font-weight:600; padding:0 12px 10px 0; border-bottom:1px solid var(--line); white-space:nowrap}
+  td{padding:11px 12px 11px 0; border-bottom:1px solid rgba(35,45,61,.55); vertical-align:top}
+  tbody tr:last-child td{border-bottom:none}
+  .ticker{font-weight:700; letter-spacing:.02em}
+  /* Название инструмента и его код: код — отдельной строкой под названием,
+     чтобы длинные ISIN не разрывали ширину таблицы (ТЗ Портфель §12.1). */
+  .instr{font-weight:700; letter-spacing:.02em; line-height:1.35}
+  .instr .code{display:block; font-weight:400; font-size:11px; color:var(--dim);
+    letter-spacing:.04em; margin-top:2px; font-variant-numeric:tabular-nums}
+  td .instr{white-space:normal}
+  .num{font-variant-numeric:tabular-nums}
+
+  /* ── Сценарии ────────────────────────────────────────── */
+  .scen{border:1px solid var(--line); border-radius:12px; padding:16px 18px; background:var(--card-2)}
+  .scen .h{display:flex; justify-content:space-between; align-items:baseline; gap:10px}
+  .scen .name{font-weight:700}
+  .scen .p{font-size:20px; font-weight:800; color:var(--gold); font-variant-numeric:tabular-nums}
+  .scen.base{border-left:3px solid var(--gold)}
+  .scen.pos{border-left:3px solid var(--up)}
+  .scen.neg{border-left:3px solid var(--down)}
+  .scen dl{margin:10px 0 0; font-size:13px}
+  .scen dt{color:var(--muted); font-size:11px; letter-spacing:.08em; text-transform:uppercase; margin-top:8px}
+  .scen dd{margin:2px 0 0}
+
+  /* ── Цепочка причинно-следственных связей ────────────── */
+  .chain{display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:14px}
+  .chain .node{background:var(--card-2); border:1px solid var(--line); border-radius:10px;
+    padding:10px 14px; font-size:13px; font-weight:600}
+  .chain .arrow{color:var(--gold); font-size:18px; line-height:1}
+
+  /* ── Пустое состояние (напр. пустой watchlist) ───────── */
+  .empty{border:1px dashed var(--line); border-radius:12px; padding:20px;
+    color:var(--muted); font-size:14px; text-align:center; background:rgba(35,45,61,.16)}
+
+  /* ── Футер блока / дисклеймер ────────────────────────── */
+  .foot{display:flex; justify-content:space-between; gap:14px; margin-top:20px; padding-top:14px;
+    border-top:1px solid var(--line); color:var(--dim); font-size:11px}
+  .disclaimer{margin-top:26px; padding:16px 18px; border:1px solid var(--line); border-radius:12px;
+    background:var(--card-2); color:var(--muted); font-size:12px; line-height:1.6}
+
+  /* ── Печать («Печать → PDF») ─────────────────────────── */
+  @media print{
+    body{background:var(--bg)}
+    .wrap{max-width:none; padding:0}
+    section,.hero,.fact,.scen,.metric{break-inside:avoid; page-break-inside:avoid}
+    h2{break-after:avoid}
+  }
+  @media (max-width:560px){
+    section{padding:18px 16px} .wrap{padding:16px 12px 40px} .hero{padding:22px 18px}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">Аналитический разбор · Защитная часть портфеля</div>
+    <h1>Золотые облигации против фондов золота</h1>
+    <div class="date">21 августа 2026 · данные MOEX ISS на 15:46 мск · спот золота 12 133,5 ₽/грамм</div>
+    <div class="trigger"><strong>Вопрос.</strong> Насколько эффективнее держать в портфеле золотые
+      облигации Селигдара вместо фонда золота? Повод — идея Юрия Козлова
+      («Инвестируй или проиграешь») от 21.08.2026.</div>
+
+    <div class="pulse">
+      <div class="metric accent"><div class="k">Преимущество инструмента</div><div class="v num">+9,7</div>
+        <div class="d up">п.п. годовых · GOLD01 к погашению</div></div>
+      <div class="metric"><div class="k">Преимущество портфеля</div><div class="v num">+0,23</div>
+        <div class="d flat">п.п. годовых · упирается в лимит 3%</div></div>
+      <div class="metric"><div class="k">Комиссия фонда, факт</div><div class="v num">0,7%</div>
+        <div class="d flat">измерено, не из декларации</div></div>
+      <div class="metric fx"><div class="k">Спред Селигдара к ОФЗ</div><div class="v num">+3,0</div>
+        <div class="d flat">п.п. · крепкий второй эшелон</div></div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Короткий ответ</h2>
+    <div class="sub">Два числа, и разрыв между ними — главный вывод разбора</div>
+    <div class="cards">
+      <div class="fact"><div class="n">НА УРОВНЕ ИНСТРУМЕНТА</div>
+        <p><strong>+9,7 п.п. годовых.</strong> GOLD01, купленная сегодня и удержанная до
+        погашения 31.03.2028, обгоняет фонд GOLD почти на десять пунктов в год. Преимущество
+        почти не зависит от того, куда пойдёт золото.</p></div>
+      <div class="fact"><div class="n">НА УРОВНЕ ПОРТФЕЛЯ</div>
+        <p><strong>+0,23 п.п. годовых.</strong> Лимит 3% на одного эмитента (ТЗ §15) допускает
+        две облигации — 22 742 ₽ из золотой доли в 119 311 ₽. Больше нельзя.</p></div>
+      <div class="fact"><div class="n">ПОЧЕМУ РАЗРЫВ</div>
+        <p>Инструмент хорош, но весь его смысл — кредит одной компании. Размер позиции
+        ограничен настолько, что эффект для портфеля выходит в десятых долях процента.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Механика: доходность выражена в золоте, а не в рублях</h2>
+    <div class="sub">Ключ ко всему разбору — и именно это делает идею верной</div>
+    <p>Номинал привязан к цене грамма и пересчитывается вслед за ней. Проверка по истории ISS:
+    отношение «номинал / цена грамма» держится в коридоре 0,96–1,01 на всём сроке обращения.
+    Биржа берёт текущий номинал как сумму погашения — значит <strong>доходность к погашению
+    показывает, сколько вы зарабатываете сверх движения золота</strong>, а не вместо него.</p>
+
+    <div class="chain">
+      <div class="node">Платим 0,9371 грамма</div><div class="arrow">→</div>
+      <div class="node">Получаем 1 грамм при погашении</div><div class="arrow">→</div>
+      <div class="node">Плюс купон 5,5% годовых</div><div class="arrow">→</div>
+      <div class="node">= золото + 9,0% годовых</div>
+    </div>
+
+    <div class="tablewrap"><table>
+      <thead><tr><th>Выпуск</th><th>Цена</th><th>Стоимость 1 шт.</th><th>Платим, г</th>
+        <th>Получим, г</th><th>Доходность в золоте</th><th>Годовых</th></tr></thead>
+      <tbody>
+        <tr><td class="instr">Селигдар GOLD01<span class="code">RU000A1062M5 · 31.03.2028</span></td>
+          <td class="num">93,97%</td><td class="num">11 371 ₽</td><td class="num"><strong>0,9371</strong></td>
+          <td class="num">1,0764</td><td class="num up">+14,9% за 1,61 г</td><td class="num up"><strong>+9,0%</strong></td></tr>
+        <tr><td class="instr">Селигдар GOLD03<span class="code">RU000A108RQ7 · 14.09.2029</span></td>
+          <td class="num">96,51%</td><td class="num">11 701 ₽</td><td class="num">0,9643</td>
+          <td class="num">1,1558</td><td class="num up">+19,9% за 3,07 г</td><td class="num up">+6,1%</td></tr>
+        <tr><td class="instr">Селигдар GOLD02<span class="code">RU000A106XD7 · 03.01.2030</span></td>
+          <td class="num">96,65%</td><td class="num">10 514 ₽</td><td colspan="4" class="nodata">номинал под вопросом — см. ниже</td></tr>
+        <tr><td class="instr">БПИФ Золото. Биржевой<span class="code">GOLD · RU000A101NZ2 · бессрочный</span></td>
+          <td class="num">—</td><td class="num">3,09 ₽</td><td class="num">—</td>
+          <td class="num">—</td><td class="num down">золото − комиссия</td><td class="num down">−0,7%</td></tr>
+      </tbody>
+    </table></div>
+    <p class="est-note">Комиссия фонда измерена по факту: дрейф отношения «цена пая / цена грамма»
+    за 765 торговых дней даёт −1,08% годовых по лог-регрессии и −0,41% по медианам месяцев.
+    Рабочая оценка — 0,7% ± 0,4%.</p>
+  </section>
+
+  <section>
+    <h2>Сценарии в рублях</h2>
+    <div class="sub">Вложено 100 000 ₽, удержание GOLD01 до погашения — 1,61 года</div>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Золото за период</th><th>Фонд GOLD</th><th>GOLD01</th><th>Разница, ₽</th><th>Разница, %</th></tr></thead>
+      <tbody>
+        <tr><td class="num down">−40%</td><td class="num">59 327 ₽</td><td class="num">71 564 ₽</td><td class="num up">+12 237</td><td class="num up"><strong>+20,6%</strong></td></tr>
+        <tr><td class="num down">−20%</td><td class="num">79 103 ₽</td><td class="num">93 848 ₽</td><td class="num up">+14 746</td><td class="num up"><strong>+18,6%</strong></td></tr>
+        <tr><td class="num flat">0%</td><td class="num">98 878 ₽</td><td class="num">116 132 ₽</td><td class="num up">+17 254</td><td class="num up"><strong>+17,4%</strong></td></tr>
+        <tr><td class="num up">+30%</td><td class="num">128 542 ₽</td><td class="num">149 558 ₽</td><td class="num up">+21 016</td><td class="num up"><strong>+16,3%</strong></td></tr>
+        <tr><td class="num up">+50%</td><td class="num">148 317 ₽</td><td class="num">171 842 ₽</td><td class="num up">+23 525</td><td class="num up"><strong>+15,9%</strong></td></tr>
+      </tbody>
+    </table></div>
+    <p>Преимущество почти постоянно, потому что оно мультипликативно к цене золота.
+    <strong>Это не ставка на направление металла — это ставка на то, что Селигдар доживёт
+    до погашения.</strong></p>
+  </section>
+
+  <section>
+    <h2>Что показала история: теория и практика расходятся</h2>
+    <div class="sub">Фактическая полная доходность трёх выпусков против фонда — грязная цена плюс реально выплаченные купоны</div>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Выпуск</th><th>Период</th><th>Облигация, годовых</th><th>Фонд, годовых</th><th>Разница</th><th>Цена, % номинала</th></tr></thead>
+      <tbody>
+        <tr><td class="instr">GOLD01<span class="code">куплена с дисконтом 8%</span></td><td class="num">3,07 г</td>
+          <td class="num">+31,60%</td><td class="num">+26,47%</td><td class="num up"><strong>+5,13 п.п.</strong></td><td class="num">92,11 → 92,48</td></tr>
+        <tr><td class="instr">GOLD03<span class="code">куплена по номиналу</span></td><td class="num">2,23 г</td>
+          <td class="num">+31,62%</td><td class="num">+30,73%</td><td class="num flat">+0,89 п.п.</td><td class="num down">101,15 → 95,00</td></tr>
+        <tr><td class="instr">GOLD02<span class="code">куплена по номиналу</span></td><td class="num">2,94 г</td>
+          <td class="num">+25,73%</td><td class="num">+26,73%</td><td class="num down"><strong>−1,00 п.п.</strong></td><td class="num down">100,06 → 94,79</td></tr>
+      </tbody>
+    </table></div>
+    <p>Купон у всех трёх был одинаковый — 5,5%. Разницу целиком сделал <strong>дисконт на
+    входе</strong>: GOLD01 покупалась дешевле номинала и продаётся с тем же дисконтом, поэтому
+    купон достался держателю. У GOLD02 и GOLD03 дисконт расширился с нуля до 5–6% и съел купон.</p>
+    <div class="trigger" style="border-left-color:var(--blue);background:rgba(91,155,245,.07)">
+      <strong>Правило.</strong> У товарной облигации нельзя покупать экспозицию на товар —
+      можно покупать только дисконт. Сегодня все три торгуются с дисконтом, то есть мы
+      находимся в ситуации GOLD01, а не GOLD02.
+    </div>
+  </section>
+
+  <section>
+    <h2>Риск дисконта и почему нужно держать до погашения</h2>
+    <div class="sub">Цена в процентах от номинала за всю историю обращения</div>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Выпуск</th><th>Минимум</th><th>Медиана</th><th>Максимум</th><th>Сейчас</th><th>Дней ниже 90%</th></tr></thead>
+      <tbody>
+        <tr><td class="ticker">GOLD01</td><td class="num down">78,71% <span class="est-note">02.02.2026</span></td><td class="num">91,49%</td><td class="num">108,21%</td><td class="num">93,97%</td><td class="num">44%</td></tr>
+        <tr><td class="ticker">GOLD02</td><td class="num down">76,25%</td><td class="num">89,69%</td><td class="num">111,00%</td><td class="num">96,65%</td><td class="num">50%</td></tr>
+        <tr><td class="ticker">GOLD03</td><td class="num down">76,45%</td><td class="num">86,12%</td><td class="num">102,34%</td><td class="num">96,51%</td><td class="num">68%</td></tr>
+      </tbody>
+    </table></div>
+    <p>Купив по 94% и продав по 79%, держатель потеряет 16% — три года купона. Это не гипотеза:
+    в феврале 2026 года так и было. <strong>Дисконт устраняется только удержанием до
+    погашения</strong> — в дату выплаты цена сходится к номиналу механически. У фонда даты
+    погашения нет: там нет дисконта, но нет и подтягивания к номиналу.</p>
+    <p>Для нас это означает обязательство переразместить деньги через 1,6 года при горизонте
+    5+ лет — риск реинвестирования, которого у фонда не существует.</p>
+  </section>
+
+  <section>
+    <h2>Кредитный риск: главный аргумент против</h2>
+    <div class="sub">Долговой рынок и рынок акций говорят о Селигдаре разное</div>
+
+    <h3>Что говорит долговой рынок — спокойно</h3>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Выпуск</th><th>Дюрация</th><th>Доходность</th><th>Кривая ОФЗ</th><th>Спред</th></tr></thead>
+      <tbody>
+        <tr><td class="instr">Селигдар2Р<span class="code">RU000A10B1X2</span></td><td class="num">0,49 г</td><td class="num">16,34%</td><td class="num">13,74%</td><td class="num">+2,60 п.п.</td></tr>
+        <tr><td class="instr">Селигдар3Р<span class="code">RU000A10B933</span></td><td class="num">0,96 г</td><td class="num">16,94%</td><td class="num">13,99%</td><td class="num">+2,96 п.п.</td></tr>
+        <tr><td class="instr">Селигдар4Р<span class="code">RU000A10C5L7</span></td><td class="num">1,22 г</td><td class="num">17,81%</td><td class="num">14,2%</td><td class="num">+3,6 п.п.</td></tr>
+        <tr><td class="instr">Селигдар8Р<span class="code">RU000A10DTF1</span></td><td class="num">1,53 г</td><td class="num">17,20%</td><td class="num">14,3%</td><td class="num">+2,9 п.п.</td></tr>
+        <tr><td class="instr">Селигдар11<span class="code">RU000A10EXW6</span></td><td class="num">1,92 г</td><td class="num">16,98%</td><td class="num">14,6%</td><td class="num">+2,4 п.п.</td></tr>
+      </tbody>
+    </table></div>
+    <p>Средний спред около <strong>3 п.п.</strong> — уровень крепкого второго эшелона, не
+    преддефолтное состояние. У эмитента обращается одиннадцать рублёвых выпусков плюс три
+    золотых и один серебряный.</p>
+
+    <h3>Что говорит рынок акций — тревожно</h3>
+    <div class="pulse">
+      <div class="metric"><div class="k">Золото в рублях, 3 года</div><div class="v num up">+111,3%</div></div>
+      <div class="metric"><div class="k">Акция SELG, 3 года</div><div class="v num down">−49,1%</div></div>
+      <div class="metric accent"><div class="k">Отставание от товара</div><div class="v num">−75,9%</div></div>
+      <div class="metric"><div class="k">Просадка от максимума</div><div class="v num down">−57,2%</div>
+        <div class="d flat">39,57 ₽ против 92,35 ₽</div></div>
+    </div>
+    <p>Золотодобытчик, чей продукт подорожал вдвое, а акция подешевела вдвое. Рынок акций
+    считает, что выгода от роста золота до акционера не доходит.</p>
+    <p><strong>Механизм встроен в сам инструмент.</strong> Золотая облигация — это
+    обязательство, номинированное в золоте. Когда золото растёт, рублёвый размер долга
+    Селигдара растёт вместе с ним. Компания захеджировала выручку, но если добыча не растёт,
+    а долг индексируется, эффект от подорожания металла уходит кредиторам.</p>
+    <div class="cards">
+      <div class="fact"><div class="n">В НАШУ ПОЛЬЗУ</div>
+        <p>Выручка эмитента и его долг движутся в одну сторону — естественный хедж, снижающий
+        вероятность дефолта именно на росте золота.</p></div>
+      <div class="fact"><div class="n">ПРОТИВ НАС</div>
+        <p>Покрывает ли выручка индексируемый долг — по данным биржи не проверить. Расхождение
+        сигналов акций и облигаций исторически разрешается в пользу рынка акций.</p></div>
+    </div>
+
+    <h3>Порог, при котором сделка теряет смысл</h3>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Возмещение при дефолте</th><th>Безубыточная вероятность дефолта за 1,61 года</th></tr></thead>
+      <tbody>
+        <tr><td class="num">0%</td><td class="num">13,8%</td></tr>
+        <tr><td class="num">30%</td><td class="num"><strong>18,6%</strong></td></tr>
+        <tr><td class="num">60%</td><td class="num">28,6%</td></tr>
+      </tbody>
+    </table></div>
+    <p>Сделка оправдана, пока вероятность дефолта ниже 18,6%. Для эмитента со спредом 3 п.п.
+    рынок закладывает величину на порядок меньше. Запас есть, но он не бесконечен — и именно
+    поэтому позиция ограничивается, а не наращивается.</p>
+  </section>
+
+  <section>
+    <h2>Ошибка в данных по GOLD02: выпуск исключён</h2>
+    <div class="sub">Утверждение «номинал равен ровно 1 грамму» для этого выпуска не выполняется</div>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Дата</th><th>Номинал GOLD01</th><th>Номинал GOLD02</th><th>Отношение</th></tr></thead>
+      <tbody>
+        <tr><td class="num">2026-06-16</td><td class="num">9 642,75 ₽</td><td class="num">9 642,75 ₽</td><td class="num">1,0000</td></tr>
+        <tr><td class="num">2026-07-09</td><td class="num">10 252,33 ₽</td><td class="num">9 227,10 ₽</td><td class="num down"><strong>0,9000</strong></td></tr>
+        <tr><td class="num">2026-08-20</td><td class="num">11 886,60 ₽</td><td class="num">10 697,94 ₽</td><td class="num down">0,8999</td></tr>
+      </tbody>
+    </table></div>
+    <p>Отношение было ровно 1,0000 с октября 2023 по 8 июля 2026 и скачком стало ровно 0,9000
+    девятого июля. Держится шестую неделю. Таблица амортизаций ISS частичного погашения не
+    показывает — только выплату в дату погашения. Ровный коэффициент 0,9 больше похож на
+    корпоративное действие или ошибку ленты, чем на рыночное явление.</p>
+    <p><strong>Следствие переворачивает вывод.</strong> Если считать номинал за грамм, GOLD02
+    выглядит самым дешёвым — 0,8665 грамма за грамм. Если номинал равен 0,9 грамма, реальная
+    цена составляет 0,963 грамма, и выпуск оказывается <em>дороже</em> GOLD01 (0,9371).</p>
+    <p>Выпуск исключён до выяснения причины. Независимо от этого он не проходит и по
+    ликвидности: оборот 3,07 млн ₽ в день против нашего порога 5 млн ₽.</p>
+  </section>
+
+  <section>
+    <h2>Ликвидность и формальная допустимость</h2>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Параметр</th><th>GOLD01</th><th>GOLD02</th><th>GOLD03</th><th>Фонд GOLD</th></tr></thead>
+      <tbody>
+        <tr><td>Оборот в день, медиана за 60 дней</td><td class="num up"><strong>12,33 млн ₽</strong></td><td class="num down">3,07 млн ₽</td><td class="num">8,12 млн ₽</td><td class="num">269 млн ₽*</td></tr>
+        <tr><td>Сделок в день, медиана</td><td class="num">370</td><td class="num">75</td><td class="num">81</td><td class="num">—</td></tr>
+        <tr><td>Спред bid-ask</td><td class="num">0,09%</td><td class="num">0,18%</td><td class="num">0,47%</td><td class="num">—</td></tr>
+        <tr><td>Уровень листинга</td><td class="num">2</td><td class="num">2</td><td class="num down">3</td><td class="num">1</td></tr>
+        <tr><td>Доступен неквалифицированному инвестору</td><td class="num up">да</td><td class="num up">да</td><td class="num up">да</td><td class="num up">да</td></tr>
+        <tr><td>Порог ликвидности ТЗ §15 — 5 млн ₽</td><td class="num up">проходит</td><td class="num down">не проходит</td><td class="num up">проходит</td><td class="num up">проходит</td></tr>
+      </tbody>
+    </table></div>
+    <p class="est-note">* оборот фонда за 21.08.2026, не медиана.</p>
+    <p>У всех трёх выпусков признак «для квалифицированных инвесторов» равен нулю — они
+    <strong>не являются структурными облигациями</strong> и требованию ТЗ §5 не противоречат:
+    номинал возвращается всегда, меняется только его рублёвый размер.</p>
+    <p>По совокупности проходит <strong>только GOLD01</strong>: достаточный оборот, второй
+    уровень листинга, самый короткий срок и самый большой дисконт в граммах.</p>
+  </section>
+
+  <section>
+    <h2>Что это даёт нашему портфелю</h2>
+    <div class="sub">Золотая доля 119 311 ₽ (11,88%) · лимит ТЗ §15 на эмитента 3% = 30 126 ₽</div>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Размер позиции</th><th>Доля портфеля</th><th>Доля золота</th><th>Выигрыш за 1,61 г</th><th>Годовых к портфелю</th></tr></thead>
+      <tbody>
+        <tr><td>1 облигация</td><td class="num">1,13%</td><td class="num">9,5%</td><td class="num up">+1 825 ₽</td><td class="num">+0,11 п.п.</td></tr>
+        <tr><td><strong>2 облигации — лимит</strong></td><td class="num"><strong>2,26%</strong></td><td class="num"><strong>19,1%</strong></td><td class="num up"><strong>+3 649 ₽</strong></td><td class="num up"><strong>+0,23 п.п.</strong></td></tr>
+        <tr><td>3 облигации</td><td class="num down">3,40%</td><td class="num">28,6%</td><td class="num">+5 474 ₽</td><td class="num">+0,34 п.п.</td></tr>
+        <tr><td>10 облигаций — вся доля</td><td class="num down">11,32%</td><td class="num down">95,3%</td><td class="num">+18 247 ₽</td><td class="num">+1,13 п.п.</td></tr>
+      </tbody>
+    </table></div>
+    <p>Последняя строка показывает, от чего мы отказываемся — и почему. Переложить всю золотую
+    долю в облигации значит поставить 11,3% портфеля на кредитоспособность одной компании,
+    чья акция за три года потеряла половину стоимости. <strong>Защитная часть портфеля
+    перестала бы быть защитной.</strong></p>
+
+    <h3>Классификация в структуре портфеля</h3>
+    <div class="cards">
+      <div class="fact"><div class="n">В РАСПРЕДЕЛЕНИИ ПО КЛАССАМ</div>
+        <p><strong>Золото.</strong> Выплата привязана к грамму металла, поведение цены
+        определяется золотом. Учитывать в облигационной части (ТЗ §5.1) неверно: бумага не даёт
+        ни рублёвой доходности, ни ставки на снижение ключевой ставки.</p></div>
+      <div class="fact"><div class="n">В ЛИМИТАХ НА ЭМИТЕНТА</div>
+        <p><strong>Облигации.</strong> Кредитный риск считается по ТЗ §15: не более 3% портфеля
+        на имя, вместе с акциями того же эмитента.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Итог</h2>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Вопрос</th><th>Ответ</th></tr></thead>
+      <tbody>
+        <tr><td>Насколько облигация эффективнее фонда как инструмент?</td><td><strong>+9,7 п.п. годовых</strong> к погашению при текущих ценах</td></tr>
+        <tr><td>Сколько из этого получит портфель?</td><td><strong>+0,23 п.п. годовых</strong> — лимит на эмитента ограничивает позицию двумя бумагами</td></tr>
+        <tr><td>Подтверждается ли историей?</td><td>Частично: +5,13 / +0,89 / −1,00 п.п. по трём выпускам. Разницу сделал дисконт на входе</td></tr>
+        <tr><td>Когда преимущество исчезает?</td><td>При продаже до погашения либо при вероятности дефолта Селигдара выше 18,6% за 1,6 года</td></tr>
+        <tr><td>Заменяет ли облигация фонд?</td><td><strong>Нет.</strong> Дополняет на часть доли; фонд остаётся ядром золотой позиции</td></tr>
+      </tbody>
+    </table></div>
+    <div class="trigger"><strong>Позиция агента.</strong> Идея Козлова верна по механике и
+    подтверждается расчётом, но он не называет три вещи, которые определяют результат: дисконт
+    на входе, обязательность удержания до погашения и концентрацию кредитного риска на одном
+    эмитенте, чья акция за три года упала вдвое при удвоившемся золоте. С учётом этих поправок
+    инструмент остаётся полезным — но в размере, ограниченном нашими же правилами, и потому
+    меняет доходность портфеля на десятые доли процента, а не на проценты.</div>
+  </section>
+
+  <section>
+    <h2>Что проверить перед сделкой</h2>
+    <div class="sub">Открытые вопросы, без которых покупка не совершается</div>
+    <div class="cards">
+      <div class="fact"><div class="n">1 · РЕЙТИНГ</div><p>Кредитный рейтинг Селигдара (АКРА / Эксперт РА) — требование ТЗ §15 «не ниже A». По данным ISS рейтинг не публикуется.</p></div>
+      <div class="fact"><div class="n">2 · ДОЛГ</div><p>Debt/EBITDA ≤ 3–4 и структура долга. Отдельно: какая доля долга индексируется золотом.</p></div>
+      <div class="fact"><div class="n">3 · АНОМАЛИЯ GOLD02</div><p>Причина коэффициента 0,9 по номиналу — корпоративное действие или ошибка данных.</p></div>
+      <div class="fact"><div class="n">4 · НАЛОГ</div><p>Купон облагается НДФЛ 13%, но агент — брокер, и льгота ИИС-Б должна работать (в отличие от дивидендов). При ставке 13% преимущество падает с 9,7 до 8,9 п.п. годовых.</p></div>
+      <div class="fact"><div class="n">5 · ЛАГ НОМИНАЛА</div><p>По какой учётной цене и с каким лагом пересчитывается номинал. Сейчас 12 000,87 ₽ против спота 12 133,5 ₽ — отставание 1,1%.</p></div>
+    </div>
+  </section>
+
+  <div class="disclaimer">
+    Источник данных — MOEX ISS, 21.08.2026, 15:46 мск. Расчёты доходности к погашению
+    предполагают отсутствие дефолта эмитента и не учитывают брокерскую комиссию.
+    Комиссия фонда GOLD измерена по расхождению цены пая с ценой грамма, а не взята из
+    декларации управляющей компании. Кредитный рейтинг Селигдара и его Debt/EBITDA на момент
+    подготовки отчёта не проверены — по данным биржи они недоступны. Отчёт не является
+    индивидуальной инвестиционной рекомендацией. Полный разбор с исходными цифрами —
+    docs/knowledge/gold_instruments.md.
+  </div>
+</div>
+
+</body>
+</html>
