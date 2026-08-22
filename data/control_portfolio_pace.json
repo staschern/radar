@@ -1,0 +1,1123 @@
+{
+ "methodology_ref": "docs/knowledge/methodology.md §21",
+ "generated": "2026-08-22",
+ "assumptions": {
+  "weekly_contribution_rub": 5000,
+  "horizon_years": 20,
+  "weeks_per_year": 52,
+  "total_periods": 1040,
+  "compounding": "недельная, взнос в конце каждой недели (обычная рента)",
+  "start_date": "2026-08-21",
+  "note": "Равномерная теоретическая доходность — детерминированное сложное начисление по постоянной ставке, подобранной так, чтобы 1040 еженедельных взносов по 5000 ₽ дали ровно целевую сумму через 20 лет. Не бэктест и не сценарий: ориентир для сверки темпа, а не прогноз рынка."
+ },
+ "plans": {
+  "20": {
+   "target": 20000000.0,
+   "weekly_rate": 0.002195065523986517,
+   "annual_rate": 0.12077265068702925,
+   "fv_check": 20000000.000002716
+  },
+  "30": {
+   "target": 30000000.0,
+   "weekly_rate": 0.0027588171514257853,
+   "annual_rate": 0.1540309265994655,
+   "fv_check": 29999999.999997903
+  },
+  "40": {
+   "target": 40000000.0,
+   "weekly_rate": 0.0031430352710587472,
+   "annual_rate": 0.17725037134274957,
+   "fv_check": 39999999.99999261
+  }
+ },
+ "yearly_pace_20m": [
+  {
+   "year": 0,
+   "value": 0,
+   "invested": 0,
+   "gain": 0
+  },
+  {
+   "year": 1,
+   "value": 275100,
+   "invested": 260000,
+   "gain": 15100
+  },
+  {
+   "year": 2,
+   "value": 583425,
+   "invested": 520000,
+   "gain": 63425
+  },
+  {
+   "year": 3,
+   "value": 928987,
+   "invested": 780000,
+   "gain": 148987
+  },
+  {
+   "year": 4,
+   "value": 1316284,
+   "invested": 1040000,
+   "gain": 276284
+  },
+  {
+   "year": 5,
+   "value": 1750355,
+   "invested": 1300000,
+   "gain": 450355
+  },
+  {
+   "year": 6,
+   "value": 2236851,
+   "invested": 1560000,
+   "gain": 676851
+  },
+  {
+   "year": 7,
+   "value": 2782102,
+   "invested": 1820000,
+   "gain": 962102
+  },
+  {
+   "year": 8,
+   "value": 3393204,
+   "invested": 2080000,
+   "gain": 1313204
+  },
+  {
+   "year": 9,
+   "value": 4078110,
+   "invested": 2340000,
+   "gain": 1738110
+  },
+  {
+   "year": 10,
+   "value": 4845735,
+   "invested": 2600000,
+   "gain": 2245735
+  },
+  {
+   "year": 11,
+   "value": 5706067,
+   "invested": 2860000,
+   "gain": 2846067
+  },
+  {
+   "year": 12,
+   "value": 6670305,
+   "invested": 3120000,
+   "gain": 3550305
+  },
+  {
+   "year": 13,
+   "value": 7750995,
+   "invested": 3380000,
+   "gain": 4370995
+  },
+  {
+   "year": 14,
+   "value": 8962204,
+   "invested": 3640000,
+   "gain": 5322204
+  },
+  {
+   "year": 15,
+   "value": 10319693,
+   "invested": 3900000,
+   "gain": 6419693
+  },
+  {
+   "year": 16,
+   "value": 11841130,
+   "invested": 4160000,
+   "gain": 7681130
+  },
+  {
+   "year": 17,
+   "value": 13546315,
+   "invested": 4420000,
+   "gain": 9126315
+  },
+  {
+   "year": 18,
+   "value": 15457440,
+   "invested": 4680000,
+   "gain": 10777440
+  },
+  {
+   "year": 19,
+   "value": 17599376,
+   "invested": 4940000,
+   "gain": 12659376
+  },
+  {
+   "year": 20,
+   "value": 20000000,
+   "invested": 5200000,
+   "gain": 14800000
+  }
+ ],
+ "weekly_pace_year1": {
+  "20": [
+   {
+    "week": 0,
+    "value": 0,
+    "invested": 0,
+    "gain": 0
+   },
+   {
+    "week": 1,
+    "value": 5000,
+    "invested": 5000,
+    "gain": 0
+   },
+   {
+    "week": 2,
+    "value": 10011,
+    "invested": 10000,
+    "gain": 11
+   },
+   {
+    "week": 3,
+    "value": 15033,
+    "invested": 15000,
+    "gain": 33
+   },
+   {
+    "week": 4,
+    "value": 20066,
+    "invested": 20000,
+    "gain": 66
+   },
+   {
+    "week": 5,
+    "value": 25110,
+    "invested": 25000,
+    "gain": 110
+   },
+   {
+    "week": 6,
+    "value": 30165,
+    "invested": 30000,
+    "gain": 165
+   },
+   {
+    "week": 7,
+    "value": 35231,
+    "invested": 35000,
+    "gain": 231
+   },
+   {
+    "week": 8,
+    "value": 40309,
+    "invested": 40000,
+    "gain": 309
+   },
+   {
+    "week": 9,
+    "value": 45397,
+    "invested": 45000,
+    "gain": 397
+   },
+   {
+    "week": 10,
+    "value": 50497,
+    "invested": 50000,
+    "gain": 497
+   },
+   {
+    "week": 11,
+    "value": 55608,
+    "invested": 55000,
+    "gain": 608
+   },
+   {
+    "week": 12,
+    "value": 60730,
+    "invested": 60000,
+    "gain": 730
+   },
+   {
+    "week": 13,
+    "value": 65863,
+    "invested": 65000,
+    "gain": 863
+   },
+   {
+    "week": 14,
+    "value": 71008,
+    "invested": 70000,
+    "gain": 1008
+   },
+   {
+    "week": 15,
+    "value": 76163,
+    "invested": 75000,
+    "gain": 1163
+   },
+   {
+    "week": 16,
+    "value": 81331,
+    "invested": 80000,
+    "gain": 1331
+   },
+   {
+    "week": 17,
+    "value": 86509,
+    "invested": 85000,
+    "gain": 1509
+   },
+   {
+    "week": 18,
+    "value": 91699,
+    "invested": 90000,
+    "gain": 1699
+   },
+   {
+    "week": 19,
+    "value": 96900,
+    "invested": 95000,
+    "gain": 1900
+   },
+   {
+    "week": 20,
+    "value": 102113,
+    "invested": 100000,
+    "gain": 2113
+   },
+   {
+    "week": 21,
+    "value": 107337,
+    "invested": 105000,
+    "gain": 2337
+   },
+   {
+    "week": 22,
+    "value": 112573,
+    "invested": 110000,
+    "gain": 2573
+   },
+   {
+    "week": 23,
+    "value": 117820,
+    "invested": 115000,
+    "gain": 2820
+   },
+   {
+    "week": 24,
+    "value": 123079,
+    "invested": 120000,
+    "gain": 3079
+   },
+   {
+    "week": 25,
+    "value": 128349,
+    "invested": 125000,
+    "gain": 3349
+   },
+   {
+    "week": 26,
+    "value": 133630,
+    "invested": 130000,
+    "gain": 3630
+   },
+   {
+    "week": 27,
+    "value": 138924,
+    "invested": 135000,
+    "gain": 3924
+   },
+   {
+    "week": 28,
+    "value": 144229,
+    "invested": 140000,
+    "gain": 4229
+   },
+   {
+    "week": 29,
+    "value": 149545,
+    "invested": 145000,
+    "gain": 4545
+   },
+   {
+    "week": 30,
+    "value": 154874,
+    "invested": 150000,
+    "gain": 4874
+   },
+   {
+    "week": 31,
+    "value": 160214,
+    "invested": 155000,
+    "gain": 5214
+   },
+   {
+    "week": 32,
+    "value": 165565,
+    "invested": 160000,
+    "gain": 5565
+   },
+   {
+    "week": 33,
+    "value": 170929,
+    "invested": 165000,
+    "gain": 5929
+   },
+   {
+    "week": 34,
+    "value": 176304,
+    "invested": 170000,
+    "gain": 6304
+   },
+   {
+    "week": 35,
+    "value": 181691,
+    "invested": 175000,
+    "gain": 6691
+   },
+   {
+    "week": 36,
+    "value": 187090,
+    "invested": 180000,
+    "gain": 7090
+   },
+   {
+    "week": 37,
+    "value": 192500,
+    "invested": 185000,
+    "gain": 7500
+   },
+   {
+    "week": 38,
+    "value": 197923,
+    "invested": 190000,
+    "gain": 7923
+   },
+   {
+    "week": 39,
+    "value": 203357,
+    "invested": 195000,
+    "gain": 8357
+   },
+   {
+    "week": 40,
+    "value": 208804,
+    "invested": 200000,
+    "gain": 8804
+   },
+   {
+    "week": 41,
+    "value": 214262,
+    "invested": 205000,
+    "gain": 9262
+   },
+   {
+    "week": 42,
+    "value": 219732,
+    "invested": 210000,
+    "gain": 9732
+   },
+   {
+    "week": 43,
+    "value": 225215,
+    "invested": 215000,
+    "gain": 10215
+   },
+   {
+    "week": 44,
+    "value": 230709,
+    "invested": 220000,
+    "gain": 10709
+   },
+   {
+    "week": 45,
+    "value": 236215,
+    "invested": 225000,
+    "gain": 11215
+   },
+   {
+    "week": 46,
+    "value": 241734,
+    "invested": 230000,
+    "gain": 11734
+   },
+   {
+    "week": 47,
+    "value": 247265,
+    "invested": 235000,
+    "gain": 12265
+   },
+   {
+    "week": 48,
+    "value": 252807,
+    "invested": 240000,
+    "gain": 12807
+   },
+   {
+    "week": 49,
+    "value": 258362,
+    "invested": 245000,
+    "gain": 13362
+   },
+   {
+    "week": 50,
+    "value": 263929,
+    "invested": 250000,
+    "gain": 13929
+   },
+   {
+    "week": 51,
+    "value": 269509,
+    "invested": 255000,
+    "gain": 14509
+   },
+   {
+    "week": 52,
+    "value": 275100,
+    "invested": 260000,
+    "gain": 15100
+   }
+  ],
+  "30": [
+   {
+    "week": 0,
+    "value": 0,
+    "invested": 0,
+    "gain": 0
+   },
+   {
+    "week": 1,
+    "value": 5000,
+    "invested": 5000,
+    "gain": 0
+   },
+   {
+    "week": 2,
+    "value": 10014,
+    "invested": 10000,
+    "gain": 14
+   },
+   {
+    "week": 3,
+    "value": 15041,
+    "invested": 15000,
+    "gain": 41
+   },
+   {
+    "week": 4,
+    "value": 20083,
+    "invested": 20000,
+    "gain": 83
+   },
+   {
+    "week": 5,
+    "value": 25138,
+    "invested": 25000,
+    "gain": 138
+   },
+   {
+    "week": 6,
+    "value": 30208,
+    "invested": 30000,
+    "gain": 208
+   },
+   {
+    "week": 7,
+    "value": 35291,
+    "invested": 35000,
+    "gain": 291
+   },
+   {
+    "week": 8,
+    "value": 40388,
+    "invested": 40000,
+    "gain": 388
+   },
+   {
+    "week": 9,
+    "value": 45500,
+    "invested": 45000,
+    "gain": 500
+   },
+   {
+    "week": 10,
+    "value": 50625,
+    "invested": 50000,
+    "gain": 625
+   },
+   {
+    "week": 11,
+    "value": 55765,
+    "invested": 55000,
+    "gain": 765
+   },
+   {
+    "week": 12,
+    "value": 60919,
+    "invested": 60000,
+    "gain": 919
+   },
+   {
+    "week": 13,
+    "value": 66087,
+    "invested": 65000,
+    "gain": 1087
+   },
+   {
+    "week": 14,
+    "value": 71269,
+    "invested": 70000,
+    "gain": 1269
+   },
+   {
+    "week": 15,
+    "value": 76466,
+    "invested": 75000,
+    "gain": 1466
+   },
+   {
+    "week": 16,
+    "value": 81677,
+    "invested": 80000,
+    "gain": 1677
+   },
+   {
+    "week": 17,
+    "value": 86902,
+    "invested": 85000,
+    "gain": 1902
+   },
+   {
+    "week": 18,
+    "value": 92142,
+    "invested": 90000,
+    "gain": 2142
+   },
+   {
+    "week": 19,
+    "value": 97396,
+    "invested": 95000,
+    "gain": 2396
+   },
+   {
+    "week": 20,
+    "value": 102665,
+    "invested": 100000,
+    "gain": 2665
+   },
+   {
+    "week": 21,
+    "value": 107948,
+    "invested": 105000,
+    "gain": 2948
+   },
+   {
+    "week": 22,
+    "value": 113246,
+    "invested": 110000,
+    "gain": 3246
+   },
+   {
+    "week": 23,
+    "value": 118558,
+    "invested": 115000,
+    "gain": 3558
+   },
+   {
+    "week": 24,
+    "value": 123885,
+    "invested": 120000,
+    "gain": 3885
+   },
+   {
+    "week": 25,
+    "value": 129227,
+    "invested": 125000,
+    "gain": 4227
+   },
+   {
+    "week": 26,
+    "value": 134584,
+    "invested": 130000,
+    "gain": 4584
+   },
+   {
+    "week": 27,
+    "value": 139955,
+    "invested": 135000,
+    "gain": 4955
+   },
+   {
+    "week": 28,
+    "value": 145341,
+    "invested": 140000,
+    "gain": 5341
+   },
+   {
+    "week": 29,
+    "value": 150742,
+    "invested": 145000,
+    "gain": 5742
+   },
+   {
+    "week": 30,
+    "value": 156158,
+    "invested": 150000,
+    "gain": 6158
+   },
+   {
+    "week": 31,
+    "value": 161589,
+    "invested": 155000,
+    "gain": 6589
+   },
+   {
+    "week": 32,
+    "value": 167034,
+    "invested": 160000,
+    "gain": 7034
+   },
+   {
+    "week": 33,
+    "value": 172495,
+    "invested": 165000,
+    "gain": 7495
+   },
+   {
+    "week": 34,
+    "value": 177971,
+    "invested": 170000,
+    "gain": 7971
+   },
+   {
+    "week": 35,
+    "value": 183462,
+    "invested": 175000,
+    "gain": 8462
+   },
+   {
+    "week": 36,
+    "value": 188968,
+    "invested": 180000,
+    "gain": 8968
+   },
+   {
+    "week": 37,
+    "value": 194490,
+    "invested": 185000,
+    "gain": 9490
+   },
+   {
+    "week": 38,
+    "value": 200026,
+    "invested": 190000,
+    "gain": 10026
+   },
+   {
+    "week": 39,
+    "value": 205578,
+    "invested": 195000,
+    "gain": 10578
+   },
+   {
+    "week": 40,
+    "value": 211145,
+    "invested": 200000,
+    "gain": 11145
+   },
+   {
+    "week": 41,
+    "value": 216728,
+    "invested": 205000,
+    "gain": 11728
+   },
+   {
+    "week": 42,
+    "value": 222326,
+    "invested": 210000,
+    "gain": 12326
+   },
+   {
+    "week": 43,
+    "value": 227939,
+    "invested": 215000,
+    "gain": 12939
+   },
+   {
+    "week": 44,
+    "value": 233568,
+    "invested": 220000,
+    "gain": 13568
+   },
+   {
+    "week": 45,
+    "value": 239212,
+    "invested": 225000,
+    "gain": 14212
+   },
+   {
+    "week": 46,
+    "value": 244872,
+    "invested": 230000,
+    "gain": 14872
+   },
+   {
+    "week": 47,
+    "value": 250548,
+    "invested": 235000,
+    "gain": 15548
+   },
+   {
+    "week": 48,
+    "value": 256239,
+    "invested": 240000,
+    "gain": 16239
+   },
+   {
+    "week": 49,
+    "value": 261946,
+    "invested": 245000,
+    "gain": 16946
+   },
+   {
+    "week": 50,
+    "value": 267668,
+    "invested": 250000,
+    "gain": 17668
+   },
+   {
+    "week": 51,
+    "value": 273407,
+    "invested": 255000,
+    "gain": 18407
+   },
+   {
+    "week": 52,
+    "value": 279161,
+    "invested": 260000,
+    "gain": 19161
+   }
+  ],
+  "40": [
+   {
+    "week": 0,
+    "value": 0,
+    "invested": 0,
+    "gain": 0
+   },
+   {
+    "week": 1,
+    "value": 5000,
+    "invested": 5000,
+    "gain": 0
+   },
+   {
+    "week": 2,
+    "value": 10016,
+    "invested": 10000,
+    "gain": 16
+   },
+   {
+    "week": 3,
+    "value": 15047,
+    "invested": 15000,
+    "gain": 47
+   },
+   {
+    "week": 4,
+    "value": 20094,
+    "invested": 20000,
+    "gain": 94
+   },
+   {
+    "week": 5,
+    "value": 25158,
+    "invested": 25000,
+    "gain": 158
+   },
+   {
+    "week": 6,
+    "value": 30237,
+    "invested": 30000,
+    "gain": 237
+   },
+   {
+    "week": 7,
+    "value": 35332,
+    "invested": 35000,
+    "gain": 332
+   },
+   {
+    "week": 8,
+    "value": 40443,
+    "invested": 40000,
+    "gain": 443
+   },
+   {
+    "week": 9,
+    "value": 45570,
+    "invested": 45000,
+    "gain": 570
+   },
+   {
+    "week": 10,
+    "value": 50713,
+    "invested": 50000,
+    "gain": 713
+   },
+   {
+    "week": 11,
+    "value": 55873,
+    "invested": 55000,
+    "gain": 873
+   },
+   {
+    "week": 12,
+    "value": 61048,
+    "invested": 60000,
+    "gain": 1048
+   },
+   {
+    "week": 13,
+    "value": 66240,
+    "invested": 65000,
+    "gain": 1240
+   },
+   {
+    "week": 14,
+    "value": 71448,
+    "invested": 70000,
+    "gain": 1448
+   },
+   {
+    "week": 15,
+    "value": 76673,
+    "invested": 75000,
+    "gain": 1673
+   },
+   {
+    "week": 16,
+    "value": 81914,
+    "invested": 80000,
+    "gain": 1914
+   },
+   {
+    "week": 17,
+    "value": 87171,
+    "invested": 85000,
+    "gain": 2171
+   },
+   {
+    "week": 18,
+    "value": 92445,
+    "invested": 90000,
+    "gain": 2445
+   },
+   {
+    "week": 19,
+    "value": 97736,
+    "invested": 95000,
+    "gain": 2736
+   },
+   {
+    "week": 20,
+    "value": 103043,
+    "invested": 100000,
+    "gain": 3043
+   },
+   {
+    "week": 21,
+    "value": 108367,
+    "invested": 105000,
+    "gain": 3367
+   },
+   {
+    "week": 22,
+    "value": 113707,
+    "invested": 110000,
+    "gain": 3707
+   },
+   {
+    "week": 23,
+    "value": 119065,
+    "invested": 115000,
+    "gain": 4065
+   },
+   {
+    "week": 24,
+    "value": 124439,
+    "invested": 120000,
+    "gain": 4439
+   },
+   {
+    "week": 25,
+    "value": 129830,
+    "invested": 125000,
+    "gain": 4830
+   },
+   {
+    "week": 26,
+    "value": 135238,
+    "invested": 130000,
+    "gain": 5238
+   },
+   {
+    "week": 27,
+    "value": 140663,
+    "invested": 135000,
+    "gain": 5663
+   },
+   {
+    "week": 28,
+    "value": 146105,
+    "invested": 140000,
+    "gain": 6105
+   },
+   {
+    "week": 29,
+    "value": 151565,
+    "invested": 145000,
+    "gain": 6565
+   },
+   {
+    "week": 30,
+    "value": 157041,
+    "invested": 150000,
+    "gain": 7041
+   },
+   {
+    "week": 31,
+    "value": 162535,
+    "invested": 155000,
+    "gain": 7535
+   },
+   {
+    "week": 32,
+    "value": 168045,
+    "invested": 160000,
+    "gain": 8045
+   },
+   {
+    "week": 33,
+    "value": 173574,
+    "invested": 165000,
+    "gain": 8574
+   },
+   {
+    "week": 34,
+    "value": 179119,
+    "invested": 170000,
+    "gain": 9119
+   },
+   {
+    "week": 35,
+    "value": 184682,
+    "invested": 175000,
+    "gain": 9682
+   },
+   {
+    "week": 36,
+    "value": 190263,
+    "invested": 180000,
+    "gain": 10263
+   },
+   {
+    "week": 37,
+    "value": 195861,
+    "invested": 185000,
+    "gain": 10861
+   },
+   {
+    "week": 38,
+    "value": 201476,
+    "invested": 190000,
+    "gain": 11476
+   },
+   {
+    "week": 39,
+    "value": 207109,
+    "invested": 195000,
+    "gain": 12109
+   },
+   {
+    "week": 40,
+    "value": 212760,
+    "invested": 200000,
+    "gain": 12760
+   },
+   {
+    "week": 41,
+    "value": 218429,
+    "invested": 205000,
+    "gain": 13429
+   },
+   {
+    "week": 42,
+    "value": 224116,
+    "invested": 210000,
+    "gain": 14116
+   },
+   {
+    "week": 43,
+    "value": 229820,
+    "invested": 215000,
+    "gain": 14820
+   },
+   {
+    "week": 44,
+    "value": 235542,
+    "invested": 220000,
+    "gain": 15542
+   },
+   {
+    "week": 45,
+    "value": 241283,
+    "invested": 225000,
+    "gain": 16283
+   },
+   {
+    "week": 46,
+    "value": 247041,
+    "invested": 230000,
+    "gain": 17041
+   },
+   {
+    "week": 47,
+    "value": 252817,
+    "invested": 235000,
+    "gain": 17817
+   },
+   {
+    "week": 48,
+    "value": 258612,
+    "invested": 240000,
+    "gain": 18612
+   },
+   {
+    "week": 49,
+    "value": 264425,
+    "invested": 245000,
+    "gain": 19425
+   },
+   {
+    "week": 50,
+    "value": 270256,
+    "invested": 250000,
+    "gain": 20256
+   },
+   {
+    "week": 51,
+    "value": 276105,
+    "invested": 255000,
+    "gain": 21105
+   },
+   {
+    "week": 52,
+    "value": 281973,
+    "invested": 260000,
+    "gain": 21973
+   }
+  ]
+ }
+}

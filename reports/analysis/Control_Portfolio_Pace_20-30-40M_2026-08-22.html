@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Целевая траектория контрольного портфеля — 20/30/40 млн за 20 лет</title>
+<style>
+  :root{
+    --bg:#0a0e16; --card:#131a26; --card-2:#0f1520; --line:#232d3d;
+    --text:#e8edf5; --muted:#8a97ab; --dim:#5d6879;
+    --gold:#e0a95c; --blue:#5b9bf5; --up:#5bd88a; --down:#e08a8a;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:"Inter","Helvetica Neue",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1040px; margin:0 auto; padding:28px 20px 64px}
+
+  /* ── Титул ───────────────────────────────────────────── */
+  .hero{border:1px solid var(--line); border-radius:14px; background:
+    linear-gradient(160deg,#141c2b 0%,var(--card) 60%); padding:30px 28px; margin-bottom:22px}
+  .eyebrow{color:var(--gold); font-size:12px; letter-spacing:.16em; text-transform:uppercase; font-weight:600}
+  h1{margin:10px 0 6px; font-size:clamp(28px,5vw,44px); line-height:1.1; font-weight:800; letter-spacing:-.02em}
+  .hero .date{color:var(--muted); font-size:14px}
+  .trigger{margin-top:16px; padding:14px 16px; border-left:3px solid var(--gold);
+    background:rgba(224,169,92,.07); border-radius:0 10px 10px 0; font-size:16px}
+
+  /* ── Пульс / метрики ─────────────────────────────────── */
+  .pulse{display:grid; grid-template-columns:repeat(auto-fit,minmax(148px,1fr)); gap:12px; margin-top:20px}
+  .metric{background:var(--card-2); border:1px solid var(--line); border-radius:12px; padding:14px 16px}
+  .metric .k{color:var(--muted); font-size:11px; letter-spacing:.1em; text-transform:uppercase}
+  .metric .v{font-size:24px; font-weight:700; margin-top:6px; letter-spacing:-.02em}
+  .metric .d{font-size:13px; margin-top:2px; font-weight:600}
+  .up{color:var(--up)} .down{color:var(--down)} .flat{color:var(--muted)}
+  .metric.accent .v{color:var(--gold)}
+  .metric.fx .v{color:var(--blue)}
+  .nodata{color:var(--dim); font-style:italic; font-weight:400}
+
+  /* ── Секции ──────────────────────────────────────────── */
+  section{background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:24px 26px; margin-bottom:18px}
+  h2{margin:0 0 4px; font-size:20px; font-weight:700; color:var(--gold); letter-spacing:-.01em}
+  .sub{color:var(--muted); font-size:13px; margin-bottom:18px}
+  h3{margin:22px 0 8px; font-size:15px; font-weight:700}
+
+  .cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px}
+  .fact{background:var(--card-2); border:1px solid var(--line); border-radius:12px; padding:16px 18px}
+  .fact .n{color:var(--gold); font-size:12px; font-weight:700; letter-spacing:.1em}
+  .fact p{margin:8px 0 0; font-size:14px}
+
+  /* ── Факт vs оценка ──────────────────────────────────── */
+  .tag{display:inline-block; font-size:10px; letter-spacing:.1em; text-transform:uppercase;
+    padding:3px 8px; border-radius:999px; font-weight:700; vertical-align:middle}
+  .tag.fact{background:rgba(91,155,245,.14); color:var(--blue); border:1px solid rgba(91,155,245,.3)}
+  .tag.est{background:rgba(224,169,92,.12); color:var(--gold); border:1px solid rgba(224,169,92,.3)}
+  .est-note{color:var(--dim); font-size:12px; font-style:italic}
+
+  /* ── Оценка риска ────────────────────────────────────── */
+  .score{display:flex; align-items:center; gap:14px; margin:14px 0}
+  .score .bar{flex:1; height:8px; background:#1b2433; border-radius:999px; overflow:hidden}
+  .score .fill{height:100%; background:linear-gradient(90deg,var(--gold),var(--down)); border-radius:999px}
+  .score .num{font-size:26px; font-weight:800; color:var(--gold); min-width:76px; text-align:right}
+
+  /* ── Таблицы ─────────────────────────────────────────── */
+  .tablewrap{overflow-x:auto; -webkit-overflow-scrolling:touch; margin-top:12px}
+  table{width:100%; border-collapse:collapse; font-size:14px; min-width:560px}
+  th{text-align:left; color:var(--muted); font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+    font-weight:600; padding:0 12px 10px 0; border-bottom:1px solid var(--line); white-space:nowrap}
+  td{padding:11px 12px 11px 0; border-bottom:1px solid rgba(35,45,61,.55); vertical-align:top}
+  tbody tr:last-child td{border-bottom:none}
+  .ticker{font-weight:700; letter-spacing:.02em}
+  /* Название инструмента и его код: код — отдельной строкой под названием,
+     чтобы длинные ISIN не разрывали ширину таблицы (ТЗ Портфель §12.1). */
+  .instr{font-weight:700; letter-spacing:.02em; line-height:1.35}
+  .instr .code{display:block; font-weight:400; font-size:11px; color:var(--dim);
+    letter-spacing:.04em; margin-top:2px; font-variant-numeric:tabular-nums}
+  td .instr{white-space:normal}
+  .num{font-variant-numeric:tabular-nums}
+
+  /* ── Сценарии ────────────────────────────────────────── */
+  .scen{border:1px solid var(--line); border-radius:12px; padding:16px 18px; background:var(--card-2)}
+  .scen .h{display:flex; justify-content:space-between; align-items:baseline; gap:10px}
+  .scen .name{font-weight:700}
+  .scen .p{font-size:20px; font-weight:800; color:var(--gold); font-variant-numeric:tabular-nums}
+  .scen.base{border-left:3px solid var(--gold)}
+  .scen.pos{border-left:3px solid var(--up)}
+  .scen.neg{border-left:3px solid var(--down)}
+  .scen dl{margin:10px 0 0; font-size:13px}
+  .scen dt{color:var(--muted); font-size:11px; letter-spacing:.08em; text-transform:uppercase; margin-top:8px}
+  .scen dd{margin:2px 0 0}
+
+  /* ── Цепочка причинно-следственных связей ────────────── */
+  .chain{display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:14px}
+  .chain .node{background:var(--card-2); border:1px solid var(--line); border-radius:10px;
+    padding:10px 14px; font-size:13px; font-weight:600}
+  .chain .arrow{color:var(--gold); font-size:18px; line-height:1}
+
+  /* ── Пустое состояние (напр. пустой watchlist) ───────── */
+  .empty{border:1px dashed var(--line); border-radius:12px; padding:20px;
+    color:var(--muted); font-size:14px; text-align:center; background:rgba(35,45,61,.16)}
+
+  /* ── Футер блока / дисклеймер ────────────────────────── */
+  .foot{display:flex; justify-content:space-between; gap:14px; margin-top:20px; padding-top:14px;
+    border-top:1px solid var(--line); color:var(--dim); font-size:11px}
+  .disclaimer{margin-top:26px; padding:16px 18px; border:1px solid var(--line); border-radius:12px;
+    background:var(--card-2); color:var(--muted); font-size:12px; line-height:1.6}
+
+  /* ── Печать («Печать → PDF») ─────────────────────────── */
+  @media print{
+    body{background:var(--bg)}
+    .wrap{max-width:none; padding:0}
+    section,.hero,.fact,.scen,.metric{break-inside:avoid; page-break-inside:avoid}
+    h2{break-after:avoid}
+  }
+  @media (max-width:560px){
+    section{padding:18px 16px} .wrap{padding:16px 12px 40px} .hero{padding:22px 18px}
+  }
+
+  .legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:12px;font-size:12px;color:var(--muted)}
+  .legend i{display:inline-block;width:14px;height:3px;border-radius:2px;margin-right:6px;vertical-align:middle}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">Контрольный портфель · Целевая траектория (темп)</div>
+    <h1>5 000 ₽ в неделю: сколько должно быть в портфеле к каждой пятнице</h1>
+    <div class="date">Расчёт от 22 августа 2026 · равномерная теоретическая доходность, не бэктест и не прогноз рынка</div>
+    <div class="trigger"><strong>Как это устроено.</strong> Контрольный портфель довносит 5 000 ₽ каждую неделю.
+      Для цели «20 млн ₽ через 20 лет» подобрана единственная постоянная годовая доходность
+      <strong>12,1%</strong>, при которой 1 040 еженедельных взносов дают ровно
+      20 000 000 ₽. Это не сценарий и не прогноз — это линейка для сверки темпа по пятницам: если фактический
+      портфель отстаёт от расчётной суммы на эту неделю, значит нужно либо смириться с более скромной целью,
+      либо довносить больше плана.</div>
+    <div class="pulse">
+      <div class="metric accent"><div class="k">Цель 20 млн · требуемая доходность</div><div class="v num">12,08%</div>
+        <div class="d flat">годовых, постоянная</div></div>
+      <div class="metric"><div class="k">Цель 30 млн · требуемая доходность</div><div class="v num">15,40%</div>
+        <div class="d flat">годовых, постоянная</div></div>
+      <div class="metric"><div class="k">Цель 40 млн · требуемая доходность</div><div class="v num">17,73%</div>
+        <div class="d flat">годовых, постоянная</div></div>
+      <div class="metric fx"><div class="k">Взнос</div><div class="v num">5 000</div><div class="d flat">₽ в неделю · 1 040 взносов за 20 лет</div></div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Как посчитано</h2>
+    <div class="sub">Метод, а не допущение — единственная неизвестная переменная в уравнении<span class="tag fact">факт</span></div>
+    <p>Взнос C = 5 000 ₽ в конце каждой недели, горизонт N = 20 лет × 52 недели = 1 040 периодов.
+      Стоимость портфеля через n недель при постоянной недельной ставке i — формула будущей стоимости
+      обычной ренты:</p>
+    <div class="chain">
+      <div class="node">V(n) = C × [(1+i)ⁿ − 1] / i</div>
+    </div>
+    <p>Для каждой цели (20 / 30 / 40 млн ₽) решается обратная задача: подбирается <strong>i</strong>, при
+      котором V(1040) равна цели. Дальше та же ставка i используется, чтобы построить траекторию — сколько
+      должно быть в портфеле на любой неделе <em>по пути</em> к цели, а не только в конце.</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Цель через 20 лет</th><th>Недельная ставка</th><th>Годовая доходность</th><th>Внесено за 20 лет</th><th>Доход</th></tr></thead>
+      <tbody>
+        <tr><td class="instr">20 000 000 ₽</td><td class="num">0,2195%</td><td class="num" style="color:var(--gold)"><strong>12,08%</strong></td><td class="num">5 200 000 ₽</td><td class="num up">14 800 000 ₽</td></tr>
+        <tr><td class="instr">30 000 000 ₽</td><td class="num">0,2759%</td><td class="num" style="color:var(--blue)"><strong>15,40%</strong></td><td class="num">5 200 000 ₽</td><td class="num up">24 800 000 ₽</td></tr>
+        <tr><td class="instr">40 000 000 ₽</td><td class="num">0,3143%</td><td class="num" style="color:#e07a9b"><strong>17,73%</strong></td><td class="num">5 200 000 ₽</td><td class="num up">34 800 000 ₽</td></tr>
+      </tbody>
+    </table></div>
+    <p class="est-note">Для ориентира: базовый сценарий модельного портфеля (18.08.2026) при фактических
+      исторических индексах МосБиржи давал 9,71% годовых. 20 млн за 20 лет при 5 000 ₽/нед требует
+      12,1% — заметно выше базового сценария; 30 и 40 млн — тем более. Эти
+      линии темпа амбициознее исторической базы, и это стоит держать в голове при каждой сверке: отставание
+      от них не обязательно означает, что портфель работает плохо, — возможно, сама цель требует более
+      высокого риска, чем закладывался в базовый сценарий, либо большего взноса.</p>
+  </section>
+
+  <section>
+    <h2>График 1. По годам — цель 20 млн ₽</h2>
+    <div class="sub">Расчётный размер портфеля на конец каждого года при равномерной доходности 12,08% годовых<span class="tag est">оценка</span></div>
+    <svg viewBox="0 0 640 300" width="100%" role="img" aria-label="Целевая траектория контрольного портфеля по годам, цель 20 миллионов рублей">
+  <g stroke="#232d3d" stroke-width="1"><line x1="66" y1="260.0" x2="620" y2="260.0"/><line x1="66" y1="210.4" x2="620" y2="210.4"/><line x1="66" y1="160.8" x2="620" y2="160.8"/><line x1="66" y1="111.2" x2="620" y2="111.2"/><line x1="66" y1="61.6" x2="620" y2="61.6"/><line x1="66" y1="12.0" x2="620" y2="12.0"/></g>
+  <g fill="#5d6879" font-size="10" text-anchor="end"><text x="60" y="263.0">0.0 млн</text><text x="60" y="213.4">4.0 млн</text><text x="60" y="163.8">8.0 млн</text><text x="60" y="114.2">12.0 млн</text><text x="60" y="64.6">16.0 млн</text><text x="60" y="15.0">20.0 млн</text></g>
+  <g fill="#5d6879" font-size="10" text-anchor="middle"><text x="66.0" y="278">0 лет</text><text x="204.5" y="278">5 лет</text><text x="343.0" y="278">10 лет</text><text x="481.5" y="278">15 лет</text><text x="620.0" y="278">20 лет</text></g>
+  <polyline points="66.0,260.0 93.7,256.8 121.4,253.6 149.1,250.3 176.8,247.1 204.5,243.9 232.2,240.7 259.9,237.4 287.6,234.2 315.3,231.0 343.0,227.8 370.7,224.5 398.4,221.3 426.1,218.1 453.8,214.9 481.5,211.6 509.2,208.4 536.9,205.2 564.6,202.0 592.3,198.7 620.0,195.5" fill="none" stroke="#5d6879" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="4 3"/>
+  <polyline points="66.0,260.0 93.7,256.6 121.4,252.8 149.1,248.5 176.8,243.7 204.5,238.3 232.2,232.3 259.9,225.5 287.6,217.9 315.3,209.4 343.0,199.9 370.7,189.2 398.4,177.3 426.1,163.9 453.8,148.9 481.5,132.0 509.2,113.2 536.9,92.0 564.6,68.3 592.3,41.8 620.0,12.0" fill="none" stroke="#e0a95c" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="620.0" cy="12.0" r="4" fill="#e0a95c" stroke="#0a0e16" stroke-width="2"/>
+  <circle cx="620.0" cy="195.5" r="4" fill="#5d6879" stroke="#0a0e16" stroke-width="2"/>
+  <g font-size="12" font-weight="700">
+    <text x="616.0" y="2.0" fill="#e0a95c" text-anchor="end">20 000 000 ₽</text>
+    <text x="616.0" y="211.5" fill="#8a97ab" text-anchor="end">внесено 5 200 000 ₽</text>
+  </g>
+</svg>
+    <div class="legend">
+      <span><i style="background:#e0a95c"></i>Цель (взносы + доход)</span>
+      <span><i style="background:#5d6879"></i>Только взносы, без дохода</span>
+    </div>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Год</th><th>Внесено, ₽</th><th>Расчётная цель, ₽</th><th>Из них доход, ₽</th></tr></thead>
+      <tbody><tr><td class="num">0</td><td class="num">0 ₽</td><td class="num">0 ₽</td><td class="num up">0 ₽</td></tr>
+<tr><td class="num">1</td><td class="num">260 000 ₽</td><td class="num">275 100 ₽</td><td class="num up">15 100 ₽</td></tr>
+<tr><td class="num">2</td><td class="num">520 000 ₽</td><td class="num">583 425 ₽</td><td class="num up">63 425 ₽</td></tr>
+<tr><td class="num">3</td><td class="num">780 000 ₽</td><td class="num">928 987 ₽</td><td class="num up">148 987 ₽</td></tr>
+<tr><td class="num">4</td><td class="num">1 040 000 ₽</td><td class="num">1 316 284 ₽</td><td class="num up">276 284 ₽</td></tr>
+<tr><td class="num">5</td><td class="num">1 300 000 ₽</td><td class="num">1 750 355 ₽</td><td class="num up">450 355 ₽</td></tr>
+<tr><td class="num">6</td><td class="num">1 560 000 ₽</td><td class="num">2 236 851 ₽</td><td class="num up">676 851 ₽</td></tr>
+<tr><td class="num">7</td><td class="num">1 820 000 ₽</td><td class="num">2 782 102 ₽</td><td class="num up">962 102 ₽</td></tr>
+<tr><td class="num">8</td><td class="num">2 080 000 ₽</td><td class="num">3 393 204 ₽</td><td class="num up">1 313 204 ₽</td></tr>
+<tr><td class="num">9</td><td class="num">2 340 000 ₽</td><td class="num">4 078 110 ₽</td><td class="num up">1 738 110 ₽</td></tr>
+<tr><td class="num">10</td><td class="num">2 600 000 ₽</td><td class="num">4 845 735 ₽</td><td class="num up">2 245 735 ₽</td></tr>
+<tr><td class="num">11</td><td class="num">2 860 000 ₽</td><td class="num">5 706 067 ₽</td><td class="num up">2 846 067 ₽</td></tr>
+<tr><td class="num">12</td><td class="num">3 120 000 ₽</td><td class="num">6 670 305 ₽</td><td class="num up">3 550 305 ₽</td></tr>
+<tr><td class="num">13</td><td class="num">3 380 000 ₽</td><td class="num">7 750 995 ₽</td><td class="num up">4 370 995 ₽</td></tr>
+<tr><td class="num">14</td><td class="num">3 640 000 ₽</td><td class="num">8 962 204 ₽</td><td class="num up">5 322 204 ₽</td></tr>
+<tr><td class="num">15</td><td class="num">3 900 000 ₽</td><td class="num">10 319 693 ₽</td><td class="num up">6 419 693 ₽</td></tr>
+<tr><td class="num">16</td><td class="num">4 160 000 ₽</td><td class="num">11 841 130 ₽</td><td class="num up">7 681 130 ₽</td></tr>
+<tr><td class="num">17</td><td class="num">4 420 000 ₽</td><td class="num">13 546 315 ₽</td><td class="num up">9 126 315 ₽</td></tr>
+<tr><td class="num">18</td><td class="num">4 680 000 ₽</td><td class="num">15 457 440 ₽</td><td class="num up">10 777 440 ₽</td></tr>
+<tr><td class="num">19</td><td class="num">4 940 000 ₽</td><td class="num">17 599 376 ₽</td><td class="num up">12 659 376 ₽</td></tr>
+<tr><td class="num">20</td><td class="num">5 200 000 ₽</td><td class="num">20 000 000 ₽</td><td class="num up">14 800 000 ₽</td></tr></tbody>
+    </table></div>
+    <p class="est-note">Первые 5–7 лет расчётная линия почти не отрывается от суммы взносов — работает
+      объём капитала, а не доходность. Решающий разрыв — после 12–13-го года: это сложный процент. Если к
+      этому времени фактический портфель заметно отстаёт от линии, роль взносов в компенсации отставания
+      будет только расти.</p>
+  </section>
+
+  <section>
+    <h2>График 2. По неделям, первый год — три цели для сверки</h2>
+    <div class="sub">Расчётный размер портфеля на каждую пятницу первого года. Три линии почти сливаются —
+      разница проявляется только через годы<span class="tag est">оценка</span></div>
+    <svg viewBox="0 0 640 300" width="100%" role="img" aria-label="Целевая траектория контрольного портфеля по неделям первого года для трёх целей: 20, 30 и 40 миллионов рублей">
+  <g stroke="#232d3d" stroke-width="1"><line x1="66" y1="260.0" x2="620" y2="260.0"/><line x1="66" y1="210.4" x2="620" y2="210.4"/><line x1="66" y1="160.8" x2="620" y2="160.8"/><line x1="66" y1="111.2" x2="620" y2="111.2"/><line x1="66" y1="61.6" x2="620" y2="61.6"/><line x1="66" y1="12.0" x2="620" y2="12.0"/></g>
+  <g fill="#5d6879" font-size="10" text-anchor="end"><text x="60" y="263.0">0 тыс</text><text x="60" y="213.4">56 тыс</text><text x="60" y="163.8">113 тыс</text><text x="60" y="114.2">169 тыс</text><text x="60" y="64.6">226 тыс</text><text x="60" y="15.0">282 тыс</text></g>
+  <g fill="#5d6879" font-size="10" text-anchor="middle"><text x="66.0" y="278">нед 0</text><text x="204.5" y="278">нед 13</text><text x="343.0" y="278">нед 26</text><text x="481.5" y="278">нед 39</text><text x="620.0" y="278">нед 52</text></g>
+  <polyline points="66.0,260.0 76.7,255.6 87.3,251.2 98.0,246.8 108.6,242.3 119.3,237.9 129.9,233.4 140.6,228.9 151.2,224.4 161.9,219.9 172.5,215.4 183.2,210.9 193.8,206.3 204.5,201.7 215.2,197.2 225.8,192.6 236.5,188.0 247.1,183.3 257.8,178.7 268.4,174.0 279.1,169.4 289.7,164.7 300.4,160.0 311.0,155.3 321.7,150.6 332.3,145.8 343.0,141.1 353.7,136.3 364.3,131.5 375.0,126.7 385.6,121.9 396.3,117.0 406.9,112.2 417.6,107.3 428.2,102.5 438.9,97.6 449.5,92.7 460.2,87.7 470.8,82.8 481.5,77.8 492.2,72.9 502.8,67.9 513.5,62.9 524.1,57.9 534.8,52.8 545.4,47.8 556.1,42.7 566.7,37.6 577.4,32.5 588.0,27.4 598.7,22.3 609.3,17.2 620.0,12.0" fill="none" stroke="#e07a9b" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><polyline points="66.0,260.0 76.7,255.6 87.3,251.2 98.0,246.8 108.6,242.3 119.3,237.9 129.9,233.4 140.6,229.0 151.2,224.5 161.9,220.0 172.5,215.5 183.2,211.0 193.8,206.4 204.5,201.9 215.2,197.3 225.8,192.7 236.5,188.2 247.1,183.6 257.8,179.0 268.4,174.3 279.1,169.7 289.7,165.1 300.4,160.4 311.0,155.7 321.7,151.0 332.3,146.3 343.0,141.6 353.7,136.9 364.3,132.2 375.0,127.4 385.6,122.7 396.3,117.9 406.9,113.1 417.6,108.3 428.2,103.5 438.9,98.6 449.5,93.8 460.2,88.9 470.8,84.1 481.5,79.2 492.2,74.3 502.8,69.4 513.5,64.5 524.1,59.5 534.8,54.6 545.4,49.6 556.1,44.6 566.7,39.6 577.4,34.6 588.0,29.6 598.7,24.6 609.3,19.5 620.0,14.5" fill="none" stroke="#5b9bf5" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><polyline points="66.0,260.0 76.7,255.6 87.3,251.2 98.0,246.8 108.6,242.4 119.3,237.9 129.9,233.5 140.6,229.0 151.2,224.5 161.9,220.1 172.5,215.6 183.2,211.1 193.8,206.6 204.5,202.1 215.2,197.5 225.8,193.0 236.5,188.5 247.1,183.9 257.8,179.3 268.4,174.8 279.1,170.2 289.7,165.6 300.4,161.0 311.0,156.4 321.7,151.7 332.3,147.1 343.0,142.5 353.7,137.8 364.3,133.1 375.0,128.5 385.6,123.8 396.3,119.1 406.9,114.4 417.6,109.7 428.2,104.9 438.9,100.2 449.5,95.5 460.2,90.7 470.8,85.9 481.5,81.1 492.2,76.4 502.8,71.6 513.5,66.7 524.1,61.9 534.8,57.1 545.4,52.2 556.1,47.4 566.7,42.5 577.4,37.7 588.0,32.8 598.7,27.9 609.3,23.0 620.0,18.0" fill="none" stroke="#e0a95c" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="620.0" cy="18.0" r="4" fill="#e0a95c" stroke="#0a0e16" stroke-width="2"/><text x="616.0" y="12.0" fill="#e0a95c" font-size="12" font-weight="700" text-anchor="end">275 100 ₽</text><circle cx="620.0" cy="14.5" r="4" fill="#5b9bf5" stroke="#0a0e16" stroke-width="2"/><text x="616.0" y="-2.0" fill="#5b9bf5" font-size="12" font-weight="700" text-anchor="end">279 161 ₽</text><circle cx="620.0" cy="12.0" r="4" fill="#e07a9b" stroke="#0a0e16" stroke-width="2"/><text x="616.0" y="-16.0" fill="#e07a9b" font-size="12" font-weight="700" text-anchor="end">281 973 ₽</text>
+</svg>
+    <div class="legend">
+      <span><i style="background:#e0a95c"></i>Цель 20 млн (12,1% годовых)</span>
+      <span><i style="background:#5b9bf5"></i>Цель 30 млн (15,4% годовых)</span>
+      <span><i style="background:#e07a9b"></i>Цель 40 млн (17,7% годовых)</span>
+    </div>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Неделя</th><th>Цель 20 млн, ₽</th><th>Цель 30 млн, ₽</th><th>Цель 40 млн, ₽</th></tr></thead>
+      <tbody><tr><td class="num">0</td><td class="num">0 ₽</td><td class="num">0 ₽</td><td class="num">0 ₽</td></tr>
+<tr><td class="num">1</td><td class="num">5 000 ₽</td><td class="num">5 000 ₽</td><td class="num">5 000 ₽</td></tr>
+<tr><td class="num">4</td><td class="num">20 066 ₽</td><td class="num">20 083 ₽</td><td class="num">20 094 ₽</td></tr>
+<tr><td class="num">8</td><td class="num">40 309 ₽</td><td class="num">40 388 ₽</td><td class="num">40 443 ₽</td></tr>
+<tr><td class="num">12</td><td class="num">60 730 ₽</td><td class="num">60 919 ₽</td><td class="num">61 048 ₽</td></tr>
+<tr><td class="num">16</td><td class="num">81 331 ₽</td><td class="num">81 677 ₽</td><td class="num">81 914 ₽</td></tr>
+<tr><td class="num">20</td><td class="num">102 113 ₽</td><td class="num">102 665 ₽</td><td class="num">103 043 ₽</td></tr>
+<tr><td class="num">24</td><td class="num">123 079 ₽</td><td class="num">123 885 ₽</td><td class="num">124 439 ₽</td></tr>
+<tr><td class="num">28</td><td class="num">144 229 ₽</td><td class="num">145 341 ₽</td><td class="num">146 105 ₽</td></tr>
+<tr><td class="num">32</td><td class="num">165 565 ₽</td><td class="num">167 034 ₽</td><td class="num">168 045 ₽</td></tr>
+<tr><td class="num">36</td><td class="num">187 090 ₽</td><td class="num">188 968 ₽</td><td class="num">190 263 ₽</td></tr>
+<tr><td class="num">40</td><td class="num">208 804 ₽</td><td class="num">211 145 ₽</td><td class="num">212 760 ₽</td></tr>
+<tr><td class="num">44</td><td class="num">230 709 ₽</td><td class="num">233 568 ₽</td><td class="num">235 542 ₽</td></tr>
+<tr><td class="num">48</td><td class="num">252 807 ₽</td><td class="num">256 239 ₽</td><td class="num">258 612 ₽</td></tr>
+<tr><td class="num">52</td><td class="num">275 100 ₽</td><td class="num">279 161 ₽</td><td class="num">281 973 ₽</td></tr></tbody>
+    </table></div>
+    <p class="est-note">В первый год три плана расходятся всего на 2,5% (275 100 ₽ против 281 973 ₽ на
+      неделе 52) — на коротком горизонте разница в требуемой доходности почти не видна. Она станет заметной
+      после 8–10-го года. До тех пор для еженедельной сверки практический смысл имеет в первую очередь линия
+      20 млн — но полезно видеть все три, чтобы понимать, насколько сильно нужно опережать базовый план,
+      если цель окажется амбициознее.</p>
+  </section>
+
+  <section>
+    <h2>Как это используется по пятницам</h2>
+    <div class="sub">Встраивается в еженедельный отчёт по контрольному портфелю</div>
+    <p>Начиная со следующей пятничной ребалансировки, отчёт по контрольному портфелю дополняется строкой
+      сверки с темпом: фактическая стоимость портфеля после довнесения сопоставляется с расчётной целью на
+      эту неделю (график 2 в первый год, график 1 — с 2-го года и далее). Разница в рублях и процентах
+      показывает, опережаем план или отстаём.</p>
+    <div class="cards">
+      <div class="fact"><div class="n">ОПЕРЕЖАЕМ ПЛАН</div>
+        <p>Фактическая доходность выше заложенной в темп. Дополнительных действий не требуется — можно
+          держать взнос 5 000 ₽/нед.</p></div>
+      <div class="fact"><div class="n">ОТСТАЁМ НЕМНОГО</div>
+        <p>Отставание в пределах волатильности рынка за 1–2 месяца. Фиксировать в отчёте, отдельного решения
+          не принимать — короткий горизонт зашумлён.</p></div>
+      <div class="fact"><div class="n">ОТСТАЁМ УСТОЙЧИВО</div>
+        <p>Отставание нарастает несколько месяцев подряд. Повод обсудить довнесение сверх плана — это и
+          есть тот рычаг, которым план возвращается на трек без изменения ожиданий по доходности рынка.</p></div>
+    </div>
+    <p class="est-note">Через год после старта (21.08.2027) планы имеет смысл пересчитать: заменить
+      теоретическую равномерную ставку на фактически показанную портфелем за первый год и продлить линии
+      темпа на оставшиеся 19 лет от нового рубежа.</p>
+  </section>
+
+  <div class="disclaimer">
+    Методика: детерминированное сложное начисление по постоянной ставке (формула будущей стоимости
+    обычной ренты), подобранной так, чтобы 1 040 еженедельных взносов по 5 000 ₽ дали точно указанную цель
+    через 20 лет. Это не бэктест по историческим данным рынка и не прогноз — расчётная линия темпа для
+    сверки, аналогичная линии «плана» в проектном управлении. Реальная доходность рынка неравномерна по
+    годам; фактический портфель будет колебаться вокруг этой линии, а не идти по ней точно. Не является
+    индивидуальной инвестиционной рекомендацией. Исходные данные и полные недельные/годовые таблицы —
+    data/control_portfolio_pace.json.
+  </div>
+</div>
+
+</body>
+</html>
