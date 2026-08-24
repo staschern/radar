@@ -27,6 +27,8 @@
 | [knowledge/data_sources.md](knowledge/data_sources.md) | Источники, приоритеты, подвохи |
 | [knowledge/network_and_data_access.md](knowledge/network_and_data_access.md) | ⏳ Настройка сетевого доступа и MOEX ISS API |
 | [knowledge/regulatory_notes.md](knowledge/regulatory_notes.md) | Ограничения для неквала + журнал сверок |
+| [knowledge/capital_growth_strategy.md](knowledge/capital_growth_strategy.md) | Личный капитал: 2,6 млн → 100 млн за 20 лет, сверка по месяцам |
+| [knowledge/crypto_market.md](knowledge/crypto_market.md) | Отдельная сфера: крипторынок, ETF-потоки |
 | [knowledge/portfolio_decisions_log.md](knowledge/portfolio_decisions_log.md) | Решения по портфелю и проверяемые гипотезы |
 | [knowledge/external_views.md](knowledge/external_views.md) | Внешние мнения аналитиков и каналов (мнения ≠ факты) |
 | [knowledge/analyst_scorecard.md](knowledge/analyst_scorecard.md) | Учёт исходов идей: что у кого сбылось |
