@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Утренний радар — 25 августа 2026</title>
+<style>
+  :root{
+    --bg:#0a0e16; --card:#131a26; --card-2:#0f1520; --line:#232d3d;
+    --text:#e8edf5; --muted:#8a97ab; --dim:#5d6879;
+    --gold:#e0a95c; --blue:#5b9bf5; --up:#5bd88a; --down:#e08a8a;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:"Inter","Helvetica Neue",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1040px; margin:0 auto; padding:28px 20px 64px}
+
+  /* ── Титул ───────────────────────────────────────────── */
+  .hero{border:1px solid var(--line); border-radius:14px; background:
+    linear-gradient(160deg,#141c2b 0%,var(--card) 60%); padding:30px 28px; margin-bottom:22px}
+  .eyebrow{color:var(--gold); font-size:12px; letter-spacing:.16em; text-transform:uppercase; font-weight:600}
+  h1{margin:10px 0 6px; font-size:clamp(28px,5vw,44px); line-height:1.1; font-weight:800; letter-spacing:-.02em}
+  .hero .date{color:var(--muted); font-size:14px}
+  .trigger{margin-top:16px; padding:14px 16px; border-left:3px solid var(--gold);
+    background:rgba(224,169,92,.07); border-radius:0 10px 10px 0; font-size:16px}
+
+  /* ── Пульс / метрики ─────────────────────────────────── */
+  .pulse{display:grid; grid-template-columns:repeat(auto-fit,minmax(148px,1fr)); gap:12px; margin-top:20px}
+  .metric{background:var(--card-2); border:1px solid var(--line); border-radius:12px; padding:14px 16px}
+  .metric .k{color:var(--muted); font-size:11px; letter-spacing:.1em; text-transform:uppercase}
+  .metric .v{font-size:24px; font-weight:700; margin-top:6px; letter-spacing:-.02em}
+  .metric .d{font-size:13px; margin-top:2px; font-weight:600}
+  .up{color:var(--up)} .down{color:var(--down)} .flat{color:var(--muted)}
+  .metric.accent .v{color:var(--gold)}
+  .metric.fx .v{color:var(--blue)}
+  .nodata{color:var(--dim); font-style:italic; font-weight:400}
+
+  /* ── Секции ──────────────────────────────────────────── */
+  section{background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:24px 26px; margin-bottom:18px}
+  h2{margin:0 0 4px; font-size:20px; font-weight:700; color:var(--gold); letter-spacing:-.01em}
+  .sub{color:var(--muted); font-size:13px; margin-bottom:18px}
+  h3{margin:22px 0 8px; font-size:15px; font-weight:700}
+
+  .cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px}
+  .fact{background:var(--card-2); border:1px solid var(--line); border-radius:12px; padding:16px 18px}
+  .fact .n{color:var(--gold); font-size:12px; font-weight:700; letter-spacing:.1em}
+  .fact p{margin:8px 0 0; font-size:14px}
+
+  /* ── Факт vs оценка ──────────────────────────────────── */
+  .tag{display:inline-block; font-size:10px; letter-spacing:.1em; text-transform:uppercase;
+    padding:3px 8px; border-radius:999px; font-weight:700; vertical-align:middle}
+  .tag.fact{background:rgba(91,155,245,.14); color:var(--blue); border:1px solid rgba(91,155,245,.3)}
+  .tag.est{background:rgba(224,169,92,.12); color:var(--gold); border:1px solid rgba(224,169,92,.3)}
+  .est-note{color:var(--dim); font-size:12px; font-style:italic}
+
+  /* ── Оценка риска ────────────────────────────────────── */
+  .score{display:flex; align-items:center; gap:14px; margin:14px 0}
+  .score .bar{flex:1; height:8px; background:#1b2433; border-radius:999px; overflow:hidden}
+  .score .fill{height:100%; background:linear-gradient(90deg,var(--gold),var(--down)); border-radius:999px}
+  .score .num{font-size:26px; font-weight:800; color:var(--gold); min-width:76px; text-align:right}
+
+  /* ── Таблицы ─────────────────────────────────────────── */
+  .tablewrap{overflow-x:auto; -webkit-overflow-scrolling:touch; margin-top:12px}
+  table{width:100%; border-collapse:collapse; font-size:14px; min-width:560px}
+  th{text-align:left; color:var(--muted); font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+    font-weight:600; padding:0 12px 10px 0; border-bottom:1px solid var(--line); white-space:nowrap}
+  td{padding:11px 12px 11px 0; border-bottom:1px solid rgba(35,45,61,.55); vertical-align:top}
+  tbody tr:last-child td{border-bottom:none}
+  .ticker{font-weight:700; letter-spacing:.02em}
+  /* Название инструмента и его код: код — отдельной строкой под названием,
+     чтобы длинные ISIN не разрывали ширину таблицы (ТЗ Портфель §12.1). */
+  .instr{font-weight:700; letter-spacing:.02em; line-height:1.35}
+  .instr .code{display:block; font-weight:400; font-size:11px; color:var(--dim);
+    letter-spacing:.04em; margin-top:2px; font-variant-numeric:tabular-nums}
+  td .instr{white-space:normal}
+  .num{font-variant-numeric:tabular-nums}
+
+  /* ── Сценарии ────────────────────────────────────────── */
+  .scen{border:1px solid var(--line); border-radius:12px; padding:16px 18px; background:var(--card-2)}
+  .scen .h{display:flex; justify-content:space-between; align-items:baseline; gap:10px}
+  .scen .name{font-weight:700}
+  .scen .p{font-size:20px; font-weight:800; color:var(--gold); font-variant-numeric:tabular-nums}
+  .scen.base{border-left:3px solid var(--gold)}
+  .scen.pos{border-left:3px solid var(--up)}
+  .scen.neg{border-left:3px solid var(--down)}
+  .scen dl{margin:10px 0 0; font-size:13px}
+  .scen dt{color:var(--muted); font-size:11px; letter-spacing:.08em; text-transform:uppercase; margin-top:8px}
+  .scen dd{margin:2px 0 0}
+
+  /* ── Цепочка причинно-следственных связей ────────────── */
+  .chain{display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:14px}
+  .chain .node{background:var(--card-2); border:1px solid var(--line); border-radius:10px;
+    padding:10px 14px; font-size:13px; font-weight:600}
+  .chain .arrow{color:var(--gold); font-size:18px; line-height:1}
+
+  /* ── Пустое состояние (напр. пустой watchlist) ───────── */
+  .empty{border:1px dashed var(--line); border-radius:12px; padding:20px;
+    color:var(--muted); font-size:14px; text-align:center; background:rgba(35,45,61,.16)}
+
+  /* ── Футер блока / дисклеймер ────────────────────────── */
+  .foot{display:flex; justify-content:space-between; gap:14px; margin-top:20px; padding-top:14px;
+    border-top:1px solid var(--line); color:var(--dim); font-size:11px}
+  .disclaimer{margin-top:26px; padding:16px 18px; border:1px solid var(--line); border-radius:12px;
+    background:var(--card-2); color:var(--muted); font-size:12px; line-height:1.6}
+
+  /* ── Печать («Печать → PDF») ─────────────────────────── */
+  @media print{
+    body{background:var(--bg)}
+    .wrap{max-width:none; padding:0}
+    section,.hero,.fact,.scen,.metric{break-inside:avoid; page-break-inside:avoid}
+    h2{break-after:avoid}
+  }
+  @media (max-width:560px){
+    section{padding:18px 16px} .wrap{padding:16px 12px 40px} .hero{padding:22px 18px}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- БЛОК 1 -->
+  <header class="hero">
+    <div class="eyebrow">Утренний радар · Российский рынок</div>
+    <h1>Рынок нащупывает дно после второго дня атак на Ozon — но пока не пробивает его</h1>
+    <div class="date">Вторник, 25 августа 2026 · данные MOEX ISS на 14:15 мск, сессия продолжается</div>
+    <div class="trigger"><strong>Триггер дня.</strong> Ночью дрон впервые ударил по складу Ozon в Чапаевске
+      (Самарская область) — уже <strong>25-й атакованный объект такого типа с 18 июля</strong>. Утром IMOEX
+      проваливался к 2068, но к середине дня отыграл потери и торгуется в плюсе — рынок переваривает вторые
+      сутки одной и той же истории, а не паникует заново.</div>
+
+    <div class="pulse">
+      <div class="metric"><div class="k">IMOEX</div><div class="v num">2 076,08</div>
+        <div class="d up">+0,24% за день · −3,35% за неделю</div></div>
+      <div class="metric fx"><div class="k">USD/RUB · ЦБ на 25.08</div><div class="v num">83,2878</div>
+        <div class="d down">+0,44% к пятничному курсу</div></div>
+      <div class="metric fx"><div class="k">USD/RUB · биржа, в моменте</div><div class="v num">84,73</div>
+        <div class="d down">рубль слабее, чем в официальном курсе</div></div>
+      <div class="metric"><div class="k">Ширина рынка</div><div class="v num">66%</div>
+        <div class="d up">было 19% вчера — резкий отскок</div></div>
+      <div class="metric accent"><div class="k">Brent</div><div class="v num">&lt;88 $</div>
+        <div class="d down">впервые с 14.08, второй день падения</div></div>
+      <div class="metric"><div class="k">Оборот TQBR</div><div class="v num">53,0</div>
+        <div class="d down">млрд ₽ · вдвое ниже вчерашних 100,8</div></div>
+    </div>
+  </header>
+
+  <!-- БЛОК 2 -->
+  <section>
+    <h2>Три главных факта</h2>
+    <div class="sub">Источник — MOEX ISS, деловые СМИ<span class="tag fact">факт</span></div>
+    <div class="cards">
+      <div class="fact"><div class="n">01 · АТАКИ СТАЛИ СИСТЕМОЙ, НЕ ЭПИЗОДОМ</div>
+        <p>Склад в Чапаевске — <strong>25-й</strong> атакованный объект такого типа с 18 июля. Это не разовый
+        шок, а установившийся темп примерно один объект каждые 1,5 дня на протяжении почти шести недель.</p></div>
+      <div class="fact"><div class="n">02 · РЫНОК ПЕРЕСТАЛ ПАНИКОВАТЬ, НО НЕ УСПОКОИЛСЯ</div>
+        <p>Утренний провал к 2068 выкуплен к середине дня. Оборот при этом вдвое ниже вчерашнего — движение
+        идёт на меньших объёмах, типичная картина после острой фазы, а не начало нового ралли.</p></div>
+      <div class="fact"><div class="n">03 · НЕФТЬ ПАДАЕТ ВТОРОЙ ДЕНЬ ПОДРЯД</div>
+        <p>Brent впервые с 14.08 ушла ниже 88 $/барр., после вчерашних ~91,7 $. Двухдневное снижение почти
+        на 5% — самостоятельный негативный фактор для нефтегазового сектора, отдельно от темы атак.</p></div>
+    </div>
+  </section>
+
+  <!-- БЛОК 3 -->
+  <section>
+    <h2>Рыночная панель</h2>
+    <div class="sub">В моменте, 25.08.2026, сессия продолжается<span class="tag fact">факт</span></div>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Индикатор</th><th>Значение</th><th>За день</th></tr></thead>
+      <tbody>
+        <tr><td class="instr">Индекс МосБиржи<span class="code">IMOEX</span></td><td class="num">2 076,08</td><td class="num up">+0,24%</td></tr>
+        <tr><td class="instr">Финансы<span class="code">MOEXFN</span></td><td class="num">8 244,52</td><td class="num up">+0,66%</td></tr>
+        <tr><td class="instr">Электроэнергетика<span class="code">MOEXEU</span></td><td class="num">1 411,42</td><td class="num up">+0,53%</td></tr>
+        <tr><td class="instr">Нефть и газ<span class="code">MOEXOG</span></td><td class="num">5 459,04</td><td class="num up">+0,40%</td></tr>
+        <tr><td class="instr">Металлы и добыча<span class="code">MOEXMM</span></td><td class="num">4 303,83</td><td class="num up">+0,17%</td></tr>
+        <tr><td class="instr">Потребительский сектор<span class="code">MOEXCN</span></td><td class="num">5 095,32</td><td class="num up">+0,74%</td></tr>
+        <tr><td class="instr">Индекс гособлигаций<span class="code">RGBI</span></td><td class="num">113,55</td><td class="num up">+0,42%</td></tr>
+        <tr><td class="instr">Brent<span class="code">$/баррель</span></td><td class="num">&lt;88</td><td class="num down">≈−4% за 2 дня</td></tr>
+        <tr><td class="instr">Золото<span class="code">GLDRUB_TOM</span></td><td class="num">12 474 ₽/г</td><td class="num flat">+0,02%</td></tr>
+        <tr><td class="instr">Ключевая ставка ЦБ<span class="code">заседание 11.09.2026</span></td><td class="num">14,00%</td><td class="num flat">без изменений</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>Кривая ОФЗ — вчерашний скачок частично отыгран назад</h3>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Срок</th><th>25.08</th><th>24.08</th><th>Изменение</th></tr></thead>
+      <tbody>
+        <tr><td>1 год</td><td class="num">13,86%</td><td class="num">13,87%</td><td class="num up">−1 б.п.</td></tr>
+        <tr><td>2 года</td><td class="num">14,58%</td><td class="num">14,58%</td><td class="num flat">0 б.п.</td></tr>
+        <tr><td>10 лет</td><td class="num">16,06%</td><td class="num">16,20%</td><td class="num up">−14 б.п.</td></tr>
+        <tr><td>15 лет</td><td class="num">16,10%</td><td class="num">16,28%</td><td class="num up">−18 б.п.</td></tr>
+      </tbody>
+    </table></div>
+    <p class="est-note">Длинный конец отыграл больше половины вчерашнего скачка доходностей — рынок
+      облигаций воспринял вчерашнее движение как избыточную реакцию, а не как начало устойчивого пересмотра
+      риска.</p>
+  </section>
+
+  <!-- БЛОК 4 -->
+  <section>
+    <h2>Ключевое событие: совет директоров Норникеля решает судьбу дивидендов</h2>
+    <div class="sub">Оценка влияния по методологии §3<span class="tag est">оценка</span></div>
+    <div class="score">
+      <div class="bar"><div class="fill" style="width:38%"></div></div>
+      <div class="num">38</div>
+    </div>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Компонента</th><th>Оценка</th><th>Обоснование</th></tr></thead>
+      <tbody>
+        <tr><td>Охват</td><td class="num">10 / 35</td><td>Один эмитент, но крупный и в нашем портфеле (GMKN, 2,96%)</td></tr>
+        <tr><td>Необратимость</td><td class="num">8 / 25</td><td>Решение сегодня, но это рекомендация СД, не финальное одобрение акционеров</td></tr>
+        <tr><td>Неожиданность</td><td class="num">5 / 20</td><td>Дата известна заранее, в календаре с 19.08</td></tr>
+        <tr><td>Скорость</td><td class="num">15 / 20</td><td>Рынок отреагирует в течение сессии на любую формулировку</td></tr>
+      </tbody>
+    </table></div>
+    <p>Компания не платила дивиденды за 2023 (финальные), 2024 и 2025 годы из-за макронестабильности.
+      По словам менеджмента, результаты 1П2026 дают основания вернуться к рассмотрению промежуточных
+      выплат — сигнал позитивный, но <strong>решение на момент подготовки радара ещё не объявлено</strong>.
+      Повестка также включает подготовку к внеочередному заочному собранию акционеров.</p>
+    <p class="est-note">GMKN сегодня в символическом плюсе (+0,02% на момент снимка) — рынок явно ждёт
+      исхода заседания, а не торгует на опережение. Как только решение будет объявлено, стоит проверить
+      реакцию отдельно от общего движения рынка. Аналитический материал, не инвестиционная рекомендация.</p>
+  </section>
+
+  <!-- БЛОК 5-8 -->
+  <section>
+    <h2>Валюта и сырьё</h2>
+    <div class="sub"><span class="tag fact">факт</span></div>
+    <p>Официальный курс ЦБ на 25.08 — <strong>83,2878 ₽</strong> за доллар (+0,44% к пятничному курсу
+      82,9211, который действовал все выходные и понедельник). За неделю (к 18.08) рубль всё ещё крепче на
+      2,03%, несмотря на сегодняшнее ослабление. Биржевой курс в моменте — 84,73 ₽, заметно слабее
+      официального — движение продолжается внутри сессии быстрее, чем успевает отражать официальная
+      котировка ЦБ.</p>
+    <p>Brent продолжает падать второй день подряд, впервые с 14.08 опустилась ниже 88 $/барр. — самостоятельный
+      негативный фактор, отдельный от темы атак на инфраструктуру ретейлеров.</p>
+  </section>
+
+  <!-- БЛОК 9/14 -->
+  <section>
+    <h2>Цепочка дня</h2>
+    <div class="sub"><span class="tag est">оценка</span></div>
+    <div class="chain">
+      <div class="node">Новая атака на склад Ozon (Чапаевск, 25-й объект с 18.07)</div><div class="arrow">→</div>
+      <div class="node">Утренний провал IMOEX к 2068</div><div class="arrow">→</div>
+      <div class="node">Покупки на перепроданности к середине дня</div><div class="arrow">→</div>
+      <div class="node">Ширина 19% → 66%, но оборот вдвое ниже вчерашнего</div>
+    </div>
+    <p>Рынок демонстрирует типичную посткризисную динамику: острая реакция вчера, частичный отскок сегодня
+      на меньших объёмах. Само по себе это не сигнал «риск позади» — паттерн атак (25 объектов за полтора
+      месяца) не показывает признаков замедления, и ширина рынка третий-четвёртый день подряд не
+      предсказывает следующий день (methodology §19), просто отражает вчерашнее движение.</p>
+  </section>
+
+  <!-- БЛОК 11 -->
+  <section>
+    <h2>Watchlist I — бумаги с идеями аналитиков</h2>
+    <div class="sub">Фиксированный слой, включая новые позиции риск-доли (ТЗ §5.2)<span class="tag fact">факт</span> <span class="tag est">уровни — суждение автора</span></div>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Инструмент</th><th>Цена</th><th>За день</th><th>Зона добора</th><th>До зоны</th><th>Цель</th><th>До цели</th><th>Автор, получено</th></tr></thead>
+      <tbody>
+        <tr><td class="instr">Роснефть<span class="code">ROSN</span></td><td class="num">307,00</td><td class="num down">−0,03%</td><td class="num">260–270 ₽</td><td class="num">−12,1…−15,3%</td><td class="num">350 ₽</td><td class="num up">+14,0%</td><td>А. Полярный<br><span class="est-note">получено 18.08</span></td></tr>
+        <tr><td class="instr">Банк Санкт-Петербург<span class="code">BSPB</span></td><td class="num">235,54</td><td class="num up">+0,63%</td><td class="num">245–250 ₽</td><td class="num up">ниже зоны</td><td class="num">290–310 ₽</td><td class="num up">+23,1%</td><td>А. Полярный<br><span class="est-note">получено 20.08, hit_entry</span></td></tr>
+        <tr><td class="instr">Татнефть<span class="code">TATN</span></td><td class="num">508,70</td><td class="num flat">0,00%</td><td class="num">400–420 ₽</td><td class="num">−17,4…−21,4%</td><td class="num nodata">не назван</td><td class="num">—</td><td>Ю. Козлов<br><span class="est-note">получено 20.08</span></td></tr>
+        <tr><td class="instr">НоваБев Групп<span class="code">BELU</span></td><td class="num">245,20</td><td class="num down">−1,29%</td><td class="num">220–232 ₽</td><td class="num">−5,4…−10,3%</td><td class="num">404 ₽</td><td class="num up">+64,7%</td><td>А. Полярный<br><span class="est-note">получено 21.08, техн.</span></td></tr>
+        <tr><td class="instr">Интер РАО<span class="code">IRAO</span></td><td class="num">2,2965</td><td class="num down">−0,02%</td><td class="num">2,05–2,27 ₽</td><td class="num up">−1,1%</td><td class="num">2,75 ₽</td><td class="num up">+19,7%</td><td>А. Полярный<br><span class="est-note">получено 21.08, техн.</span></td></tr>
+        <tr><td class="instr">Ренессанс Страхование<span class="code">RENI</span></td><td class="num">67,64</td><td class="num up">+0,65%</td><td class="num">60–70 ₽</td><td class="num up">в зоне</td><td class="num nodata">не назвал</td><td class="num">—</td><td>Ю. Козлов<br><span class="est-note">получено 24.08, сделка</span></td></tr>
+        <tr><td class="instr">Ленэнерго, преф<span class="code">LSNGP · риск-доля §5.2</span></td><td class="num">333,10</td><td class="num up">+0,15%</td><td class="num">270–280 ₽</td><td class="num">−15,9…−18,9%</td><td class="num">400–410 ₽</td><td class="num up">+20,1…+23,1%</td><td>А. Полярный<br><span class="est-note">получено 25.08, техн.</span></td></tr>
+      </tbody>
+    </table></div>
+    <div class="trigger"><strong>IRAO второй день у самой границы зоны.</strong> −1,1% от нижней границы
+      добора 2,05–2,27 ₽ — почти без изменений со вчерашнего дня. Электроэнергетика сегодня в плюсе
+      (+0,53%), так что дальнейшего сближения с зоной пока не происходит.</div>
+    <p>LSNGP — первая позиция, добавленная через риск-долю (5% портфеля, ТЗ §5.2): третий уровень листинга
+      не пропускает её в основную вселенную, но ликвидность (79 млн ₽/день) с запасом проходит пониженный
+      порог риск-доли. Решение о покупке не принято — не хватает проверки по пп. 3–4 чек-листа
+      (обоснование низкого листинга, история просадок дивидендов).</p>
+  </section>
+
+  <!-- БЛОК 12 -->
+  <section>
+    <h2>Watchlist II — движения дня</h2>
+    <div class="sub">Динамический слой: бумаги с оборотом свыше 100 млн ₽<span class="tag fact">факт</span></div>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Инструмент</th><th>Изменение</th><th>Оборот</th><th>Комментарий</th></tr></thead>
+      <tbody>
+        <tr><td class="instr">Селигдар<span class="code">SELG</span></td><td class="num down"><strong>−4,77%</strong></td><td class="num">100 млн ₽</td><td>Золото в рублях почти не изменилось — движение не объясняется ценой металла</td></tr>
+        <tr><td class="instr">Полюс<span class="code">PLZL · в портфеле 2,87%</span></td><td class="num down">−2,85%</td><td class="num">1 684 млн ₽</td><td>Тот же разрыв с ценой золота, что у SELG</td></tr>
+        <tr><td class="instr">Whoosh<span class="code">WUSH</span></td><td class="num down">−2,48%</td><td class="num">222 млн ₽</td><td>—</td></tr>
+        <tr><td class="instr">Мечел<span class="code">MTLR</span></td><td class="num down">−1,69%</td><td class="num">310 млн ₽</td><td>—</td></tr>
+        <tr><td class="instr">Ozon<span class="code">OZON</span></td><td class="num down">−1,60%</td><td class="num">5 294 млн ₽</td><td>Стабилизация после вчерашнего обвала на ~20–29%, новая атака ночью не вызвала повторной паники</td></tr>
+        <tr><td class="instr">Самолёт<span class="code">SMLT</span></td><td class="num up"><strong>+3,27%</strong></td><td class="num">3 941 млн ₽</td><td>Лидер роста дня по обороту</td></tr>
+        <tr><td class="instr">РусАгро<span class="code">RAGR</span></td><td class="num up">+2,72%</td><td class="num">143 млн ₽</td><td>—</td></tr>
+        <tr><td class="instr">ДОМ.РФ<span class="code">DOMRF</span></td><td class="num up">+2,50%</td><td class="num">370 млн ₽</td><td>Отчёт за 1П2026 сегодня</td></tr>
+        <tr><td class="instr">МТС<span class="code">MTSS</span></td><td class="num up">+2,00%</td><td class="num">485 млн ₽</td><td>Отчёт за 1П2026 сегодня</td></tr>
+      </tbody>
+    </table></div>
+    <p>Ширина резко восстановилась: 42 из 64 ликвидных бумаг в плюсе (66%). Из падающих — половина связана
+      с золотодобычей (SELG, PLZL), при том что сама цена золота сегодня практически не изменилась —
+      разрыв, который стоит проверить отдельно, не списывая на общий рыночный фон.</p>
+  </section>
+
+  <!-- Портфель -->
+  <section>
+    <h2>Модельный портфель — снимок в моменте (без ребалансировки)</h2>
+    <div class="sub">Плановая ребалансировка — в пятницу 28.08<span class="tag fact">факт</span></div>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Позиция</th><th>Вчера</th><th>Сейчас</th><th>Изменение</th></tr></thead>
+      <tbody>
+        <tr><td class="instr">Сбербанк<span class="code">SBER</span></td><td class="num">269,16</td><td class="num">269,29</td><td class="num up">+0,05%</td></tr>
+        <tr><td class="instr">Лукойл<span class="code">LKOH</span></td><td class="num">4 121,50</td><td class="num">4 121,00</td><td class="num down">−0,01%</td></tr>
+        <tr><td class="instr">Сургутнефтегаз, прив.<span class="code">SNGSP</span></td><td class="num">40,28</td><td class="num">40,95</td><td class="num up">+1,66%</td></tr>
+        <tr><td class="instr">Полюс<span class="code">PLZL</span></td><td class="num">1 131,00</td><td class="num">1 099,00</td><td class="num down">−2,83%</td></tr>
+        <tr><td class="instr">Норникель<span class="code">GMKN</span></td><td class="num">121,32</td><td class="num">121,34</td><td class="num up">+0,02%</td></tr>
+        <tr><td class="instr">Роснефть<span class="code">ROSN</span></td><td class="num">307,10</td><td class="num">307,00</td><td class="num down">−0,03%</td></tr>
+        <tr><td class="instr">Т-Технологии<span class="code">T</span></td><td class="num">247,66</td><td class="num">250,06</td><td class="num up">+0,97%</td></tr>
+        <tr><td class="instr">МосБиржа<span class="code">MOEX</span></td><td class="num">149,66</td><td class="num">150,71</td><td class="num up">+0,70%</td></tr>
+        <tr><td class="instr">Яндекс<span class="code">YDEX</span></td><td class="num">3 463,50</td><td class="num">3 470,00</td><td class="num up">+0,19%</td></tr>
+      </tbody>
+    </table></div>
+    <p>После вчерашнего широкого падения сегодня разброс небольшой: только PLZL заметно в минусе
+      (−2,83%, тот же необъяснённый золотодобывающий разрыв, что у SELG). Остальные восемь позиций
+      колеблются в пределах ±1%.</p>
+  </section>
+
+  <!-- БЛОК 15 -->
+  <section>
+    <h2>Три сценария на завтра, 26 августа</h2>
+    <div class="sub">Вероятностные суждения, не прогноз<span class="tag est">оценка</span></div>
+    <div class="cards">
+      <div class="scen base"><div class="h"><div class="name">Базовый</div><div class="p">50%</div></div>
+        <dl><dt>Триггер</dt><dd>Новых атак нет, СД Норникеля не преподносит сюрпризов, недельная инфляция (среда) без резких движений</dd>
+        <dt>Что происходит</dt><dd>Консолидация вокруг 2 060–2 110, рынок ждёт следующего катализатора</dd>
+        <dt>Диапазон IMOEX</dt><dd>2 050–2 110</dd></dl></div>
+      <div class="scen pos"><div class="h"><div class="name">Позитивный</div><div class="p">25%</div></div>
+        <dl><dt>Триггер</dt><dd>Норникель рекомендует дивиденды, Brent стабилизируется выше 88</dd>
+        <dt>Что происходит</dt><dd>Продолжение сегодняшнего отскока, ширина рынка удерживается выше 50%</dd>
+        <dt>Диапазон IMOEX</dt><dd>2 110–2 150</dd></dl></div>
+      <div class="scen neg"><div class="h"><div class="name">Негативный</div><div class="p">25%</div></div>
+        <dl><dt>Триггер</dt><dd>Новая атака на инфраструктуру (26-я с 18.07), Brent продолжает падать</dd>
+        <dt>Что происходит</dt><dd>Возврат к сегодняшним утренним минимумам и ниже, пробой 2 050</dd>
+        <dt>Диапазон IMOEX</dt><dd>2 000–2 050</dd></dl></div>
+    </div>
+    <p class="est-note">Вероятности выровнены относительно вчерашних (было 45/20/35): паника вчерашнего дня
+      не подтвердилась пробоем вниз, но и устойчивого разворота вверх нет — базовый сценарий «ожидание»
+      получает наибольший вес.</p>
+  </section>
+
+  <!-- Проверка вчерашних сценариев -->
+  <section>
+    <h2>Что подтвердилось из прошлого раза</h2>
+    <div class="sub">Радар от 24.08 — честная сверка</div>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Суждение от 24.08</th><th>Факт на закрытии 24.08 / сегодня</th><th>Итог</th></tr></thead>
+      <tbody>
+        <tr><td>Базовый сценарий 45%: IMOEX 2 060–2 120</td><td class="num">Закрытие 24.08 — 2 071,20</td><td class="up"><strong>сбылся</strong></td></tr>
+        <tr><td>«Флаг пересмотра портфеля не сработал, IMOEX −2,6% при пороге 3%» (снимок в моменте)</td><td>Закрытие дня — фактически −2,99%, вплотную к порогу 3%, но не превышен</td><td class="flat">порог не сработал, но с меньшим запасом, чем казалось в моменте</td></tr>
+        <tr><td>«Паттерн атак на инфраструктуру расширяется, риск системный»</td><td>Ночью — новая атака (25-й объект с 18.07), тезис подтверждён напрямую</td><td class="up"><strong>подтвердился</strong></td></tr>
+      </tbody>
+    </table></div>
+    <div class="trigger" style="border-left-color:var(--blue);background:rgba(91,155,245,.07)">
+      <strong>Методологическое замечание.</strong> Снимок «в моменте» в радаре 24.08 показывал IMOEX
+      −2,60% и явно писал, что порог 3% «близко, но не превышен» — по факту закрытие дня ушло глубже,
+      до −2,99%, практически на волосок от порога. Это подтверждает практику явно помечать снимки в
+      моменте как предварительные: движение может углубиться к закрытию сессии.
+    </div>
+  </section>
+
+  <!-- БЛОК 16 -->
+  <section>
+    <h2>Итог и главный риск</h2>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Инструмент</th><th>Ключевой уровень</th><th>Что подтверждает</th><th>Что отменяет</th></tr></thead>
+      <tbody>
+        <tr><td class="instr">Индекс МосБиржи<span class="code">IMOEX · 2 076,08</span></td><td class="num">2 050 снизу / 2 110 сверху</td><td>Удержание выше 2 050 без новых атак</td><td>Пробой 2 050 — возврат к вчерашним минимумам</td></tr>
+        <tr><td class="instr">Нефть<span class="code">Brent · &lt;88 $</span></td><td class="num">85</td><td>Стабилизация в текущем диапазоне</td><td>Уход к 85 — давление на нефтегазовый сектор нарастает</td></tr>
+        <tr><td class="instr">Ozon<span class="code">OZON</span></td><td class="num">Сессионные минимумы 24.08</td><td>Удержание — паника исчерпана даже при новых атаках</td><td>Обновление минимума — риск не отыгран рынком до конца</td></tr>
+      </tbody>
+    </table></div>
+    <p><strong>Главный риск остаётся тем же, что вчера, но подтверждён фактом.</strong> Атаки на
+      инфраструктуру — не эпизод, а установившийся темп (25 объектов за полтора месяца). Рынок сегодня
+      показал, что готов пропускать отдельные новости мимо, но совокупный эффект серии продолжает
+      накапливаться. <span class="est-note">К этому добавилось независимое давление нефти — Brent теряет
+      почти 5% за два дня, и это не связано напрямую с темой атак.</span></p>
+    <p><strong>Флаг внепланового пересмотра портфеля: нет.</strong> Все пороги §4 в норме на сегодня.
+      Отдельно отмечаем: вчерашнее закрытие (−2,99%) было ближе к порогу 3%, чем показывал снимок в
+      моменте (−2,60%) — при похожей динамике сегодня стоит сверяться с закрытием, а не только с
+      промежуточным значением.</p>
+  </section>
+
+  <div class="disclaimer">
+    Источники: MOEX ISS (цены, обороты, кривая ОФЗ, индексы — в моменте на 25.08.2026, 14:15 мск, сессия не
+    закрыта), ЦБ РФ (официальный курс на 25.08), открытые публикации деловых СМИ (детали атаки на склад в
+    Чапаевске, цена Brent, повестка СД Норникеля). Часть цифр — снимок момента и может измениться к
+    закрытию сессии. Уровни из идей аналитиков — суждения их авторов, приведены с указанием имени и даты
+    получения. Материал носит аналитический характер и не является индивидуальной инвестиционной
+    рекомендацией. Оценки, вероятности и сценарии помечены как оценка и не являются прогнозом.
+  </div>
+</div>
+
+</body>
+</html>
