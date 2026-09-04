@@ -68,10 +68,17 @@
       отстаёт на 5,17 п.п., ожидаемо при доле акций 28% против целевых 70%, поэтапный вход продолжается).
       Контрольный портфель: <strong>первое практическое применение алгоритма структурного выравнивания ТЗ §11.2</strong> —
       концентрация PLZL устранена (была 42,4%, стала 6,7%, продажей 3 из 4 лотов), избыточный SBER тоже
-      частично продан, освободившиеся средства и взнос распределены по золоту/SNGSP/GMKN/ROSN/T/MOEX. LKOH
-      подтверждён структурным барьером — портфелю нужно вырасти примерно до ~93 500 ₽. TWR контрольного ушёл
-      в первую просадку (−1,61%, было +0,35%) из-за падения PLZL на 6% при его прежнем весе — именно тот риск,
-      ради устранения которого алгоритм и был введён.</div>
+      частично продан, освободившиеся средства и взнос распределены по золоту/SNGSP/ROSN/T. LKOH, GMKN и
+      MOEX подтверждены структурными барьерами. TWR контрольного ушёл в первую просадку (−1,61%, было
+      +0,35%) из-за падения PLZL на 6% при его прежнем весе — именно тот риск, ради устранения которого
+      алгоритм и был введён.</div>
+    <div class="trigger" style="border-color:var(--down);background:rgba(224,138,138,.08)"><strong>Исправление после публикации.</strong>
+      Заказчик указал, что SNGSP, GMKN и MOEX торгуются лотами по 10 акций, а не поштучно. Первая версия этого
+      отчёта покупала их как отдельные акции (SNGSP 11 шт., GMKN 3 шт., MOEX 1 шт.) — ошибка. Ниже приведена
+      исправленная версия: SNGSP куплен ровно 1 лотом (10 шт.), а GMKN и MOEX при цене лота 1 303,60 ₽ и
+      1 546,00 ₽ оказались структурными барьерами, как и LKOH. Итоговая сумма портфеля и TWR не изменились —
+      исправление затронуло только распределение. Подробности — `docs/knowledge/portfolio_decisions_log.md`
+      и `docs/spec/CHANGELOG.md` v2.8.</div>
     <div class="pulse">
       <div class="metric"><div class="k">Модельный</div><div class="v">1 028 721 ₽</div><div class="d up">TWR +2,17%</div></div>
       <div class="metric"><div class="k">Вложено</div><div class="v">1 007 500 ₽</div><div class="d flat">старт + 3 взноса</div></div>
@@ -132,12 +139,12 @@
         <tbody>
           <tr><td class="cls">Акции</td><td class="ticker">Сбербанк <span class="est-note">(SBER)</span></td><td class="num">271,00</td><td class="num">279,77</td><td class="num">191</td><td class="num">53 436</td><td class="num">5,20%</td><td class="num up">+3,24%</td><td class="num">71,8 п.п.</td></tr>
           <tr><td class="cls">Акции</td><td class="ticker">ЛУКОЙЛ <span class="est-note">(LKOH)</span></td><td class="num">4 221,50</td><td class="num">5 000,00</td><td class="num">11</td><td class="num">55 000</td><td class="num">5,35%</td><td class="num up"><strong>+18,45%</strong></td><td class="num">56,6 п.п.</td></tr>
-          <tr><td class="cls">Акции</td><td class="ticker">Сургутнефтегаз-п <span class="est-note">(SNGSP)</span></td><td class="num">41,65</td><td class="num">41,86</td><td class="num">790</td><td class="num">33 069</td><td class="num">3,21%</td><td class="num up">+0,50%</td><td class="num">74,5 п.п.</td></tr>
+          <tr><td class="cls">Акции</td><td class="ticker">Сургутнефтегаз-п <span class="est-note">(SNGSP, лот 10 шт. — 79 лотов)</span></td><td class="num">41,65</td><td class="num">41,86</td><td class="num">790</td><td class="num">33 069</td><td class="num">3,21%</td><td class="num up">+0,50%</td><td class="num">74,5 п.п.</td></tr>
           <tr><td class="cls">Акции</td><td class="ticker">Полюс <span class="est-note">(PLZL)</span></td><td class="num">1 095,29</td><td class="num">996,80</td><td class="num">32</td><td class="num">31 898</td><td class="num">3,10%</td><td class="num down">−8,99%</td><td class="num">84,0 п.п.</td></tr>
-          <tr><td class="cls">Акции</td><td class="ticker">Норникель <span class="est-note">(GMKN)</span></td><td class="num">112,98</td><td class="num">130,36</td><td class="num">240</td><td class="num">31 286</td><td class="num">3,04%</td><td class="num up">+15,38%</td><td class="num">59,6 п.п.</td></tr>
+          <tr><td class="cls">Акции</td><td class="ticker">Норникель <span class="est-note">(GMKN, лот 10 шт. — 24 лота)</span></td><td class="num">112,98</td><td class="num">130,36</td><td class="num">240</td><td class="num">31 286</td><td class="num">3,04%</td><td class="num up">+15,38%</td><td class="num">59,6 п.п.</td></tr>
           <tr><td class="cls">Акции</td><td class="ticker">Роснефть <span class="est-note">(ROSN)</span></td><td class="num">312,60</td><td class="num">321,50</td><td class="num">89</td><td class="num">28 614</td><td class="num">2,78%</td><td class="num up">+2,85%</td><td class="num">72,2 п.п.</td></tr>
           <tr><td class="cls">Акции</td><td class="ticker">Т-Технологии <span class="est-note">(T)</span></td><td class="num">252,76</td><td class="num">263,88</td><td class="num">94</td><td class="num">24 805</td><td class="num">2,41%</td><td class="num up">+4,40%</td><td class="num">70,6 п.п.</td></tr>
-          <tr><td class="cls">Акции</td><td class="ticker">МосБиржа <span class="est-note">(MOEX)</span></td><td class="num">150,46</td><td class="num">154,60</td><td class="num">130</td><td class="num">20 098</td><td class="num">1,95%</td><td class="num up">+2,75%</td><td class="num">72,3 п.п.</td></tr>
+          <tr><td class="cls">Акции</td><td class="ticker">МосБиржа <span class="est-note">(MOEX, лот 10 шт. — 13 лотов)</span></td><td class="num">150,46</td><td class="num">154,60</td><td class="num">130</td><td class="num">20 098</td><td class="num">1,95%</td><td class="num up">+2,75%</td><td class="num">72,3 п.п.</td></tr>
           <tr><td class="cls">Акции</td><td class="ticker">Яндекс <span class="est-note">(YDEX)</span></td><td class="num">3 592,00</td><td class="num">3 798,00</td><td class="num">4</td><td class="num">15 192</td><td class="num">1,48%</td><td class="num up">+5,73%</td><td class="num">69,3 п.п.</td></tr>
           <tr><td class="cls">Обл. ОФЗ</td><td class="ticker">ОФЗ 26238 <span class="est-note">(SU26238RMFS4)</span></td><td class="num">551,00</td><td class="num">551,00</td><td class="num">81</td><td class="num">44 631</td><td class="num">4,34%</td><td class="num" colspan="2">YTM 13,44% · дюрация 1,05 г</td></tr>
           <tr><td class="cls">Обл. ОФЗ</td><td class="ticker">ОФЗ 26243 <span class="est-note">(SU26243RMFS4)</span></td><td class="num">723,15</td><td class="num">723,15</td><td class="num">47</td><td class="num">33 988</td><td class="num">3,30%</td><td class="num" colspan="2">дюрация ~5,9 г</td></tr>
@@ -186,45 +193,47 @@
       <table>
         <thead><tr><th>Класс</th><th>Инструмент</th><th>Действие</th><th>Текущая цена</th><th>Кол-во</th><th>Сумма, ₽</th><th>Доля</th></tr></thead>
         <tbody>
-          <tr><td class="cls">Золото</td><td class="ticker">БПИФ ВИМ Золото <span class="est-note">(GOLD)</span></td><td class="num up">+369 лотов</td><td class="num">3,1095</td><td class="num">566</td><td class="num">1 759,98</td><td class="num">11,88%</td></tr>
-          <tr><td class="cls">Акции</td><td class="ticker">Полюс <span class="est-note">(PLZL)</span></td><td class="num down"><strong>−3 лота</strong></td><td class="num">996,80</td><td class="num">1</td><td class="num">996,80</td><td class="num">6,73%</td></tr>
-          <tr><td class="cls">Акции</td><td class="ticker">Сбербанк <span class="est-note">(SBER)</span></td><td class="num down">−2 лота</td><td class="num">279,77</td><td class="num">3</td><td class="num">839,31</td><td class="num">5,66%</td></tr>
+          <tr><td class="cls">Золото</td><td class="ticker">БПИФ ВИМ Золото <span class="est-note">(GOLD, лот 1 шт.)</span></td><td class="num up">+369 лотов</td><td class="num">3,1095</td><td class="num">566</td><td class="num">1 759,98</td><td class="num">11,88%</td></tr>
+          <tr><td class="cls">Акции</td><td class="ticker">Полюс <span class="est-note">(PLZL, лот 1 шт.)</span></td><td class="num down"><strong>−3 лота</strong></td><td class="num">996,80</td><td class="num">1</td><td class="num">996,80</td><td class="num">6,73%</td></tr>
+          <tr><td class="cls">Акции</td><td class="ticker">Сбербанк <span class="est-note">(SBER, лот 1 шт.)</span></td><td class="num down">−2 лота</td><td class="num">279,77</td><td class="num">3</td><td class="num">839,31</td><td class="num">5,66%</td></tr>
           <tr><td class="cls">Обл. ОФЗ</td><td class="ticker">ОФЗ 26238 <span class="est-note">(SU26238RMFS4)</span></td><td class="num flat">без изменений</td><td class="num">551,00</td><td class="num">1</td><td class="num">551,00</td><td class="num">3,72%</td></tr>
-          <tr><td class="cls">Акции</td><td class="ticker">Сургутнефтегаз-п <span class="est-note">(SNGSP)</span> — новая позиция</td><td class="num up">+11 лотов</td><td class="num">41,86</td><td class="num">11</td><td class="num">460,46</td><td class="num">3,11%</td></tr>
-          <tr><td class="cls">Акции</td><td class="ticker">Норникель <span class="est-note">(GMKN)</span> — новая позиция</td><td class="num up">+3 лота</td><td class="num">130,36</td><td class="num">3</td><td class="num">391,08</td><td class="num">2,64%</td></tr>
-          <tr><td class="cls">Акции</td><td class="ticker">Роснефть <span class="est-note">(ROSN)</span> — новая позиция</td><td class="num up">+1 лот</td><td class="num">321,50</td><td class="num">1</td><td class="num">321,50</td><td class="num">2,17%</td></tr>
-          <tr><td class="cls">Акции</td><td class="ticker">Т-Технологии <span class="est-note">(T)</span> — новая позиция</td><td class="num up">+1 лот</td><td class="num">263,88</td><td class="num">1</td><td class="num">263,88</td><td class="num">1,78%</td></tr>
-          <tr><td class="cls">Акции</td><td class="ticker">МосБиржа <span class="est-note">(MOEX)</span> — новая позиция</td><td class="num up">+1 лот</td><td class="num">154,60</td><td class="num">1</td><td class="num">154,60</td><td class="num">1,04%</td></tr>
-          <tr><td class="cls">Кэш</td><td class="ticker">БПИФ ВИМ Ликвидность <span class="est-note">(LQDT)</span></td><td class="num">буфер</td><td class="num">2,0787</td><td class="num">4 369</td><td class="num">9 080,80</td><td class="num">61,28%</td></tr>
+          <tr><td class="cls">Акции</td><td class="ticker">Сургутнефтегаз-п <span class="est-note">(SNGSP, лот 10 шт.)</span> — новая позиция</td><td class="num up">+1 лот (10 шт.)</td><td class="num">41,86</td><td class="num">10</td><td class="num">418,60</td><td class="num">2,82%</td></tr>
+          <tr><td class="cls">Акции</td><td class="ticker">Роснефть <span class="est-note">(ROSN, лот 1 шт.)</span> — новая позиция</td><td class="num up">+1 лот</td><td class="num">321,50</td><td class="num">1</td><td class="num">321,50</td><td class="num">2,17%</td></tr>
+          <tr><td class="cls">Акции</td><td class="ticker">Т-Технологии <span class="est-note">(T, лот 1 шт.)</span> — новая позиция</td><td class="num up">+1 лот</td><td class="num">263,88</td><td class="num">1</td><td class="num">263,88</td><td class="num">1,78%</td></tr>
+          <tr><td class="cls">Кэш</td><td class="ticker">БПИФ ВИМ Ликвидность <span class="est-note">(LQDT)</span></td><td class="num">буфер</td><td class="num">2,0787</td><td class="num">4 651</td><td class="num">9 668,34</td><td class="num">65,24%</td></tr>
           <tr class="total"><td colspan="6">Итого</td><td class="num">14 819,41</td><td class="num">100%</td></tr>
         </tbody>
       </table>
     </div>
+    <p class="est-note">GMKN и MOEX торгуются лотами по 10 акций (как и SNGSP) — при пересчёте с верным лотом
+      обе позиции оказались структурными барьерами (см. таблицу ниже), а не покупками, как в первой версии
+      этого отчёта.</p>
 
     <h3>Полный проход по списку (по убыванию доли в модельном портфеле)</h3>
     <div class="tablewrap"><table>
-      <thead><tr><th>Инструмент</th><th>Доля в модельном</th><th>Целевая сумма</th><th>Было</th><th>Результат</th></tr></thead>
+      <thead><tr><th>Инструмент</th><th>Лот, шт.</th><th>Доля в модельном</th><th>Целевая сумма</th><th>Было</th><th>Результат</th></tr></thead>
       <tbody>
-        <tr><td class="ticker">GOLD</td><td class="num">11,89%</td><td class="num">1 762,39 ₽</td><td class="num">612,57 ₽</td><td class="num up">куплено до 1 759,98 ₽</td></tr>
-        <tr><td class="ticker">LKOH</td><td class="num">5,35%</td><td class="num">792,31 ₽</td><td class="num">0 ₽</td><td class="num down"><strong>структурный барьер</strong> — лот 5 000 ₽ &gt; цели</td></tr>
-        <tr><td class="ticker">SBER</td><td class="num">5,20%</td><td class="num">769,78 ₽</td><td class="num">1 398,85 ₽</td><td class="num down">продано до 839,31 ₽ (избыток)</td></tr>
-        <tr><td class="ticker">ОФЗ 26238</td><td class="num">4,34%</td><td class="num">642,94 ₽</td><td class="num">551,00 ₽</td><td class="num flat">1 лот — ближе к цели, чем 2</td></tr>
-        <tr><td class="ticker">ОФЗ 26243</td><td class="num">3,30%</td><td class="num">489,62 ₽</td><td class="num">0 ₽</td><td class="num down">структурный барьер</td></tr>
-        <tr><td class="ticker">SNGSP</td><td class="num">3,21%</td><td class="num">476,39 ₽</td><td class="num">0 ₽</td><td class="num up">куплено до 460,46 ₽</td></tr>
-        <tr><td class="ticker">PLZL</td><td class="num">3,10%</td><td class="num">459,51 ₽</td><td class="num">3 987,20 ₽</td><td class="num down"><strong>продано до 996,80 ₽</strong> (устранение концентрации)</td></tr>
-        <tr><td class="ticker">GMKN</td><td class="num">3,04%</td><td class="num">450,70 ₽</td><td class="num">0 ₽</td><td class="num up">куплено до 391,08 ₽</td></tr>
-        <tr><td class="ticker">ROSN</td><td class="num">2,78%</td><td class="num">412,20 ₽</td><td class="num">0 ₽</td><td class="num up">куплено до 321,50 ₽</td></tr>
-        <tr><td class="ticker">T</td><td class="num">2,41%</td><td class="num">357,33 ₽</td><td class="num">0 ₽</td><td class="num up">куплено до 263,88 ₽</td></tr>
-        <tr><td class="ticker">MOEX</td><td class="num">1,95%</td><td class="num">289,53 ₽</td><td class="num">0 ₽</td><td class="num up">куплено до 154,60 ₽</td></tr>
-        <tr><td class="ticker">РостелP16R</td><td class="num">1,71%</td><td class="num">253,64 ₽</td><td class="num">0 ₽</td><td class="num down">структурный барьер</td></tr>
-        <tr><td class="ticker">ВЭБ2Р-50</td><td class="num">1,71%</td><td class="num">253,39 ₽</td><td class="num">0 ₽</td><td class="num down">структурный барьер</td></tr>
-        <tr><td class="ticker">Газпн3P13R</td><td class="num">1,67%</td><td class="num">247,56 ₽</td><td class="num">0 ₽</td><td class="num down">структурный барьер</td></tr>
-        <tr><td class="ticker">YDEX</td><td class="num">1,48%</td><td class="num">218,85 ₽</td><td class="num">0 ₽</td><td class="num down">структурный барьер</td></tr>
+        <tr><td class="ticker">GOLD</td><td class="num">1</td><td class="num">11,89%</td><td class="num">1 762,39 ₽</td><td class="num">612,57 ₽</td><td class="num up">куплено до 1 759,98 ₽</td></tr>
+        <tr><td class="ticker">LKOH</td><td class="num">1</td><td class="num">5,35%</td><td class="num">792,31 ₽</td><td class="num">0 ₽</td><td class="num down"><strong>структурный барьер</strong> — лот 5 000 ₽ &gt; цели</td></tr>
+        <tr><td class="ticker">SBER</td><td class="num">1</td><td class="num">5,20%</td><td class="num">769,78 ₽</td><td class="num">1 398,85 ₽</td><td class="num down">продано до 839,31 ₽ (избыток)</td></tr>
+        <tr><td class="ticker">ОФЗ 26238</td><td class="num">1</td><td class="num">4,34%</td><td class="num">642,94 ₽</td><td class="num">551,00 ₽</td><td class="num flat">1 лот — ближе к цели, чем 2</td></tr>
+        <tr><td class="ticker">ОФЗ 26243</td><td class="num">1</td><td class="num">3,30%</td><td class="num">489,62 ₽</td><td class="num">0 ₽</td><td class="num down">структурный барьер</td></tr>
+        <tr><td class="ticker">SNGSP</td><td class="num"><strong>10</strong></td><td class="num">3,21%</td><td class="num">476,39 ₽</td><td class="num">0 ₽</td><td class="num up">куплен ровно 1 лот (10 шт.) — 418,60 ₽</td></tr>
+        <tr><td class="ticker">PLZL</td><td class="num">1</td><td class="num">3,10%</td><td class="num">459,51 ₽</td><td class="num">3 987,20 ₽</td><td class="num down"><strong>продано до 996,80 ₽</strong> (устранение концентрации)</td></tr>
+        <tr><td class="ticker">GMKN</td><td class="num"><strong>10</strong></td><td class="num">3,04%</td><td class="num">450,70 ₽</td><td class="num">0 ₽</td><td class="num down"><strong>структурный барьер</strong> — лот (10 шт.) 1 303,60 ₽ &gt; цели</td></tr>
+        <tr><td class="ticker">ROSN</td><td class="num">1</td><td class="num">2,78%</td><td class="num">412,20 ₽</td><td class="num">0 ₽</td><td class="num up">куплено до 321,50 ₽</td></tr>
+        <tr><td class="ticker">T</td><td class="num">1</td><td class="num">2,41%</td><td class="num">357,33 ₽</td><td class="num">0 ₽</td><td class="num up">куплено до 263,88 ₽</td></tr>
+        <tr><td class="ticker">MOEX</td><td class="num"><strong>10</strong></td><td class="num">1,95%</td><td class="num">289,53 ₽</td><td class="num">0 ₽</td><td class="num down"><strong>структурный барьер</strong> — лот (10 шт.) 1 546,00 ₽ &gt; цели</td></tr>
+        <tr><td class="ticker">РостелP16R</td><td class="num">1</td><td class="num">1,71%</td><td class="num">253,64 ₽</td><td class="num">0 ₽</td><td class="num down">структурный барьер</td></tr>
+        <tr><td class="ticker">ВЭБ2Р-50</td><td class="num">1</td><td class="num">1,71%</td><td class="num">253,39 ₽</td><td class="num">0 ₽</td><td class="num down">структурный барьер</td></tr>
+        <tr><td class="ticker">Газпн3P13R</td><td class="num">1</td><td class="num">1,67%</td><td class="num">247,56 ₽</td><td class="num">0 ₽</td><td class="num down">структурный барьер</td></tr>
+        <tr><td class="ticker">YDEX</td><td class="num">1</td><td class="num">1,48%</td><td class="num">218,85 ₽</td><td class="num">0 ₽</td><td class="num down">структурный барьер</td></tr>
       </tbody>
     </table></div>
-    <p>Ни одного <strong>временного</strong> барьера не возникло — взноса и выручки от продажи избыточных
-      SBER/PLZL хватило на все покупки, где лот был в принципе доступен. Все 6 непройденных позиций —
-      структурные барьеры (лот дороже целевой суммы), не вопрос накопления взносами.</p>
+    <p>Ни одного <strong>временного</strong> барьера не возникло. Восемь непройденных позиций — структурные
+      барьеры (лот дороже целевой суммы), не вопрос накопления взносами. Из них GMKN и MOEX — новые находки
+      этой недели после исправления лота: у обоих порог заметно ниже, чем у LKOH (см. таблицу барьеров ниже),
+      то есть они снимутся раньше при том же темпе роста портфеля.</p>
 
     <h3>Концентрация устранена, но не до конца — эффект гранулярности лота</h3>
     <p>PLZL снизилась с <strong>42,36% до 6,73%</strong> портфеля — резкое улучшение, но всё ещё выше целевых
@@ -232,27 +241,36 @@
       продавать ниже целевой суммы. Это остаточный эффект неделимости лота на портфеле такого размера, не
       сознательное решение держать риск — специально не корректируем.</p>
 
-    <h3>LKOH подтверждён структурным барьером — порог вырос</h3>
-    <p>При целевой доле 5,35% (сама выросла — LKOH обогнал портфель, до 5 000 ₽/акцию) и цене лота 5 000 ₽
-      контрольному портфелю нужно вырасти примерно до <strong>~93 500 ₽</strong>, чтобы позволить себе один
-      лот. Для сравнения — оценка на момент введения алгоритма (28.08) была ~92 000 ₽; рост порога отражает
-      продолжающееся ралли LKOH, а не ошибку расчёта. Это структурный барьер — правильная формулировка «нужен
-      рост портфеля», а не «нужно N недель».</p>
+    <h3>Структурные барьеры — три инструмента, разные пороги</h3>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Инструмент</th><th>Лот, шт.</th><th>Цена лота</th><th>Целевая доля</th><th>Портфель нужен ≥</th></tr></thead>
+      <tbody>
+        <tr><td class="ticker">GMKN</td><td class="num">10</td><td class="num">1 303,60 ₽</td><td class="num">3,04%</td><td class="num">~42 870 ₽</td></tr>
+        <tr><td class="ticker">MOEX</td><td class="num">10</td><td class="num">1 546,00 ₽</td><td class="num">1,95%</td><td class="num">~79 120 ₽</td></tr>
+        <tr><td class="ticker">LKOH</td><td class="num">1</td><td class="num">5 000,00 ₽</td><td class="num">5,35%</td><td class="num"><strong>~93 500 ₽</strong></td></tr>
+      </tbody>
+    </table></div>
+    <p>При текущем размере портфеля (14 819 ₽) все три — структурные барьеры, но GMKN снимется первым по мере
+      роста портфеля, следом MOEX, LKOH — позже всех (порог вырос с ~92 000 ₽ неделю назад из-за продолжающегося
+      ралли LKOH). Остальные пять структурных барьеров (ОФЗ 26243, три корпоративных выпуска, YDEX) стоят
+      дороже относительно своих целевых долей и снимутся ещё позже.</p>
 
     <div class="tablewrap"><table>
       <thead><tr><th>Класс</th><th>Модельный</th><th>Контрольный</th><th>Отклонение</th></tr></thead>
       <tbody>
-        <tr><td class="ticker">Акции</td><td class="num">28,52%</td><td class="num">23,13%</td><td class="num down">−5,39 п.п.</td></tr>
-        <tr><td class="ticker">Облигации</td><td class="num">12,74%</td><td class="num">3,72%</td><td class="num down">−9,02 п.п. (структурные барьеры бондов)</td></tr>
+        <tr><td class="ticker">Акции</td><td class="num">28,52%</td><td class="num">19,16%</td><td class="num down">−9,36 п.п. (GMKN и MOEX теперь тоже структурные барьеры)</td></tr>
+        <tr><td class="ticker">Облигации</td><td class="num">12,74%</td><td class="num">3,72%</td><td class="num down">−9,01 п.п. (структурные барьеры бондов)</td></tr>
         <tr><td class="ticker">Золото</td><td class="num">11,89%</td><td class="num">11,88%</td><td class="num up"><strong>−0,01 п.п. — почти идеально</strong></td></tr>
-        <tr><td class="ticker">Кэш</td><td class="num">46,85%</td><td class="num">61,28%</td><td class="num down">+14,43 п.п. (застряло на структурных барьерах)</td></tr>
+        <tr><td class="ticker">Кэш</td><td class="num">46,85%</td><td class="num">65,24%</td><td class="num down">+18,38 п.п. (застряло на структурных барьерах)</td></tr>
       </tbody>
     </table></div>
     <p class="est-note">Разница TWR: контрольный −1,61% против модельного +2,17% (−3,78 п.п.) — резкий разворот
       относительно прошлой недели (было −0,27 п.п.), вызван в первую очередь тем, что PLZL всё ещё была 42%
       портфеля <em>в течение недели</em> (алгоритм применяется на срезе, не защищает от внутринедельного
       движения уже открытой позиции) и потеряла 6% за это время. Первая просадка контрольного портфеля
-      (−1,96% от пика) — прямая иллюстрация риска, ради устранения которого алгоритм введён.</p>
+      (−1,96% от пика) — прямая иллюстрация риска, ради устранения которого алгоритм введён. Отклонение по
+      классу «акции» выросло после исправления лота (было −5,39 п.п. в неисправленной версии, стало −9,36 п.п.) —
+      это более честная картина: GMKN и MOEX реально недоступны на этой неделе, а не куплены частично.</p>
     <div class="foot"><span>Контрольный портфель, не реальные сделки</span><span>Блок 4</span></div>
   </section>
 
