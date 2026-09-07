@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Утренний радар — 7 сентября 2026</title>
+<style>
+  :root{--bg:#0a0e16;--card:#131a26;--card-2:#0f1520;--line:#232d3d;--text:#e8edf5;--muted:#8a97ab;--dim:#5d6879;--gold:#e0a95c;--blue:#5b9bf5;--up:#5bd88a;--down:#e08a8a}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:"Inter","Helvetica Neue",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:28px 20px 64px}
+  .hero{border:1px solid var(--line);border-radius:14px;background:linear-gradient(160deg,#141c2b 0%,var(--card) 60%);padding:30px 28px;margin-bottom:22px}
+  .eyebrow{color:var(--gold);font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600}
+  h1{margin:10px 0 6px;font-size:clamp(28px,5vw,44px);line-height:1.1;font-weight:800;letter-spacing:-.02em}
+  .hero .date{color:var(--muted);font-size:14px}
+  .trigger{margin-top:16px;padding:14px 16px;border-left:3px solid var(--gold);background:rgba(224,169,92,.07);border-radius:0 10px 10px 0;font-size:16px}
+  .pulse{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:12px;margin-top:20px}
+  .metric{background:var(--card-2);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .metric .k{color:var(--muted);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+  .metric .v{font-size:24px;font-weight:700;margin-top:6px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+  .metric .d{font-size:13px;margin-top:2px;font-weight:600}
+  .up{color:var(--up)}.down{color:var(--down)}.flat{color:var(--muted)}
+  .metric.accent .v{color:var(--gold)}.metric.fx .v{color:var(--blue)}
+  .nodata{color:var(--dim);font-style:italic;font-weight:400}
+  section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px 26px;margin-bottom:18px}
+  h2{margin:0 0 4px;font-size:20px;font-weight:700;color:var(--gold);letter-spacing:-.01em}
+  .sub{color:var(--muted);font-size:13px;margin-bottom:18px}
+  h3{margin:22px 0 8px;font-size:15px;font-weight:700}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+  .fact{background:var(--card-2);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .fact .n{color:var(--gold);font-size:12px;font-weight:700;letter-spacing:.1em}
+  .fact p{margin:8px 0 0;font-size:14px}
+  .tag{display:inline-block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:999px;font-weight:700;vertical-align:middle}
+  .tag.fact{background:rgba(91,155,245,.14);color:var(--blue);border:1px solid rgba(91,155,245,.3)}
+  .tag.est{background:rgba(224,169,92,.12);color:var(--gold);border:1px solid rgba(224,169,92,.3)}
+  .est-note{color:var(--dim);font-size:12px;font-style:italic}
+  .score{display:flex;align-items:center;gap:14px;margin:14px 0}
+  .score .bar{flex:1;height:8px;background:#1b2433;border-radius:999px;overflow:hidden}
+  .score .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--down));border-radius:999px}
+  .score .num{font-size:26px;font-weight:800;color:var(--gold);min-width:76px;text-align:right;font-variant-numeric:tabular-nums}
+  .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:12px}
+  table{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
+  th{text-align:left;color:var(--muted);font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:0 12px 10px 0;border-bottom:1px solid var(--line);white-space:nowrap}
+  td{padding:11px 12px 11px 0;border-bottom:1px solid rgba(35,45,61,.55);vertical-align:top}
+  tbody tr:last-child td{border-bottom:none}
+  .instr{font-weight:700;letter-spacing:.02em;line-height:1.35}
+  .instr .code{display:block;font-weight:400;font-size:11px;color:var(--dim);letter-spacing:.04em;margin-top:2px;font-variant-numeric:tabular-nums}
+  td .instr{white-space:normal}
+  .num{font-variant-numeric:tabular-nums}
+  .scen{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:var(--card-2)}
+  .scen .h{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .scen .name{font-weight:700}
+  .scen .p{font-size:20px;font-weight:800;color:var(--gold);font-variant-numeric:tabular-nums}
+  .scen.base{border-left:3px solid var(--gold)}.scen.pos{border-left:3px solid var(--up)}.scen.neg{border-left:3px solid var(--down)}
+  .scen dl{margin:10px 0 0;font-size:13px}
+  .scen dt{color:var(--muted);font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-top:8px}
+  .scen dd{margin:2px 0 0}
+  .disclaimer{margin-top:26px;padding:16px 18px;border:1px solid var(--line);border-radius:12px;background:var(--card-2);color:var(--muted);font-size:12px;line-height:1.6}
+  @media print{body{background:var(--bg)}.wrap{max-width:none;padding:0}section,.hero,.fact,.scen,.metric{break-inside:avoid;page-break-inside:avoid}h2{break-after:avoid}}
+  @media (max-width:560px){section{padding:18px 16px}.wrap{padding:16px 12px 40px}.hero{padding:22px 18px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- БЛОК 1 -->
+  <header class="hero">
+    <div class="eyebrow">Утренний радар · Российский рынок</div>
+    <h1>Пауза после недельного ралли — нефть растёт восьмой день на эскалации в Ормузском проливе</h1>
+    <div class="date">Понедельник, 7 сентября 2026 · данные MOEX ISS на 14:42 мск, сессия продолжается · первый радар новой календарной недели — недельный обзор ниже</div>
+    <div class="trigger"><strong>Триггер дня.</strong> IMOEX почти без изменений (−0,07%, 2 253,41) после +6,55% за прошлую неделю. Brent продолжает расти (+1,73%, 97,54 $) уже восьмой день подряд на фоне обмена ударами США и Ирана в Ормузском проливе (потоплен иранский танкер, КСИР ответил ударами по трём танкерам, связанным с США), но индекс не поспевает за нефтью — в плюсе только нефтегаз, ширина рынка резко сузилась до 41%.</div>
+
+    <div class="pulse">
+      <div class="metric"><div class="k">IMOEX</div><div class="v num">2 253,41</div>
+        <div class="d flat">−0,07% за день</div></div>
+      <div class="metric fx"><div class="k">USD/RUB · ЦБ на 07.09</div><div class="v num">86,5857</div>
+        <div class="d up">−0,35% к 04.09 (рубль крепче)</div></div>
+      <div class="metric"><div class="k">Ширина рынка</div><div class="v num">41%</div>
+        <div class="d down">второй день сужения (54% → 41%)</div></div>
+      <div class="metric accent"><div class="k">Brent</div><div class="v num">97,54 $</div>
+        <div class="d up">+1,73%, 8-й день роста</div></div>
+      <div class="metric"><div class="k">Оборот TQBR</div><div class="v num">80,0</div>
+        <div class="d flat">млрд ₽, на уровне пятницы</div></div>
+      <div class="metric"><div class="k">Ключевая ставка ЦБ</div><div class="v num">14,00%</div>
+        <div class="d flat">заседание в эту пятницу, 11.09</div></div>
+    </div>
+  </header>
+
+  <!-- БЛОК 2 -->
+  <section>
+    <h2>Три главных факта</h2>
+    <div class="sub">Источник — MOEX ISS, деловые СМИ<span class="tag fact">факт</span></div>
+    <div class="cards">
+      <div class="fact"><div class="n">01 · РЫНОК КОНСОЛИДИРУЕТСЯ ПОСЛЕ НЕДЕЛЬНОГО РАЛЛИ</div>
+        <p>IMOEX практически на месте (−0,07%) после того, как за неделю 31.08–04.09 вырос на 6,55% (2 114,93 → 2 253,41). Сегодняшний диапазон дня узкий (2 236–2 257,82) — рынок переваривает набранный рост, а не продолжает его.</p></div>
+      <div class="fact"><div class="n">02 · НЕФТЬ РАСТЁТ ВОСЬМОЙ ДЕНЬ, НО ИНДЕКС ЗА НЕЙ НЕ ИДЁТ</div>
+        <p>Brent +1,73% до 97,54 $ на эскалации США–Иран в Ормузском проливе (взаимные удары по танкерам 2–6.09, один иранский танкер затонул). Из отраслевых индексов в плюсе только нефтегаз (MOEXOG +0,18%) — остальные секторы красные, включая химию (MOEXCH −1,66%, ФосАгро −3,69%) и телеком (MOEXTL −0,79%).</p></div>
+      <div class="fact"><div class="n">03 · ШИРИНА РЫНКА СУЗИЛАСЬ ДО 41%</div>
+        <p>Второй день подряд ослабления (86% во вторник → 54% в пятницу → 41% сегодня) — рост концентрируется в узком круге бумаг (ROSN +3,25%, лидер watchlist). Среди портфельных позиций в минусе PLZL (−1,67%), MOEX-тикер (−1,28%), LKOH (−0,42%), YDEX (−0,54%), T (−0,60%), SBER (−0,33%).</p></div>
+    </div>
+  </section>
+
+  <!-- БЛОК 3 -->
+  <section>
+    <h2>Рыночная панель</h2>
+    <div class="sub">В моменте, 07.09.2026, сессия продолжается<span class="tag fact">факт</span></div>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Индикатор</th><th>Значение</th><th>За день</th></tr></thead>
+      <tbody>
+        <tr><td class="instr">Индекс МосБиржи<span class="code">IMOEX</span></td><td class="num">2 253,41</td><td class="num flat"><strong>−0,07%</strong></td></tr>
+        <tr><td class="instr">Нефть и газ<span class="code">MOEXOG</span></td><td class="num">6 092,95</td><td class="num up">+0,18%</td></tr>
+        <tr><td class="instr">Электроэнергетика<span class="code">MOEXEU</span></td><td class="num">1 460,65</td><td class="num down">−0,15%</td></tr>
+        <tr><td class="instr">Металлы и добыча<span class="code">MOEXMM</span></td><td class="num">4 532,04</td><td class="num down">−0,21%</td></tr>
+        <tr><td class="instr">Потребительский сектор<span class="code">MOEXCN</span></td><td class="num">5 099,76</td><td class="num down">−0,26%</td></tr>
+        <tr><td class="instr">Финансы<span class="code">MOEXFN</span></td><td class="num">8 433,17</td><td class="num down">−0,46%</td></tr>
+        <tr><td class="instr">Телеком<span class="code">MOEXTL</span></td><td class="num">1 494,66</td><td class="num down">−0,79%</td></tr>
+        <tr><td class="instr">Химия<span class="code">MOEXCH</span></td><td class="num">24 706,42</td><td class="num down">−1,66%</td></tr>
+        <tr><td class="instr">Индекс гособлигаций<span class="code">RGBI</span></td><td class="num">113,80</td><td class="num flat">0,00%</td></tr>
+        <tr><td class="instr">Brent<span class="code">$/баррель, фьючерс BRV6</span></td><td class="num">97,54</td><td class="num up">+1,73%, 8-й день роста</td></tr>
+        <tr><td class="instr">Золото<span class="code">GLDRUB_TOM</span></td><td class="num">12 108,5 ₽/г</td><td class="num down">−0,37%</td></tr>
+        <tr><td class="instr">RUONIA<span class="code">05.09, с лагом 1 день</span></td><td class="num">13,96%</td><td class="num flat">стабильна (13,84–13,96% всю неделю)</td></tr>
+        <tr><td class="instr">Ключевая ставка ЦБ<span class="code">заседание 11.09.2026</span></td><td class="num">14,00%</td><td class="num flat">без изменений</td></tr>
+      </tbody>
+    </table></div>
+    <h3>Кривая ОФЗ</h3>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Срок</th><th>07.09</th><th>04.09</th><th>Изменение</th></tr></thead>
+      <tbody>
+        <tr><td>~1 год <span class="est-note">(ОФЗ 26232)</span></td><td class="num">13,43%</td><td class="num">13,44%</td><td class="num up">−1 б.п.</td></tr>
+        <tr><td>~10 лет <span class="est-note">(ОФЗ 26240)</span></td><td class="num">15,65%</td><td class="num">15,69%</td><td class="num up">−4 б.п.</td></tr>
+      </tbody>
+    </table></div>
+    <p class="est-note">Курс ЦБ на 07.09 — 86,5857 ₽/$ (было 86,8872 на 04.09, рубль укрепился на 0,35%). CNY/RUB — 12,8849. Минфин с 07.09 по 06.10 направит на покупку валюты и золота 55,6 млрд ₽ (2,5 млрд ₽/день) — вдвое меньше, чем в прошлом периоде (6,5 млрд ₽/день); с учётом операций ЦБ (0,58 млрд ₽/день продажи) чистые покупки регуляторов снизятся с 5,92 до 1,92 млрд ₽/день.</p>
+  </section>
+
+  <!-- БЛОК 4 -->
+  <section>
+    <h2>Ключевое событие: эскалация США–Иран в Ормузском проливе</h2>
+    <div class="sub">Оценка влияния по методологии §3<span class="tag est">оценка</span></div>
+    <div class="score">
+      <div class="bar"><div class="fill" style="width:54%"></div></div>
+      <div class="num">54</div>
+    </div>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Компонента</th><th>Оценка</th><th>Обоснование</th></tr></thead>
+      <tbody>
+        <tr><td>Охват</td><td class="num">20 / 35</td><td>Широко влияет на нефть (мировой рынок), но на российский рынок акций — избирательно: в плюсе только нефтегаз, остальные секторы красные</td></tr>
+        <tr><td>Необратимость</td><td class="num">18 / 25</td><td>Реальные боевые действия — потоплен танкер, КСИР нанёс ответный удар (5–6.09), не гипотетический сценарий</td></tr>
+        <tr><td>Неожиданность</td><td class="num">6 / 20</td><td>Конфликт нарастает с 02.09 и упоминался в каждом радаре недели как драйвер Brent — сегодняшняя новость продолжает уже известный тренд, не новый фактор</td></tr>
+        <tr><td>Скорость</td><td class="num">10 / 20</td><td>Эффект на нефть уже реализован в цене; эффект на широкий российский рынок акций ограничен и отложен</td></tr>
+      </tbody>
+    </table></div>
+    <p>Выше среднего по недельным меркам — впервые за долгое время рост Brent не транслируется в пропорциональный рост индекса. Возможные причины: рынок уже «съел» позитив от нефти за неделю роста, и сейчас фокус сместился на фиксацию прибыли в неэкспортных секторах (химия, телеком, финансы).</p>
+  </section>
+
+  <!-- БЛОК 5 -->
+  <section>
+    <h2>Watchlist I — бумаги с идеями аналитиков</h2>
+    <div class="sub">Фиксированный слой, включая риск-долю (ТЗ §5.2)<span class="tag fact">факт</span> <span class="tag est">уровни — суждение автора</span></div>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Инструмент</th><th>Цена</th><th>За день</th><th>Зона добора</th><th>До зоны</th><th>Цель</th><th>До цели</th><th>Автор, получено</th></tr></thead>
+      <tbody>
+        <tr><td class="instr">Роснефть<span class="code">ROSN · в портфеле</span></td><td class="num">332,40</td><td class="num up"><strong>+3,25%</strong></td><td class="num">260–270 ₽</td><td class="num up">выше зоны</td><td class="num">350 ₽</td><td class="num up">+5,3%</td><td>А. Полярный<br><span class="est-note">получено 18.08</span></td></tr>
+        <tr><td class="instr">Банк Санкт-Петербург<span class="code">BSPB</span></td><td class="num">253,66</td><td class="num up">+1,57%</td><td class="num">245–250 ₽</td><td class="num up">выше зоны</td><td class="num">290–310 ₽</td><td class="num up">+14,3…+22,2%</td><td>А. Полярный<br><span class="est-note">получено 20.08, hit_entry 22.08</span></td></tr>
+        <tr><td class="instr">Татнефть<span class="code">TATN</span></td><td class="num">590,60</td><td class="num down">−0,46%</td><td class="num">400–420 ₽</td><td class="num up">выше зоны</td><td class="num nodata">не назван</td><td class="num">—</td><td>Ю. Козлов<br><span class="est-note">получено 20.08</span></td></tr>
+        <tr><td class="instr">НоваБев Групп<span class="code">BELU</span></td><td class="num">255,20</td><td class="num up"><strong>+2,41%</strong></td><td class="num">220–232 ₽</td><td class="num up">выше зоны</td><td class="num">404 ₽</td><td class="num up">+58,3%</td><td>А. Полярный<br><span class="est-note">получено 21.08, техн.</span></td></tr>
+        <tr><td class="instr">Интер РАО<span class="code">IRAO</span></td><td class="num">2,376</td><td class="num down">−0,56%</td><td class="num">2,05–2,27 ₽</td><td class="num up">выше зоны</td><td class="num">2,75 ₽</td><td class="num up">+15,7%</td><td>А. Полярный<br><span class="est-note">получено 21.08, hit_entry 27.08</span></td></tr>
+        <tr><td class="instr">Ренессанс Страхование<span class="code">RENI</span></td><td class="num">70,64</td><td class="num down">−0,67%</td><td class="num">60–70 ₽</td><td class="num up">у верхней границы (+0,9%)</td><td class="num nodata">не назвал</td><td class="num">—</td><td>Ю. Козлов<br><span class="est-note">получено 24.08, сделка</span></td></tr>
+        <tr><td class="instr">Ленэнерго, преф<span class="code">LSNGP · риск-доля §5.2</span></td><td class="num">333,60</td><td class="num down">−0,86%</td><td class="num">270–280 ₽</td><td class="num up">выше зоны</td><td class="num">400–410 ₽</td><td class="num up">+19,9…+22,9%</td><td>А. Полярный<br><span class="est-note">получено 25.08, техн.</span></td></tr>
+        <tr><td class="instr">РусГидро<span class="code">HYDR</span></td><td class="num">0,3668</td><td class="num down">−0,38%</td><td class="num">0,30–0,34 ₽</td><td class="num up">выше зоны</td><td class="num">0,40 ₽</td><td class="num up">+9,1%</td><td>А. Полярный<br><span class="est-note">получено 28.08, техн., hit_entry</span></td></tr>
+      </tbody>
+    </table></div>
+    <p><strong>ROSN — лидер watchlist и всего портфеля сегодня</strong> (+3,25%), прямое следствие ралли Brent. RENI держится у самой верхней границы зоны накопления (70,64 ₽ против верхней границы 70 ₽) третью неделю подряд.</p>
+  </section>
+
+  <!-- БЛОК 6 -->
+  <section>
+    <h2>Watchlist II — движения дня</h2>
+    <div class="sub">Динамический слой: ликвидные бумаги с оборотом свыше 100 млн ₽<span class="tag fact">факт</span></div>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Инструмент</th><th>Изменение</th><th>Оборот</th><th>Комментарий</th></tr></thead>
+      <tbody>
+        <tr><td class="instr">Диасофт<span class="code">DIAS</span></td><td class="num up"><strong>+3,67%</strong></td><td class="num">89 млн ₽</td><td>Лидер дня, но оборот у нижней границы порога ликвидности</td></tr>
+        <tr><td class="instr">Роснефть<span class="code">ROSN · в watchlist и портфеле</span></td><td class="num up"><strong>+3,25%</strong></td><td class="num">7 127 млн ₽</td><td>Крупнейший оборот дня, прямая реакция на ралли Brent</td></tr>
+        <tr><td class="instr">НоваБев Групп<span class="code">BELU · в watchlist</span></td><td class="num up">+2,41%</td><td class="num">198 млн ₽</td><td>—</td></tr>
+        <tr><td class="instr">РуссНефть<span class="code">RNFT</span></td><td class="num up">+1,39%</td><td class="num">415 млн ₽</td><td>Ещё один нефтяник в лидерах на фоне Brent</td></tr>
+        <tr><td class="instr">ФосАгро<span class="code">PHOR</span></td><td class="num down"><strong>−3,69%</strong></td><td class="num">613 млн ₽</td><td>Худшая бумага дня, тянет вниз сектор химии</td></tr>
+        <tr><td class="instr">СПБ Биржа<span class="code">SPBE</span></td><td class="num down">−2,76%</td><td class="num">1 286 млн ₽</td><td>—</td></tr>
+        <tr><td class="instr">Самолёт<span class="code">SMLT</span></td><td class="num down">−2,74%</td><td class="num">1 660 млн ₽</td><td>—</td></tr>
+        <tr><td class="instr">Совкомбанк<span class="code">SVCB</span></td><td class="num down">−1,94%</td><td class="num">603 млн ₽</td><td>—</td></tr>
+        <tr><td class="instr">Полюс<span class="code">PLZL · в портфеле</span></td><td class="num down">−1,67%</td><td class="num">1 250 млн ₽</td><td>Третий минус подряд; на прошлой неделе фактчек мнения Козлова подтвердил заморозку дивидендов и рост TCC</td></tr>
+        <tr><td class="instr">Мосбиржа<span class="code">MOEX · в портфеле</span></td><td class="num down">−1,28%</td><td class="num">528 млн ₽</td><td>—</td></tr>
+      </tbody>
+    </table></div>
+    <p>Ширина рынка 41% (36 из 87 ликвидных бумаг в плюсе) — второй день подряд сужения после пика 86% во вторник. Из портфельных позиций в плюсе только ROSN, GMKN (+0,45%) и SNGSP (+0,26%) — все нефтегаз/сырьё, всё остальное (SBER, LKOH, PLZL, MOEX, T, YDEX) в минусе.</p>
+  </section>
+
+  <!-- Периодический обзор -->
+  <section>
+    <h2>Периодический обзор — неделя 31.08–04.09.2026</h2>
+    <div class="sub">Первый радар новой календарной недели (ТЗ Радар §4а) — обзор недели, которая только что завершилась<span class="tag fact">факт</span> <span class="tag est">оценка</span></div>
+
+    <h3>Главное, что произошло</h3>
+    <div class="tablewrap"><table>
+      <thead><tr><th>День</th><th>IMOEX</th><th>Риск</th><th>Событие</th></tr></thead>
+      <tbody>
+        <tr><td>Пн 31.08</td><td class="num up">+0,65%</td><td class="num">41</td><td>Рекордные 494 дрона за ночь на 30.08, третий за неделю удар по крупному НПЗ (Кириши, Сургутнефтегаз — портфель через SNGSP); старт саммита ШОС в Бишкеке и недели ВЭФ; Brent 4-й день роста (91,33 $)</td></tr>
+        <tr><td>Вт 01.09</td><td class="num up"><strong>+1,01%</strong></td><td class="num"><strong>58</strong></td><td>На ШОС в Бишкеке президент заявил о движении к завершению украинского конфликта — рынок расценил как один из сильнейших сигналов прогресса за недели; широкий рост (86%); старт ВЭФ во Владивостоке; Brent 5-й день роста (92,27 $)</td></tr>
+        <tr><td>Ср 02.09</td><td class="num down">−0,70%</td><td class="num">57</td><td>Качели: открытие +1,03%, откат к полудню на опасениях эскалации вокруг Украины и «недружественных действий Германии», частичное восстановление; Brent выше 95–96$ на новом витке ударов США–Иран, 6-й день роста</td></tr>
+        <tr><td>Чт 03.09</td><td class="num up">+0,90%</td><td class="num">45</td><td>Пробит уровень 2 200, широкий фронт (79%); президент на пленарном заседании ВЭФ — умеренный тон, без прорывов; рост вероятнее на Brent (97,46 $, 7-й день роста) на эскалации США–Иран</td></tr>
+        <tr><td>Пт 04.09</td><td class="num up"><strong>+1,45%</strong></td><td class="num">38</td><td>Новый месячный максимум (2 253,41 закрытие) на инерции нефти и ВЭФ; плановая ребалансировка обоих портфелей — первое применение алгоритма §11.2 к контрольному; в тот же день найдена и исправлена ошибка лота SNGSP/GMKN/MOEX</td></tr>
+      </tbody>
+    </table></div>
+    <p class="est-note">Ни один день недели не набрал risk_score ≥60 (порог для отдельного включения в «главное» по правилу §4а) — максимум 58 во вторник.</p>
+
+    <h3>Что сильнее всего повлияло на рынок</h3>
+    <p>Не единичное политическое заявление, а <strong>непрерывное ралли Brent</strong> — нефть росла все пять торговых дней подряд (91,33 → 92,27 → ~95–96 → 97,46 → 95,07 $, суммарно с уровня 90,04 $ прошлой пятницы +5,6% за неделю по официально зафиксированным значениям, реально ещё больше с учётом продолжения роста в выходные до 97,5$+ сегодня), драйвер — нарастающий конфликт США–Иран в Ормузском проливе. Политические заявления (ШОС во вторник, ВЭФ в четверг) давали разовые импульсы к широкому росту (86% и 79% бумаг в плюсе соответственно), но именно нефть удерживала фон весь период. К концу недели это стало заметно в структуре: ширина рынка сузилась с пиковых 86% до 54% в пятницу — рост всё больше концентрировался в нефтегазе и тяжёлых именах, а не шёл широким фронтом, как в начале недели.</p>
+
+    <h3>Динамика рынка за период</h3>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Показатель</th><th>Начало периода<br><span class="est-note">закрытие 28.08</span></th><th>Конец периода<br><span class="est-note">закрытие 04.09</span></th><th>Изменение</th></tr></thead>
+      <tbody>
+        <tr><td class="instr">IMOEX</td><td class="num">2 114,93</td><td class="num">2 253,41</td><td class="num up"><strong>+6,55%</strong></td></tr>
+        <tr><td class="instr">Ширина рынка</td><td class="num nodata">—</td><td class="num">81% → 86% → 72% → 79% → 54%</td><td class="num down">пик во вторник, резкое сужение к пятнице</td></tr>
+        <tr><td class="instr">Оборот TQBR</td><td class="num nodata">—</td><td class="num">61,9 / 55,4 / 38,4 / 49,0 / 77,9 млрд ₽</td><td class="num">минимум в среду, максимум в пятницу</td></tr>
+        <tr><td class="instr">USD/RUB (ЦБ)</td><td class="num">85,9541</td><td class="num">86,8872</td><td class="num down">+1,09% (рубль слабее)</td></tr>
+        <tr><td class="instr">Brent</td><td class="num">90,04 $</td><td class="num">95,07 $</td><td class="num up">+5,6% (официально зафиксированные значения радаров)</td></tr>
+        <tr><td class="instr">Золото, ₽/г</td><td class="num">12 521</td><td class="num">12 346</td><td class="num down">−1,4%</td></tr>
+      </tbody>
+    </table></div>
+    <p class="est-note">Максимум периода — 2 253,41 (закрытие пятницы), минимум — 2 178,87 (закрытие понедельника). Неделя прошла без единого дня снижения индекса более чем на 0,7% — самая ровная восходящая неделя за период нашего покрытия.</p>
+
+    <h3>Курс, ставка, инфляция, сырьё</h3>
+    <p>Ключевая ставка ЦБ весь период без изменений (14,00%) — ближайшее заседание перенесено не было и состоится в эту пятницу, 11.09.2026. Недельная инфляция (Росстат, период 25–31.08, опубликовано 02.09, среди недели) — дефляция 0,01%, годовая ускорилась с 6,23% до 6,32%. RUONIA стабильна в узком коридоре 13,84–13,96% всю неделю. С 07.09 стартовал новый месячный период операций Минфина — покупки валюты и золота сокращены вдвое (2,5 млрд ₽/день против 6,5 млрд ₽/день в прошлом периоде), что может поддержать рубль.</p>
+
+    <h3>Портфели за период</h3>
+    <p><strong>Модельный портфель:</strong> 1 010 672,99 ₽ (TWR +0,62%) → 1 028 720,60 ₽ (TWR +2,168%) — рост TWR на 1,55 п.п. за неделю, взнос 2 500 ₽ в PLZL (самая недовешенная позиция). LKOH стал лидером доходности портфеля, впервые пробив 5 000 ₽/акцию.</p>
+    <p><strong>Контрольный портфель:</strong> 10 014,79 ₽ (TWR +0,35%) → 14 819,41 ₽ (TWR −1,61%) — первая просадка TWR за время наблюдений, на 1,96 п.п. хуже начала недели. Причина — не рыночное событие само по себе, а прямое следствие первого полного применения алгоритма §11.2 в пятницу: концентрация PLZL (была 42,4% портфеля) устранена продажей 3 из 4 лотов, и портфель впервые получил полноценную экспозицию на позицию, которая на этой же неделе потеряла в цене (PLZL −1,23% в пятницу, −1,67% сегодня) — именно тот риск, ради устранения которого алгоритм и был введён, просто он материализовался почти сразу после первого применения. В тот же день обнаружена и исправлена ошибка лота по SNGSP/GMKN/MOEX (лот 10, не 1 — см. `data_schemas.md` §1а).</p>
+
+    <h3>Watchlist за период</h3>
+    <p>HYDR — outcome подтверждён `hit_entry` (01.09), цена прошла зону добора 0,30–0,34 ₽. BSPB кратковременно вышла из зоны добора и вернулась обратно (эпизод 01–02.09, не изменил статус `hit_entry` от 22.08). Новых тикеров за неделю не добавлено. Независимое подтверждение обоснованности решения `reject_final` по МГКЛ от 30.08 — фактчек мнения Чеберяченко (03.09) вскрыл конкретную сделку со связанной стороной на 940,8 млн ₽, после которой бумаги МГКЛ обвалились до 61–77% номинала.</p>
+
+    <h3>Что подтвердилось / не подтвердилось из прогнозов недели</h3>
+    <p>Устойчивая закономерность всей недели: <strong>негативный сценарий (в среднем ~28% вероятности по дням) не сбылся ни разу</strong> — рынок ни разу не откатывался в предсказанный нижний диапазон, несмотря на то что «узкая ширина рынка» как повод для коррекции упоминалась в обосновании негативного сценария почти каждый день. Базовый и позитивный сценарии вместе почти всегда покрывали фактический исход, при этом точный триггер угадывался реже, чем диапазон (см. также сверку за пятницу ниже) — рынок торговал общим направлением риск-он на нефти, а не деталями конкретных новостей. Это кандидат на пункт калибровки по методологии §8: возможное системное завышение вероятности негативного сценария в текущем режиме рынка.</p>
+
+    <h3>Открытые вопросы на начало недели 37</h3>
+    <ul>
+      <li>Продолжит ли эскалация США–Иран толкать Brent выше, или возможна резкая деэскалация (снимет поддержку нефти и, вероятно, индекса)?</li>
+      <li>Устоит ли ширина рынка на текущих узких уровнях (41%) ещё одну неделю, или это ранний сигнал коррекции, которую негативный сценарий предсказывал всю прошлую неделю?</li>
+      <li>Заседание ЦБ 11.09 — рынок в основном закладывает удержание 14%, но допускает снижение на 25 б.п.; решение станет первым существенным событием новой недели.</li>
+      <li>LKOH остаётся структурным барьером контрольного портфеля — при цене вблизи 5 000 ₽/акцию порог продолжает расти вместе с ценой.</li>
+      <li>Риски PLZL из фактчека мнения Козлова (заморозка дивидендов до 2030, рост TCC, качество раскрытия отчётности) — новый аргумент к пересмотру портфеля, ещё не рассмотренный на плановой ребалансировке.</li>
+    </ul>
+  </section>
+
+  <!-- БЛОК 7 -->
+  <section>
+    <h2>Три сценария на вторник, 8 сентября</h2>
+    <div class="sub">Вероятностные суждения, не прогноз<span class="tag est">оценка</span></div>
+    <div class="cards">
+      <div class="scen base"><div class="h"><div class="name">Базовый</div><div class="p">50%</div></div>
+        <dl><dt>Триггер</dt><dd>Конфликт США–Иран продолжается на текущем уровне интенсивности без резкого расширения, Brent консолидируется у 95–100</dd>
+        <dt>Что происходит</dt><dd>Боковик, ширина рынка стабилизируется около текущих 40–50%, движение по-прежнему сосредоточено в нефтегазе</dd>
+        <dt>Диапазон IMOEX</dt><dd>2 230–2 270</dd></dl></div>
+      <div class="scen pos"><div class="h"><div class="name">Позитивный</div><div class="p">20%</div></div>
+        <dl><dt>Триггер</dt><dd>Сигнал деэскалации США–Иран (пауза в ударах, дипломатическое заявление) или новая конкретика по Украине</dd>
+        <dt>Что происходит</dt><dd>Восстановление ширины рынка, рост распространяется за пределы нефтегаза</dd>
+        <dt>Диапазон IMOEX</dt><dd>2 270–2 310</dd></dl></div>
+      <div class="scen neg"><div class="h"><div class="name">Негативный</div><div class="p">30%</div></div>
+        <dl><dt>Триггер</dt><dd>Дальнейшая эскалация в Ормузе (риск перебоев с судоходством) вызывает risk-off по широкому рынку несмотря на дорогую нефть, либо продолжается фиксация прибыли на узкой ширине</dd>
+        <dt>Что происходит</dt><dd>Коррекция, особенно вне нефтегаза; ширина рынка продолжает сужаться</dd>
+        <dt>Диапазон IMOEX</dt><dd>2 190–2 230</dd></dl></div>
+    </div>
+    <p class="est-note">Негативный сценарий держится повышенным (30%) четвёртый день подряд — узкая и продолжающая сужаться ширина рынка (41% сегодня) остаётся тем же поводом для осторожности, хотя пока ни разу не реализовалась за последнюю неделю (см. обзор недели выше).</p>
+  </section>
+
+  <!-- Проверка сценариев 04.09 -->
+  <section>
+    <h2>Что подтвердилось из прошлого раза</h2>
+    <div class="sub">Радар от 04.09 (сценарии были даны на сегодня, понедельник) — честная сверка</div>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Суждение от 04.09</th><th>Факт на сегодня</th><th>Итог</th></tr></thead>
+      <tbody>
+        <tr><td>Базовый сценарий 50%: Brent 93–97 без новой эскалации, IMOEX 2 210–2 260</td><td class="num">IMOEX 2 253,41 — внутри диапазона. Но Brent 97,54 $ — чуть выше заявленной верхней границы, и эскалация США–Иран как раз произошла (танкер потоплен, КСИР ответил ударом) — триггер не подтвердился при том, что ценовой диапазон угадан</td><td class="est-note"><strong>диапазон совпал, механизм — нет</strong></td></tr>
+        <tr><td>Позитивный сценарий 20%: деэскалация США–Иран или прогресс по Украине, диапазон 2 260–2 300</td><td>Деэскалации не было — произошло обратное. IMOEX не дошёл до диапазона (2 253,41 против 2 260 снизу)</td><td class="down">не сбылся</td></tr>
+        <tr><td>Негативный сценарий 30%: фиксация прибыли на узкой ширине, разворот Brent или новая атака на инфраструктуру РФ, диапазон 2 160–2 210</td><td>IMOEX не откатился в диапазон, Brent не развернулся. Но узкая ширина рынка как факт подтвердилась и усугубилась (41% против 54% в пятницу) — качественная часть тезиса сбылась, ценовое следствие — нет</td><td class="est-note"><strong>частично, без ценового следствия</strong></td></tr>
+      </tbody>
+    </table></div>
+    <p class="est-note">Пример того, почему в этом журнале разделяются факт и оценка: ценовой диапазон базового сценария угадан, но по причине, прямо противоположной заявленному триггеру («без новой эскалации») — на самом деле эскалация произошла, а рынок её просто не отыграл пропорционально. Отдельный кандидат на калибровку §8: индекс всё чаще расходится с направлением Brent, что стоит проверить на устойчивость в последующих сверках.</p>
+  </section>
+
+  <!-- БЛОК 8 -->
+  <section>
+    <h2>Итог и главный риск</h2>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Инструмент</th><th>Ключевой уровень</th><th>Что подтверждает</th><th>Что отменяет</th></tr></thead>
+      <tbody>
+        <tr><td class="instr">Индекс МосБиржи<span class="code">IMOEX · 2 253,41</span></td><td class="num">2 230 снизу / 2 270 сверху</td><td>Устойчивость Brent на фоне Ормузского конфликта, отсутствие новых атак на инфраструктуру РФ</td><td>Расширение конфликта США–Иран до risk-off по всему рынку, разворот Brent, заседание ЦБ 11.09</td></tr>
+        <tr><td class="instr">Ширина рынка<span class="code">41%</span></td><td class="num">возврат выше 50% — сигнал стабилизации</td><td>Распространение роста за пределы нефтегаза</td><td>Дальнейшее сужение — риск технической коррекции, о котором предупреждал негативный сценарий всю неделю</td></tr>
+      </tbody>
+    </table></div>
+    <p><strong>Главный риск — расхождение индекса и ширины рынка на фоне геополитики, которую рынок больше не отыгрывает напрямую.</strong> Нефть продолжает расти на реальной военной эскалации в Ормузском проливе, но IMOEX эту эскалацию скорее игнорирует, чем реагирует — верный признак того, что позитив от нефти уже полностью заложен в цену, а более широкий рынок сейчас живёт своей повесткой (фиксация прибыли, ожидание заседания ЦБ 11.09).</p>
+    <p><strong>Флаг внепланового пересмотра портфеля: нет.</strong> IMOEX −0,07% в день (порог 3%), +3,42% к значению неделю назад (порог 7%), ОФЗ 10 лет −4 б.п. за день (порог 100 б.п./нед.), USD/RUB −0,35% (порог 4%), ключевая ставка без изменений, оценка влияния события 54 (порог флага — 80). Сегодня не пятница — плановой ребалансировки портфелей нет.</p>
+  </section>
+
+  <div class="disclaimer">
+    Источники: MOEX ISS (котировки, обороты, кривая ОФЗ, отраслевые индексы, фьючерс на Brent BRV6, спот
+    золота/серебра GLDRUB_TOM/SLVRUB_TOM — в моменте на 07.09.2026, 14:42 мск, сессия не закрыта), ЦБ РФ
+    (официальный курс на 07.09, RUONIA с лагом 1 рабочий день), Росстат (недельная инфляция за 25–31.08,
+    опубликовано 02.09 — свежее недельное значение за 01–07.09 выйдет в среду), открытые публикации деловых
+    СМИ (Reuters, Интерфакс, Moscow Times, Ведомости, EADaily — конфликт США–Иран в Ормузском проливе).
+    Часть цифр дня — снимок момента и может измениться к закрытию сессии (эвристика §24 в methodology.md).
+    Уровни из идей аналитиков — суждения их авторов. Материал носит аналитический характер и не является
+    индивидуальной инвестиционной рекомендацией. Оценки, вероятности и сценарии помечены как оценка и не
+    являются прогнозом.
+  </div>
+</div>
+</body>
+</html>
