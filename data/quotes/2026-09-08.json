@@ -1,0 +1,16 @@
+{
+ "date": "2026-09-08",
+ "fetched_at": "2026-09-08T11:04:38",
+ "source": "MOEX ISS + CBR",
+ "boards": {
+  "shares": {},
+  "bonds": {},
+  "index": {}
+ },
+ "cbr": {
+  "USD": 86.1909,
+  "EUR": 100.1711,
+  "CNY": 12.8537
+ },
+ "errors": []
+}
