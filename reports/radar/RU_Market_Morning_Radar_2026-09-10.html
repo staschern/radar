@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Утренний радар — 10.09.2026</title>
+<style>
+  :root{
+    --bg:#0a0e16; --card:#131a26; --card-2:#0f1520; --line:#232d3d;
+    --text:#e8edf5; --muted:#8a97ab; --dim:#5d6879;
+    --gold:#e0a95c; --blue:#5b9bf5; --up:#5bd88a; --down:#e08a8a;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:"Inter","Helvetica Neue",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1040px; margin:0 auto; padding:28px 20px 64px}
+
+  .hero{border:1px solid var(--line); border-radius:14px; background:
+    linear-gradient(160deg,#141c2b 0%,var(--card) 60%); padding:30px 28px; margin-bottom:22px}
+  .eyebrow{color:var(--gold); font-size:12px; letter-spacing:.16em; text-transform:uppercase; font-weight:600}
+  h1{margin:10px 0 6px; font-size:clamp(28px,5vw,44px); line-height:1.1; font-weight:800; letter-spacing:-.02em}
+  .hero .date{color:var(--muted); font-size:14px}
+  .trigger{margin-top:16px; padding:14px 16px; border-left:3px solid var(--gold);
+    background:rgba(224,169,92,.07); border-radius:0 10px 10px 0; font-size:16px}
+
+  .pulse{display:grid; grid-template-columns:repeat(auto-fit,minmax(148px,1fr)); gap:12px; margin-top:20px}
+  .metric{background:var(--card-2); border:1px solid var(--line); border-radius:12px; padding:14px 16px}
+  .metric .k{color:var(--muted); font-size:11px; letter-spacing:.1em; text-transform:uppercase}
+  .metric .v{font-size:24px; font-weight:700; margin-top:6px; letter-spacing:-.02em}
+  .metric .d{font-size:13px; margin-top:2px; font-weight:600}
+  .up{color:var(--up)} .down{color:var(--down)} .flat{color:var(--muted)}
+  .metric.accent .v{color:var(--gold)}
+  .metric.fx .v{color:var(--blue)}
+  .nodata{color:var(--dim); font-style:italic; font-weight:400}
+
+  section{background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:24px 26px; margin-bottom:18px}
+  h2{margin:0 0 4px; font-size:20px; font-weight:700; color:var(--gold); letter-spacing:-.01em}
+  .sub{color:var(--muted); font-size:13px; margin-bottom:18px}
+  h3{margin:22px 0 8px; font-size:15px; font-weight:700}
+
+  .cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px}
+  .fact{background:var(--card-2); border:1px solid var(--line); border-radius:12px; padding:16px 18px}
+  .fact .n{color:var(--gold); font-size:12px; font-weight:700; letter-spacing:.1em}
+  .fact p{margin:8px 0 0; font-size:14px}
+
+  .tag{display:inline-block; font-size:10px; letter-spacing:.1em; text-transform:uppercase;
+    padding:3px 8px; border-radius:999px; font-weight:700; vertical-align:middle}
+  .tag.fact{background:rgba(91,155,245,.14); color:var(--blue); border:1px solid rgba(91,155,245,.3)}
+  .tag.est{background:rgba(224,169,92,.12); color:var(--gold); border:1px solid rgba(224,169,92,.3)}
+  .tag.warn{background:rgba(224,138,138,.14); color:var(--down); border:1px solid rgba(224,138,138,.3)}
+  .est-note{color:var(--dim); font-size:12px; font-style:italic}
+
+  .score{display:flex; align-items:center; gap:14px; margin:14px 0}
+  .score .bar{flex:1; height:8px; background:#1b2433; border-radius:999px; overflow:hidden}
+  .score .fill{height:100%; background:linear-gradient(90deg,var(--gold),var(--down)); border-radius:999px}
+  .score .num{font-size:26px; font-weight:800; color:var(--gold); min-width:76px; text-align:right}
+
+  .tablewrap{overflow-x:auto; -webkit-overflow-scrolling:touch; margin-top:12px}
+  table{width:100%; border-collapse:collapse; font-size:14px; min-width:560px}
+  th{text-align:left; color:var(--muted); font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+    font-weight:600; padding:0 12px 10px 0; border-bottom:1px solid var(--line); white-space:nowrap}
+  td{padding:11px 12px 11px 0; border-bottom:1px solid rgba(35,45,61,.55); vertical-align:top}
+  tbody tr:last-child td{border-bottom:none}
+  .ticker{font-weight:700; letter-spacing:.02em}
+  .instr{font-weight:700; letter-spacing:.02em; line-height:1.35}
+  .instr .code{display:block; font-weight:400; font-size:11px; color:var(--dim);
+    letter-spacing:.04em; margin-top:2px; font-variant-numeric:tabular-nums}
+  td .instr{white-space:normal}
+  .num{font-variant-numeric:tabular-nums}
+
+  .scen{border:1px solid var(--line); border-radius:12px; padding:16px 18px; background:var(--card-2)}
+  .scen .h{display:flex; justify-content:space-between; align-items:baseline; gap:10px}
+  .scen .name{font-weight:700}
+  .scen .p{font-size:20px; font-weight:800; color:var(--gold); font-variant-numeric:tabular-nums}
+  .scen.base{border-left:3px solid var(--gold)}
+  .scen.pos{border-left:3px solid var(--up)}
+  .scen.neg{border-left:3px solid var(--down)}
+  .scen dl{margin:10px 0 0; font-size:13px}
+  .scen dt{color:var(--muted); font-size:11px; letter-spacing:.08em; text-transform:uppercase; margin-top:8px}
+  .scen dd{margin:2px 0 0}
+
+  .chain{display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:14px}
+  .chain .node{background:var(--card-2); border:1px solid var(--line); border-radius:10px;
+    padding:10px 14px; font-size:13px; font-weight:600}
+  .chain .arrow{color:var(--gold); font-size:18px; line-height:1}
+
+  .empty{border:1px dashed var(--line); border-radius:12px; padding:20px;
+    color:var(--muted); font-size:14px; text-align:center; background:rgba(35,45,61,.16)}
+  .empty.warn{border-color:rgba(224,138,138,.4)}
+
+  .foot{display:flex; justify-content:space-between; gap:14px; margin-top:20px; padding-top:14px;
+    border-top:1px solid var(--line); color:var(--dim); font-size:11px}
+  .disclaimer{margin-top:26px; padding:16px 18px; border:1px solid var(--line); border-radius:12px;
+    background:var(--card-2); color:var(--muted); font-size:12px; line-height:1.6}
+
+  @media print{
+    body{background:var(--bg)}
+    .wrap{max-width:none; padding:0}
+    section,.hero,.fact,.scen,.metric{break-inside:avoid; page-break-inside:avoid}
+    h2{break-after:avoid}
+  }
+  @media (max-width:560px){
+    section{padding:18px 16px} .wrap{padding:16px 12px 40px} .hero{padding:22px 18px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ═══ БЛОК 1. Титул + рыночный пульс ═══════════════════ -->
+  <header class="hero">
+    <div class="eyebrow">Утренний радар · Российский рынок</div>
+    <h1>MOEX недоступен: усечённый выпуск на фоне эскалации вокруг нефти</h1>
+    <div class="date">10.09.2026 (четверг) · подготовлено 14:49 мск</div>
+    <div class="trigger"><strong>Триггер дня.</strong> MOEX ISS и сам moex.com недоступны весь день на
+      момент подготовки отчёта (реальный сетевой сбой, не блокировка доступа — cbr.ru и веб-поиск работали
+      нормально) — рыночная панель по РФ сегодня неполная, честно помечено «нет данных» везде, где это так.
+      В мире: Иран заявил о готовности к «более интенсивному конфликту», НПЗ Джизан повторно атакован
+      хуситами 08.09 и остаётся отключён, трафик через Ормузский пролив рухнул до ~2 млн барр/сутки против
+      обычных 8-9 млн — Brent устойчиво выше 101$.</div>
+    <div class="pulse">
+      <div class="metric"><div class="k">IMOEX</div><div class="v nodata">нет данных</div>
+        <div class="d flat">MOEX ISS недоступен</div></div>
+      <div class="metric fx"><div class="k">USD/RUB · ЦБ</div><div class="v num">85,4594</div>
+        <div class="d up">−1,17%</div></div>
+      <div class="metric fx"><div class="k">CNY/RUB · ЦБ</div><div class="v num">12,7373</div>
+        <div class="d flat">—</div></div>
+      <div class="metric accent"><div class="k">Ключевая ставка</div><div class="v num">14,0%</div>
+        <div class="d flat">Заседание завтра, 11.09 — консенсус: без изменений</div></div>
+    </div>
+  </header>
+
+  <!-- ═══ БЛОК 2. Три главных факта дня ═══════════════════ -->
+  <section>
+    <h2>Три главных факта дня</h2>
+    <div class="cards">
+      <div class="fact"><div class="n">01</div><p><span class="tag warn">сбой данных</span> MOEX ISS и сайт
+        moex.com полностью недоступны с ~14:26 мск — подтверждено 4 независимыми способами (curl, python,
+        скрипт проекта, ~23-минутный retry-цикл), устойчивый сбой, не разовый сброс соединения. cbr.ru и
+        веб-поиск работали нормально в это же время — проблема специфична для домена MOEX, не сети/прокси
+        окружения.</p></div>
+      <div class="fact"><div class="n">02</div><p><span class="tag fact">факт</span> НПЗ Джизан в Саудовской
+        Аравии (400 тыс. барр/сутки, отключён с конца июля) повторно атакован хуситами 08.09.2026 —
+        подтверждено CNN, Al Jazeera, NPR, Euronews; 73 пострадавших по королевству, ущерб оценивается.</p></div>
+      <div class="fact"><div class="n">03</div><p><span class="tag fact">факт</span> Трафик через Ормузский
+        пролив упал до ~2 млн барр/сутки против обычных 8-9 млн (данные Kpler); Иран заявляет о готовности
+        к «более интенсивному конфликту»; Brent устойчиво выше 101$.</p></div>
+    </div>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 2</span></div>
+  </section>
+
+  <!-- ═══ БЛОК 3. Рыночная панель ══════════════════════════ -->
+  <section>
+    <h2>Рыночная панель</h2>
+    <div class="sub">Данные на 10.09.2026, 14:49 мск. Источники: cbr.ru (курсы — работает), веб-поиск
+      (сырьё, глобальный макро-блок). MOEX ISS — <span class="nodata">недоступен</span>, см. блок 1.</div>
+    <div class="empty warn">
+      RGBI, доходности ОФЗ, официальное золото ₽/грамм (GLDRUB_TOM) — <strong>нет данных</strong>, источник
+      (MOEX ISS) недоступен на момент подготовки. Не подставлены вчерашние значения — см.
+      methodology.md §7.
+    </div>
+    <div class="pulse" style="margin-top:14px">
+      <div class="metric"><div class="k">Brent <span class="tag est">оценка</span></div><div class="v num">~101,5</div>
+        <div class="d up">выше 101$ второй день, рост от ~99$ (08-09.09)</div></div>
+      <div class="metric accent"><div class="k">Золото, $/унц.</div><div class="v num">4405,88</div>
+        <div class="d flat">10.09, глобальный макро-блок</div></div>
+      <div class="metric"><div class="k">RUONIA</div><div class="v num">13,95%</div><div class="d flat">на 09.09, опубликовано 10.09 (лаг 1 день)</div></div>
+    </div>
+
+    <h3>Движения дня</h3>
+    <div class="empty warn">Нет данных — MOEX ISS недоступен, ширину рынка и топ-движения посчитать не из чего.</div>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 3</span></div>
+  </section>
+
+  <!-- ═══ БЛОК 4. Ключевое событие/риск дня ════════════════ -->
+  <section>
+    <h2>Ключевое событие дня</h2>
+    <div class="sub">Эскалация Йемен-Саудовская Аравия + США-Иран продолжается, урон растёт</div>
+
+    <h3><span class="tag fact">факт</span> Что известно</h3>
+    <p>08.09.2026 хуситы повторно атаковали НПЗ Джизан (мощность 400 тыс. барр/сутки, отключён ещё с конца
+      июля после предыдущих ударов) — подтверждено множеством крупных источников (CNN, Al Jazeera, NPR,
+      Euronews, Daily Sabah). По всему королевству пострадало 73 человека (включая женщин и детей), пожары
+      на энергообъектах. Трафик через Ормузский пролив рухнул до ~2 млн барр/сутки против обычных 8-9 млн
+      (данные Kpler) — Иран называет пролив «закрытым, кроме согласованных судов», предупреждает об
+      угрозе прочим. 09.09.2026 (Bloomberg) Иран заявил, что готов к «более интенсивному конфликту»; Brent
+      settled выше 101$ впервые с июля. 10.09.2026 — эскалация продолжается без признаков паузы (Khaosod:
+      «Iran and US trade strikes on vessels in Hormuz» — заголовок на сегодня).</p>
+
+    <h3><span class="tag est">оценка</span> Что ещё не факт</h3>
+    <p>Точный масштаб повреждений НПЗ Джизан после повторного удара 08.09 всё ещё оценивается (InvestingLive,
+      TBS News — «damage still being assessed» на 09-10.09). Сигналов деэскалации не найдено ни с одной из
+      сторон. Реакция самого российского рынка на сегодня неизвестна — MOEX ISS недоступен, поэтому оценить,
+      как именно нефтегазовый сектор РФ реагирует на Brent >101$, сегодня нельзя напрямую.</p>
+
+    <h3>Рыночный механизм</h3>
+    <p>Механизм тот же, что и вчера, но усилившийся: реальный физический урон экспортной инфраструктуре
+      Саудовской Аравии (не только риторика сторон, как накануне) толкает Brent выше — потенциально
+      позитивно для нефтегазовых экспортёров РФ (LKOH, ROSN, SNGSP), но напрямую проверить реакцию портфеля
+      сегодня не удаётся из-за сбоя MOEX ISS.</p>
+
+    <h3>Чувствительные бумаги <span class="tag est">оценка</span></h3>
+    <p>Нефтегазовые экспортёры портфеля (LKOH, ROSN, SNGSP) — потенциальные бенефициары продолжающегося
+      роста Brent; проверить фактическую реакцию цен можно будет только при восстановлении доступа к MOEX ISS.</p>
+
+    <div class="score">
+      <div class="num">55</div>
+      <div class="bar"><div class="fill" style="width:55%"></div></div>
+    </div>
+    <p class="est-note">Оценка влияния 0–100 — аналитическая эвристика (охват / необратимость /
+      неожиданность / скорость), см. docs/knowledge/methodology.md §3. Выше вчерашних 48 (после исправления)
+      — сегодня подтверждён повторный физический урон энергоинфраструктуре (не только спорные заявления
+      сторон, как вчера). Не факт и не прогноз.</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 4</span></div>
+  </section>
+
+  <!-- ═══ БЛОК 5. Валюта/ликвидность ═══════════════════════ -->
+  <section>
+    <h2>Валюта и ликвидность</h2>
+    <div class="sub">Официальный курс ЦБ на 10.09.2026 — единственный доступный сегодня валютный источник</div>
+    <div class="pulse">
+      <div class="metric fx"><div class="k">USD/RUB · ЦБ</div><div class="v num">85,4594</div><div class="d up">−1,17% к вчерашнему официальному (86,4730)</div></div>
+      <div class="metric fx"><div class="k">CNY/RUB · ЦБ</div><div class="v num">12,7373</div><div class="d up">−1,14% к вчерашнему (12,8842)</div></div>
+      <div class="metric fx"><div class="k">EUR/RUB · ЦБ</div><div class="v num">99,2525</div><div class="d flat">для контекста</div></div>
+      <div class="metric"><div class="k">USD/RUB · биржа (живой)</div><div class="v nodata">нет данных</div><div class="d flat">MOEX ISS недоступен</div></div>
+    </div>
+    <p>Рубль заметно окреп по официальному курсу — оба (USD и CNY) синхронно ослабли на ~1,1-1,2%. Причина
+      не устанавливалась отдельно в этом выпуске (налоговый период, экспортная выручка на фоне роста Brent —
+      правдоподобные кандидаты, но не проверено). Операции ЦБ на валютном рынке и структурный
+      дефицит/профицит ликвидности банков — <span class="nodata">нет данных</span> (не искали отдельно).</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 5</span></div>
+  </section>
+
+  <!-- ═══ БЛОК 6. Инфляция и ставка ════════════════════════ -->
+  <section>
+    <h2>Инфляция и ставка</h2>
+    <div class="pulse">
+      <div class="metric"><div class="k">Недельная ИПЦ</div><div class="v num">+0,05%</div><div class="d down">неделя 01–07.09, ускорение с −0,01%</div></div>
+      <div class="metric"><div class="k">Годовая инфляция</div><div class="v num">6,29%</div><div class="d up">на 07.09 — чуть ниже 6,32% на 31.08</div></div>
+      <div class="metric accent"><div class="k">Ключевая ставка</div><div class="v num">14,0%</div><div class="d flat">заседание завтра, 11.09</div></div>
+      <div class="metric"><div class="k">RUONIA</div><div class="v num">13,95%</div><div class="d flat">на 09.09, опубликовано 10.09</div></div>
+    </div>
+    <p><span class="tag fact">факт</span> Свежий релиз Росстата (01–07.09.2026): недельная инфляция
+      ускорилась до +0,05% (была −0,01% неделей ранее — впервые за две недели рост, а не дефляция), но
+      годовая при этом чуть снизилась (6,29% против 6,32%) — эффект высокой базы того же периода год назад.
+      В структуре — яйца +1,8%, гречка +1,7%, просо +0,8%, сахар +0,6%, соль +0,5%; овощи/фрукты −1,8%,
+      смартфоны +2,4% (Росстат, ProFinance, 09.09.2026).</p>
+    <h3>Интерпретация <span class="tag est">оценка</span></h3>
+    <p>Разнонаправленная картина (ускорение недельной при снижении годовой) — типичный эффект базы, не
+      сигнал сам по себе. Консенсус перед завтрашним заседанием ЦБ устойчив: **18 из 19** опрошенных
+      экономистов (TASS) и AKM ожидают сохранения ставки на 14% — топливный кризис, слабый рубль (до
+      сегодняшнего укрепления) и неопределённость бюджетных параметров называются как причины, ограничивающие
+      пространство для снижения.</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 6</span></div>
+  </section>
+
+  <!-- ═══ БЛОК 7. ОФЗ / кривая доходности ══════════════════ -->
+  <section>
+    <h2>ОФЗ и кривая доходности</h2>
+    <div class="empty warn">
+      RGBI и доходности ОФЗ (1 год / 10 лет) — <strong>нет данных</strong>. Источник (MOEX ISS) недоступен
+      весь день на момент подготовки отчёта. Восстановится в следующем выпуске при нормализации доступа.
+    </div>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 7</span></div>
+  </section>
+
+  <!-- ═══ БЛОК 8. Корпоративные истории ════════════════════ -->
+  <section>
+    <h2>Корпоративные истории</h2>
+    <div class="empty">
+      Отдельного поиска по корпоративным новостям за последние 24 часа в этом усечённом выпуске не
+      проводили — приоритет отдан диагностике сбоя MOEX ISS и покрытию главного мирового события (нефть/
+      Иран). Единственное известное релевантное событие — 09.09.2026 SBER опубликовал РСБУ-результаты за
+      8 месяцев (чистая прибыль +19% г/г до 1 332,7 млрд ₽, уже отмечено в предыдущем выпуске) — без изменений.
+    </div>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 8</span></div>
+  </section>
+
+  <!-- ═══ БЛОК 9. Логика обратной связи ═════════════════════ -->
+  <section>
+    <h2>Логика обратной связи</h2>
+    <div class="sub">Атаки на инфраструктуру → предложение нефти → цена → экспортёры РФ. <span class="tag est">оценка</span></div>
+    <div class="chain">
+      <div class="node">Повторный удар по НПЗ Джизан + коллапс трафика Ормуза</div><div class="arrow">→</div>
+      <div class="node">Реальное, не только риторическое, сокращение предложения нефти</div><div class="arrow">→</div>
+      <div class="node">Brent устойчиво выше 101$</div><div class="arrow">→</div>
+      <div class="node">Потенциальный позитив для LKOH/ROSN/SNGSP — не проверено (MOEX недоступен)</div>
+    </div>
+    <div class="foot"><span>Схема отражает предполагаемый механизм, а не установленную причинность</span><span>Блок 9</span></div>
+  </section>
+
+  <!-- ═══ БЛОК 10. Техническая карта индекса ═══════════════ -->
+  <section>
+    <h2>Техническая карта индекса</h2>
+    <div class="empty warn">
+      Нет данных — MOEX ISS недоступен, ни текущего значения IMOEX, ни ширины рынка на сегодня нет.
+      Последнее известное официальное закрытие — 2274,08 (08.09.2026); уровни поддержки/сопротивления из
+      предыдущего выпуска (зона 2200–2220 / 2290–2310) актуальности не теряют, но не подтверждены сегодняшним
+      снимком.
+    </div>
+    <div class="foot"><span>Уровни — зоны подтверждения, а не команды на сделку</span><span>Блок 10</span></div>
+  </section>
+
+  <!-- ═══ БЛОК 11. Watchlist I — фиксированный список ══════ -->
+  <section>
+    <h2>Watchlist I · Фиксированный список</h2>
+    <div class="sub">Список задаётся пользователем в data/watchlist_config.json.</div>
+    <div class="empty warn">
+      Цены и статусы по всем 11 позициям (ROSN, BSPB, TATN, TATNP, BELU, IRAO, RENI, LSNGP, HYDR, GOLD01,
+      GOLD03) — <strong>нет данных</strong> сегодня. MOEX ISS недоступен, ничего не подставлено из вчерашних
+      значений. Уровни и идеи аналитиков не изменились — см. предыдущий выпуск (09.09.2026) и
+      data/watchlist_config.json.
+    </div>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 11</span></div>
+  </section>
+
+  <!-- ═══ БЛОК 12. Watchlist II — динамический слой ════════ -->
+  <section>
+    <h2>Watchlist II · Импульсные истории</h2>
+    <div class="empty warn">
+      Нет данных — динамический слой строится из топ-движений дня по MOEX, источник недоступен.
+    </div>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 12</span></div>
+  </section>
+
+  <!-- ═══ БЛОК 13. Календарь недели ═════════════════════════ -->
+  <section>
+    <h2>Календарь недели</h2>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Дата</th><th>Событие</th><th>Значимость</th></tr></thead>
+        <tbody>
+          <tr><td class="num">11.09.2026 (завтра, пт)</td>
+            <td>Заседание Банка России по ключевой ставке. Консенсус — сохранение 14% (18 из 19
+              экономистов, TASS/AKM). Совпадает с плановой ребалансировкой обоих портфелей</td>
+            <td>высокая</td></tr>
+          <tr><td class="num">18.09.2026</td>
+            <td>Последний день покупки YDEX для получения дивиденда 110 ₽/акцию (отсечка 21.09)</td>
+            <td>средняя — держим позицию</td></tr>
+          <tr><td class="num">12.10.2026</td>
+            <td>Отсечка дивиденда GMKN (1,85 ₽/акцию)</td>
+            <td>средняя</td></tr>
+          <tr><td class="num">13.10.2026</td>
+            <td>Отсечка дивиденда TATN/TATNP за 1П2026 (32,88 ₽/акцию)</td>
+            <td>средняя — TATNP в watchlist</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 13</span></div>
+  </section>
+
+  <!-- ═══ БЛОК 14. Причинно-следственная схема ══════════════ -->
+  <section>
+    <h2>Причинно-следственная схема</h2>
+    <div class="sub">Другой ракурс — от нефти к рублю и ставке. <span class="tag est">оценка</span></div>
+    <div class="chain">
+      <div class="node">Brent устойчиво выше 101$ на реальном сокращении предложения</div><div class="arrow">→</div>
+      <div class="node">Рубль окреп на 1,17% по офиц. курсу ЦБ (больше экспортной выручки)</div><div class="arrow">→</div>
+      <div class="node">Меньше импортируемой инфляции через курс</div><div class="arrow">→</div>
+      <div class="node">Дополнительный (небольшой) аргумент в пользу удержания ставки завтра, а не ужесточения тона</div>
+    </div>
+    <div class="foot"><span>Схема отражает предполагаемый механизм, а не установленную причинность</span><span>Блок 14</span></div>
+  </section>
+
+  <!-- ═══ БЛОК 15. Три сценария дня ════════════════════════ -->
+  <section>
+    <h2>Три сценария дня</h2>
+    <div class="sub">На 11.09.2026 (день заседания ЦБ). Вероятности в сумме 100%. <span class="tag est">оценка</span>
+      Диапазоны IMOEX не даны — без сегодняшней базовой цены (MOEX ISS недоступен) откалибровать их означало
+      бы гадать.</div>
+    <div class="cards">
+      <div class="scen base">
+        <div class="h"><span class="name">Базовый</span><span class="p">55%</span></div>
+        <dl><dt>Триггер</dt><dd>ЦБ сохраняет ставку 14% (консенсус), рынок фокусируется на решении, а не
+          на новостях об Иране</dd>
+            <dt>Диапазон IMOEX</dt><dd class="num">нет данных</dd></dl>
+      </div>
+      <div class="scen pos">
+        <div class="h"><span class="name">Позитивный</span><span class="p">15%</span></div>
+        <dl><dt>Триггер</dt><dd>Сигнал деэскалации США-Иран или намёк ЦБ на будущее смягчение</dd>
+            <dt>Диапазон IMOEX</dt><dd class="num">нет данных</dd></dl>
+      </div>
+      <div class="scen neg">
+        <div class="h"><span class="name">Негативный</span><span class="p">30%</span></div>
+        <dl><dt>Триггер</dt><dd>Новая эскалация (удар по крупному объекту/танкеру) или неожиданно жёсткий
+          тон ЦБ</dd>
+            <dt>Диапазон IMOEX</dt><dd class="num">нет данных</dd></dl>
+      </div>
+    </div>
+    <h3>Что подтвердилось из вчерашних сценариев (радар 09.09)</h3>
+    <p>Сценарии на IMOEX за 09.09→10.09 сегодня не проверяются — базовой цены нет (MOEX ISS недоступен).
+      По направлению риска: вчерашняя пересмотренная оценка (48/100, после исправления про Aramco) верно
+      указывала на продолжение эскалации — сегодня появилось новое подтверждение (повторный удар по
+      Джизану), риск обоснованно повышен дальше до 55.</p>
+    <div class="foot"><span>Сценарии — вероятностные суждения, не прогноз и не рекомендация</span><span>Блок 15</span></div>
+  </section>
+
+  <!-- ═══ БЛОК 16. Итог ════════════════════════════════════ -->
+  <section>
+    <h2>Итоговый watchlist и главный риск</h2>
+    <div class="empty warn">
+      Сводная таблица уровней — <strong>нет данных</strong> сегодня (MOEX ISS недоступен, актуальные цены
+      получить не из чего). Уровни из предыдущего выпуска (09.09.2026) не изменились.
+    </div>
+    <h3>Главный риск</h3>
+    <p>Два накладывающихся риска: (1) реальная, растущая эскалация вокруг нефти — повторный удар по НПЗ
+      Джизан и коллапс трафика Ормузского пролива — уже не только риторика, как в предыдущие дни; (2)
+      сегодняшний сбой доступа к MOEX ISS — сам по себе не рыночный риск, но означает, что мы не можем
+      проверить, как рынок РФ реагирует на рост Brent выше 101$, до восстановления доступа.</p>
+    <h3>Методология</h3>
+    <p class="est-note">Сегодняшний выпуск — деградированный режим: там, где первичный источник (MOEX ISS)
+      недоступен, поля явно помечены «нет данных», а не заполнены вчерашними значениями (запрещено
+      methodology §7). Полная методология и разбор сбоя — docs/knowledge/data_sources.md (новая строка в
+      разделе известных проблем сбора) и data/radar_history.jsonl (запись 10.09.2026).</p>
+    <div class="foot"><span>Пересмотр портфеля требуется: нет (проверка неполная — см. блок 4/notes)</span><span>Блок 16</span></div>
+  </section>
+
+  <!-- ═══ БЛОК 16а. Глобальный макро-блок ══════════════════ -->
+  <section>
+    <h2>Глобальный макро-блок: госдолг США, доллар, защитные активы</h2>
+    <div class="sub">Второй выпуск блока (ТЗ Радар §4б, v1.6). Дневные поля сегодня доступны (источник —
+      веб-поиск, не MOEX) — этот блок сбоем MOEX ISS не затронут.</div>
+    <div class="pulse">
+      <div class="metric"><div class="k">UST 10 лет</div><div class="v num">4,84%</div><div class="d flat">10.09</div></div>
+      <div class="metric"><div class="k">UST 2 года</div><div class="v num">~4,39%</div><div class="d flat">начало сентября, не идеально свежее</div></div>
+      <div class="metric"><div class="k">DXY</div><div class="v num">98,75</div><div class="d down">−0,05% за день</div></div>
+      <div class="metric accent"><div class="k">Золото, $/унц.</div><div class="v num">4405,88</div><div class="d up">+0,18% за день</div></div>
+      <div class="metric"><div class="k">Биткоин, $</div><div class="v num">~78 000</div><div class="d flat">диапазон источников 77 965–79 488</div></div>
+    </div>
+    <p><span class="tag est">Сверка (правило §4б.5).</span> Golden не показал резкого движения (+0,18% за
+      день, ниже порога 10%/30 дней) — сверка не триггерится. Медленные показатели (обслуживание госдолга
+      США, TIC, баланс ФРС, COFER) не обновлялись с прошлого релиза — без изменений с записи от 09.09.2026,
+      новых официальных публикаций с тех пор не вышло, новая строка в `global_macro_history.jsonl` не
+      создаётся (правило каданса, см. ТЗ §4б).</p>
+    <h3>Watchlist III · Устойчивые к инфляции акции</h3>
+    <div class="empty">Список пуст — без изменений с прошлого выпуска.</div>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 16а</span></div>
+  </section>
+
+  <div class="disclaimer">
+    <strong>Дисклеймер.</strong> Материал носит информационно-аналитический характер и
+    <strong>не является индивидуальной инвестиционной рекомендацией</strong>. Указанные уровни —
+    зоны подтверждения гипотез, а не сигналы к совершению сделок. Факты отделены от оценок и
+    сценариев соответствующими пометками; оценки получены эвристически и могут быть ошибочны.
+    <strong>Этот выпуск неполный</strong> — MOEX ISS был недоступен на момент подготовки, значительная
+    часть рыночной панели по РФ помечена «нет данных» вместо фактических значений. Данные собраны из
+    открытых источников на 10.09.2026, 14:49 мск, и могли измениться к моменту чтения. Автор не несёт
+    ответственности за решения, принятые на основе этого материала.
+  </div>
+
+</div>
+</body>
+</html>

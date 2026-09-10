@@ -1,0 +1,16 @@
+{
+ "date": "2026-09-10",
+ "fetched_at": "2026-09-10T11:44:46",
+ "source": "MOEX ISS + CBR",
+ "boards": {},
+ "cbr": {
+  "USD": 85.4594,
+  "EUR": 99.2525,
+  "CNY": 12.7373
+ },
+ "errors": [
+  "shares: URLError: <urlopen error [Errno 104] Connection reset by peer>",
+  "bonds: URLError: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)>",
+  "index: URLError: <urlopen error [Errno 104] Connection reset by peer>"
+ ]
+}
