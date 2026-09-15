@@ -57,6 +57,23 @@
 
 Методология и источники — [global_macro_reserve_currency.md §2.3, §3, §5](global_macro_reserve_currency.md).
 
+### 1б. Живой биржевой курс vs официальный *(восстановлено 16.09.2026, ТЗ Радар §4в)*
+Официальный курс ЦБ (`usdrub`/`cnyrub` выше) — лаговый фиксинг по вчерашним торгам.
+Живой биржевой курс — котировка MOEX ISS прямо на момент формирования отчёта
+(`USD000UTSTOM`/`CNYRUB_TOM`, борд `CETS`). Разница между ними — сигнал, куда
+подтянется официальный курс завтра (см. §4в TZ_Utrenniy_Radar.md), поэтому
+сохраняется в истории, а не только показывается в отчёте разово.
+
+| Поле | Тип | Описание |
+|---|---|---|
+| `usdrub_live` | number\|null | Живой биржевой курс USD/RUB, MOEX ISS `USD000UTSTOM` |
+| `usdrub_gap_pct` | number\|null | `(usdrub_live − usdrub) / usdrub × 100`, % |
+| `cnyrub_live` | number\|null | Живой биржевой курс CNY/RUB, MOEX ISS `CNYRUB_TOM` |
+| `cnyrub_gap_pct` | number\|null | `(cnyrub_live − cnyrub) / cnyrub × 100`, % |
+
+Нет данных (например, сбой MOEX ISS) → `null`, с явной причиной в `notes` —
+никогда не подставлять официальный курс молча.
+
 ## 2. `data/portfolio_history.jsonl`
 Одна строка = один пересмотр портфеля.
 
