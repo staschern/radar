@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Утренний радар — 28.09.2026</title>
+<style>
+  :root{
+    --bg:#0a0e16; --card:#131a26; --card-2:#0f1520; --line:#232d3d;
+    --text:#e8edf5; --muted:#8a97ab; --dim:#5d6879;
+    --gold:#e0a95c; --blue:#5b9bf5; --up:#5bd88a; --down:#e08a8a;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:"Inter","Helvetica Neue",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1040px; margin:0 auto; padding:28px 20px 64px}
+  .hero{border:1px solid var(--line); border-radius:14px; background:
+    linear-gradient(160deg,#141c2b 0%,var(--card) 60%); padding:30px 28px; margin-bottom:22px}
+  .eyebrow{color:var(--gold); font-size:12px; letter-spacing:.16em; text-transform:uppercase; font-weight:600}
+  h1{margin:10px 0 6px; font-size:clamp(28px,5vw,44px); line-height:1.1; font-weight:800; letter-spacing:-.02em}
+  .hero .date{color:var(--muted); font-size:14px}
+  .trigger{margin-top:16px; padding:14px 16px; border-left:3px solid var(--gold);
+    background:rgba(224,169,92,.07); border-radius:0 10px 10px 0; font-size:16px}
+  .pulse{display:grid; grid-template-columns:repeat(auto-fit,minmax(148px,1fr)); gap:12px; margin-top:20px}
+  .metric{background:var(--card-2); border:1px solid var(--line); border-radius:12px; padding:14px 16px}
+  .metric .k{color:var(--muted); font-size:11px; letter-spacing:.1em; text-transform:uppercase}
+  .metric .v{font-size:24px; font-weight:700; margin-top:6px; letter-spacing:-.02em}
+  .metric .d{font-size:13px; margin-top:2px; font-weight:600}
+  .up{color:var(--up)} .down{color:var(--down)} .flat{color:var(--muted)}
+  .metric.accent .v{color:var(--gold)}
+  .metric.fx .v{color:var(--blue)}
+  .nodata{color:var(--dim); font-style:italic; font-weight:400}
+  section{background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:24px 26px; margin-bottom:18px}
+  h2{margin:0 0 4px; font-size:20px; font-weight:700; color:var(--gold); letter-spacing:-.01em}
+  .sub{color:var(--muted); font-size:13px; margin-bottom:18px}
+  h3{margin:22px 0 8px; font-size:15px; font-weight:700}
+  .cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px}
+  .fact{background:var(--card-2); border:1px solid var(--line); border-radius:12px; padding:16px 18px}
+  .fact .n{color:var(--gold); font-size:12px; font-weight:700; letter-spacing:.1em}
+  .fact p{margin:8px 0 0; font-size:14px}
+  .tag{display:inline-block; font-size:10px; letter-spacing:.1em; text-transform:uppercase;
+    padding:3px 8px; border-radius:999px; font-weight:700; vertical-align:middle}
+  .tag.fact{background:rgba(91,155,245,.14); color:var(--blue); border:1px solid rgba(91,155,245,.3)}
+  .tag.est{background:rgba(224,169,92,.12); color:var(--gold); border:1px solid rgba(224,169,92,.3)}
+  .est-note{color:var(--dim); font-size:12px; font-style:italic}
+  .score{display:flex; align-items:center; gap:14px; margin:14px 0}
+  .score .bar{flex:1; height:8px; background:#1b2433; border-radius:999px; overflow:hidden}
+  .score .fill{height:100%; background:linear-gradient(90deg,var(--gold),var(--down)); border-radius:999px}
+  .score .num{font-size:26px; font-weight:800; color:var(--gold); min-width:76px; text-align:right}
+  .tablewrap{overflow-x:auto; -webkit-overflow-scrolling:touch; margin-top:12px}
+  table{width:100%; border-collapse:collapse; font-size:14px; min-width:560px}
+  th{text-align:left; color:var(--muted); font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+    font-weight:600; padding:0 12px 10px 0; border-bottom:1px solid var(--line); white-space:nowrap}
+  td{padding:11px 12px 11px 0; border-bottom:1px solid rgba(35,45,61,.55); vertical-align:top}
+  tbody tr:last-child td{border-bottom:none}
+  .ticker{font-weight:700; letter-spacing:.02em}
+  .instr{font-weight:700; letter-spacing:.02em; line-height:1.35}
+  .instr .code{display:block; font-weight:400; font-size:11px; color:var(--dim);
+    letter-spacing:.04em; margin-top:2px; font-variant-numeric:tabular-nums}
+  td .instr{white-space:normal}
+  .num{font-variant-numeric:tabular-nums}
+  .scen{border:1px solid var(--line); border-radius:12px; padding:16px 18px; background:var(--card-2)}
+  .scen .h{display:flex; justify-content:space-between; align-items:baseline; gap:10px}
+  .scen .name{font-weight:700}
+  .scen .p{font-size:20px; font-weight:800; color:var(--gold); font-variant-numeric:tabular-nums}
+  .scen.base{border-left:3px solid var(--gold)}
+  .scen.pos{border-left:3px solid var(--up)}
+  .scen.neg{border-left:3px solid var(--down)}
+  .scen dl{margin:10px 0 0; font-size:13px}
+  .scen dt{color:var(--muted); font-size:11px; letter-spacing:.08em; text-transform:uppercase; margin-top:8px}
+  .scen dd{margin:2px 0 0}
+  .chain{display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:14px}
+  .chain .node{background:var(--card-2); border:1px solid var(--line); border-radius:10px;
+    padding:10px 14px; font-size:13px; font-weight:600}
+  .chain .arrow{color:var(--gold); font-size:18px; line-height:1}
+  .empty{border:1px dashed var(--line); border-radius:12px; padding:20px;
+    color:var(--muted); font-size:14px; text-align:center; background:rgba(35,45,61,.16)}
+  .foot{display:flex; justify-content:space-between; gap:14px; margin-top:20px; padding-top:14px;
+    border-top:1px solid var(--line); color:var(--dim); font-size:11px}
+  .disclaimer{margin-top:26px; padding:16px 18px; border:1px solid var(--line); border-radius:12px;
+    background:var(--card-2); color:var(--muted); font-size:12px; line-height:1.6}
+  @media print{
+    body{background:var(--bg)}
+    .wrap{max-width:none; padding:0}
+    section,.hero,.fact,.scen,.metric{break-inside:avoid; page-break-inside:avoid}
+    h2{break-after:avoid}
+  }
+  @media (max-width:560px){
+    section{padding:18px 16px} .wrap{padding:16px 12px 40px} .hero{padding:22px 18px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- БЛОК 1. Титул + рыночный пульс -->
+  <header class="hero">
+    <div class="eyebrow">Утренний радар · Российский рынок</div>
+    <h1>Ормуз давит на золото сильнее, чем на IMOEX</h1>
+    <div class="date">28 сентября 2026, понедельник · подготовлено 14:35 мск</div>
+    <div class="trigger"><strong>Триггер дня.</strong> Трамп подтвердил отказ от иранского плана по разблокировке Ормузского пролива — Brent подскочил на утренних торгах до $106–108/барр. (+≈3%), но золото упало на 2,91% ниже $4200/унц. впервые почти за два месяца, а доходность UST10Y выросла до ≈5,21% — рынок закладывает не «бегство в защитные активы», а рост ожиданий по ставке ФРС. IMOEX сегодня в умеренном минусе (−0,90%), красные все секторальные индексы, хуже всех — металлурги/горнодобытчики (−1,52%) на фоне того, что налог на сверхдоходы для них перестал быть слухом: Минфин назвал конкретные ставки (30% металлургия/удобрения, 20% золотодобыча).</div>
+
+    <div class="pulse">
+      <div class="metric"><div class="k">IMOEX</div><div class="v num">2253,39</div>
+        <div class="d down">−0,90% за день · −0,90% за неделю</div></div>
+      <div class="metric fx"><div class="k">USD/RUB · ЦБ</div><div class="v num">84,3414</div>
+        <div class="d flat">курс на 28.09 (фиксинг 26.09)</div></div>
+      <div class="metric fx"><div class="k">CNY/RUB · ЦБ</div><div class="v num">12,5355</div>
+        <div class="d flat">курс на 28.09 (фиксинг 26.09)</div></div>
+      <div class="metric accent"><div class="k">Ключевая ставка</div><div class="v num">14,0%</div>
+        <div class="d flat">без изменений, след. заседание 23.10.2026</div></div>
+    </div>
+  </header>
+
+  <!-- БЛОК 2. Три главных факта -->
+  <section>
+    <h2>Три главных факта дня</h2>
+    <div class="sub">Проверяемые утверждения с источником. Интерпретация — в блоках ниже.</div>
+    <div class="cards">
+      <div class="fact"><div class="n">01</div><p>Минфин раскрыл конкретные ставки нового «налога на сверхдоход» для рентных отраслей: 30% для цветной металлургии и удобрений, 20% для золотодобычи — от сверхдохода, полученного в 2026 году относительно 2025-го на фоне роста мировых цен; ожидаемые поступления в бюджет ≈230 млрд ₽ в 2027 году (Moscow Times, Фонтанка, smart-lab, 24–25.09.2026).</p></div>
+      <div class="fact"><div class="n">02</div><p>Трамп подтвердил, что отверг переданный через катарских посредников иранский план семидневного восстановления судоходства через Ормузский пролив (снятие морской блокады, разморозка активов, отмена нефтяных санкций в обмен на прекращение огня) — заявление сделано на полях Генассамблеи ООН. Brent на утренних торгах подскочил до $106–108/барр. (+≈3%) (Коммерсантъ, NEWSru.co.il, EADaily, 26–28.09.2026).</p></div>
+      <div class="fact"><div class="n">03</div><p>Золото (COMEX, декабрьский фьючерс) подешевело на 2,91% до $4195,5/унц. — впервые ниже $4200 почти за два месяца; live-котировка золота на MOEX (GLDRUB_TOM) на 14:34 мск — 11 264 ₽/г (−2,69% к закрытию пятницы). 10-летние UST выросли до ≈5,21%, DXY — до 101,11 (Ведомости, finance.mail.ru, tradingeconomics — агрегатор, 28.09.2026).</p></div>
+    </div>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 2</span></div>
+  </section>
+
+  <!-- БЛОК 3. Рыночная панель -->
+  <section>
+    <h2>Рыночная панель</h2>
+    <div class="sub">Данные на 14:35 мск, 28.09.2026 (рынок открыт, внутридневной снимок — методология §24). Источники: MOEX ISS (прямые запросы), ЦБ РФ, веб-поиск (Brent/золото $/CBOM-агрегаторы).</div>
+    <div class="pulse">
+      <div class="metric"><div class="k">RGBI</div><div class="v num">111,79</div><div class="d down">−0,39% (эталон ISS 112,23) / к офиц. закрытию Пт 112,19 — −0,36%</div></div>
+      <div class="metric"><div class="k">ОФЗ 10 лет</div><div class="v num">≈16,61%</div><div class="d flat">+0,02 п.п. за неделю (16,59% Пт)</div></div>
+      <div class="metric"><div class="k">ОФЗ 1 год</div><div class="v num">≈13,29%</div><div class="d down">−0,45 п.п. за неделю (13,74% Пт)</div></div>
+      <div class="metric"><div class="k">Brent</div><div class="v num">≈$106,3</div><div class="d up">+≈3% на открытии; к вечеру сообщалось об откате к $98–99 — разброс контрактов/времени снимка не устранён</div></div>
+      <div class="metric accent"><div class="k">Золото · $/унц.</div><div class="v num">$4195,5</div><div class="d down">−2,91% (COMEX, дек. фьючерс)</div></div>
+      <div class="metric"><div class="k">RUONIA</div><div class="v num">14,17%</div><div class="d flat">данные за 25.09 (публикация с лагом 1 раб. день)</div></div>
+    </div>
+
+    <h3>Движения дня — топ-5 (выборка ~19 ликвидных бумаг индекса, не полный борд 44 — см. notes)</h3>
+    <svg viewBox="0 0 640 200" width="100%" role="img" aria-label="Движения акций за день">
+      <text x="0" y="20" fill="#e8edf5" font-size="13" font-weight="700">MAGN</text>
+      <rect x="90" y="8" width="320" height="16" rx="4" fill="#e08a8a"/>
+      <text x="418" y="20" fill="#8a97ab" font-size="12">−4,26%</text>
+      <text x="0" y="52" fill="#e8edf5" font-size="13" font-weight="700">PLZL</text>
+      <rect x="90" y="40" width="248" height="16" rx="4" fill="#e08a8a"/>
+      <text x="346" y="52" fill="#8a97ab" font-size="12">−3,30%</text>
+      <text x="0" y="84" fill="#e8edf5" font-size="13" font-weight="700">CBOM</text>
+      <rect x="90" y="72" width="240" height="16" rx="4" fill="#e08a8a"/>
+      <text x="338" y="84" fill="#8a97ab" font-size="12">−3,20%</text>
+      <text x="0" y="116" fill="#e8edf5" font-size="13" font-weight="700">CHMF</text>
+      <rect x="90" y="104" width="194" height="16" rx="4" fill="#e08a8a"/>
+      <text x="292" y="116" fill="#8a97ab" font-size="12">−2,59%</text>
+      <text x="0" y="148" fill="#e8edf5" font-size="13" font-weight="700">SVCB</text>
+      <rect x="90" y="136" width="153" height="16" rx="4" fill="#e08a8a"/>
+      <text x="251" y="148" fill="#8a97ab" font-size="12">−2,04%</text>
+      <text x="0" y="180" fill="#e8edf5" font-size="13" font-weight="700">VTBR</text>
+      <rect x="90" y="168" width="138" height="16" rx="4" fill="#5bd88a"/>
+      <text x="236" y="180" fill="#8a97ab" font-size="12">+1,84% (лучший день)</text>
+    </svg>
+
+    <p class="est-note">Δ считается вручную к официальному закрытию пятницы 25.09.2026 (history API), не к встроенному эталону ISS для отдельных бумаг — see методология §1. Роста почти нет: из ~19 отслеженных бумаг индекса только VTBR (+1,84%), SNGSP (+1,48%) и OZON (+0,33%) в плюсе, остальные красные. Ширина рынка на этой выборке ≈15,8% (3 из 19) — оценочно, не по полному борду 44 бумаг (история за сегодняшний ещё не осела до закрытия, см. блок notes).</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 3</span></div>
+  </section>
+
+  <!-- БЛОК 4. Ключевое событие дня -->
+  <section>
+    <h2>Ключевое событие дня</h2>
+    <div class="sub">Ормузский тупик переоценивает нефть вверх, а золото и облигации — вниз</div>
+
+    <h3><span class="tag fact">факт</span> Что известно</h3>
+    <p>Трамп публично подтвердил отказ от иранского плана (переданного через катарских посредников) по семидневному восстановлению судоходства через Ормузский пролив — США снимают блокаду, размораживают активы Ирана, отменяют нефтяные санкции и прекращают боевые действия (включая Ливан) в обмен на это. Заявление сделано на полях Генассамблеи ООН 26.09.2026. На этом фоне Brent на утренних азиатских торгах 28.09 подскочил на ≈2,8–3% (до $106–108/барр. по разным котировкам ICE/декабрьский контракт), WTI — около $94. Одновременно золото (COMEX) упало на 2,91% ниже $4200/унц. впервые почти за два месяца, DXY закрепился выше 101 (101,11, +0,08%), доходность 10-летних UST выросла до ≈5,21% (агрегатор, не прямой Treasury.gov).</p>
+
+    <h3><span class="tag est">оценка</span> Что ещё не факт</h3>
+    <p>Источники расходятся во второй половине дня: часть сообщает об откате Brent к $98–99 (декабрьский контракт) уже к вечеру 28.09 — не устранено, какой именно контракт/момент имеется в виду, разброс требует уточнения в следующем выпуске (аналогично уже известной методологической проблеме MOEX-фьючерс vs агрегированный спот, methodology §12-й выпуск и позже). Не факт: приватные слова Трампа помощникам об ожидании возобновления ударов по Ирану после промежуточных выборов в Конгрессе (ноябрь) — со ссылкой на источники, не официальное заявление.</p>
+
+    <h3>Рыночный механизм</h3>
+    <p>Обычно эскалация ближневосточной напряжённости работает как «нефть вверх + золото вверх» (оба — защитные/геополитические активы). Сегодня же сработал другой канал: рост нефти → опасения по инфляции → рынок закладывает более жёсткую траекторию ставки ФРС → доходности UST растут → доллар (DXY) крепнет → золото как не приносящий процента актив дешевеет, несмотря на геополитику. Российский рынок в этой цепочке зажат между двумя разнонаправленными силами: высокая нефть поддерживает экспортёров (ROSN, LKOH, NVTK практически не изменились или снизились незначительно), но общий risk-off от роста ставок ФРС/DXY и продолжающееся давление налога на сверхдоходы на металлургов/золотодобытчиков (PLZL −3,30%, CHMF −2,59%, MAGN −4,26%) перевешивают.</p>
+
+    <h3>Чувствительные бумаги <span class="tag est">оценка</span></h3>
+    <p>Экспортёры нефти (ROSN, LKOH, NVTK) — потенциальный бенефициар при устойчивом росте Brent, сегодня эффект не виден (боковик/лёгкий минус, возможно эффект ещё не отыгран или нивелирован общим risk-off). Золотодобытчики и золотые инструменты (PLZL, RU000A1062M5/GOLD01, RU000A108RQ7/GOLD03) — под двойным давлением: и налог 20% на сверхдоход, и падение цены золота. Банки/финансовый сектор (SVCB −2,04%, CBOM −3,20%) — чувствительны к росту глобальных ставок через фондирование и переоценку портфелей.</p>
+
+    <div class="score">
+      <div class="num">67</div>
+      <div class="bar"><div class="fill" style="width:67%"></div></div>
+    </div>
+    <p class="est-note">Оценка влияния 0–100 — аналитическая эвристика (охват ~24/35, необратимость ~18/25, неожиданность ~9/20 — продолжение известного с августа противостояния, скорость проявления ~16/20 — эффект уже виден в ценах сегодня), см. docs/knowledge/methodology.md §3. Не факт и не прогноз.</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 4</span></div>
+  </section>
+
+  <!-- БЛОК 5. Валюта/ликвидность -->
+  <section>
+    <h2>Валюта / ликвидность</h2>
+    <div class="sub">Официальный курс ЦБ и живой биржевой курс рядом — см. методология §4в.</div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Валюта</th><th>Официальный курс ЦБ (на 28.09)</th><th>Живой биржевой курс (14:34 мск)</th><th>Разница</th></tr></thead>
+        <tbody>
+          <tr><td class="ticker">USD/RUB</td><td class="num">84,3414 ₽</td><td class="num">85,0275 ₽</td><td class="num down">+0,69 ₽ / +0,81%</td></tr>
+          <tr><td class="ticker">CNY/RUB</td><td class="num">12,5355 ₽</td><td class="num">12,5565 ₽</td><td class="num down">+0,021 ₽ / +0,17%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="est-note">Живой курс выше официального по обеим валютам третью неделю подряд (расширение разрыва отмечалось уже 24.09) — сигнал, что завтрашняя официальная фиксация ЦБ вероятно подтянется вверх, а не самостоятельный рыночный шум.</p>
+
+    <h3>Ликвидность банковского сектора / операции ЦБ</h3>
+    <p><span class="tag est">оценка контекста</span> Структурный дефицит ликвidности банков достиг 2,85 трлн ₽ на 09.09.2026 — рекорд с марта 2022 (публикуется с лагом). 15.09.2026 ЦБ повысил прогноз дефицита на весь 2026 год до 4,0–5,2 трлн ₽ (было 2,4–3,6 трлн), потребность банков в средствах ЦБ к концу года — 8,0–9,2 трлн ₽. Набиуллина 24.09.2026 заявила об отсутствии угрозы устойчивости банков от роста дефицита. Более свежих операций ЦБ на валютном рынке (за период после 09.09) в открытых источниках не найдено — «нет данных» на сегодняшний снимок.</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 5</span></div>
+  </section>
+
+  <!-- БЛОК 6. Инфляция и ставка -->
+  <section>
+    <h2>Инфляция и ставка</h2>
+    <div class="pulse">
+      <div class="metric"><div class="k">Недельная инфляция</div><div class="v num">0,06%</div><div class="d flat">без изменений с 24.09 (данные за 15–21.09, след. релиз — ~30.09)</div></div>
+      <div class="metric"><div class="k">Годовая инфляция</div><div class="v num">6,26%</div><div class="d flat">без изменений с 24.09</div></div>
+      <div class="metric accent"><div class="k">Ключевая ставка</div><div class="v num">14,0%</div><div class="d flat">без изменений, пауза с 11.09</div></div>
+      <div class="metric"><div class="k">RUONIA</div><div class="v num">14,17%</div><div class="d flat">данные за 25.09, лаг 1 раб. день</div></div>
+    </div>
+    <p class="est-note">Следующее заседание Совета директоров Банка России по ключевой ставке — 23.10.2026 (13:30 мск). Недельные данные Росстата традиционно выходят по средам — очередной релиз (неделя 22–28.09) ожидается ~30.09.2026, до сегодняшнего выпуска не вышел.</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 6</span></div>
+  </section>
+
+  <!-- БЛОК 7. ОФЗ/кривая доходности -->
+  <section>
+    <h2>ОФЗ / кривая доходности</h2>
+    <div class="pulse">
+      <div class="metric"><div class="k">RGBI</div><div class="v num">111,79</div><div class="d down">−0,39% день</div></div>
+      <div class="metric"><div class="k">ОФЗ ~1 год</div><div class="v num">13,29%</div><div class="d down">−0,45 п.п. за неделю</div></div>
+      <div class="metric"><div class="k">ОФЗ ~10 лет</div><div class="v num">16,61%</div><div class="d flat">+0,02 п.п. за неделю</div></div>
+    </div>
+    <p class="est-note">1 год — доходность ОФЗ 26232 (погашение 1,02 года от сегодня), сделка по факту торгов; 10 лет — интерполяция между ОФЗ 26250 (10,7 года, 16,62%) и ОФЗ 26253 (12,02 года, 16,63%). Заметное снижение короткого конца кривой за неделю (−45 б.п.) при плоском длинном — рынок закладывает более быстрое смягчение ставки на коротком горизонте, чем неделю назад, не меняя ожиданий по долгосрочной траектории.</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 7</span></div>
+  </section>
+
+  <!-- БЛОК 8. Корпоративные истории -->
+  <section>
+    <h2>Корпоративные истории</h2>
+    <div class="cards">
+      <div class="fact"><div class="n">Налог на сверхдоход</div><p><span class="tag fact">факт</span> Минфин: 30% для цветной металлургии/удобрений, 20% для золотодобычи — от сверхдохода 2026 vs 2025. <span class="tag est">оценка</span> Прямой риск для GMKN, RUAL, PHOR, CHMF (частично) и всей золотодобычи в портфеле/watchlist через Селигдар-облигации (GOLD01/03) — эмитент физически золотодобывающий, попадает под 20%-ю ставку.</p></div>
+      <div class="fact"><div class="n">ИНАРКТИКА (AQUA)</div><p><span class="tag fact">факт</span> Собрание акционеров по дивидендам — 30.09.2026 (уточнено 24.09, ранее ошибочно указывалась дата 23.09). Итоги пока не объявлены.</p></div>
+      <div class="fact"><div class="n">Татнефть — дивиденды</div><p><span class="tag fact">факт</span> Отсечка по обычке и префам — 12.10.2026/13.10.2026 (дивиденд 32,88 ₽/акцию за 1П2026, подтверждено ранее). До отсечки — две недели.</p></div>
+    </div>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 8</span></div>
+  </section>
+
+  <!-- БЛОК 9. Логика обратной связи -->
+  <section>
+    <h2>Логика обратной связи</h2>
+    <div class="sub">Как связаны сегодняшние события. <span class="tag est">оценка</span></div>
+    <div class="chain">
+      <div class="node">Трамп отвергает план Ирана по Ормузу</div><div class="arrow">→</div>
+      <div class="node">Brent +≈3% на открытии</div><div class="arrow">→</div>
+      <div class="node">Рынок закладывает более жёсткую ставку ФРС (UST10Y ≈5,21%, DXY 101,11)</div><div class="arrow">→</div>
+      <div class="node">Золото −2,91% (ниже $4200), давление на RU-экспортёров смешанное</div>
+    </div>
+    <div class="foot"><span>Схема отражает предполагаемый механизм, а не установленную причинность</span><span>Блок 9</span></div>
+  </section>
+
+  <!-- БЛОК 10. Техническая карта индекса -->
+  <section>
+    <h2>Техническая карта индекса</h2>
+    <div class="sub">IMOEX, внутридневной снимок 14:35 мск</div>
+    <div class="pulse">
+      <div class="metric"><div class="k">Текущее значение</div><div class="v num">2253,39</div><div class="d down">−0,90%</div></div>
+      <div class="metric"><div class="k">Закрытие Пт 25.09</div><div class="v num">2273,87</div><div class="d flat">база дня/недели совпадают (см. notes)</div></div>
+      <div class="metric"><div class="k">Диапазон дня</div><div class="v num">2249,98–2284,53</div><div class="d flat">внутридневной хай/лоу</div></div>
+      <div class="metric"><div class="k">Ширина рынка</div><div class="v num">≈15,8%</div><div class="d down">оценка по выборке ~19 бумаг</div></div>
+    </div>
+    <p class="est-note">Уровни поддержки/сопротивления — от экстремумов последних 20/60 торговых дней (methodology §5): ближайшая зона поддержки ≈2220–2250 (минимумы недели 21–25.09), сопротивление ≈2300–2315 (максимумы вторника–четверга той же недели). Подтверждение — закрытие выше/ниже зоны два дня подряд.</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 10</span></div>
+  </section>
+
+  <!-- БЛОК 11. Watchlist I -->
+  <section>
+    <h2>Watchlist I · Фиксированный список</h2>
+    <div class="sub">Список задаётся пользователем в data/watchlist_config.json. Уровни и атрибуция идей — см. столбец «Оценка».</div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Инструмент</th><th>Цена</th><th>Δ день</th><th>Зона поддержки</th><th>Зона сопротивления</th><th>Оценка / атрибуция идеи</th></tr></thead>
+        <tbody>
+          <tr><td class="instr">Novabev (BELU)<span class="code">BELU</span></td><td class="num">249,20 ₽</td><td class="num down">−0,16%</td><td class="num">228 (Fib 23,6%)</td><td class="num">404 (Fib 78,6%)</td><td>Техническая идея — поддержка/цель по Фибоначчи (А. Полярный, получено 21.08.2026). <span class="tag est">оценка</span></td></tr>
+          <tr><td class="instr">Банк Санкт-Петербург (BSPB)<span class="code">BSPB</span></td><td class="num">265,04 ₽</td><td class="num up">+1,36%</td><td>—</td><td class="num">290–310</td><td>Зона добора 245–250 пройдена вниз 22.08 (outcome=hit_entry). Цель 290–310 (А. Полярный, 20.08.2026) на проверке до 20.08.2027. <span class="tag est">оценка</span></td></tr>
+          <tr><td class="instr">РусГидро (HYDR)<span class="code">HYDR</span></td><td class="num">0,3809 ₽</td><td class="num down">−0,68%</td><td class="num">0,30–0,34 (пройдено)</td><td class="num">0,40</td><td>Зона добора пройдена 01.09 (hit_entry). Цель 0,40 (А. Полярный, 28.08.2026, техн.) — осталось ≈5%. <span class="tag est">оценка</span></td></tr>
+          <tr><td class="instr">Интер РАО (IRAO)<span class="code">IRAO</span></td><td class="num">2,344 ₽</td><td class="num down">−1,43%</td><td class="num">2,05–2,27 (пройдено)</td><td class="num">2,75</td><td>Зона добора пройдена 27.08 (hit_entry). Цель 2,75 (А. Полярный, 21.08.2026, техн.) — осталось ≈17%. <span class="tag est">оценка</span></td></tr>
+          <tr><td class="instr">Ленэнерго-п (LSNGP)<span class="code">LSNGP</span></td><td class="num">334,65 ₽</td><td class="num down">−0,10%</td><td class="num">270–280</td><td class="num">400–410</td><td>Кандидат риск-доли §5.2, листинг 3 уровня, чек-лист не пройден (пп.3-4) — не куплена (А. Полярный, 25.08.2026). <span class="tag est">оценка</span></td></tr>
+          <tr><td class="instr">Мать и дитя (MDMG)<span class="code">MDMG</span></td><td class="num">1281,20 ₽</td><td class="num down">−0,58%</td><td class="num">1000 (зона вниз)</td><td>—</td><td>«1000+ ₽» — ориентир на случай коррекции ~20-25% от цены идеи 1300,6 ₽, не цель роста (Ю. Козлов, 18.09.2026). <span class="tag est">оценка</span></td></tr>
+          <tr><td class="instr">Ozon (OZON)<span class="code">OZON</span></td><td class="num">2934,00 ₽</td><td class="num up">+0,33%</td><td>—</td><td class="num">2800 (пройдено) / 3000</td><td>Добор 2710 пройден (hit_entry). Зона 2800 закрыта выше 4 сессии подряд (Вт 22.09 – сегодня) — подтверждено, outcome обновлён в этом выпуске. Цель смены режима 3000 ₽ (А. Полярный, 17.09.2026) — осталось ≈2,2%. <span class="tag est">оценка</span></td></tr>
+          <tr><td class="instr">Ренессанс Страхование (RENI)<span class="code">RENI</span></td><td class="num">66,82 ₽</td><td class="num down">−0,95%</td><td class="num">60 / 60–70 (диапазон)</td><td>—</td><td>Диапазон накопления 60-70 ₽, реальная сделка автора раскрыта (Ю. Козлов, 24.08.2026). <span class="tag est">оценка</span></td></tr>
+          <tr><td class="instr">Роснефть (ROSN)<span class="code">ROSN</span></td><td class="num">359,00 ₽</td><td class="num down">−0,15%</td><td class="num">260–270 (в портфеле)</td><td class="num">350</td><td>Уведомление на покупку 260–270 ₽ (А. Полярный, 18.08.2026), в модельном портфеле. <span class="tag est">оценка</span></td></tr>
+          <tr><td class="instr">Татнефть (TATN)<span class="code">TATN</span></td><td class="num">627,50 ₽</td><td class="num flat">+0,03%</td><td>—</td><td class="num">400+ (ориентир, уже пройден)</td><td>«400+ руб. — хороший ориентир» (Ю. Козлов, 20.08.2026) — цена уже на 49% выше. Отсечка дивиденда 12.10.2026. <span class="tag est">оценка</span></td></tr>
+          <tr><td class="instr">Татнефть-п (TATNP)<span class="code">TATNP</span></td><td class="num">601,00 ₽</td><td class="num up">+0,23%</td><td>—</td><td>—</td><td>Раскрытые сделки автора, тезис на дивдоходность (А. Полярный, 09.09.2026). Отсечка 13.10.2026. <span class="tag est">оценка</span></td></tr>
+          <tr><td class="instr">Селигдар GOLD01<span class="code">RU000A1062M5</span></td><td class="num">87,31%</td><td class="num down">−1,17% (цена) / доходн. 15,96% (+0,95 п.п.)</td><td>—</td><td>—</td><td>Золотая облигация, номинал=1 г золота. Сегодня под двойным давлением: падение $ золота (−2,91%) и новый 20%-й налог на сверхдоход золотодобычи, к которому эмитент прямо относится (Ю. Козлов, 21.08.2026). <span class="tag est">оценка</span></td></tr>
+          <tr><td class="instr">Селигдар GOLD03<span class="code">RU000A108RQ7</span></td><td class="num">91,15%</td><td class="num down">−0,37% (цена) / доходн. 9,24% (+0,15 п.п.)</td><td>—</td><td>—</td><td>Резервный вариант золотой облигации, тот же эмитент/риск (Ю. Козлов, 21.08.2026). <span class="tag est">оценка</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="est-note">Уровни — зоны подтверждения, а не команды на сделку. Δ считается к официальному закрытию пятницы 25.09.2026 (history API), не к встроенному «эталону» ISS для облигаций/акций.</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 11</span></div>
+  </section>
+
+  <!-- БЛОК 12. Watchlist II -->
+  <section>
+    <h2>Watchlist II · Импульсные истории</h2>
+    <div class="sub">Топ-движения дня, не входящие в фиксированный список.</div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Тикер</th><th>Δ день</th><th>Что произошло</th><th>Устойчивость движения</th></tr></thead>
+        <tbody>
+          <tr><td class="ticker">MAGN</td><td class="num down">−4,26%</td><td>ММК — худшая бумага дня среди отслеживаемых, в русле общего провала металлургии/горнодобычи на налоговых новостях.</td><td>Пока разовый провал в русле секторального тренда недели — требует подтверждения на закрытии. <span class="tag est">оценка</span></td></tr>
+          <tr><td class="ticker">PLZL</td><td class="num down">−3,30%</td><td>Полюс — двойной удар: золото $ −2,91% + 20%-й налог на сверхдоход золотодобычи.</td><td>Устойчивое давление, фундаментально обоснованное (не шум). <span class="tag est">оценка</span></td></tr>
+          <tr><td class="ticker">CBOM</td><td class="num down">−3,20%</td><td>МКБ — падает вместе с финсектором на фоне роста глобальных ставок (UST10Y, DXY).</td><td>Требует подтверждения — банковский сектор исторически волатилен внутри дня. <span class="tag est">оценка</span></td></tr>
+          <tr><td class="ticker">VTBR</td><td class="num up">+1,84%</td><td>ВТБ — единственный заметный рост дня среди отслеживаемых бумаг, причина не установлена (нет специфических новостей по эмитенту в открытых источниках на момент снимка).</td><td>Нет данных для оценки устойчивости — «нет данных», причина не выяснена. <span class="tag est">оценка</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 12</span></div>
+  </section>
+
+  <!-- БЛОК 13. Календарь недели -->
+  <section>
+    <h2>Календарь недели</h2>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Дата</th><th>Событие</th></tr></thead>
+        <tbody>
+          <tr><td class="num">30.09.2026 (Ср)</td><td>Собрание акционеров ИНАРКТИКИ (AQUA) по дивидендам; ожидается очередной недельный релиз Росстата по инфляции (неделя 22–28.09)</td></tr>
+          <tr><td class="num">01.10.2026 (Чт)</td><td>Сбор книги заявок по новому выпуску облигаций ЯТЭК 001Р-07 (купон КС+3,5%, рейтинг А-/А) — техническое размещение 06.10.2026, в портфель/watchlist пока не входит (не начал торговаться)</td></tr>
+          <tr><td class="num">12.10.2026 (Пн)</td><td>Отсечка дивиденда Татнефть-об (32,88 ₽/акцию)</td></tr>
+          <tr><td class="num">13.10.2026 (Вт)</td><td>Отсечка дивиденда Татнефть-п (32,88 ₽/акцию)</td></tr>
+          <tr><td class="num">~сер. окт. 2026</td><td>Истечение 30-дневного окна санкционного закона США H.R.5334 (подписан 18-19.09.2026, тарифы до 100% для покупателей нефти/газа РФ) — статус правоприменения пока неизвестен, следить</td></tr>
+          <tr><td class="num">23.10.2026 (Пт)</td><td>Заседание Совета директоров Банка России по ключевой ставке (13:30 мск) + плановая пятничная ребалансировка портфелей</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 13</span></div>
+  </section>
+
+  <!-- БЛОК 14. Причинно-следственная схема -->
+  <section>
+    <h2>Причинно-следственная схема (второй ракурс)</h2>
+    <div class="sub"><span class="tag est">оценка</span></div>
+    <div class="chain">
+      <div class="node">Налог на сверхдоход (30%/20%) назван конкретно</div><div class="arrow">→</div>
+      <div class="node">Металлурги/золотодобыча закладывают снижение будущей прибыли</div><div class="arrow">→</div>
+      <div class="node">MOEXMM −1,52% — худший сектор дня</div><div class="arrow">→</div>
+      <div class="node">IMOEX тянется вниз вопреки росту нефти у экспортёров</div>
+    </div>
+    <div class="foot"><span>Схема отражает предполагаемый механизм, а не установленную причинность</span><span>Блок 14</span></div>
+  </section>
+
+  <!-- БЛОК 15. Три сценария дня -->
+  <section>
+    <h2>Три сценария дня</h2>
+    <div class="sub">Вероятности в сумме 100%. <span class="tag est">оценка</span></div>
+    <div class="cards">
+      <div class="scen base">
+        <div class="h"><span class="name">Базовый</span><span class="p">45%</span></div>
+        <dl><dt>Триггер</dt><dd>Рынок консолидируется в узком диапазоне — высокая нефть удерживает экспортёров от глубокого падения, но risk-off от ФРС/DXY и налоговый навес на металлургов/золото сдерживают отскок</dd>
+            <dt>Диапазон IMOEX</dt><dd class="num">2230–2270</dd></dl>
+      </div>
+      <div class="scen pos">
+        <div class="h"><span class="name">Позитивный</span><span class="p">20%</span></div>
+        <dl><dt>Триггер</dt><dd>Геополитическая напряжённость вокруг Ормуза стихает (например, новые переговорные сигналы) без роста инфляционных ожиданий по ФРС, либо нефть удерживает рост и это перевешивает налоговый фон</dd>
+            <dt>Диапазон IMOEX</dt><dd class="num">выше 2270</dd></dl>
+      </div>
+      <div class="scen neg">
+        <div class="h"><span class="name">Негативный</span><span class="p">35%</span></div>
+        <dl><dt>Триггер</dt><dd>Эскалация вокруг Ормуза продолжается (например, подтверждение планов ударов по Ирану), рост UST-доходностей/DXY усиливается, продажи в металлургах/золотодобыче расширяются на другие сектора</dd>
+            <dt>Диапазон IMOEX</dt><dd class="num">ниже 2230</dd></dl>
+      </div>
+    </div>
+    <h3>Что подтвердилось из пятничных сценариев (25.09.2026)</h3>
+    <p>Пятничный базовый сценарий (2270–2310) — <strong>сбылся, но у самой нижней границы</strong>: официальное закрытие 25.09 составило 2273,87 — на волосок выше нижней границы диапазона, преимущественно из-за продолжившегося давления в металлургах/химии на новостях о налоге. Точность сценария подтверждена, но с оговоркой о том, что реализация пришлась на край, а не на центр диапазона.</p>
+    <div class="foot"><span>Сценарии — вероятностные суждения, не прогноз и не рекомендация</span><span>Блок 15</span></div>
+  </section>
+
+  <!-- ПЕРИОДИЧЕСКИЙ ОБЗОР: неделя 21.09–25.09.2026 (первый радар новой недели, ТЗ §4а) -->
+  <section>
+    <h2>Обзор недели 21.09–25.09.2026</h2>
+    <div class="sub">Первый радар новой календарной недели — обязательный обзор предыдущего периода целиком (ТЗ Радар §4а).</div>
+
+    <h3>Главное, что произошло</h3>
+    <p>Неделя прошла под знаком трёх параллельных сюжетов: (1) вступление в силу санкционного закона США H.R.5334 (подписан 18-19.09, тарифы смягчены в финальной версии до 100% вместо изначально заявленных 500% для покупателей нефти/газа РФ, 30-дневное окно на правоприменение) — понедельник открылся резким падением на этой новости (риск 76/100); (2) встреча Лаврова и Рубио в Нью-Йорке 23.09 на полях Генассамблеи ООН — прошла без прорыва (ограниченное перемирие по зерну/энергетике обсуждалось, но Москва не готова приостанавливать конфликт на время переговоров); (3) необъяснённый в моменте провал металлургов/химии в четверг 24.09 (RUAL −5,87%, GMKN −5,60%), причина которого нашлась только в пятницу — проект налога на сверхдоходы Минфина.</p>
+
+    <h3>Что сильнее всего повлияло на рынок</h3>
+    <p><span class="tag est">оценка</span> Два события боролись за звание главного драйвера недели: подписание санкционного закона в понедельник (мгновенный, но быстро отыгранный шок, −1,20% в день объявления) и раскрытие налога на сверхдоходы в четверг-пятницу (более растянутое, но фундаментальное давление на конкретный сектор — металлурги/золотодобыча, риск-скор 70-72 два дня подряд). По фактическому влиянию на широкий индекс сильнее оказался налоговый сюжет: он не просто временно просел рынок, а переоценил будущую прибыльность целого сектора, что RGBI/ОФЗ не отыграли, а вот сектор MOEXMM — да.</p>
+
+    <h3>Динамика рынка за период</h3>
+    <p>IMOEX: закрытие пятницы 18.09 (база недели) 2278,06 → закрытие пятницы 25.09 2273,87 (−0,18% за неделю, почти без изменений в целом, несмотря на волатильную внутринедельную динамику). Диапазон недели: минимум ≈2250,72 (внутридневной снимок понедельника 21.09) / закрытие понедельника 2257,98, максимум — закрытие четверга 24.09 на 2312,35. Секторально хуже рынка — металлургия/химия (сжатие к концу недели на налоговых новостях), лучше рынка — золото/PLZL (защитный спрос на фоне общей просадки в четверг-пятницу, ещё до того как золото развернулось вниз сегодня).</p>
+
+    <h3>Курс, ставка, инфляция, сырьё за период</h3>
+    <p>USD/RUB (офиц. ЦБ): 84,20 (Пн) → 84,40 (Чт), живой курс стабильно выше официального всю неделю с расширяющимся разрывом (от +0,14% Пн до +1,20% Чт) — сигнал предстоящего подтягивания фиксинга, что отчасти и произошло к сегодняшнему дню. Ключевая ставка без изменений (14,0%, пауза с 11.09). Недельная инфляция ускорилась с 0,02% до 0,06% (релиз среды 23.09). Brent за неделю — от отскока во вторник (+1,4%, ~$101,7) без заседания ЦБ внутри периода.</p>
+
+    <h3>Портфели за период</h3>
+    <p>Плановая пятничная ребалансировка 25.09.2026: общая стоимость модельного портфеля 1 036 339,44 ₽, TWR 2,197% (было 2,116% на предыдущей ребалансировке 18.09 — прирост TWR за неделю +0,081 п.п.), просадка 0%. Главное структурное событие — впервые заполнена доля «замещающих» облигаций (НОВАТЭК1Р3, 8,27% портфеля/85 713,32 ₽), закрывшая ранее пустовавший бакет валютной защиты внутри облигационной части (methodology §5.1). Состав акций не менялся. Гипотеза о замене PLZL→SELG (проверялась 15-16.09, до начала этой недели) остаётся отклонённой, к пересмотру не возвращались.</p>
+
+    <h3>Watchlist за период</h3>
+    <p>OZON (А. Полярный) закрепился выше первой цели-сопротивления 2800 ₽ уже во вторник 22.09 (закрытие 2811) и удерживал уровень все последующие сессии — формально подтверждено (2 закрытия подряд выше) к среде 23.09, что и зафиксировано только сегодняшним выпуском (см. блок 11). HYDR и IRAO продолжали медленно сближаться со своими целями (0,40 и 2,75 соответственно). Новых идей в watchlist на неделе не добавлялось.</p>
+
+    <h3>Что подтвердилось / не подтвердилось за период</h3>
+    <p>Из пяти дневных базовых сценариев недели четыре сбылись (Пн, Вт, Ср, Чт — все попадания в заявленный диапазон, Чт — «приблизительно»), пятничный (25.09) — сбылся у самой нижней границы (см. блок 15 выше). Точность базового сценария за неделю — высокая (5 из 5 с оговоркой по пятнице). Промах недели: причина четвергового провала металлургов/химии не была найдена в день события («на карандаш» от 24.09) — нашлась только на следующий день; RUONIA — расхождение данных источников за 18.09 (14,10% vs 14,22%) осталось неразрешённым.</p>
+
+    <h3>Открытые вопросы на начало новой недели</h3>
+    <p>Статус правоприменения санкционного закона H.R.5334 (30-дневное окно истекает в середине октября) — ключевая дата для проверки. Расхождение цен Brent между MOEX-фьючерсом и агрегированным спотом остаётся неустранённым методологическим вопросом (см. блок 4 выше — тот же паттерн повторился и сегодня). Открытый вопрос о доле «золотой» защиты портфеля теперь пересекается с новым риском — 20%-й налог на сверхдоход самой золотодобычи, затрагивающий и облигации Селигдара напрямую.</p>
+
+    <div class="foot"><span>Обзор построен только на уже накопленных данных проекта (radar_history.jsonl, data/daily/*.md, portfolio_history.jsonl) — методология ТЗ §4а</span><span>Периодический обзор</span></div>
+  </section>
+
+  <!-- БЛОК 16а. Глобальный макро-блок -->
+  <section>
+    <h2>Глобальный макро-блок</h2>
+    <div class="sub">Устойчивость госдолга США, доллар как резервная валюта, защитные активы — ТЗ §4б.</div>
+
+    <h3>Дневные поля (обновляются каждый выпуск)</h3>
+    <div class="pulse">
+      <div class="metric"><div class="k">UST 2 года</div><div class="v num">4,81%</div><div class="d flat">данные за 25.09 (агрегатор), «сегодня» отдельно не подтверждено</div></div>
+      <div class="metric"><div class="k">UST 10 лет</div><div class="v num">≈5,21%</div><div class="d up">+0,05 п.п. к предыдущей сессии (агрегатор tradingeconomics, не Treasury.gov напрямую)</div></div>
+      <div class="metric"><div class="k">DXY</div><div class="v num">101,11</div><div class="d up">+0,08%</div></div>
+      <div class="metric accent"><div class="k">Золото · $/унц.</div><div class="v num">4195,5</div><div class="d down">−2,91%</div></div>
+      <div class="metric"><div class="k">Биткоин · $</div><div class="v num">≈83 200</div><div class="d down">−1,6% за 24ч</div></div>
+    </div>
+    <p class="est-note">Реальная доходность UST10Y (breakeven, FRED T10YIE) — нет данных на сегодня.</p>
+
+    <h3>Сверка защитных активов</h3>
+    <p><span class="tag est">оценка</span> Золото упало на 2,91% за один день — ниже 30-дневного порога-эвристики (>10%/30 дней) для «резкого» движения, поэтому формальной сверки по правилу §4б.5 не требуется. Тем не менее логика важна: сегодняшнее падение золота — это НЕ признак улучшения по п.1-3 ниже (устойчивость долга США), а самостоятельная переоценка на ожиданиях ставки ФРС, вызванных ростом нефти, а не смягчением фискальных/долговых рисков США. Разграничение важно — не путать «золото падает» с «риски по доллару снижаются».</p>
+
+    <h3>Устойчивость госдолга США / роль доллара как резервной валюты</h3>
+    <p>Стоимость обслуживания долга, дефицит бюджета, внешний спрос на UST (TIC), доля USD в резервах (IMF COFER) — <strong>без изменений с 11.09.2026</strong> (последняя зафиксированная позиция — операция buyback Минфина США, см. data/global_macro_history.jsonl). Баланс ФРС — новый официальный релиз H.4.1 вышел 17.09.2026 (данные на неделю до 16.09): активы ≈$6,73 трлн, практически без изменений неделя к неделе (+$6 млрд). Записано отдельной строкой в global_macro_history.jsonl этим выпуском (см. ниже) — уровень, а не размер долга самого по себе, по прямому указанию заказчика не в фокусе.</p>
+
+    <h3>Накопленное обесценивание USD/RUB</h3>
+    <p><span class="tag est">оценка</span> База — 18.08.2026 = 100 (день 0 модельного портфеля). US CPI/RU CPI кумулятивные индексы — без нового месячного релиза с 11.09, не пересчитывались.</p>
+
+    <h3>Рамка длинного макроцикла</h3>
+    <p><span class="tag est">аналитическая гипотеза, не факт</span> 80–120-летний цикл смены резервной валюты сегодня не даёт новых сигналов — используется только как фон для интерпретации пп. выше, отдельного тезиса в этом выпуске нет.</p>
+
+    <h3>Watchlist III · Устойчивые к инфляции акции</h3>
+    <div class="empty">
+      Тематический список пуст (data/watchlist_inflation_hedge.json, версия 1, с 09.09.2026) — кандидатов по критериям global_macro_reserve_currency.md §6 пока не предложено.
+    </div>
+
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 16а</span></div>
+  </section>
+
+  <!-- БЛОК 16. Итог -->
+  <section>
+    <h2>Итоговый watchlist и главный риск</h2>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Инструмент</th><th>Ключевой уровень</th><th>Что подтверждает</th><th>Что отменяет</th></tr></thead>
+        <tbody>
+          <tr><td class="ticker">OZON</td><td class="num">3000 ₽</td><td>Закрытие выше 3000 два дня подряд — смена режима</td><td>Возврат под 2800 на закрытии</td></tr>
+          <tr><td class="ticker">PLZL / GOLD01 / GOLD03</td><td class="num">$4200/унц.</td><td>Возврат золота выше $4200 без роста доходностей UST</td><td>Дальнейшее падение при росте DXY/UST10Y — сигнал продолжения переоценки</td></tr>
+          <tr><td class="ticker">IMOEX</td><td class="num">2230 / 2300</td><td>Закрытие выше 2300 — восстановление, несмотря на налоговый фон</td><td>Закрытие ниже 2230 — расширение risk-off на весь рынок</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>Главный риск</h3>
+    <p>Ормузский геополитический тупик переоценивает мировые ставки вверх быстрее, чем рынок успевает закладывать в цены российских активов — риск не прямой (санкции/торговля), а косвенный через канал «нефть-инфляция-ставка ФРС-доллар», который бьёт по золоту и глобальному risk-sentiment вне зависимости от прямого влияния на РФ. Второй по значимости — теперь количественно определённый налог на сверхдоходы (30%/20%), системно понижающий будущую прибыльность металлургии и золотодобычи.</p>
+    <h3>Методология</h3>
+    <p class="est-note">Полный список источников и методология расчёта дельт — docs/knowledge/methodology.md, docs/knowledge/data_sources.md. Ширина рынка и часть движений дня — на выборке ~19 ликвидных бумаг индекса, не на полном борде 44 (история торгов за сегодня ещё не осела до закрытия — прямой запрос по полному TQBR через /history/ endpoint для незакрытого дня возвращает пусто, использованы live-котировки marketdata по отдельным бумагам).</p>
+    <div class="foot"><span>Пересмотр портфеля требуется: нет</span><span>Блок 16</span></div>
+  </section>
+
+  <div class="disclaimer">
+    <strong>Дисклеймер.</strong> Материал носит информационно-аналитический характер и
+    <strong>не является индивидуальной инвестиционной рекомендацией</strong>. Указанные уровни —
+    зоны подтверждения гипотез, а не сигналы к совершению сделок. Факты отделены от оценок и
+    сценариев соответствующими пометками; оценки получены эвристически и могут быть ошибочны.
+    Данные собраны из открытых источников на 14:35 мск 28.09.2026 (рынок открыт, внутридневной снимок)
+    и могли измениться к моменту чтения. Автор не несёт ответственности за решения, принятые на основе
+    этого материала.
+  </div>
+
+</div>
+</body>
+</html>
