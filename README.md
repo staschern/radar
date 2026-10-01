@@ -45,6 +45,9 @@
 │   ├── radar_history.jsonl      1 строка на день — машинная сводка
 │   ├── portfolio_history.jsonl  1 строка на пересмотр основного портфеля
 │   ├── control_portfolio_history.jsonl  То же для контрольного портфеля
+│   ├── crypto_portfolio_config.json  Крипто (с 01.10.2026): целевая аллокация,
+│   │                             уровни BTC/ETH/AAVE/SOL, календарь, чек-лист
+│   ├── crypto_history.jsonl     1 строка на проверку — крипто-блок радара
 │   └── daily/                   Человекочитаемые сводки дня (~40 строк)
 ├── reports/
 │   ├── radar/         RU_Market_Morning_Radar_YYYY-MM-DD.html
