@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Утренний радар — 06.10.2026</title>
+<style>
+  :root{
+    --bg:#0a0e16; --card:#131a26; --card-2:#0f1520; --line:#232d3d;
+    --text:#e8edf5; --muted:#8a97ab; --dim:#5d6879;
+    --gold:#e0a95c; --blue:#5b9bf5; --up:#5bd88a; --down:#e08a8a;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:"Inter","Helvetica Neue",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1040px; margin:0 auto; padding:28px 20px 64px}
+  .hero{border:1px solid var(--line); border-radius:14px; background:
+    linear-gradient(160deg,#141c2b 0%,var(--card) 60%); padding:30px 28px; margin-bottom:22px}
+  .eyebrow{color:var(--gold); font-size:12px; letter-spacing:.16em; text-transform:uppercase; font-weight:600}
+  h1{margin:10px 0 6px; font-size:clamp(28px,5vw,44px); line-height:1.1; font-weight:800; letter-spacing:-.02em}
+  .hero .date{color:var(--muted); font-size:14px}
+  .trigger{margin-top:16px; padding:14px 16px; border-left:3px solid var(--gold);
+    background:rgba(224,169,92,.07); border-radius:0 10px 10px 0; font-size:16px}
+  .pulse{display:grid; grid-template-columns:repeat(auto-fit,minmax(148px,1fr)); gap:12px; margin-top:20px}
+  .metric{background:var(--card-2); border:1px solid var(--line); border-radius:12px; padding:14px 16px}
+  .metric .k{color:var(--muted); font-size:11px; letter-spacing:.1em; text-transform:uppercase}
+  .metric .v{font-size:24px; font-weight:700; margin-top:6px; letter-spacing:-.02em}
+  .metric .d{font-size:13px; margin-top:2px; font-weight:600}
+  .up{color:var(--up)} .down{color:var(--down)} .flat{color:var(--muted)}
+  .metric.accent .v{color:var(--gold)}
+  .metric.fx .v{color:var(--blue)}
+  .nodata{color:var(--dim); font-style:italic; font-weight:400}
+  section{background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:24px 26px; margin-bottom:18px}
+  h2{margin:0 0 4px; font-size:20px; font-weight:700; color:var(--gold); letter-spacing:-.01em}
+  .sub{color:var(--muted); font-size:13px; margin-bottom:18px}
+  h3{margin:22px 0 8px; font-size:15px; font-weight:700}
+  .cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px}
+  .fact{background:var(--card-2); border:1px solid var(--line); border-radius:12px; padding:16px 18px}
+  .fact .n{color:var(--gold); font-size:12px; font-weight:700; letter-spacing:.1em}
+  .fact p{margin:8px 0 0; font-size:14px}
+  .tag{display:inline-block; font-size:10px; letter-spacing:.1em; text-transform:uppercase;
+    padding:3px 8px; border-radius:999px; font-weight:700; vertical-align:middle}
+  .tag.fact{background:rgba(91,155,245,.14); color:var(--blue); border:1px solid rgba(91,155,245,.3)}
+  .tag.est{background:rgba(224,169,92,.12); color:var(--gold); border:1px solid rgba(224,169,92,.3)}
+  .est-note{color:var(--dim); font-size:12px; font-style:italic}
+  .score{display:flex; align-items:center; gap:14px; margin:14px 0}
+  .score .bar{flex:1; height:8px; background:#1b2433; border-radius:999px; overflow:hidden}
+  .score .fill{height:100%; background:linear-gradient(90deg,var(--gold),var(--down)); border-radius:999px}
+  .score .num{font-size:26px; font-weight:800; color:var(--gold); min-width:76px; text-align:right}
+  .tablewrap{overflow-x:auto; -webkit-overflow-scrolling:touch; margin-top:12px}
+  table{width:100%; border-collapse:collapse; font-size:14px; min-width:560px}
+  th{text-align:left; color:var(--muted); font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+    font-weight:600; padding:0 12px 10px 0; border-bottom:1px solid var(--line); white-space:nowrap}
+  td{padding:11px 12px 11px 0; border-bottom:1px solid rgba(35,45,61,.55); vertical-align:top}
+  tbody tr:last-child td{border-bottom:none}
+  .ticker{font-weight:700; letter-spacing:.02em}
+  .instr{font-weight:700; letter-spacing:.02em; line-height:1.35}
+  .instr .code{display:block; font-weight:400; font-size:11px; color:var(--dim);
+    letter-spacing:.04em; margin-top:2px; font-variant-numeric:tabular-nums}
+  td .instr{white-space:normal}
+  .num{font-variant-numeric:tabular-nums}
+  .scen{border:1px solid var(--line); border-radius:12px; padding:16px 18px; background:var(--card-2)}
+  .scen .h{display:flex; justify-content:space-between; align-items:baseline; gap:10px}
+  .scen .name{font-weight:700}
+  .scen .p{font-size:20px; font-weight:800; color:var(--gold); font-variant-numeric:tabular-nums}
+  .scen.base{border-left:3px solid var(--gold)}
+  .scen.pos{border-left:3px solid var(--up)}
+  .scen.neg{border-left:3px solid var(--down)}
+  .scen dl{margin:10px 0 0; font-size:13px}
+  .scen dt{color:var(--muted); font-size:11px; letter-spacing:.08em; text-transform:uppercase; margin-top:8px}
+  .scen dd{margin:2px 0 0}
+  .chain{display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:14px}
+  .chain .node{background:var(--card-2); border:1px solid var(--line); border-radius:10px;
+    padding:10px 14px; font-size:13px; font-weight:600}
+  .chain .arrow{color:var(--gold); font-size:18px; line-height:1}
+  .empty{border:1px dashed var(--line); border-radius:12px; padding:20px;
+    color:var(--muted); font-size:14px; text-align:center; background:rgba(35,45,61,.16)}
+  .foot{display:flex; justify-content:space-between; gap:14px; margin-top:20px; padding-top:14px;
+    border-top:1px solid var(--line); color:var(--dim); font-size:11px}
+  .disclaimer{margin-top:26px; padding:16px 18px; border:1px solid var(--line); border-radius:12px;
+    background:var(--card-2); color:var(--muted); font-size:12px; line-height:1.6}
+  @media print{
+    body{background:var(--bg)}
+    .wrap{max-width:none; padding:0}
+    section,.hero,.fact,.scen,.metric{break-inside:avoid; page-break-inside:avoid}
+    h2{break-after:avoid}
+  }
+  @media (max-width:560px){
+    section{padding:18px 16px} .wrap{padding:16px 12px 40px} .hero{padding:22px 18px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- БЛОК 1. Титул + рыночный пульс -->
+  <header class="hero">
+    <div class="eyebrow">Утренний радар · Российский рынок + Крипто</div>
+    <h1>Рубль резко слабеет на скачке покупок Минфина, IMOEX консолидируется у максимумов</h1>
+    <div class="date">6 октября 2026, вторник · подготовлено 14:28 мск</div>
+    <div class="trigger"><strong>Триггер дня.</strong> ЦБ резко подтянул официальный курс доллара (+1,73% к вчерашнему фиксингу, до 84,9309 ₽) — догоняя вчерашний широкий разрыв с живым биржевым курсом. Это прямое подтверждение вчерашнего фактчека тезиса Юрия Козлова: Минфин с 7.10 по 6.11.2026 направит на покупку валюты и золота 279,42 млрд ₽ (12,7 млрд ₽/день) — более чем в пять раз больше, чем в предыдущем периоде (2,5 млрд ₽/день). Живой биржевой курс (86,3325 ₽/12,793 ₽ CNY) уже снова обгоняет сегодняшний официальный на +1,65%/+1,14% — сигнал, что подтягивание продолжится и завтра. На этом фоне IMOEX спокойно консолидируется у многонедельных максимумов (−0,32% к рекордному закрытию понедельника 2321,57, но +1,50% за неделю): ширина рынка резко сузилась (47,4% против 88,2% в понедельник), финансовый сектор — единственный растущий индекс МосБиржи на ралли Совкомбанка (SVCB) и МКБ (CBOM) без явного новостного повода.</div>
+
+    <div class="pulse">
+      <div class="metric"><div class="k">IMOEX</div><div class="v num">2314,03</div>
+        <div class="d down">−0,32% за день · +1,50% за неделю</div></div>
+      <div class="metric fx"><div class="k">USD/RUB · ЦБ</div><div class="v num">84,9309</div>
+        <div class="d down">+1,73% к вчерашнему фиксингу</div></div>
+      <div class="metric fx"><div class="k">CNY/RUB · ЦБ</div><div class="v num">12,6491</div>
+        <div class="d down">+1,74% к вчерашнему</div></div>
+      <div class="metric accent"><div class="k">Ключевая ставка</div><div class="v num">14,0%</div>
+        <div class="d flat">без изменений, след. заседание 23.10.2026</div></div>
+    </div>
+  </header>
+
+  <!-- БЛОК 2. Три главных факта -->
+  <section>
+    <h2>Три главных факта дня</h2>
+    <div class="sub">Проверяемые утверждения с источником. Интерпретация — в блоках ниже.</div>
+    <div class="cards">
+      <div class="fact"><div class="n">01</div><p>Официальный курс ЦБ на 06.10.2026: USD/RUB 84,9309 ₽ (+1,73% к 05.10), CNY/RUB 12,6491 ₽ (+1,74%) — живой биржевой курс MOEX (CETS, ~14:28 мск) уже на 86,3325 ₽/12,793 ₽, разрыв +1,65%/+1,14% (cbr.ru, MOEX ISS, прямые запросы).</p></div>
+      <div class="fact"><div class="n">02</div><p>IMOEX на 14:28 мск — 2314,03 п. (−0,32% к официальному закрытию понедельника 2321,57, но +1,50% за неделю к закрытию пятницы 02.10 — 2279,75); ширина рынка упала до 47,4% (36 из 76 ликвидных бумаг TQBR) против 88,2% в понедельник (MOEX ISS, прямой запрос).</p></div>
+      <div class="fact"><div class="n">03</div><p>Финансовый сектор — единственный растущий индекс МосБиржи сегодня (MOEXFN +0,94%): Совкомбанк (SVCB) +3,29%, МКБ (CBOM) +5,43% — лучшая бумага дня; нефтегаз и металлурги в минусе (MOEXOG −0,65%, MOEXMM −0,58%), прямого новостного триггера под банковским ралли веб-поиском не найдено (MOEX ISS TQBR, веб-поиск).</p></div>
+    </div>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 2</span></div>
+  </section>
+
+  <!-- БЛОК 3. Рыночная панель -->
+  <section>
+    <h2>Рыночная панель</h2>
+    <div class="sub">Данные на 14:23-14:28 мск, 06.10.2026 (рынок открыт, внутридневной снимок — методология §24). Источники: MOEX ISS (прямые запросы), ЦБ РФ, веб-поиск (Brent/золото $/DXY/UST/крипто).</div>
+    <div class="pulse">
+      <div class="metric"><div class="k">RGBI</div><div class="v num">111,16</div><div class="d down">−0,12% день</div></div>
+      <div class="metric"><div class="k">ОФЗ 10 лет</div><div class="v num">≈16,83%</div><div class="d down">−0,04 п.п. за неделю</div></div>
+      <div class="metric"><div class="k">ОФЗ 1 год</div><div class="v num">≈13,58%</div><div class="d up">+0,06 п.п. за неделю</div></div>
+      <div class="metric"><div class="k">Brent</div><div class="v num">≈$100,84</div><div class="d down">TradingEconomics (межисточниковое расхождение баз, см. est-note)</div></div>
+      <div class="metric accent"><div class="k">Золото · ₽/г</div><div class="v num">11 460</div><div class="d up">+0,58% день (GLDRUB_TOM)</div></div>
+      <div class="metric"><div class="k">RUONIA</div><div class="v num">13,77%</div><div class="d flat">данные за 05.10, лаг публикации</div></div>
+    </div>
+
+    <h3>Движения дня — топ-5 по модулю (выборка 76 ликвидных бумаг TQBR, оборот &gt;50 млн ₽/день на момент снимка)</h3>
+    <svg viewBox="0 0 640 200" width="100%" role="img" aria-label="Движения акций за день">
+      <text x="0" y="20" fill="#e8edf5" font-size="13" font-weight="700">CBOM</text>
+      <rect x="90" y="8" width="320" height="16" rx="4" fill="#5bd88a"/>
+      <text x="418" y="20" fill="#8a97ab" font-size="12">+5,43%</text>
+      <text x="0" y="52" fill="#e8edf5" font-size="13" font-weight="700">SVCB</text>
+      <rect x="90" y="40" width="194" height="16" rx="4" fill="#5bd88a"/>
+      <text x="292" y="52" fill="#8a97ab" font-size="12">+3,29%</text>
+      <text x="0" y="84" fill="#e8edf5" font-size="13" font-weight="700">FIXR</text>
+      <rect x="90" y="72" width="151" height="16" rx="4" fill="#5bd88a"/>
+      <text x="249" y="84" fill="#8a97ab" font-size="12">+2,57%</text>
+      <text x="0" y="116" fill="#e8edf5" font-size="13" font-weight="700">BAZA</text>
+      <rect x="90" y="104" width="140" height="16" rx="4" fill="#5bd88a"/>
+      <text x="238" y="116" fill="#8a97ab" font-size="12">+2,38%</text>
+      <text x="0" y="148" fill="#e8edf5" font-size="13" font-weight="700">GAZP</text>
+      <rect x="90" y="136" width="97" height="16" rx="4" fill="#e08a8a"/>
+      <text x="195" y="148" fill="#8a97ab" font-size="12">−1,65%</text>
+    </svg>
+
+    <p class="est-note">Δ считается к официальному закрытию 05.10.2026 (history API MOEX ISS). Прямая выгрузка TQBR (507 бумаг с рыночными данными на момент снимка) с фильтром оборот &gt;50 млн ₽/день даёт те же 76 ликвидных имён, что и накануне — но сегодня только 36 из них в плюсе, ширина рынка 47,4% против 88,2% в понедельник — резкое сужение, рынок перешёл от широкого ралли к избирательному. Brent: TradingEconomics сообщает $100,84 с собственной пометкой «+0,51% интрадей», но это ниже значения, зафиксированного в history за 05.10 ($101,31) — расхождение баз разных снимков TradingEconomics не разрешено, цифры даны как есть.</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 3</span></div>
+  </section>
+
+  <!-- БЛОК 4. Ключевое событие дня -->
+  <section>
+    <h2>Ключевое событие дня</h2>
+    <div class="sub">Официальный курс ЦБ резко подтягивается к живому — подтверждение фактчека тезиса Ю. Козлова о росте покупок валюты Минфином</div>
+
+    <h3><span class="tag fact">факт</span> Что известно</h3>
+    <p>Официальный курс USD/RUB ЦБ РФ на 06.10.2026 — 84,9309 ₽, рост на +1,73% к вчерашнему фиксингу (83,4839 ₽); CNY/RUB — 12,6491 ₽, +1,74%. Это прямое продолжение сигнала из вчерашнего выпуска: разрыв между живым биржевым курсом и официальным фиксингом 05.10 составлял +2,96%/+2,24% (методология §4в — такой разрыв предсказывает подтягивание завтрашнего официального курса), и подтягивание действительно произошло практически в полном объёме. Сегодняшний живой курс (86,3325 ₽/12,793 ₽, MOEX CETS, ~14:28 мск) снова обгоняет свежий официальный на +1,65%/+1,14% — то есть цикл повторяется, и часть сегодняшнего разрыва, вероятно, перейдёт в завтрашний фиксинг. Это прямо подтверждает вчерашний фактчек поста Юрия Козлова (получено 06.10.2026, external_views.md): Минфин объявил о покупке валюты и золота на 279,42 млрд ₽ за период 7.10-6.11.2026 (12,7 млрд ₽/день) — рост более чем в 5 раз к предыдущему периоду (2,5 млрд ₽/день за 7.09-6.10) — независимо подтверждённые Ведомостями, Известиями, Парламентской газетой, klerk.ru и РИА Новости от 05.10.2026. Автор прогнозировал ослабление рубля на этом фоне («доллар по 100») — направление сегодняшнего движения курса (вверх, то есть ослабление рубля) согласуется с этим тезисом, хотя масштаб (+1,73% за один день) больше любого заявления автора о темпе, и один день — не статистика.</p>
+
+    <h3><span class="tag est">оценка</span> Что ещё не факт</h3>
+    <p>Продолжится ли подтягивание курса вверх ещё один-два дня, пока сегодняшний живой/официальный разрыв (+1,65%/+1,14%) не исчерпается, — не известно заранее, это проекция по аналогии с предыдущим циклом, не гарантия. Будет ли увеличенный объём покупок Минфина (действует с 07.10, то есть по сути с завтрашнего дня) систематически давить на курс весь месяц — тоже оценка, не факт: сам Козлов называет это одним из нескольких факторов среднесрочного ослабления, не единственным.</p>
+
+    <h3>Рыночный механизм</h3>
+    <p>Механизм такой же, как в предыдущих выпусках (методология §4в): ЦБ устанавливает официальный курс на основе биржевых торгов предыдущего дня с лагом, поэтому быстрое движение живого курса в конце одного дня отражается в официальном фиксинге следующего. Вчера живой курс резко обогнал официальный — сегодня официальный почти полностью его догнал. Отдельно от этого — объявленное увеличение покупок валюты Минфином в рамках бюджетного правила начинает действовать с завтрашнего дня (07.10) и само по себе создаёт постоянный повышенный спрос на валюту, независимый от разовых колебаний.</p>
+
+    <h3>Чувствительные бумаги <span class="tag est">оценка</span></h3>
+    <p>Прямые бенефициары ослабления рубля — экспортёры с валютной выручкой (нефтегаз, металлурги), но сегодня именно они в минусе (MOEXOG −0,65%, MOEXMM −0,58%) — по methodology §19 рублёвая цена товара, а не курс сам по себе, определяет движение экспортёров, и сегодня решающим фактором явно было что-то другое (возможно, динамика Brent, см. блок 3). Банковский сектор, не имеющий прямой связи с курсом, оказался единственным растущим — совпадение по времени с ослаблением рубля, не причинная связь.</p>
+
+    <div class="score">
+      <div class="num">37</div>
+      <div class="bar"><div class="fill" style="width:37%"></div></div>
+    </div>
+    <p class="est-note">Оценка влияния 0–100 — аналитическая эвристика (охват ~12/35 — затрагивает валютный рынок и ожидания по курсу, но не вызвало широкого движения в акциях; необратимость ~12/25 — повышенный объём покупок Минфина уже объявлен и действует весь месяц, это не разовое событие; неожиданность ~5/20 — ожидалось по вчерашнему разрыву живого/официального курса и по фактчеку поста Козлова, не сюрприз; скорость проявления ~8/20 — эффект уже виден в сегодняшнем фиксинге), см. docs/knowledge/methodology.md §3.</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 4</span></div>
+  </section>
+
+  <!-- БЛОК 5. Валюта/ликвидность -->
+  <section>
+    <h2>Валюта / ликвидность</h2>
+    <div class="sub">Официальный курс ЦБ и живой биржевой курс рядом — методология §4в.</div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Валюта</th><th>Официальный курс ЦБ (на 06.10)</th><th>Живой курс MOEX (CETS, ~14:28 мск)</th><th>Разрыв</th></tr></thead>
+        <tbody>
+          <tr><td class="ticker">USD/RUB</td><td class="num">84,9309 ₽</td><td class="num">86,3325 ₽ (USD000UTSTOM)</td><td class="num down">+1,65% — живой курс выше официального</td></tr>
+          <tr><td class="ticker">CNY/RUB</td><td class="num">12,6491 ₽</td><td class="num">12,793 ₽ (CNYRUB_TOM)</td><td class="num down">+1,14% — живой курс выше официального</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="est-note">Разрыв сузился по сравнению с 05.10 (было +2,96%/+2,24%) — большая часть вчерашнего отставания фиксинга устранена сегодняшним скачком официального курса (+1,73%/+1,74%), но разрыв остаётся положительным: по методологии §4в это сигнал, что завтрашний фиксинг снова подтянется вверх, хотя и меньшим шагом, чем сегодня.</p>
+
+    <h3>Ликвидность банковского сектора / операции ЦБ</h3>
+    <p><span class="tag est">оценка контекста</span> Без новых данных на сегодня — последний известный прогноз ЦБ структурного дефицита ликвидности на 2026 год остаётся 4,0-5,2 трлн ₽. Отдельно: с 07.10.2026 начинает действовать объявленный Минфином резкий рост покупок валюты и золота (12,7 млрд ₽/день за 7.10-6.11, против 2,5 млрд ₽/день в предыдущем периоде) — это не ежедневная операция ЦБ, а отдельный канал спроса на валюту, см. блок 4.</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 5</span></div>
+  </section>
+
+  <!-- БЛОК 6. Инфляция и ставка -->
+  <section>
+    <h2>Инфляция и ставка</h2>
+    <div class="pulse">
+      <div class="metric"><div class="k">Недельная инфляция</div><div class="v num">0,12%</div><div class="d flat">без изменений с 01.10 — след. релиз Росстата ожидается 07.10 (неделя 29.09-05.10)</div></div>
+      <div class="metric"><div class="k">Годовая инфляция</div><div class="v num">6,25%</div><div class="d flat">без изменений с 01.10</div></div>
+      <div class="metric accent"><div class="k">Ключевая ставка</div><div class="v num">14,0%</div><div class="d flat">без изменений, пауза с 11.09 — след. заседание 23.10.2026</div></div>
+      <div class="metric"><div class="k">RUONIA</div><div class="v num">13,77%</div><div class="d flat">данные за 05.10.2026, лаг публикации (cbr.ru)</div></div>
+    </div>
+    <p class="est-note">Новых данных по недельной/годовой инфляции сегодня нет — следующий релиз Росстата (за период 29.09-05.10) ожидается 07.10.2026. Цифры 0,12%/6,25% перенесены без изменений с выпуска от 01.10, не выдуманы заново. Один найденный веб-поиском результат утверждал о релизе «за неделю 30.09-06.10» уже сегодня — расходится с графиком Росстата (следующий релиз не раньше завтра) и похож на артефакт поиска по смешанным датам/годам (тем же классом ошибки, что и статья «ожидаемые события на 6 октября», описывающая мероприятия газового форума, который по подтверждённым данным перенесён на апрель 2027) — не использован.</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 6</span></div>
+  </section>
+
+  <!-- БЛОК 7. ОФЗ/кривая доходности -->
+  <section>
+    <h2>ОФЗ / кривая доходности</h2>
+    <div class="pulse">
+      <div class="metric"><div class="k">RGBI</div><div class="v num">111,16</div><div class="d down">−0,12% день</div></div>
+      <div class="metric"><div class="k">ОФЗ ~1 год</div><div class="v num">13,58%</div><div class="d up">+0,06 п.п. за неделю</div></div>
+      <div class="metric"><div class="k">ОФЗ ~10 лет</div><div class="v num">16,83%</div><div class="d down">−0,04 п.п. за неделю</div></div>
+    </div>
+    <p class="est-note">Кривая сегодня (ZCYC MOEX ISS, прямой запрос, узлы, снимок 14:23 мск): 0,25г 11,35% · 0,5г 12,25% · 0,75г 12,98% · 1г 13,58% · 2г 15,07% · 3г 15,78% · 5г 16,38% · 7г 16,63% · 10г 16,83% · 15г 16,98% · 20г 17,05%. Кривая практически не изменилась за неделю — доходность 10-летних ОФЗ держится в диапазоне 16,8-16,9% уже вторую неделю, без выраженного тренда.</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 7</span></div>
+  </section>
+
+  <!-- БЛОК 8. Корпоративные истории -->
+  <section>
+    <h2>Корпоративные истории</h2>
+    <div class="cards">
+      <div class="fact"><div class="n">МКБ (CBOM) / Совкомбанк (SVCB)</div><p><span class="tag fact">факт</span> Лучшие бумаги дня среди ликвидных (+5,43% и +3,29%) — финансовый сектор единственный в плюсе (MOEXFN +0,94%). <span class="tag est">оценка</span> Прямого новостного триггера (отчётность, пресс-релиз, корпоративное событие) веб-поиском на сегодня не найдено — движение зафиксировано как необъяснённое, причина не домысливается.</p></div>
+      <div class="fact"><div class="n">Татнефть (TATN/TATNP)</div><p><span class="tag fact">факт</span> Отсечки дивиденда 32,88 ₽/акцию приближаются (12.10 — обычка, 13.10 — преф, через 6 и 7 торговых дней). Обе бумаги сегодня в минусе вместе с нефтегазовым сектором (TATN −1,21%, TATNP −0,59%).</p></div>
+      <div class="fact"><div class="n">Трекер заказчика по недельному импульсу (наблюдение, §27)</div><p><span class="tag est">оценка, не довод для решений</span> В последнем снимке (05.10.2026) TATN, TATNP, OZON и HYDR — одновременно в топе роста трекера и в watchlist радара; CBOM — в топе падения трекера (−3), но сегодня, наоборот, лучшая бумага дня (+5,43%) — показательное расхождение сигнала трекера с фактическим движением. Согласно прямому указанию заказчика (methodology §27) это только наблюдение, не основание для каких-либо действий.</p></div>
+      <div class="fact"><div class="n">Корпоративный календарь недели</div><p><span class="tag fact">факт</span> На отчётной неделе 05-11.10.2026, по IR-календарю МосБиржи, ожидаются сокращённые результаты Сбербанка по РСБУ за сентябрь — остальной крупный корпоративный календарь недели пуст.</p></div>
+    </div>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 8</span></div>
+  </section>
+
+  <!-- БЛОК 9. Логика обратной связи -->
+  <section>
+    <h2>Логика обратной связи</h2>
+    <div class="sub">Как связаны сегодняшние события. <span class="tag est">оценка</span></div>
+    <div class="chain">
+      <div class="node">Вчерашний широкий разрыв живого/официального курса</div><div class="arrow">→</div>
+      <div class="node">Официальный фиксинг сегодня резко подтягивается (+1,73%)</div><div class="arrow">→</div>
+      <div class="node">Рубль заметно слабеет, подтверждая тезис о росте покупок Минфина</div><div class="arrow">→</div>
+      <div class="node">Акции почти не реагируют — IMOEX спокойно консолидируется</div>
+    </div>
+    <div class="foot"><span>Схема отражает предполагаемый механизм, а не установленную причинность</span><span>Блок 9</span></div>
+  </section>
+
+  <!-- БЛОК 10. Техническая карта индекса -->
+  <section>
+    <h2>Техническая карта индекса</h2>
+    <div class="sub">IMOEX, внутридневной снимок 14:28 мск</div>
+    <div class="pulse">
+      <div class="metric"><div class="k">Текущее значение</div><div class="v num">2314,03</div><div class="d down">−0,32%</div></div>
+      <div class="metric"><div class="k">Закрытие Пн 05.10</div><div class="v num">2321,57</div><div class="d flat">база дня, рекордное закрытие с 25.09</div></div>
+      <div class="metric"><div class="k">Закрытие Пт 02.10</div><div class="v num">2279,75</div><div class="d flat">база недели</div></div>
+      <div class="metric"><div class="k">Ширина рынка</div><div class="v num">≈47%</div><div class="d down">резко сузилась (было 88% в понедельник)</div></div>
+    </div>
+    <p class="est-note">Индекс удерживается в диапазоне 2295-2330, пробитом вчера, без явного продолжения или отката — классическая консолидация после резкого однодневного движения. Ближайшее сопротивление выше — район 2330-2350 (локальные максимумы начала квартала); зона 2280-2300 — потенциальная поддержка при откате.</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 10</span></div>
+  </section>
+
+  <!-- БЛОК 11. Watchlist I -->
+  <section>
+    <h2>Watchlist I · Фиксированный список</h2>
+    <div class="sub">Список задаётся пользователем в data/watchlist_config.json. Уровни и атрибуция идей — см. столбец «Оценка/атрибуция».</div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Инструмент</th><th>Цена</th><th>Δ день</th><th>Зона поддержки</th><th>Зона сопротивления</th><th>Оценка / атрибуция идеи</th></tr></thead>
+        <tbody>
+          <tr><td class="instr">Novabev (BELU)<span class="code">BELU</span></td><td class="num">254,20 ₽</td><td class="num down">−0,70%</td><td class="num">228</td><td class="num">404</td><td>Техническая идея А. Полярного (получено 21.08.2026), до цели ≈58,9%. <span class="tag est">оценка</span></td></tr>
+          <tr><td class="instr">Банк Санкт-Петербург (BSPB)<span class="code">BSPB</span></td><td class="num">250,45 ₽</td><td class="num down">−0,29%</td><td>—</td><td class="num">290–310</td><td>Идея А. Полярного (получено 20.08.2026), цель 290–310 ₽ на проверке до 20.08.2027, до нижней границы ≈15,8%. <span class="tag est">оценка</span></td></tr>
+          <tr><td class="instr">РусГидро (HYDR)<span class="code">HYDR</span></td><td class="num">0,3875 ₽</td><td class="num up">+0,49%</td><td class="num">0,30–0,34 (пройдено)</td><td class="num">0,40</td><td>Техническая идея А. Полярного (получено 28.08.2026), до цели ≈3,2%. Также в топе роста трекера заказчика (05.10, вес +1) — наблюдение, не довод. <span class="tag est">оценка</span></td></tr>
+          <tr><td class="instr">Интер РАО (IRAO)<span class="code">IRAO</span></td><td class="num">2,3615 ₽</td><td class="num down">−0,65%</td><td class="num">2,05–2,27 (пройдено)</td><td class="num">2,75</td><td>Техническая идея А. Полярного (получено 21.08.2026), до цели ≈16,4%. <span class="tag est">оценка</span></td></tr>
+          <tr><td class="instr">Ленэнерго-п (LSNGP)<span class="code">LSNGP</span></td><td class="num">334,90 ₽</td><td class="num down">−0,15%</td><td class="num">270–280</td><td class="num">400–410</td><td>Идея А. Полярного (получено 25.08.2026) — кандидат риск-доли §5.2, не в портфелях. <span class="tag est">оценка</span></td></tr>
+          <tr><td class="instr">Мать и дитя (MDMG)<span class="code">MDMG</span></td><td class="num">1278,00 ₽</td><td class="num down">−0,46%</td><td class="num">1000 (зона вниз)</td><td>—</td><td>Идея Ю. Козлова (получено 18.09.2026) — ориентир вниз на случай коррекции, не цель роста. <span class="tag est">оценка</span></td></tr>
+          <tr><td class="instr">Ozon (OZON)<span class="code">OZON</span></td><td class="num">3155,50 ₽</td><td class="num up">+0,16%</td><td>—</td><td class="num">2800 / 3000 (обе пройдены)</td><td>Идея А. Полярного (получено 17.09.2026) — обе цели достигнуты, идея закрыта (<code>hit_target</code>, 05.10.2026). Также в топе роста трекера заказчика (вес +1) — наблюдение. <span class="tag est">оценка</span></td></tr>
+          <tr><td class="instr">Ренессанс Страхование (RENI)<span class="code">RENI</span></td><td class="num">68,82 ₽</td><td class="num flat">0,00%</td><td class="num">60–70</td><td>—</td><td>Идея Ю. Козлова (раскрытая сделка, получено 24.08.2026), цена внутри заявленной зоны накопления. <span class="tag est">оценка</span></td></tr>
+          <tr><td class="instr">Роснефть (ROSN)<span class="code">ROSN</span></td><td class="num">343,20 ₽</td><td class="num down">−0,67%</td><td class="num">260–270 (в портфеле)</td><td class="num">350</td><td>Идея А. Полярного (получено 18.08.2026), до цели ≈2,0%. <span class="tag est">оценка</span></td></tr>
+          <tr><td class="instr">Татнефть (TATN)<span class="code">TATN</span></td><td class="num">630,70 ₽</td><td class="num down">−1,21%</td><td>—</td><td class="num">400+ (пройден)</td><td>Идея Ю. Козлова (получено 20.08.2026). Отсечка дивиденда 12.10.2026 приближается. Также в топе роста трекера заказчика (вес +2) — наблюдение. <span class="tag est">оценка</span></td></tr>
+          <tr><td class="instr">Татнефть-п (TATNP)<span class="code">TATNP</span></td><td class="num">605,20 ₽</td><td class="num down">−0,59%</td><td>—</td><td>—</td><td>Раскрытые сделки А. Полярного (получено 09.09.2026). Отсечка 13.10.2026. Также в топе роста трекера заказчика (вес +2) — наблюдение. <span class="tag est">оценка</span></td></tr>
+          <tr><td class="instr">Селигдар GOLD01<span class="code">RU000A1062M5</span></td><td class="num">92,30% номинала</td><td class="num up">+0,54%</td><td>—</td><td>—</td><td>Инструментальная идея Ю. Козлова (получено 21.08.2026) — номинал привязан к золоту, YTM в золоте ≈9%. <span class="tag est">оценка</span></td></tr>
+          <tr><td class="instr">Селигдар GOLD03<span class="code">RU000A108RQ7</span></td><td class="num">94,36% номинала</td><td class="num up">+0,98%</td><td>—</td><td>—</td><td>Инструментальная идея Ю. Козлова (получено 21.08.2026) — резервный вариант, листинг 3 уровня. <span class="tag est">оценка</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="est-note">Уровни — зоны подтверждения, а не команды на сделку. Δ считается к официальному закрытию 05.10.2026. Цена GOLD01/GOLD03 — % от номинала (не граммы), см. methodology §18. Отметки «в топе трекера заказчика» — наблюдение по methodology §27, не входит в расчёт оценки/атрибуции идеи аналитика.</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 11</span></div>
+  </section>
+
+  <!-- БЛОК 12. Watchlist II -->
+  <section>
+    <h2>Watchlist II · Импульсные истории</h2>
+    <div class="sub">Топ-движения дня, не входящие в фиксированный список.</div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Тикер</th><th>Δ день</th><th>Что произошло</th><th>Устойчивость движения</th></tr></thead>
+        <tbody>
+          <tr><td class="ticker">CBOM</td><td class="num up">+5,43%</td><td>МКБ — лучшая бумага дня среди ликвидных, прямого новостного триггера не найдено.</td><td>Требует подтверждения. <span class="tag est">оценка</span></td></tr>
+          <tr><td class="ticker">SVCB</td><td class="num up">+3,29%</td><td>Совкомбанк — рост вместе с CBOM, финансовый сектор единственный в плюсе сегодня.</td><td>Требует подтверждения. <span class="tag est">оценка</span></td></tr>
+          <tr><td class="ticker">FIXR</td><td class="num up">+2,57%</td><td>Фикс Прайс — прямого новостного триггера на сегодня не найдено.</td><td>Требует подтверждения. <span class="tag est">оценка</span></td></tr>
+          <tr><td class="ticker">BAZA</td><td class="num up">+2,38%</td><td>Банк Зенит — рост вместе с остальным финансовым сектором.</td><td>В рамках секторального движения. <span class="tag est">оценка</span></td></tr>
+          <tr><td class="ticker">GAZP</td><td class="num down">−1,65%</td><td>Газпром — крупнейшее падение дня среди ликвидных, вместе со слабостью нефтегазового сектора (MOEXOG −0,65%).</td><td>В рамках секторального движения. <span class="tag est">оценка</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 12</span></div>
+  </section>
+
+  <!-- БЛОК 13. Календарь недели -->
+  <section>
+    <h2>Календарь недели</h2>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Дата</th><th>Событие</th></tr></thead>
+        <tbody>
+          <tr><td class="num">07.10.2026 (Ср)</td><td>Ожидаемый релиз недельной инфляции Росстата (неделя 29.09-05.10); начинает действовать увеличенный объём покупки валюты/золота Минфином (12,7 млрд ₽/день до 06.11); протокол заседания FOMC</td></tr>
+          <tr><td class="num">~08-10.10.2026</td><td>Сбербанк — сокращённые результаты по РСБУ за сентябрь (единственная отчётность недели по IR-календарю МосБиржи)</td></tr>
+          <tr><td class="num">12.10.2026 (Пн)</td><td>Отсечка дивиденда Татнефть-об (32,88 ₽/акцию)</td></tr>
+          <tr><td class="num">13.10.2026 (Вт)</td><td>Отсечка дивиденда Татнефть-п (32,88 ₽/акцию)</td></tr>
+          <tr><td class="num">14.10.2026 (Ср)</td><td>США: релиз CPI за сентябрь (BLS)</td></tr>
+          <tr><td class="num">16.10.2026 (Пт)</td><td>США: отчёт TIC за август (внешний спрос на UST)</td></tr>
+          <tr><td class="num">18.10.2026 (Сб)</td><td>США: ожидается решение о вторичных тарифах против покупателей российской нефти/газа</td></tr>
+          <tr><td class="num">19.10.2026 (Пн)</td><td>Отсечка дивиденда Мать и дитя (MDMG) — 38 ₽/акцию</td></tr>
+          <tr><td class="num">23.10.2026 (Пт)</td><td>Заседание Совета директоров Банка России по ключевой ставке + плановая пятничная ребалансировка портфелей</td></tr>
+          <tr><td class="num">28.10.2026 (Ср)</td><td>Заседание ФРС США по ставке</td></tr>
+          <tr><td class="num">06.11.2026 (Пт)</td><td>Завершается текущий период увеличенных покупок валюты/золота Минфином</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 13</span></div>
+  </section>
+
+  <!-- БЛОК 14. Причинно-следственная схема -->
+  <section>
+    <h2>Причинно-следственная схема (второй ракурс)</h2>
+    <div class="sub"><span class="tag est">оценка</span></div>
+    <div class="chain">
+      <div class="node">Минфин объявляет резкий рост покупок валюты/золота на 7.10-6.11 (анонс 05.10)</div><div class="arrow">→</div>
+      <div class="node">Дополнительный структурный спрос на валюту с завтрашнего дня</div><div class="arrow">→</div>
+      <div class="node">Рынок начинает отыгрывать это уже сегодня через живой курс</div><div class="arrow">→</div>
+      <div class="node">Официальный фиксинг догоняет с лагом в один день</div>
+    </div>
+    <div class="foot"><span>Схема отражает предполагаемый механизм, а не установленную причинность</span><span>Блок 14</span></div>
+  </section>
+
+  <!-- БЛОК 16а. Глобальный макро-блок -->
+  <section>
+    <h2>Глобальный макро-блок</h2>
+    <div class="sub">Устойчивость госдолга США, доллар как резервная валюта, защитные активы — ТЗ §4б.</div>
+
+    <h3>Дневные поля (обновляются каждый выпуск)</h3>
+    <div class="pulse">
+      <div class="metric"><div class="k">UST 2 года</div><div class="v num">4,83%</div><div class="d flat">последнее найденное значение (FRED DGS2, 02.10.2026) — новых данных за 05-06.10 не нашлось</div></div>
+      <div class="metric"><div class="k">UST 10 лет</div><div class="v num">5,28%</div><div class="d flat">дневной диапазон 5,278-5,329% (TradingEconomics/CNBC)</div></div>
+      <div class="metric"><div class="k">10Y breakeven (реальная дох.)</div><div class="v num nodata">нет новых данных</div><div class="d flat">последнее найденное — 2,36% (01-02.10.2026, см. запись 05.10)</div></div>
+      <div class="metric"><div class="k">DXY</div><div class="v num">≈102,03</div><div class="d down">−0,14% (TradingEconomics), чуть ниже вчерашнего 18-месячного максимума</div></div>
+      <div class="metric accent"><div class="k">Золото · $/унц.</div><div class="v num">4121,39</div><div class="d down">−0,44% (TradingEconomics)</div></div>
+      <div class="metric"><div class="k">Биткоин · $</div><div class="v num">86 293</div><div class="d flat">−0,10% (metamask.io/price)</div></div>
+    </div>
+    <p class="est-note">UST2Y — лаг публикации, последнее найденное значение датировано 02.10.2026, не переносится молча как «сегодняшнее», указана дата. 10Y breakeven — честно помечено как «нет данных» за эту дату, а не повторено прошлое значение (methodology §7).</p>
+
+    <h3>Сверка защитных активов</h3>
+    <p><span class="tag est">оценка</span> Биткоин ≈+8,2% за 30 дней (от ≈$79 750 на 06.09.2026 до ≈$86 293 сегодня), золото ≈−7,4% за 30 дней (от ≈$4450 до ≈$4121) — ни один актив не превысил эвристический порог +10%/30 дней (§1а.5), отдельная сверка с показателями госдолга/ФРС/доллара не требуется. Направления разошлись: биткоин держится у многомесячных максимумов на фоне смягчения ожиданий по ставке ФРС, золото продолжает снижаться на фоне крепкого доллара — без изменений в этой динамике за сутки.</p>
+
+    <h3>Устойчивость госдолга США / роль доллара как резервной валюты</h3>
+    <p><span class="tag fact">факт</span> Без изменений с 05.10.2026 (баланс ФРС $6,743 трлн, H.4.1 на 30.09.2026) — следующий еженедельный релиз ожидается в четверг 08.10.2026. Остальные неежедневные поля (обслуживание долга/дефицит/TIC/доля USD в резервах/CPI США) — без изменений с 11.09.2026, новых официальных релизов не найдено (US CPI за сентябрь — 14.10, TIC за август — 16.10).</p>
+
+    <h3>Накопленное обесценивание USD/RUB</h3>
+    <p><span class="tag est">оценка</span> База — 18.08.2026 = 100. Без нового месячного релиза CPI США/РФ с 11.09.2026 — индекс не пересчитывается искусственно.</p>
+
+    <h3>Рамка длинного макроцикла</h3>
+    <p><span class="tag est">аналитическая гипотеза, не факт</span> Без новых сигналов сегодня.</p>
+
+    <h3>Watchlist III · Устойчивые к инфляции акции</h3>
+    <div class="empty">
+      Тематический список пуст (data/watchlist_inflation_hedge.json, версия 1, с 09.09.2026).
+    </div>
+
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 16а</span></div>
+  </section>
+
+  <!-- БЛОК 16б. Крипто-блок -->
+  <section>
+    <h2>Крипто-блок <span class="tag est">четвёртый выпуск</span></h2>
+    <div class="sub">Отдельная сфера от российского рынка (своя вселенная активов, нет MOEX ISS — все данные через веб-поиск). Источник модели — InvestFuture (IF+), не собственный прогноз агента. Сегодня вторник, не пятница — предварительный план ребалансировки на субботу не формируется.</div>
+
+    <h3>Цены на 06.10.2026</h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Актив</th><th>Цена</th><th>Δ 24ч</th><th>Référence IF+ (29.09)</th><th>Рекомендация источника</th></tr></thead>
+        <tbody>
+          <tr><td class="instr">Bitcoin<span class="code">BTC</span></td><td class="num">$86 293</td><td class="num down">−0,10%</td><td class="num">$84 000</td><td>Держать, добавлять на откатах (не на подходе к $87 тыс.)</td></tr>
+          <tr><td class="instr">Ethereum<span class="code">ETH</span></td><td class="num">$2 715,18</td><td class="num up">+0,19%</td><td class="num">—</td><td>Держать, добавлять на откатах</td></tr>
+          <tr><td class="instr">Solana<span class="code">SOL</span></td><td class="num">$120,24</td><td class="num down">−0,80%</td><td class="num">—</td><td>Держать, НЕ наращивать</td></tr>
+          <tr><td class="instr">Aave<span class="code">AAVE</span></td><td class="num">$181,34</td><td class="num up">+0,82%</td><td class="num">$86</td><td>Наращивать долю</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="est-note">Источник цен — metamask.io/price (живой агрегатор, прямой запрос), порядок величины подтверждён сверкой с Forbes/Yahoo по данным за 05.10.2026 (BTC $86 041, ETH $2 714,93, SOL $120,52, AAVE ≈$180).</p>
+
+    <h3>Первый по-настоящему спокойный день крипто-блока</h3>
+    <p><span class="tag fact">факт</span> Все четыре отслеживаемых актива изменились за сутки в пределах ±1% — самое узкое дневное движение с начала ведения крипто-блока (01.10.2026). BTC держится чуть выше верхней границы «боевой зоны» référence-стратегии ($83-86 тыс.), но ниже технического уровня $87 200, который источники называли необходимым для продолжения роста (см. запись 05.10) — конфликт источников по итогам закрытия прошлой недели остаётся неразрешённым, новых данных по этому вопросу сегодня не искал (не граница недели).</p>
+
+    <h3>AAVE — без изменений в движении к зоне переоценки</h3>
+    <p><span class="tag fact">факт</span> AAVE $181,34 (+0,82%) — продолжает удерживаться у уровня вчерашнего закрытия, заметно ниже первой зоны переоценки référence-стратегии ($200-250), но вдвое выше référence-цены идеи ($86). <span class="tag est">оценка</span> Проверка новостей об официальном перезапуске выкупа по Aavenomics 3.0 не дала ничего нового сверх уже зафиксированного 05.10.2026 (автовыкуп активен, выручка протокола по независимому источнику ≈$400 млн/год против référence $134 млн — расхождение остаётся неразрешённым, référence-поле не пересчитывается задним числом).</p>
+
+    <h3>Чек-лист сценариев и календарь квартала</h3>
+    <p><span class="tag fact">факт</span> Без изменений с 05.10.2026 — ни одно событие quarter_calendar не датировано сегодняшним числом, отдельной проверки не требовалось. Условие «DXY выше 102» чек-листа негативного сценария IF+ остаётся <strong>выполнено</strong> (DXY ≈102,03, чуть ниже вчерашнего локального максимума, но выше порога); условие «две недели оттоков из ETF» — без новых данных, остаётся <strong>не выполнено</strong> по последней известной информации.</p>
+
+    <h3>Фактический портфель заказчика</h3>
+    <p>Новых данных с последнего скриншота (03.10.2026) не поступало — используется тот же снимок: BTC гэп −0,14 п.п., ETH −6,80 п.п. (недовес), AAVE −2,96 п.п. (недовес), SOL +3,17 п.п. (перевес), стейблкоины +2,93 п.п. (перевес). Сегодня вторник — предварительный план на субботу по правилу <code>rebalancing_rhythm.preview_rule</code> формируется только по пятницам.</p>
+
+    <div class="foot"><span>Мнение источника с атрибуцией (IF+, Евгений Попов), не индивидуальная инвестиционная рекомендация</span><span>Блок 16б</span></div>
+  </section>
+
+  <!-- БЛОК 15. Три сценария дня -->
+  <section>
+    <h2>Три сценария дня</h2>
+    <div class="sub">Вероятности в сумме 100%. <span class="tag est">оценка</span></div>
+    <div class="cards">
+      <div class="scen base">
+        <div class="h"><span class="name">Базовый</span><span class="p">55%</span></div>
+        <dl><dt>Триггер</dt><dd>Консолидация у достигнутых максимумов, без выраженного направления до конца дня, рубль продолжает плавно слабеть</dd>
+            <dt>Диапазон IMOEX</dt><dd class="num">2295–2330</dd></dl>
+      </div>
+      <div class="scen pos">
+        <div class="h"><span class="name">Позитивный</span><span class="p">20%</span></div>
+        <dl><dt>Триггер</dt><dd>Банковское ралли расширяется на весь рынок, закрепление выше 2330 на новых покупках</dd>
+            <dt>Диапазон IMOEX</dt><dd class="num">выше 2330</dd></dl>
+      </div>
+      <div class="scen neg">
+        <div class="h"><span class="name">Негативный</span><span class="p">25%</span></div>
+        <dl><dt>Триггер</dt><dd>Фиксация прибыли после двух дней роста; ослабление рубля начинает давить на настроения вместо того, чтобы помогать экспортёрам</dd>
+            <dt>Диапазон IMOEX</dt><dd class="num">ниже 2295</dd></dl>
+      </div>
+    </div>
+    <h3>Что подтвердилось из вчерашних сценариев (05.10.2026)</h3>
+    <p>Понедельничный базовый сценарий (2295–2330) — <strong>частично сбылся</strong>: официальное закрытие 05.10 составило 2321,57 ₽ — на самой верхней границе диапазона. Вчерашний прогноз по курсу (расширение разрыва живой/официальный курс → подтягивание завтрашнего фиксинга, методология §4в) сработал точно — официальный курс сегодня резко подтянулся вверх.</p>
+    <div class="foot"><span>Сценарии — вероятностные суждения, не прогноз и не рекомендация</span><span>Блок 15</span></div>
+  </section>
+
+  <!-- БЛОК 16. Итог -->
+  <section>
+    <h2>Итоговый watchlist и главный риск</h2>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Инструмент</th><th>Ключевой уровень</th><th>Что подтверждает</th><th>Что отменяет</th></tr></thead>
+        <tbody>
+          <tr><td class="ticker">IMOEX</td><td class="num">2295 / 2330</td><td>Закрытие выше 2330 — продолжение прорыва</td><td>Закрытие ниже 2295 — откат к прежнему диапазону</td></tr>
+          <tr><td class="ticker">USD/RUB живой/офиц.</td><td class="num">разрыв +1,65%</td><td>Сокращение разрыва до нуля — подтягивание фиксинга завершено</td><td>Повторное расширение разрыва — риск очередного резкого скачка официального курса завтра</td></tr>
+          <tr><td class="ticker">BTC</td><td class="num">$86 000 / $87 200</td><td>Устойчивое закрепление выше $87 200 — разрешает конфликт источников в пользу прорыва</td><td>Откат ниже $83 000 — возврат в «боевую зону» и далее к триггерам снижения $75/72 тыс.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>Главный риск</h3>
+    <p>На российском валютном рынке — объявленный Минфином резкий рост покупок валюты и золота (12,7 млрд ₽/день с 07.10) создаёт структурное давление на рубль на весь следующий месяц, не разовый эпизод; сегодняшний скачок официального курса (+1,73%) — вероятно, только первый шаг в этом цикле. На российском рынке акций — риск умеренный, рынок консолидируется без явного направления, резкое сужение ширины (47,4% против 88,2% накануне) говорит о выдыхающемся импульсе, а не о развороте. На крипто-стороне — риски без изменений: неразрешённый конфликт источников по статусу закрытия BTC у $86 тыс.</p>
+    <h3>Методология</h3>
+    <p class="est-note">Полный список источников и методология расчёта дельт — docs/knowledge/methodology.md, docs/knowledge/data_sources.md. Крипто-методология — docs/knowledge/crypto_if_strategy_q4_2026.md. Движения дня и ширина рынка — на выгрузке TQBR через MOEX ISS (фильтр оборот &gt;50 млн ₽/день, 76 бумаг из 507 с рыночными данными на момент снимка).</p>
+    <div class="foot"><span>Пересмотр портфеля по флагу радара: нет (все пороги §4 в норме) — сегодня вторник, плановая ребалансировка не предусмотрена</span><span>Блок 16</span></div>
+  </section>
+
+  <div class="disclaimer">
+    <strong>Дисклеймер.</strong> Материал носит информационно-аналитический характер и
+    <strong>не является индивидуальной инвестиционной рекомендацией</strong>. Указанные уровни —
+    зоны подтверждения гипотез, а не сигналы к совершению сделок. Факты отделены от оценок и
+    сценариев соответствующими пометками; оценки получены эвристически и могут быть ошибочны.
+    Крипто-блок отражает мнение стороннего источника (InvestFuture/IF+) с атрибуцией, не
+    собственный прогноз агента. Криптовалюты — высокорисковые активы, которые могут полностью
+    обесцениться. Данные собраны из открытых источников на 14:23-14:28 мск 06.10.2026 (рынок
+    открыт, внутридневной снимок) и могли измениться к моменту чтения. Автор не несёт
+    ответственности за решения, принятые на основе этого материала.
+  </div>
+
+</div>
+</body>
+</html>
