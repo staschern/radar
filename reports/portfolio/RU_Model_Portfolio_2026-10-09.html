@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Модельный портфель — 9 октября 2026 (исправлено)</title>
+<style>
+  :root{
+    --bg:#0a0e16; --card:#131a26; --card-2:#0f1520; --line:#232d3d;
+    --text:#e8edf5; --muted:#8a97ab; --dim:#5d6879;
+    --gold:#e0a95c; --blue:#5b9bf5; --up:#5bd88a; --down:#e08a8a;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:"Inter","Helvetica Neue",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1040px; margin:0 auto; padding:28px 20px 64px}
+  .hero{border:1px solid var(--line); border-radius:14px; background:
+    linear-gradient(160deg,#141c2b 0%,var(--card) 60%); padding:30px 28px; margin-bottom:22px}
+  .eyebrow{color:var(--gold); font-size:12px; letter-spacing:.16em; text-transform:uppercase; font-weight:600}
+  h1{margin:10px 0 6px; font-size:clamp(26px,4.5vw,38px); line-height:1.15; font-weight:800; letter-spacing:-.02em}
+  .hero .date{color:var(--muted); font-size:14px}
+  .trigger{margin-top:16px; padding:14px 16px; border-left:3px solid var(--gold);
+    background:rgba(224,169,92,.07); border-radius:0 10px 10px 0; font-size:16px}
+  .pulse{display:grid; grid-template-columns:repeat(auto-fit,minmax(148px,1fr)); gap:12px; margin-top:20px}
+  .metric{background:var(--card-2); border:1px solid var(--line); border-radius:12px; padding:14px 16px}
+  .metric .k{color:var(--muted); font-size:11px; letter-spacing:.1em; text-transform:uppercase}
+  .metric .v{font-size:22px; font-weight:700; margin-top:6px; letter-spacing:-.02em; font-variant-numeric:tabular-nums}
+  .metric .d{font-size:13px; margin-top:2px; font-weight:600}
+  .up{color:var(--up)} .down{color:var(--down)} .flat{color:var(--muted)}
+  .metric.accent .v{color:var(--gold)}
+  section{background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:24px 26px; margin-bottom:18px}
+  h2{margin:0 0 4px; font-size:20px; font-weight:700; color:var(--gold); letter-spacing:-.01em}
+  .sub{color:var(--muted); font-size:13px; margin-bottom:18px}
+  h3{margin:22px 0 8px; font-size:15px; font-weight:700}
+  h3:first-of-type{margin-top:14px}
+  p{margin:8px 0}
+  .tag{display:inline-block; font-size:10px; letter-spacing:.1em; text-transform:uppercase;
+    padding:3px 8px; border-radius:999px; font-weight:700; vertical-align:middle}
+  .tag.fact{background:rgba(91,155,245,.14); color:var(--blue); border:1px solid rgba(91,155,245,.3)}
+  .tag.est{background:rgba(224,169,92,.12); color:var(--gold); border:1px solid rgba(224,169,92,.3)}
+  .tag.warn{background:rgba(224,138,138,.14); color:var(--down); border:1px solid rgba(224,138,138,.3)}
+  .tag.new{background:rgba(91,216,138,.14); color:var(--up); border:1px solid rgba(91,216,138,.3)}
+  .tag.fix{background:rgba(91,155,245,.18); color:var(--blue); border:1px solid rgba(91,155,245,.4)}
+  .est-note{color:var(--dim); font-size:12px; font-style:italic}
+  .tablewrap{overflow-x:auto; -webkit-overflow-scrolling:touch; margin-top:12px}
+  table{width:100%; border-collapse:collapse; font-size:14px; min-width:560px}
+  th{text-align:left; color:var(--muted); font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+    font-weight:600; padding:0 12px 10px 0; border-bottom:1px solid var(--line); white-space:nowrap}
+  td{padding:11px 12px 11px 0; border-bottom:1px solid rgba(35,45,61,.55); vertical-align:top}
+  tbody tr:last-child td{border-bottom:none}
+  tr.lqdt td{color:var(--muted)}
+  tr.newrow td{color:var(--up)}
+  tr.changedrow td{color:var(--blue)}
+  tr.total td{font-weight:700; border-top:1px solid var(--line); border-bottom:none}
+  .ticker{font-weight:700; letter-spacing:.02em}
+  .instr{font-weight:700; letter-spacing:.02em; line-height:1.35}
+  .instr .code{display:block; font-weight:400; font-size:11px; color:var(--dim);
+    letter-spacing:.04em; margin-top:2px; font-variant-numeric:tabular-nums}
+  .num{font-variant-numeric:tabular-nums}
+  .chain{display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:14px}
+  .chain .node{background:var(--card-2); border:1px solid var(--line); border-radius:10px;
+    padding:10px 14px; font-size:13px; font-weight:600}
+  .chain .arrow{color:var(--gold); font-size:18px; line-height:1}
+  .empty{border:1px dashed var(--line); border-radius:12px; padding:20px; color:var(--muted);
+    font-size:14px; text-align:center; background:rgba(35,45,61,.16)}
+  .svgwrap{margin-top:14px; border:1px solid var(--line); border-radius:12px; background:var(--card-2); padding:16px}
+  .legend{display:flex; flex-wrap:wrap; gap:10px 18px; margin-top:10px; font-size:12px; color:var(--muted)}
+  .legend .sw{display:inline-block; width:10px; height:10px; border-radius:3px; margin-right:6px; vertical-align:middle}
+  .warnbox{margin-top:14px; padding:16px 18px; border:1px solid rgba(224,138,138,.4); border-radius:12px;
+    background:rgba(224,138,138,.08); font-size:14px}
+  .warnbox strong{color:var(--down)}
+  .fixbox{margin-top:14px; padding:16px 18px; border:1px solid rgba(91,155,245,.4); border-radius:12px;
+    background:rgba(91,155,245,.08); font-size:14px}
+  .fixbox strong{color:var(--blue)}
+  .foot{display:flex; justify-content:space-between; gap:14px; margin-top:20px; padding-top:14px;
+    border-top:1px solid var(--line); color:var(--dim); font-size:11px}
+  .disclaimer{margin-top:26px; padding:16px 18px; border:1px solid var(--line); border-radius:12px;
+    background:var(--card-2); color:var(--muted); font-size:12px; line-height:1.6}
+  ul{margin:8px 0; padding-left:20px} li{margin:4px 0}
+  @media print{ body{background:var(--bg)} .wrap{max-width:none; padding:0}
+    section,.hero,.metric{break-inside:avoid; page-break-inside:avoid} h2{break-after:avoid} }
+  @media (max-width:560px){ section{padding:18px 16px} .wrap{padding:16px 12px 40px} .hero{padding:22px 18px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow">Модельный и контрольный портфель · Плановая еженедельная ребалансировка · ИСПРАВЛЕННЫЙ запуск</div>
+    <h1>09.10.2026 — новый приоритет внутри облигаций (§5.1б) по поручению заказчика; §10а впервые сработал (YDEX)</h1>
+    <div class="date">Пятница · цены на ~14:10–14:25 мск (рынок открыт) · ставка ЦБ без изменений четвёртое заседание подряд (14,00%)</div>
+    <div class="trigger"><strong>Главное.</strong> Эта запись заменяет более раннюю ребалансировку той же даты
+      (коммит <code>7570a0a</code>), отменённую <code>git revert</code> по прямому поручению заказчика: он
+      увидел, что контрольный портфель докупил ОФЗ26238, и распорядился зафиксировать новый приоритет внутри
+      облигаций — короткий фикс (40%) → замещающие (35%) → флоатеры (20%, переосмыслены как постоянная
+      страховка на РОСТ ставки) → короткие ОФЗ (5%, малозначимая защита от инфляции). Взнос недели пошёл в
+      РостелP16R (короткие корпоративные), а не в НОВАТЭК1Р3. Отклонение YDEX внутри группы «акции» всё ещё
+      впервые пересекло порог ±20% (§10а) — этот шаг не зависит от облигационной структуры и воспроизведён без
+      изменений.</div>
+    <div class="pulse">
+      <div class="metric"><div class="k">Модельный, стоимость</div><div class="v num">1 035 836,09 ₽</div><div class="d up">TWR +1,6498% (не зависит от этой правки)</div></div>
+      <div class="metric"><div class="k">Контрольный, стоимость</div><div class="v num">39 887,37 ₽</div><div class="d up">TWR −1,4982% (сделки те же, что в отменённой записи)</div></div>
+      <div class="metric accent"><div class="k">Просадка от пика TWR</div><div class="v num">−0,541%</div><div class="d flat">не зависит от выбора облигационного подкласса</div></div>
+      <div class="metric"><div class="k">Взносы недели</div><div class="v num">2 500 / 5 000 ₽</div><div class="d flat">модельный / контрольный</div></div>
+    </div>
+  </header>
+
+  <!-- ═══ Коррекция ═══ -->
+  <section>
+    <h2><span class="tag fix">коррекция</span> Прочитать перед остальным отчётом — что и почему изменилось</h2>
+    <div class="fixbox">
+      <strong>Эта запись заменяет отменённую ребалансировку за ту же дату.</strong> Утром 09.10.2026 была
+      проведена плановая пятничная ребалансировка по действовавшему тогда правилу §5.1а (объединённая 60%-я
+      корзина «короткие ОФЗ+корпоративные» / 30% замещающие / до 10% условных флоатеров) — коммит
+      <code>7570a0a</code>. Заказчик ознакомился с результатом в тот же день, обратил внимание, что ОФЗ в
+      контрольном портфеле не только осталась, но и была докуплена, и распорядился: (1) зафиксировать новый
+      приоритет внутри облигаций — <strong>короткий фикс → замещающие → флоатеры → короткие ОФЗ</strong>, с
+      конкретными цифрами 40/35/20/5%; (2) переосмыслить флоатеры как постоянную страховку на случай роста
+      ставки, а не условную тактическую ставку; (3) явно разрешить не продавать уже удерживаемые (легаси)
+      позиции ОФЗ — «дорожная карта» для новых денег, не форсированная ребалансировка. Коммит
+      <code>7570a0a</code> отменён через <code>git revert</code> (история сохранена, ничего не перезаписано),
+      спецификация обновлена (<code>TZ_Model_Portfolio.md</code> §5.1б, v2.15), и ребалансировка проведена
+      заново от состояния на 02.10.2026 — эта запись.
+    </div>
+    <p class="est-note">Переоценка рынка (цены, НКД, §10/§10а/§10б/§10в) — идентична отменённой записи, один и
+      тот же торговый день. Изменилось только то, какой облигационный подкласс получил деньги недели (и, как
+      следствие — побочный эффект переклассификации ВЭБ2Р-50/Газпн3P13R в флоатеры). Подробное сравнение «было
+      vs стало» — в разделе 5 ниже и в <code>portfolio_decisions_log.md</code>, запись «09.10.2026 (коррекция)».</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Коррекция</span></div>
+  </section>
+
+  <!-- ═══ Предупреждение про НКД ═══ -->
+  <section>
+    <h2><span class="tag warn">методологическая оговорка</span> НКД — без изменений от отменённой записи</h2>
+    <div class="warnbox">
+      <strong>Бóльшая часть недельного «восстановления» TWR — бухгалтерская поправка, не рыночный рост.</strong>
+      Впервые НКД (накопленный купонный доход) получен и включён одновременно по всем 6 облигационным
+      позициям модельного портфеля (и 5 держимым — контрольного). На 02.10.2026 НКД не было включено
+      вовсе. Разовая поправка — <strong>≈11 485,27 ₽</strong> (≈1,13% стоимости портфеля на начало недели).
+      Разбор недельного прироста стоимости модельного портфеля до взноса (+20 359,14 ₽): акции
+      <strong>+8 117,42 ₽</strong> (+2,19% на сегменте — настоящий рыночный рост), облигации
+      <strong>+11 051,51 ₽</strong> (из которых ≈11 485,27 ₽ — разовая поправка НКД, то есть ЧИСТАЯ цена
+      облигаций по факту слегка СНИЗИЛАСЬ на ≈434 ₽ — согласуется с доходностью ОФЗ 10 лет, почти не
+      изменившейся за неделю: 16,87%→16,88%), золото +992,91 ₽, кэш +197,31 ₽. Официальный <code>twr_pct</code>
+      считается по формуле methodology §9 без корректировки и <strong>не зависит от выбора облигационного
+      подкласса для взноса этой недели</strong> (считается по стоимости ДО взноса и решений) — поэтому
+      twr_pct/drawdown_pct этой записи идентичны отменённой.
+    </div>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Оговорка</span></div>
+  </section>
+
+  <!-- ═══ Что сделано ═══ -->
+  <section>
+    <h2>Что сделано в модельном портфеле</h2>
+    <div class="sub">Проверки по порядку (шаги 2а–2в) — §10а сработал впервые, §10б пересчитан (без изменений), §10 не сработал; шаг 3 (взнос) — по новому правилу §5.1б</div>
+
+    <h3>1. §10 — фиксация прибыли / откуп: не сработало <span class="est-note">(без изменений от отменённой записи)</span></h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Тикер</th><th>Доходность от avg_price</th><th>Было (02.10)</th><th>Статус</th></tr></thead>
+        <tbody>
+          <tr><td class="ticker">LKOH</td><td class="num up">+30,45%</td><td class="num">+25,11%</td><td>44,55 п.п. до +75%</td></tr>
+          <tr><td class="ticker">ROSN</td><td class="num up">+8,43%</td><td class="num">+7,82%</td><td>66,57 п.п. до +75%</td></tr>
+          <tr><td class="ticker">T</td><td class="num up">+4,34%</td><td class="num">+1,68%</td><td>70,66 п.п. до +75%</td></tr>
+          <tr><td class="ticker">SBER</td><td class="num up">+2,95%</td><td class="num">+0,45%</td><td>72,05 п.п. до +75%</td></tr>
+          <tr><td class="ticker">MOEX</td><td class="num up">+1,57%</td><td class="num">+0,01%</td><td>73,43 п.п. до +75%</td></tr>
+          <tr><td class="ticker">GMKN</td><td class="num down">−0,74%</td><td class="num">+0,64%</td><td>далеко от −20%, цикла нет</td></tr>
+          <tr><td class="ticker">SNGSP</td><td class="num down">−1,10%</td><td class="num">−4,54%</td><td>далеко от −20%</td></tr>
+          <tr><td class="ticker">YDEX</td><td class="num down">−4,91%</td><td class="num">−1,32%</td><td>далеко от −20%; avg_price пересчитан сегодня (докупка по §10а)</td></tr>
+          <tr><td class="ticker">PLZL</td><td class="num down">−6,46%</td><td class="num">−10,57%</td><td>нет активного цикла откупа</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="est-note"><span class="tag fact">факт</span> Ни одна позиция не пересекла ступени фиксации
+      (+75/+90/+110%) или откупа. PLZL остаётся самой просевшей от avg_price, но без начатого цикла §10.4 не применяется.</p>
+
+    <h3>2. §10а — структура внутри группы «акции»: СРАБОТАЛ впервые <span class="est-note">(без изменений от отменённой записи — не зависит от облигаций)</span></h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Тикер</th><th>Доля в группе (до действия)</th><th>Цель в группе</th><th>Отклонение</th><th>Статус</th></tr></thead>
+        <tbody>
+          <tr class="newrow"><td class="ticker">YDEX</td><td class="num">4,52%</td><td class="num">5,71%</td><td class="num down">−20,91%</td><td><strong>порог ±20% пройден — докуплено</strong></td></tr>
+          <tr><td class="ticker">T</td><td class="num">8,92%</td><td class="num">8,57%</td><td class="num up">+4,03%</td><td>в пределах порога</td></tr>
+          <tr><td class="ticker">LKOH</td><td class="num">17,82%</td><td class="num">17,14%</td><td class="num up">+3,97%</td><td>в пределах порога</td></tr>
+          <tr><td class="ticker">SBER</td><td class="num">18,91%</td><td class="num">18,57%</td><td class="num up">+1,83%</td><td>в пределах порога</td></tr>
+          <tr><td class="ticker">MOEX</td><td class="num">7,27%</td><td class="num">7,14%</td><td class="num up">+1,83%</td><td>в пределах порога</td></tr>
+          <tr><td class="ticker">PLZL</td><td class="num">11,63%</td><td class="num">11,43%</td><td class="num up">+1,78%</td><td>в пределах порога</td></tr>
+          <tr><td class="ticker">ROSN</td><td class="num">10,07%</td><td class="num">10,00%</td><td class="num up">+0,74%</td><td>в пределах порога</td></tr>
+          <tr><td class="ticker">SNGSP</td><td class="num">11,44%</td><td class="num">11,43%</td><td class="num">+0,05%</td><td>в пределах порога</td></tr>
+          <tr><td class="ticker">GMKN</td><td class="num">9,43%</td><td class="num">10,00%</td><td class="num down">−5,75%</td><td>в пределах порога, наблюдать</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="chain">
+      <div class="node">YDEX падает на 4,50% сегодня (без найденного триггера, см. радар)</div><div class="arrow">→</div>
+      <div class="node">Доля внутри группы «акции» уходит до 4,52% против цели 5,71% — отклонение −20,91%</div><div class="arrow">→</div>
+      <div class="node">Порог ±20% §10а пройден впервые с введения правила (04.09.2026)</div><div class="arrow">→</div>
+      <div class="node">Докуплен 1 лот (1 акция) из денежного рынка — 3 417,00 ₽, новая доля 5,37%</div>
+    </div>
+    <p class="est-note"><span class="tag new">впервые</span> Средняя цена YDEX пересчитана с учётом докупки:
+      (5×3 628,80+1×3 417,00)/6 = <strong>3 593,50 ₽/акция</strong>. Новая доходность позиции −4,91%.</p>
+
+    <h3>3. §10б — доля золота: пересчёт наступил, целевая доля БЕЗ ИЗМЕНЕНИЙ <span class="est-note">(без изменений от отменённой записи)</span></h3>
+    <p>30 дней с прошлого пересчёта (08.09.2026) истекли. Курс ЦБ на 09.10.2026 — <strong>85,4173</strong>;
+      MA200 — <strong>78,5987</strong>; отклонение — <strong>+8,675%</strong>. По лестнице §10б.3 (шаг 2 п.п.),
+      диапазон +6%…+24% → целевая доля <strong>10%</strong> — без изменений. Действий не требуется.</p>
+
+    <h3>4. §10в — соотношение акции/облигации: без изменений</h3>
+    <p>Ставка ЦБ 14,00% четвёртое заседание подряд без изменений (следующее — 23.10.2026, 13:30 мск).
+      <code>вес_акций(14,00%)</code> = <strong>44,25%</strong>. Цели не изменились: акции 37,62% / облигации
+      47,38% / золото 10% / кэш база 5%. <strong>Это соотношение «акции/облигации» целиком не затронуто
+      правкой §5.1б</strong> — она только переслаивает распределение ВНУТРИ облигационной части.</p>
+
+    <h3>5. Взнос недели — <span class="tag fix">новый приоритет §5.1б</span>: короткие корпоративные, фикс. купон (РостелP16R)</h3>
+    <p>Факт до взноса: акции 36,61% против цели 37,62% (разрыв +1,006 п.п.), облигации 46,22% против
+      47,38% (разрыв +1,160 п.п.) — облигации чуть более недовешены на уровне класса (без изменений от
+      отменённой записи). <strong>Внутри облигаций — по НОВОЙ структуре §5.1б</strong> (база — полная
+      облигационная часть, легаси длинные ОФЗ не исключены из знаменателя): короткие фикс (РостелP16R) —
+      14,17% факт против цели 40% (разрыв <strong>−25,83 п.п., самый большой</strong>), замещающие (НОВАТЭК1Р3)
+      — 18,03% против 35% (разрыв −16,97 п.п.), флоатеры (ВЭБ2Р-50+Газпн3P13R, переклассифицированы — см.
+      ниже) — 27,11% против 20% (<strong>перевешен</strong> на +7,11 п.п. — не докупать), короткие ОФЗ — 0%
+      против 5% (нет держимой бумаги подкласса — не форсируется). Самый недовешенный — короткие фикс.</p>
+    <div class="chain">
+      <div class="node">Облигации — чуть более недовешенный класс (46,22% факт vs 47,38% цель)</div><div class="arrow">→</div>
+      <div class="node">Внутри облигаций (§5.1б) самый недовешенный — короткие фикс (14,17% vs цель 40%)</div><div class="arrow">→</div>
+      <div class="node">Куплено 2 бумаги РостелP16R — 2 060,08 ₽ (только взнос 2 500 ₽, буфер LQDT не трогали)</div><div class="arrow">→</div>
+      <div class="node">Остаток 438,89 ₽ — в LQDT; новая доля подкласса — 14,17%→14,46% (ближе к цели 40%)</div>
+    </div>
+    <p class="est-note"><span class="tag fix">отличие от отменённой записи</span> Там взнос+буфер (2 500 + 6 111,37
+      ₽) шли в НОВАТЭК1Р3 — потому что по старому правилу §5.1а самым недовешенным подклассом считались
+      замещающие, а их единственная бумага дороже одной контрибьюции (8 611,37 ₽), что требовало привлечения
+      избыточного буфера LQDT. Здесь лот РостелP16R дёшев (1 030,04 ₽) — контрибьюции хватило на 2 целые
+      бумаги без привлечения буфера, поэтому кэш/LQDT в этой записи заметно выше (7,14% против 6,51%).</p>
+    <p class="est-note"><span class="tag fix">переклассификация</span> ВЭБ2Р-50 (купон RUONIA+надбавка) и
+      Газпн3P13R (купон привязан к ключевой ставке) — обе фактически floating-rate с 19.08.2026 (см.
+      <code>portfolio_history.jsonl</code>, запись 18.09.2026). Подкласс «флоатеры» как отдельная учётная
+      категория не применялся ни разу с момента введения 04.10.2026 (§5.1а) до этой записи — обе бумаги
+      числились в «короткие корпоративные». С этой записи они учитываются как флоатеры; РостелP16R —
+      единственная бумага, оставшаяся в «короткие фикс». Это исправление классификации по фактическим
+      характеристикам уже удерживаемых бумаг, не новое инвестиционное решение.</p>
+    <p class="est-note"><span class="tag warn">грандфазеринг</span> Длинные ОФЗ (ОФЗ26238 212 шт., ОФЗ26243 120
+      шт., держатся с до 04.10.2026) <strong>не продавались и не планируются к принудительной продаже</strong>
+      — по прямому указанию заказчика (ТЗ §5.1б). Их доля в облигационной части (40,90%) выше, чем
+      подразумевала бы новая структура — это ожидаемо и допустимо на переходный период.</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Решения недели</span></div>
+  </section>
+
+  <!-- ═══ Модельный портфель — полный состав ═══ -->
+  <section>
+    <h2>Модельный портфель · Полный состав</h2>
+    <div class="sub">Стоимость 1 035 836,09 ₽ · взнос недели 2 500 ₽ · net_invested 1 020 000 ₽ ·
+      P&amp;L +15 836,09 ₽ (+1,5526%) · TWR +1,6498% (см. оговорку про НКД выше; пик 2,197% от 25.09, просадка −0,541%)</div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Инструмент</th><th>Доля</th><th>Кол-во</th><th>Сумма, ₽</th><th>Доходность позиции</th><th>До фиксации / добора</th></tr></thead>
+        <tbody>
+          <tr><td class="instr">Сбербанк<span class="code">SBER</span></td><td class="num">6,91%</td><td class="num">254 акции</td><td class="num">71 539,10</td><td class="num up">+2,95%</td><td>72,1 п.п. до +75%</td></tr>
+          <tr><td class="instr">ЛУКОЙЛ<span class="code">LKOH</span></td><td class="num">6,51%</td><td class="num">12 акций</td><td class="num">67 416,00</td><td class="num up">+30,45%</td><td>44,6 п.п. до +75%</td></tr>
+          <tr><td class="instr">Сургутнефтегаз-п<span class="code">SNGSP</span></td><td class="num">4,18%</td><td class="num">1050 акций</td><td class="num">43 260,00</td><td class="num down">−1,10%</td><td>—</td></tr>
+          <tr><td class="instr">Полюс<span class="code">PLZL</span></td><td class="num">4,25%</td><td class="num">44 акции</td><td class="num">44 008,80</td><td class="num down">−6,46%</td><td>—, цикла откупа нет</td></tr>
+          <tr><td class="instr">Норникель<span class="code">GMKN</span></td><td class="num">3,44%</td><td class="num">310 акций</td><td class="num">35 656,20</td><td class="num down">−0,74%</td><td>75,7 п.п. до +75%</td></tr>
+          <tr><td class="instr">Роснефть<span class="code">ROSN</span></td><td class="num">3,68%</td><td class="num">110 акций</td><td class="num">38 109,50</td><td class="num up">+8,43%</td><td>66,6 п.п. до +75%</td></tr>
+          <tr><td class="instr">Т-Технологии<span class="code">T</span></td><td class="num">3,26%</td><td class="num">127 акций</td><td class="num">33 726,12</td><td class="num up">+4,34%</td><td>70,7 п.п. до +75%</td></tr>
+          <tr><td class="instr">Мосбиржа<span class="code">MOEX</span></td><td class="num">2,66%</td><td class="num">180 акций</td><td class="num">27 504,00</td><td class="num up">+1,57%</td><td>73,4 п.п. до +75%</td></tr>
+          <tr class="newrow"><td class="instr">Яндекс<span class="code">YDEX — докуплено +1 акция (§10а)</span></td><td class="num">1,98%</td><td class="num">6 акций</td><td class="num">20 502,00</td><td class="num down">−4,91%</td><td>79,9 п.п. до +75%</td></tr>
+          <tr><td class="instr">ОФЗ 26238<span class="code">SU26238RMFS4 · до 2041 · легаси, грандфазеринг</span></td><td class="num">10,80%</td><td class="num">212 шт.</td><td class="num">111 919,04</td><td class="num">YTM 16,63%</td><td>дюрация ~9,8 лет*</td></tr>
+          <tr><td class="instr">ОФЗ 26243<span class="code">SU26243RMFS4 · до 2038 · легаси, грандфазеринг</span></td><td class="num">8,13%</td><td class="num">120 шт.</td><td class="num">84 259,20</td><td class="num">YTM 16,93%</td><td>дюрация ~7,5 лет*</td></tr>
+          <tr><td class="instr">НОВАТЭК1Р3<span class="code">RU000A10AUX8 · замещающая</span></td><td class="num">8,31%</td><td class="num">10 шт.</td><td class="num">86 113,70</td><td class="num">YTM 9,25% (в USD)</td><td>дюрация ~1,4 года*</td></tr>
+          <tr><td class="instr">ВЭБ2Р-50<span class="code">RU000A10B8D9 · флоатер, до 2027 — переклассифицирован</span></td><td class="num">6,24%</td><td class="num">64 шт.</td><td class="num">64 657,28</td><td class="num">YTM 15,24%</td><td>дюрация ~0,6 года*</td></tr>
+          <tr><td class="instr">Газпромнефть 3P13R<span class="code">RU000A109B33 · флоатер, до 2028 — переклассифицирован</span></td><td class="num">6,25%</td><td class="num">64 шт.</td><td class="num">64 779,52</td><td class="num">YTM 15,78%</td><td>дюрация ~1,4 года*</td></tr>
+          <tr class="newrow"><td class="instr">Ростелеком P16R<span class="code">RU000A10BG13 · короткие фикс — докуплено +2 шт.</span></td><td class="num">6,56%</td><td class="num">66 шт.</td><td class="num">67 982,64</td><td class="num">YTM 15,17%</td><td>дюрация ~0,6 года*</td></tr>
+          <tr><td class="instr">Золото<span class="code">GOLD, БПИФ ВИМ Золото</span></td><td class="num">9,69%</td><td class="num">34 839 паёв</td><td class="num">100 423,42</td><td class="num">—</td><td>цель §10б 10% — почти точно</td></tr>
+          <tr class="lqdt"><td class="instr">Денежный рынок<span class="code">LQDT, БПИФ ВИМ Ликвидность</span></td><td class="num">7,14%</td><td class="num">35 123 паёв</td><td class="num">73 979,57</td><td class="num">—</td><td>буфер не израсходован в этот раз</td></tr>
+          <tr class="total"><td>Итого</td><td class="num">100%</td><td></td><td class="num">1 035 836,09</td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="est-note">* Дюрация — оценка, перенесена без пересчёта. Классы: акции 36,85% (цель 37,62%),
+      облигации 46,31% (цель 47,38%), золото 9,69% (цель 10%), кэш 7,14% (цель база 5%). Структура облигаций
+      (§5.1б, v2.15, доля от ПОЛНОЙ облигационной части): легаси длинные ОФЗ-ПД 40,90% (вне целевой структуры,
+      грандфазеринг) / короткие фикс 14,17% (цель 40%) / замещающие 17,95% (цель 35%) / флоатеры 26,99%
+      (цель 20%, перевешен) / короткие ОФЗ 0,00% (цель 5%, нет держимой бумаги). Коридор вокруг 4 новых
+      подклассов — открытый вопрос, не определён (см. раздел «Что дальше» и ТЗ §13.7). <span class="tag fact">впервые с НКД</span>
+      Все 6 облигационных позиций оценены ВКЛЮЧАЯ накопленный купонный доход.</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Модельный портфель</span></div>
+  </section>
+
+  <!-- ═══ Риск-доля ═══ -->
+  <section>
+    <h2>Риск-доля портфеля (ТЗ §5.2)</h2>
+    <div class="empty">Риск-доля не используется — 0% портфеля. Лимит 5% (до 1,5% на позицию) свободен
+      полностью. Кандидатов на проверку по чек-листу на этой неделе не поступало.</div>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Риск-доля</span></div>
+  </section>
+
+  <!-- ═══ Диаграмма распределения + график стоимости ═══ -->
+  <section>
+    <h2>Распределение и динамика стоимости</h2>
+    <div class="sub">Модельный портфель · 09.10.2026 (исправленный запуск)</div>
+    <div class="svgwrap">
+      <svg viewBox="0 0 340 340" width="100%" height="280" style="max-width:340px;display:block;margin:0 auto" role="img" aria-label="Диаграмма распределения по классам активов">
+        <g transform="translate(170,170)">
+          <circle r="120" fill="none" stroke="var(--line)" stroke-width="2"/>
+          <circle r="100" fill="none" stroke="#5b9bf5" stroke-width="40"
+            stroke-dasharray="231.5 628.32" stroke-dashoffset="0" transform="rotate(-90)"/>
+          <circle r="100" fill="none" stroke="#e0a95c" stroke-width="40"
+            stroke-dasharray="291.0 628.32" stroke-dashoffset="-231.5" transform="rotate(-90)"/>
+          <circle r="100" fill="none" stroke="#f2c879" stroke-width="40"
+            stroke-dasharray="60.9 628.32" stroke-dashoffset="-522.5" transform="rotate(-90)"/>
+          <circle r="100" fill="none" stroke="#5d6879" stroke-width="40"
+            stroke-dasharray="44.9 628.32" stroke-dashoffset="-583.4" transform="rotate(-90)"/>
+          <text text-anchor="middle" y="-4" fill="#e8edf5" font-size="22" font-weight="700" font-family="Inter,sans-serif">1,04 млн ₽</text>
+          <text text-anchor="middle" y="18" fill="#8a97ab" font-size="12" font-family="Inter,sans-serif">09.10.2026</text>
+        </g>
+      </svg>
+      <div class="legend">
+        <span><span class="sw" style="background:#5b9bf5"></span>Акции 36,85%</span>
+        <span><span class="sw" style="background:#e0a95c"></span>Облигации 46,31%</span>
+        <span><span class="sw" style="background:#f2c879"></span>Золото 9,69%</span>
+        <span><span class="sw" style="background:#5d6879"></span>Кэш 7,14%</span>
+      </div>
+    </div>
+
+    <div class="svgwrap" style="margin-top:14px">
+      <svg viewBox="0 0 640 220" width="100%" height="220" role="img" aria-label="Стоимость модельного портфеля во времени, со взносами">
+        <line x1="40" y1="20" x2="40" y2="180" stroke="#232d3d"/>
+        <line x1="40" y1="180" x2="620" y2="180" stroke="#232d3d"/>
+        <polyline fill="none" stroke="#5bd88a" stroke-width="2.5" points="
+          40,164.0 112.5,147.3 185,124.3 257.5,60.1 330,68.4 402.5,44.8 475,33.0 547.5,116.1 620,34.9" />
+        <circle cx="112.5" cy="147.3" r="4" fill="#e0a95c"/>
+        <circle cx="185" cy="124.3" r="4" fill="#e0a95c"/>
+        <circle cx="257.5" cy="60.1" r="4" fill="#e0a95c"/>
+        <circle cx="330" cy="68.4" r="4" fill="#e0a95c"/>
+        <circle cx="402.5" cy="44.8" r="4" fill="#e0a95c"/>
+        <circle cx="475" cy="33.0" r="4" fill="#e0a95c"/>
+        <circle cx="547.5" cy="116.1" r="4" fill="#e0a95c"/>
+        <circle cx="620" cy="34.9" r="5" fill="#5bd88a" stroke="#0a0e16" stroke-width="1.5"/>
+        <text x="40" y="14" fill="#8a97ab" font-size="10" font-family="Inter,sans-serif">18.08</text>
+        <text x="595" y="14" fill="#8a97ab" font-size="10" font-family="Inter,sans-serif">09.10</text>
+        <text x="40" y="196" fill="#5d6879" font-size="10" font-family="Inter,sans-serif">995 тыс ₽</text>
+        <text x="560" y="196" fill="#5d6879" font-size="10" font-family="Inter,sans-serif">1 040 тыс ₽</text>
+      </svg>
+      <div class="legend">
+        <span><span class="sw" style="background:#5bd88a"></span>Стоимость портфеля</span>
+        <span><span class="sw" style="background:#e0a95c;border-radius:50%"></span>Точка взноса (2 500 ₽/нед)</span>
+      </div>
+    </div>
+    <p class="est-note">График — рублёвая стоимость портфеля по 9 точкам истории (день 0 + 8 плановых
+      ребалансировок), ось не в масштабе. Последняя точка — исправленный запуск (почти не отличается от
+      отменённой записи в рублях, разница — только комиссии и небольшой нерасходованный остаток буфера).
+      Для очищенной динамики смотрите TWR ниже.</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Диаграммы</span></div>
+  </section>
+
+  <!-- ═══ TWR-сравнение ═══ -->
+  <section>
+    <h2>TWR: модельный vs контрольный vs IMOEX</h2>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th></th><th>TWR на 02.10</th><th>TWR на 09.10</th><th>Изменение</th></tr></thead>
+        <tbody>
+          <tr><td>Модельный портфель</td><td class="num down">−0,353%</td><td class="num up">+1,6498%</td><td class="num up">+2,00 п.п. (см. оговорку про НКД; не зависит от §5.1б)</td></tr>
+          <tr><td>Контрольный портфель</td><td class="num down">−3,005%</td><td class="num up">−1,4982%</td><td class="num up">+1,51 п.п. (та же оговорка)</td></tr>
+          <tr><td>IMOEX (закрытие пятниц)</td><td class="num">2279,75</td><td class="num">2305,18*</td><td class="num up">+1,12%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="est-note">*IMOEX — живой снимок на ~14:10 мск 09.10.2026 (рынок открыт). Разрыв TWR между
+      модельным и контрольным портфелем — −3,148 п.п. (было −2,652 п.п. неделю назад) — идентично отменённой
+      записи, так как TWR обоих портфелей считается ДО решения о распределении внутри облигаций и не зависит
+      от правки §5.1б.</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>TWR</span></div>
+  </section>
+
+  <!-- ═══ Контрольный портфель — полный состав + сравнение ═══ -->
+  <section>
+    <h2>Контрольный портфель · Полный состав и сравнение с основным (§11.2)</h2>
+    <div class="sub">Стоимость 39 887,37 ₽ · взнос недели 5 000 ₽ · TWR −1,4982% (было −3,005%) · сделки идентичны отменённой записи — см. пояснение ниже</div>
+
+    <div class="fixbox">
+      <strong>Сделки контрольного портфеля не изменились, и это важно объяснить.</strong> Единый ранжированный
+      список основного портфеля пересчитан с новыми процентами (РостелP16R вверх, НОВАТЭК1Р3 вниз), но ни один
+      из двух не пересёк порог целой покупки в контрольном портфеле ни при старой, ни при новой доле:
+      НОВАТЭК1Р3 — структурный барьер в обоих случаях (лот 8 611,37 ₽ намного дороже целевой суммы), а
+      РостелP16R — «целевая сумма достижима, но следующий лот её превысил бы» в обоих случаях. Поэтому реально
+      купленные позиции — буквально те же, что в отменённой записи.
+    </div>
+
+    <h3>Покупки этой недели (целыми лотами, по ранжированному списку сверху вниз)</h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Инструмент</th><th>Куплено</th><th>Было → стало</th><th>Целевая сумма</th></tr></thead>
+        <tbody>
+          <tr><td class="ticker">ОФЗ 26238</td><td class="num">+1 шт.</td><td class="num">7 → 8 шт.</td><td class="num">4 309,82 ₽</td></tr>
+          <tr><td class="ticker">GOLD</td><td class="num">+160 паёв</td><td class="num">1181 → 1341 паёв</td><td class="num">3 867,14 ₽</td></tr>
+          <tr><td class="ticker">SBER</td><td class="num">+1 акция</td><td class="num">8 → 9 акций</td><td class="num">2 754,86 ₽</td></tr>
+          <tr><td class="ticker">SNGSP</td><td class="num">+1 лот (10 шт.)</td><td class="num">30 → 40 шт.</td><td class="num">1 665,87 ₽</td></tr>
+          <tr><td class="ticker">ROSN</td><td class="num">+1 акция</td><td class="num">3 → 4 акции</td><td class="num">1 467,54 ₽</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="est-note">ОФЗ 26243/ВЭБ2Р-50/Газпн3P13R/РостелP16R/PLZL/GMKN/T — целевая сумма достижима, но
+      следующий целый лот превысил бы её — без изменений (не барьер, остаток не преследуется). ОФЗ26238 — та
+      же докупка, что в отменённой записи: это механическое следствие мирроринга по §11.2 на фактическую
+      (легаси) долю ОФЗ в основном портфеле, не новая покупка ОФЗ по инициативе этой правки — см. пояснение в
+      <code>portfolio_decisions_log.md</code>.</p>
+
+    <h3>Структурные барьеры (не решаются перераспределением, только ростом портфеля)</h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Тикер</th><th>Цена лота</th><th>Целевая сумма</th><th>Во сколько раз лот дороже цели</th></tr></thead>
+        <tbody>
+          <tr><td class="ticker">LKOH</td><td class="num">5 618,00 ₽</td><td class="num">2 596,08 ₽</td><td class="num">2,16х</td></tr>
+          <tr><td class="ticker">MOEX</td><td class="num">1 528,00 ₽</td><td class="num">1 059,13 ₽</td><td class="num">1,44х</td></tr>
+          <tr><td class="ticker">YDEX</td><td class="num">3 417,00 ₽</td><td class="num">789,50 ₽</td><td class="num">4,33х</td></tr>
+          <tr class="changedrow"><td class="ticker">НОВАТЭК1Р3</td><td class="num">8 611,37 ₽</td><td class="num">3 316,10 ₽</td><td class="num">2,60х</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="est-note">Список — те же 4 позиции четвёртую неделю подряд. НОВАТЭК1Р3: множитель выше, чем в
+      отменённой записи (2,60х против 2,4х), так как доля НОВАТЭК1Р3 в основном портфеле на этой неделе
+      снизилась (9,15%→8,31%) — туда не пошла докупка, деньги направлены в короткие фикс по новому правилу.</p>
+
+    <h3>Доля в основном / доля в контрольном — по каждому инструменту</h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Инструмент</th><th>Доля в контрольном</th><th>Доля в основном</th><th>Отклонение</th><th>Статус</th></tr></thead>
+        <tbody>
+          <tr><td class="ticker">SBER</td><td class="num">6,36%</td><td class="num">6,91%</td><td class="num down">−0,55 п.п.</td><td>докуплено</td></tr>
+          <tr><td class="ticker">LKOH</td><td class="num">0%</td><td class="num">6,51%</td><td class="num down">−6,51 п.п.</td><td>структурный барьер</td></tr>
+          <tr><td class="ticker">SNGSP</td><td class="num">4,13%</td><td class="num">4,18%</td><td class="num down">−0,04 п.п.</td><td>докуплено</td></tr>
+          <tr><td class="ticker">PLZL</td><td class="num">2,51%</td><td class="num">4,25%</td><td class="num down">−1,74 п.п.</td><td>остаток не преследуется</td></tr>
+          <tr><td class="ticker">GMKN</td><td class="num">2,88%</td><td class="num">3,44%</td><td class="num down">−0,56 п.п.</td><td>остаток не преследуется</td></tr>
+          <tr><td class="ticker">ROSN</td><td class="num">3,47%</td><td class="num">3,68%</td><td class="num down">−0,20 п.п.</td><td>докуплено</td></tr>
+          <tr><td class="ticker">T</td><td class="num">2,66%</td><td class="num">3,26%</td><td class="num down">−0,59 п.п.</td><td>остаток не преследуется</td></tr>
+          <tr><td class="ticker">MOEX</td><td class="num">0%</td><td class="num">2,66%</td><td class="num down">−2,66 п.п.</td><td>структурный барьер</td></tr>
+          <tr><td class="ticker">YDEX</td><td class="num">0%</td><td class="num">1,98%</td><td class="num down">−1,98 п.п.</td><td>структурный барьер</td></tr>
+          <tr><td class="ticker">ОФЗ 26238</td><td class="num">10,59%</td><td class="num">10,80%</td><td class="num down">−0,22 п.п.</td><td>докуплено (легаси, см. выше)</td></tr>
+          <tr><td class="ticker">ОФЗ 26243</td><td class="num">7,04%</td><td class="num">8,13%</td><td class="num down">−1,09 п.п.</td><td>остаток не преследуется</td></tr>
+          <tr><td class="ticker">ВЭБ2Р-50</td><td class="num">5,07%</td><td class="num">6,24%</td><td class="num down">−1,18 п.п.</td><td>остаток не преследуется (флоатер)</td></tr>
+          <tr><td class="ticker">Газпн3P13R</td><td class="num">5,08%</td><td class="num">6,25%</td><td class="num down">−1,18 п.п.</td><td>остаток не преследуется (флоатер)</td></tr>
+          <tr class="changedrow"><td class="ticker">РостелP16R</td><td class="num">5,16%</td><td class="num">6,56%</td><td class="num down">−1,40 п.п.</td><td>остаток не преследуется</td></tr>
+          <tr class="changedrow"><td class="ticker">НОВАТЭК1Р3</td><td class="num">0%</td><td class="num">8,31%</td><td class="num down">−8,31 п.п.</td><td>структурный барьер</td></tr>
+          <tr><td class="ticker">GOLD</td><td class="num">9,69%</td><td class="num">9,69%</td><td class="num">−0,00 п.п.</td><td>докуплено, почти точно</td></tr>
+          <tr><td class="ticker">LQDT</td><td class="num">35,36%</td><td class="num">7,14%</td><td class="num up">+28,22 п.п.</td><td>буфер (структурные барьеры)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="est-note">Отклонение по классам: акции −14,84 п.п., облигации −13,38 п.п., золото −0,00 п.п.,
+      кэш +28,22 п.п. (было −14,85 / −14,01 / 0,00 / +28,87 в отменённой записи — разница только по строкам
+      РостелP16R/НОВАТЭК1Р3/кэш, остальное идентично). Буфер денежного рынка — 14 103,67 ₽ (35,36% портфеля,
+      без изменений) — почти целиком объясняется четырьмя структурными барьерами.</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Контрольный портфель</span></div>
+  </section>
+
+  <!-- ═══ Сверка с темпом ═══ -->
+  <section>
+    <h2>Сверка контрольного портфеля с темпом</h2>
+    <div class="sub">Неделя 8 с даты старта (21.08.2026), план 5 000 ₽/нед → 20/30/40 млн за 20 лет.
+      Источник — data/control_portfolio_pace.json (methodology §21). Не зависит от правки §5.1б — сделки контрольного портфеля не изменились.</div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Цель</th><th>Расчётная сумма на неделю 8</th><th>Факт</th><th>Разница</th><th>Статус</th></tr></thead>
+        <tbody>
+          <tr><td>20 млн ₽</td><td class="num">40 309 ₽</td><td class="num">39 887,37 ₽</td><td class="num down">−421,63 ₽ (−1,05%)</td><td>отстаём незначительно</td></tr>
+          <tr><td>30 млн ₽</td><td class="num">40 388 ₽</td><td class="num">39 887,37 ₽</td><td class="num down">−500,63 ₽ (−1,24%)</td><td>отстаём незначительно</td></tr>
+          <tr><td>40 млн ₽</td><td class="num">40 443 ₽</td><td class="num">39 887,37 ₽</td><td class="num down">−555,63 ₽ (−1,37%)</td><td>отстаём незначительно</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="est-note">Статус остаётся «отстаём незначительно» по всем трём планам, довнесение сверх плана не
+      предлагается. Линия темпа — детерминированный ориентир для сверки, не прогноз рынка.</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Темп</span></div>
+  </section>
+
+  <!-- ═══ Соответствие инвестпрофилю ═══ -->
+  <section>
+    <h2>Соответствие инвестиционному профилю</h2>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Класс</th><th>Факт</th><th>Цель (§10в/§10б)</th><th>Коридор профиля</th><th>Статус</th></tr></thead>
+        <tbody>
+          <tr><td>Акции</td><td class="num">36,85%</td><td class="num">37,62%</td><td class="num">~12–71%</td><td>в коридоре</td></tr>
+          <tr><td>Облигации</td><td class="num">46,31%</td><td class="num">47,38%</td><td class="num">~12–71%</td><td>в коридоре</td></tr>
+          <tr><td>Золото</td><td class="num">9,69%</td><td class="num">10%</td><td class="num">8–30%</td><td>в коридоре</td></tr>
+          <tr><td>Кэш</td><td class="num">7,14%</td><td class="num">база 5%</td><td class="num">0–20%</td><td>в коридоре</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="est-note">Просадка −0,541% от пика TWR — далеко от порога §2.2 профиля. Валютно-чувствительная
+      экспозиция (золото + экспортёры + замещающие облигации) — по-прежнему выше ориентира ≥40% портфеля.
+      <strong>Коридор внутри облигационной части (4 подкласса §5.1б) не определён</strong> — см. раздел «Что
+      дальше».</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Инвестпрофиль</span></div>
+  </section>
+
+  <!-- ═══ Гипотезы ═══ -->
+  <section>
+    <h2>Проверка гипотез</h2>
+    <h3>Новые гипотезы</h3>
+    <p><strong>Г13 (новая, заменяет Г11).</strong> Доля коротких корпоративных фикс. купон (РостелP16R),
+      доведённая сегодня до 14,17% от облигационной части (цель 40%, разрыв всё ещё −25,83 п.п.), будет расти
+      к цели на последующих ребалансировках без принудительного форсирования и без продажи легаси длинных ОФЗ
+      — проверка на следующих 3–5 пересмотрах. Прежняя Г11 (рост доли замещающих к 20% по правилу §5.1а)
+      снята как устаревшая — правило, на котором она основывалась, заменено раньше, чем Г11 успела быть
+      проверена больше одного раза.</p>
+    <p><strong>Г14 (новая).</strong> Переклассификация ВЭБ2Р-50/Газпн3P13R в флоатеры не вызовет вынужденной
+      продажи — подкласс уже перевешен (+7,11 п.п.) исключительно из-за легаси-классификации, правило §5.1б не
+      предписывает продавать перевешенные подклассы (только не докупать) — проверка на следующей ребалансировке.</p>
+    <p><strong>Г12.</strong> Первое срабатывание §10а (YDEX) вернёт долю внутри группы в устойчивый коридор, не
+      будет колебаться обратно за порог в ближайшие недели — без изменений, не зависит от этой правки.</p>
+    <h3>Прошлые гипотезы</h3>
+    <p><strong>Г9</strong> (04.10.2026, переход на новую структуру без длинных ОФЗ снизит волатильность) —
+      <span class="tag warn">частично исполнено этой записью</span>: переход состоялся, но не на §5.1а, а на
+      §5.1б (структура успела измениться второй раз до первого полноценного применения первой версии) —
+      волатильность отдельно не измерялась, рано для выводов. <strong>Г7/Г8</strong> (02.10.2026, про НКД и
+      просадку от ОФЗ) — без изменений от отменённой записи. <strong>Г6</strong> (структурные барьеры
+      контрольного портфеля снимаются естественно) — без нового снятия барьера на этой неделе, не проверяется.</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Гипотезы</span></div>
+  </section>
+
+  <!-- ═══ Что дальше ═══ -->
+  <section>
+    <h2>Что дальше</h2>
+    <ul>
+      <li><strong>Открытый вопрос, требует решения заказчика до следующей ребалансировки (ТЗ §13.7):</strong>
+        ширина коридора вокруг 4 новых подклассов облигаций (§5.1б) — плоский ±15 п.п. из §5.1а не годится при
+        подклассах 20%/5% (давал бы, например, отрицательный нижний предел вокруг цели 5%). Агент сознательно
+        не выбрал схему коридора сам — целевые точки использовались как единственный ориентир.</li>
+      <li>Следить за долей коротких фикс. купон (РостелP16R) — рост к цели 40% на следующих 3–5 пересмотрах
+        (Г13).</li>
+      <li>Следить за долей YDEX внутри группы «акции» — первое срабатывание §10а, проверка Г12.</li>
+      <li>Следующий пересчёт §10б (доля золота) — не ранее 08.11.2026.</li>
+      <li>Следующее заседание Банка России по ключевой ставке — 23.10.2026, 13:30 мск.</li>
+      <li>MOEX (1,44х) в контрольном портфеле — ближайший кандидат на снятие структурного барьера.</li>
+      <li>Легаси длинные ОФЗ (40,90% облигационной части) — грандфазерены, не продаются форсированно;
+        наблюдать, снижается ли их доля естественным образом по мере роста остальных подклассов.</li>
+    </ul>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Далее</span></div>
+  </section>
+
+  <div class="disclaimer">
+    <strong>Дисклеймер.</strong> Материал носит информационно-аналитический характер и
+    <strong>не является индивидуальной инвестиционной рекомендацией</strong>. Модельный и контрольный
+    портфели — учебно-аналитический инструмент, не реальные торговые операции. Этот отчёт заменяет более
+    раннюю версию за ту же дату (отменена git revert по поручению заказчика 09.10.2026) — см. раздел
+    «Коррекция» выше и запись «09.10.2026 (коррекция)» в <code>portfolio_decisions_log.md</code>. Стоимость
+    облигационных позиций в этом выпуске впервые включает накопленный купонный доход (НКД) по всем позициям
+    одновременно. Дюрации облигаций перенесены с прошлых недель без пересчёта. Данные собраны из открытых
+    источников (MOEX ISS, cbr.ru) на ~14:10–14:25 мск 09.10.2026 (рынок открыт) и могли измениться к моменту
+    чтения. Автор не несёт ответственности за решения, принятые на основе этого материала.
+  </div>
+
+</div>
+</body>
+</html>
