@@ -1,0 +1,3850 @@
+{
+ "date": "2026-10-08",
+ "fetched_at": "2026-10-09T11:10:06",
+ "source": "MOEX ISS + CBR",
+ "boards": {
+  "shares": {
+   "ABIO": {
+    "close": 43.46,
+    "open": 44.44,
+    "volume": 194918,
+    "name": "iАРТГЕН ао"
+   },
+   "ABRD": {
+    "close": 115.4,
+    "open": 115.8,
+    "volume": 5270,
+    "name": "АбрауДюрсо"
+   },
+   "AFKS": {
+    "close": 7.088,
+    "open": 7.189,
+    "volume": 47662900,
+    "name": "Система ао"
+   },
+   "AFLT": {
+    "close": 33.08,
+    "open": 33.5,
+    "volume": 13949530,
+    "name": "Аэрофлот"
+   },
+   "AIIQ": {
+    "close": 10.859,
+    "open": 10.917,
+    "volume": 137099,
+    "name": "AIIQ ETF"
+   },
+   "AKAI": {
+    "close": 97.15,
+    "open": 98.13,
+    "volume": 5324,
+    "name": "AKAI ETF"
+   },
+   "AKBC": {
+    "close": 89.1,
+    "open": 89.7,
+    "volume": 36934,
+    "name": "AKBC ETF"
+   },
+   "AKCN": {
+    "close": 74.1,
+    "open": 75.3,
+    "volume": 302,
+    "name": "AKCN ETF"
+   },
+   "AKFB": {
+    "close": 141.93,
+    "open": 141.84,
+    "volume": 1865357,
+    "name": "AKFB ETF"
+   },
+   "AKFN": {
+    "close": 94.3,
+    "open": 95.3,
+    "volume": 20409,
+    "name": "AKFN ETF"
+   },
+   "AKGD": {
+    "close": 250.79,
+    "open": 250.95,
+    "volume": 172052,
+    "name": "AKGD ETF"
+   },
+   "AKGP": {
+    "close": 1.18,
+    "open": 1.196,
+    "volume": 2176006,
+    "name": "AKGP ETF"
+   },
+   "AKHT": {
+    "close": 91.52,
+    "open": 93.36,
+    "volume": 610,
+    "name": "AKHT ETF"
+   },
+   "AKIE": {
+    "close": 851.79,
+    "open": 860.22,
+    "volume": 71,
+    "name": "ETF AKIE"
+   },
+   "AKMB": {
+    "close": 1.963,
+    "open": 1.968,
+    "volume": 101247356,
+    "name": "ETF AKMB"
+   },
+   "AKMC": {
+    "close": 1342.24,
+    "open": 1352.6,
+    "volume": 3868,
+    "name": "AKMC ETF"
+   },
+   "AKME": {
+    "close": 174.3,
+    "open": 177.28,
+    "volume": 67264,
+    "name": "ETF AKME"
+   },
+   "AKMM": {
+    "close": 179.07,
+    "open": 179.06,
+    "volume": 27615114,
+    "name": "AKMM ETF"
+   },
+   "AKMP": {
+    "close": 1.2755,
+    "open": 1.2753,
+    "volume": 288957908,
+    "name": "AKMP ETF"
+   },
+   "AKPP": {
+    "close": 129.94,
+    "open": 133.4,
+    "volume": 62085,
+    "name": "AKPP ETF"
+   },
+   "AKQU": {
+    "close": 65.4,
+    "open": 66.67,
+    "volume": 2401,
+    "name": "AKQU ETF"
+   },
+   "AKRN": {
+    "close": 16800,
+    "open": 16774,
+    "volume": 110,
+    "name": "Акрон"
+   },
+   "AKUP": {
+    "close": 12.34,
+    "open": 12.43,
+    "volume": 27949,
+    "name": "AKUP ETF"
+   },
+   "ALRS": {
+    "close": 18.95,
+    "open": 19.47,
+    "volume": 25868650,
+    "name": "АЛРОСА ао"
+   },
+   "AMEZ": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "АшинскийМЗ"
+   },
+   "AMFL": {
+    "close": 142.1,
+    "open": 141.9,
+    "volume": 172973,
+    "name": "AMFL ETF"
+   },
+   "AMGB": {
+    "close": 125.5,
+    "open": 126.3,
+    "volume": 334,
+    "name": "AMGB ETF"
+   },
+   "AMGL": {
+    "close": 134.5,
+    "open": 135.8,
+    "volume": 7492,
+    "name": "AMGL ETF"
+   },
+   "AMIX": {
+    "close": 96.1,
+    "open": 97.1,
+    "volume": 59685,
+    "name": "AMIX ETF"
+   },
+   "AMNR": {
+    "close": 158.134,
+    "open": 158.127,
+    "volume": 2208466,
+    "name": "AMNR ETF"
+   },
+   "AMNY": {
+    "close": 1359.22,
+    "open": 1366.56,
+    "volume": 8151,
+    "name": "AMNY ETF"
+   },
+   "AMRE": {
+    "close": 101.9,
+    "open": 103,
+    "volume": 1066,
+    "name": "AMRE ETF"
+   },
+   "AMRH": {
+    "close": 165.2,
+    "open": 165.2,
+    "volume": 4356,
+    "name": "AMRH ETF"
+   },
+   "AMVD": {
+    "close": 812,
+    "open": 817,
+    "volume": 26,
+    "name": "AMVD ETF"
+   },
+   "AMVY": {
+    "close": 1248,
+    "open": 1257,
+    "volume": 11,
+    "name": "AMVY ETF"
+   },
+   "APRI": {
+    "close": 15.87,
+    "open": 15.59,
+    "volume": 22780,
+    "name": "АПРИ"
+   },
+   "APTK": {
+    "close": 6.218,
+    "open": 6.204,
+    "volume": 571980,
+    "name": "Аптеки36и6"
+   },
+   "AQUA": {
+    "close": 316.9,
+    "open": 319.2,
+    "volume": 63852,
+    "name": "ИНАРКТИКА"
+   },
+   "ARSA": {
+    "close": 7.62,
+    "open": 7.62,
+    "volume": 45500,
+    "name": "Арсагера"
+   },
+   "ASSB": {
+    "close": 2.57,
+    "open": 2.6,
+    "volume": 67000,
+    "name": "АстрЭнСб"
+   },
+   "ASTR": {
+    "close": 212.05,
+    "open": 214.85,
+    "volume": 408175,
+    "name": "iАстра ао"
+   },
+   "AVAN": {
+    "close": 534,
+    "open": 533,
+    "volume": 385,
+    "name": "Авангрд-ао"
+   },
+   "BANE": {
+    "close": 1214,
+    "open": 1223,
+    "volume": 8388,
+    "name": "Башнефт ао"
+   },
+   "BANEP": {
+    "close": 747,
+    "open": 753.5,
+    "volume": 81575,
+    "name": "Башнефт ап"
+   },
+   "BAZA": {
+    "close": 115.02,
+    "open": 116.88,
+    "volume": 258820,
+    "name": "iБАЗИС"
+   },
+   "BCSB": {
+    "close": 16.502,
+    "open": 16.608,
+    "volume": 85138,
+    "name": "BCSB ETF"
+   },
+   "BCSD": {
+    "close": 14.495,
+    "open": 14.491,
+    "volume": 48529318,
+    "name": "BCSD ETF"
+   },
+   "BCSE": {
+    "close": 962.5,
+    "open": 952.5,
+    "volume": 3564,
+    "name": "BCSE ETF"
+   },
+   "BCSG": {
+    "close": 13.31,
+    "open": 13.53,
+    "volume": 95489,
+    "name": "BCSG ETF"
+   },
+   "BCSR": {
+    "close": 10.13,
+    "open": 10.24,
+    "volume": 132698,
+    "name": "BCSR ETF"
+   },
+   "BCSW": {
+    "close": 10.97,
+    "open": 11.08,
+    "volume": 146249,
+    "name": "BCSW ETF"
+   },
+   "BELU": {
+    "close": 256,
+    "open": 254.8,
+    "volume": 370451,
+    "name": "НоваБев ао"
+   },
+   "BISVP": {
+    "close": 9.82,
+    "open": 10.02,
+    "volume": 32200,
+    "name": "БашИнСв ап"
+   },
+   "BLNG": {
+    "close": 7.23,
+    "open": 7.42,
+    "volume": 45000,
+    "name": "Белон ао"
+   },
+   "BNDA": {
+    "close": 1245,
+    "open": 1250.5,
+    "volume": 65,
+    "name": "BNDA ETF"
+   },
+   "BNDB": {
+    "close": 1332.1,
+    "open": 1339.2,
+    "volume": 71,
+    "name": "BNDB ETF"
+   },
+   "BNDC": {
+    "close": 1296.6,
+    "open": 1295,
+    "volume": 198,
+    "name": "BNDC ETF"
+   },
+   "BOND": {
+    "close": 1691,
+    "open": 1697,
+    "volume": 2717,
+    "name": "BOND ETF"
+   },
+   "BRZL": {
+    "close": 1146,
+    "open": 1138,
+    "volume": 272,
+    "name": "БурЗолото"
+   },
+   "BSPB": {
+    "close": 247.97,
+    "open": 251.66,
+    "volume": 985970,
+    "name": "БСП ао"
+   },
+   "BSPBP": {
+    "close": 32.8,
+    "open": 33.95,
+    "volume": 44900,
+    "name": "БСП ап"
+   },
+   "BTBR": {
+    "close": 126.2,
+    "open": 128.61,
+    "volume": 579012,
+    "name": "iВ2В-РТС"
+   },
+   "CARM": {
+    "close": 0.69,
+    "open": 0.697,
+    "volume": 935700,
+    "name": "СТГ"
+   },
+   "CASH": {
+    "close": 13.808,
+    "open": 13.808,
+    "volume": 8017510,
+    "name": "CASH ETF"
+   },
+   "CBOM": {
+    "close": 9.155,
+    "open": 9.247,
+    "volume": 11501400,
+    "name": "МКБ ао"
+   },
+   "CHGZ": {
+    "close": 114.6,
+    "open": 115,
+    "volume": 4840,
+    "name": "РН-ЗапСиб"
+   },
+   "CHKZ": {
+    "close": 15250,
+    "open": 15650,
+    "volume": 249,
+    "name": "ЧКПЗ ао"
+   },
+   "CHMF": {
+    "close": 673.8,
+    "open": 693.4,
+    "volume": 2126882,
+    "name": "СевСт-ао"
+   },
+   "CHMK": {
+    "close": 3110,
+    "open": 3090,
+    "volume": 5,
+    "name": "ЧМК ао"
+   },
+   "CNRU": {
+    "close": 657.2,
+    "open": 670,
+    "volume": 134586,
+    "name": "iЦиан"
+   },
+   "CNTL": {
+    "close": 8.22,
+    "open": 8.28,
+    "volume": 14300,
+    "name": "Телеграф"
+   },
+   "CNTLP": {
+    "close": 4.32,
+    "open": 4.31,
+    "volume": 79300,
+    "name": "Телеграф-п"
+   },
+   "CNYM": {
+    "close": 144.35,
+    "open": 146.7,
+    "volume": 114537,
+    "name": "CNYM ETF"
+   },
+   "CORP": {
+    "close": 103.04,
+    "open": 102.56,
+    "volume": 302,
+    "name": "CORP ETF"
+   },
+   "DATA": {
+    "close": 87.98,
+    "open": 89.86,
+    "volume": 198226,
+    "name": "iАренадата"
+   },
+   "DELI": {
+    "close": 44.3,
+    "open": 44.95,
+    "volume": 70664,
+    "name": "iКаршеринг"
+   },
+   "DIAS": {
+    "close": 1124.5,
+    "open": 1139.5,
+    "volume": 9287,
+    "name": "iДиасофт"
+   },
+   "DIOD": {
+    "close": 7.75,
+    "open": 7.81,
+    "volume": 35900,
+    "name": "ЗаводДИОД"
+   },
+   "DIVD": {
+    "close": 1059.6,
+    "open": 1067.8,
+    "volume": 817,
+    "name": "ETF DIVD"
+   },
+   "DOMRF": {
+    "close": 2041.2,
+    "open": 2086.7,
+    "volume": 158006,
+    "name": "ДОМ.РФ"
+   },
+   "DVEC": {
+    "close": 1.65,
+    "open": 1.656,
+    "volume": 745000,
+    "name": "ДЭК ао"
+   },
+   "DZRD": {
+    "close": 1175,
+    "open": 1190,
+    "volume": 1431,
+    "name": "ДонскЗР"
+   },
+   "DZRDP": {
+    "close": 1760,
+    "open": 1820,
+    "volume": 220,
+    "name": "ДонскЗР п"
+   },
+   "EELT": {
+    "close": 7.52,
+    "open": 7.54,
+    "volume": 22880,
+    "name": "ЕвроЭлтех"
+   },
+   "ELFV": {
+    "close": 0.3746,
+    "open": 0.377,
+    "volume": 10084000,
+    "name": "ЭЛ5Энер ао"
+   },
+   "ELMT": {
+    "close": 0.0982,
+    "open": 0.0976,
+    "volume": 19639000,
+    "name": "iЭлемент"
+   },
+   "ENPG": {
+    "close": 294.25,
+    "open": 299.85,
+    "volume": 352483,
+    "name": "ЭН+ГРУП ао"
+   },
+   "EQMX": {
+    "close": 126.25,
+    "open": 127.25,
+    "volume": 988417,
+    "name": "EQMX ETF"
+   },
+   "ESGE": {
+    "close": 66.55,
+    "open": 67.2,
+    "volume": 591,
+    "name": "ESGE ETF"
+   },
+   "ESGR": {
+    "close": 1009.5,
+    "open": 1018.5,
+    "volume": 4,
+    "name": "ESGR ETF"
+   },
+   "ETLN": {
+    "close": 19.72,
+    "open": 19.14,
+    "volume": 1563637,
+    "name": "ЭталонГруп"
+   },
+   "EUTR": {
+    "close": 23.1,
+    "open": 23.2,
+    "volume": 663654,
+    "name": "ЕвроТранс"
+   },
+   "EVRZ": {
+    "close": 47.05,
+    "open": 47.7,
+    "volume": 50330,
+    "name": "ЕВРАЗ"
+   },
+   "FEES": {
+    "close": 0.052,
+    "open": 0.053,
+    "volume": 6877580000,
+    "name": "Россети"
+   },
+   "FESH": {
+    "close": 61.4,
+    "open": 62.8,
+    "volume": 1108082,
+    "name": "ДВМП ао"
+   },
+   "FINC": {
+    "close": 1433.5,
+    "open": 1432.1,
+    "volume": 246,
+    "name": "FINC ETF"
+   },
+   "FIXR": {
+    "close": 0.3841,
+    "open": 0.3937,
+    "volume": 99287000,
+    "name": "Фикс Прайс"
+   },
+   "FLOT": {
+    "close": 77.98,
+    "open": 79.38,
+    "volume": 3258330,
+    "name": "Совкомфлот"
+   },
+   "FLOW": {
+    "close": 1016,
+    "open": 1016,
+    "volume": 78355,
+    "name": "FLOW ETF"
+   },
+   "FMBR": {
+    "close": 11.558,
+    "open": 11.574,
+    "volume": 250444,
+    "name": "FMBR ETF"
+   },
+   "FMMM": {
+    "close": 13.967,
+    "open": 13.962,
+    "volume": 14380971,
+    "name": "FMMM ETF"
+   },
+   "FMSA": {
+    "close": 9.827,
+    "open": 9.935,
+    "volume": 10531,
+    "name": "FMSA ETF"
+   },
+   "GAZA": {
+    "close": 415,
+    "open": 418,
+    "volume": 960,
+    "name": "ГАЗ ао"
+   },
+   "GAZAP": {
+    "close": 311,
+    "open": 318.5,
+    "volume": 2950,
+    "name": "ГАЗ ап"
+   },
+   "GAZC": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ГАЗКОН-ао"
+   },
+   "GAZP": {
+    "close": 96.11,
+    "open": 96.6,
+    "volume": 54039160,
+    "name": "ГАЗПРОМ ао"
+   },
+   "GAZS": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ГАЗ-сервис"
+   },
+   "GAZT": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ГАЗ-Тек ао"
+   },
+   "GCHE": {
+    "close": 3712,
+    "open": 3755,
+    "volume": 18362,
+    "name": "ЧеркизГ-ао"
+   },
+   "GECO": {
+    "close": 14.55,
+    "open": 14.64,
+    "volume": 57016,
+    "name": "iГЕНЕТИКО"
+   },
+   "GEMA": {
+    "close": 95.8,
+    "open": 96,
+    "volume": 7570,
+    "name": "iММЦБ ао"
+   },
+   "GEMC": {
+    "close": 593.9,
+    "open": 596.9,
+    "volume": 15066,
+    "name": "МКПАО ЮМГ"
+   },
+   "GLRX": {
+    "close": 38.2,
+    "open": 36.82,
+    "volume": 4864677,
+    "name": "ГЛОРАКС"
+   },
+   "GMKN": {
+    "close": 114.6,
+    "open": 118.6,
+    "volume": 15098190,
+    "name": "ГМКНорНик"
+   },
+   "GOLD": {
+    "close": 2.8695,
+    "open": 2.864,
+    "volume": 24810690,
+    "name": "GOLD ETF"
+   },
+   "GOOD": {
+    "close": 1407,
+    "open": 1408.7,
+    "volume": 1808,
+    "name": "GOOD ETF"
+   },
+   "GROD": {
+    "close": 687,
+    "open": 692,
+    "volume": 152,
+    "name": "ETF GROD"
+   },
+   "GTRK": {
+    "close": 46.2,
+    "open": 47.7,
+    "volume": 165920,
+    "name": "ГТМ ао"
+   },
+   "HEAD": {
+    "close": 2747,
+    "open": 2752,
+    "volume": 88171,
+    "name": "Хэдхантер"
+   },
+   "HIMCP": {
+    "close": 13.56,
+    "open": 13.46,
+    "volume": 13400,
+    "name": "Химпром ап"
+   },
+   "HNFG": {
+    "close": 285.6,
+    "open": 287.8,
+    "volume": 24781,
+    "name": "ХЭНДЕРСОН"
+   },
+   "HYDR": {
+    "close": 0.389,
+    "open": 0.3965,
+    "volume": 234192000,
+    "name": "РусГидро"
+   },
+   "IGST": {
+    "close": 4120,
+    "open": 4120,
+    "volume": 27,
+    "name": "Ижсталь2ао"
+   },
+   "IGSTP": {
+    "close": 3130,
+    "open": 3150,
+    "volume": 72,
+    "name": "Ижсталь ап"
+   },
+   "INCB": {
+    "close": 64,
+    "open": 64.24,
+    "volume": 20583,
+    "name": "Инкаб"
+   },
+   "INFL": {
+    "close": 153.4,
+    "open": 153.8,
+    "volume": 45253,
+    "name": "INFL ETF"
+   },
+   "INGO": {
+    "close": 168.85,
+    "open": 169.45,
+    "volume": 25199,
+    "name": "INGO ETF"
+   },
+   "IRAO": {
+    "close": 2.3745,
+    "open": 2.408,
+    "volume": 102826100,
+    "name": "ИнтерРАОао"
+   },
+   "IRKT": {
+    "close": 18.92,
+    "open": 19.26,
+    "volume": 1165700,
+    "name": "Яковлев-3"
+   },
+   "IVAT": {
+    "close": 64,
+    "open": 65.1,
+    "volume": 211057,
+    "name": "iИВА"
+   },
+   "JNOS": {
+    "close": 26.42,
+    "open": 26.9,
+    "volume": 57900,
+    "name": "Славн-ЯНОС"
+   },
+   "JNOSP": {
+    "close": 11.54,
+    "open": 11.7,
+    "volume": 30400,
+    "name": "Слав-ЯНОСп"
+   },
+   "KAZT": {
+    "close": 340.2,
+    "open": 343.6,
+    "volume": 2090,
+    "name": "Куйбазот"
+   },
+   "KAZTP": {
+    "close": 347.5,
+    "open": 345,
+    "volume": 250,
+    "name": "Куйбазот-п"
+   },
+   "KBSB": {
+    "close": 869,
+    "open": 876,
+    "volume": 300,
+    "name": "ТНСэКубань"
+   },
+   "KCHE": {
+    "close": 0.49,
+    "open": 0.503,
+    "volume": 10470000,
+    "name": "КамчатЭ ао"
+   },
+   "KCHEP": {
+    "close": 1.01,
+    "open": 1.005,
+    "volume": 610000,
+    "name": "КамчатЭ ап"
+   },
+   "KFBA": {
+    "close": 1605,
+    "open": 1495,
+    "volume": 1851,
+    "name": "ИНГРАД ао"
+   },
+   "KGKC": {
+    "close": 36.4,
+    "open": 36.6,
+    "volume": 940,
+    "name": "КурганГКао"
+   },
+   "KGKCP": {
+    "close": 37.2,
+    "open": 37.4,
+    "volume": 1280,
+    "name": "КурганГКап"
+   },
+   "KLSB": {
+    "close": 19.19,
+    "open": 19.2,
+    "volume": 7800,
+    "name": "КалужскСК"
+   },
+   "KLVZ": {
+    "close": 1.828,
+    "open": 1.848,
+    "volume": 191300,
+    "name": "Кристалл"
+   },
+   "KMAZ": {
+    "close": 55.3,
+    "open": 55.8,
+    "volume": 190930,
+    "name": "КАМАЗ"
+   },
+   "KMEZ": {
+    "close": 1062,
+    "open": 1054,
+    "volume": 314,
+    "name": "КМЗ"
+   },
+   "KOGK": {
+    "close": 231.2,
+    "open": 233.2,
+    "volume": 364,
+    "name": "КоршГОК ао"
+   },
+   "KRKN": {
+    "close": 10300,
+    "open": 10400,
+    "volume": 2,
+    "name": "СаратНПЗ"
+   },
+   "KRKNP": {
+    "close": 6020,
+    "open": 6000,
+    "volume": 52,
+    "name": "СаратНПЗ-п"
+   },
+   "KRKOP": {
+    "close": 12.88,
+    "open": 12.8,
+    "volume": 1300,
+    "name": "ТКЗКК ап"
+   },
+   "KROT": {
+    "close": 1050,
+    "open": 1054,
+    "volume": 3670,
+    "name": "КрасОкт-ао"
+   },
+   "KROTP": {
+    "close": 522,
+    "open": 507,
+    "volume": 8430,
+    "name": "КрасОкт-1п"
+   },
+   "KRSB": {
+    "close": 20.06,
+    "open": 20.12,
+    "volume": 19700,
+    "name": "Красэсб ао"
+   },
+   "KRSBP": {
+    "close": 20.4,
+    "open": 20.6,
+    "volume": 15000,
+    "name": "Красэсб ап"
+   },
+   "KUZB": {
+    "close": 0.02565,
+    "open": 0.0256,
+    "volume": 3600000,
+    "name": "КузнецкийБ"
+   },
+   "KZOS": {
+    "close": 44.8,
+    "open": 45,
+    "volume": 45950,
+    "name": "ОргСинт ао"
+   },
+   "KZOSP": {
+    "close": 14.48,
+    "open": 14.41,
+    "volume": 70290,
+    "name": "ОргСинт ап"
+   },
+   "LEAS": {
+    "close": 671.1,
+    "open": 670.4,
+    "volume": 21475,
+    "name": "Европлан"
+   },
+   "LENT": {
+    "close": 1734,
+    "open": 1781,
+    "volume": 36530,
+    "name": "Лента ао"
+   },
+   "LIFE": {
+    "close": 1.61,
+    "open": 1.625,
+    "volume": 1111500,
+    "name": "Фармсинтез"
+   },
+   "LKOH": {
+    "close": 5633,
+    "open": 5673,
+    "volume": 1064255,
+    "name": "ЛУКОЙЛ"
+   },
+   "LMBZ": {
+    "close": 462,
+    "open": 468,
+    "volume": 626,
+    "name": "Ламбумиз"
+   },
+   "LNZL": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "Лензолото"
+   },
+   "LNZLP": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "Лензол. ап"
+   },
+   "LPSB": {
+    "close": 46.45,
+    "open": 45.95,
+    "volume": 922,
+    "name": "ЛЭСК ао"
+   },
+   "LQDT": {
+    "close": 2.1039,
+    "open": 2.1039,
+    "volume": 1348770721,
+    "name": "LQDT ETF"
+   },
+   "LSNG": {
+    "close": 13.53,
+    "open": 13.65,
+    "volume": 87600,
+    "name": "РСетиЛЭ"
+   },
+   "LSNGP": {
+    "close": 334,
+    "open": 337.6,
+    "volume": 71740,
+    "name": "РСетиЛЭ-п"
+   },
+   "LSRG": {
+    "close": 504.2,
+    "open": 495.8,
+    "volume": 107643,
+    "name": "ЛСР ао"
+   },
+   "LVHK": {
+    "close": 21.1,
+    "open": 20.4,
+    "volume": 314100,
+    "name": "Левенгук"
+   },
+   "MAGE": {
+    "close": 2.705,
+    "open": 2.725,
+    "volume": 1094700,
+    "name": "МагадЭн ао"
+   },
+   "MAGEP": {
+    "close": 2.285,
+    "open": 2.35,
+    "volume": 304500,
+    "name": "МагадЭн ап"
+   },
+   "MAGN": {
+    "close": 21.715,
+    "open": 22.245,
+    "volume": 71751610,
+    "name": "ММК"
+   },
+   "MBNK": {
+    "close": 935.5,
+    "open": 939.5,
+    "volume": 11292,
+    "name": "МТС Банк"
+   },
+   "MDMG": {
+    "close": 1269.1,
+    "open": 1281.4,
+    "volume": 63711,
+    "name": "MDMG-ао"
+   },
+   "MFGS": {
+    "close": 299,
+    "open": 299,
+    "volume": 1630,
+    "name": "Мегион-ао"
+   },
+   "MFGSP": {
+    "close": 231,
+    "open": 232.5,
+    "volume": 1220,
+    "name": "Мегион-ап"
+   },
+   "MGKL": {
+    "close": 1.9725,
+    "open": 1.992,
+    "volume": 1893300,
+    "name": "МГКЛ"
+   },
+   "MGNT": {
+    "close": 1617.5,
+    "open": 1632,
+    "volume": 277873,
+    "name": "Магнит ао"
+   },
+   "MGNZ": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "СМЗ-ао"
+   },
+   "MGTS": {
+    "close": 1432,
+    "open": 1452,
+    "volume": 313,
+    "name": "МГТС-5ао"
+   },
+   "MGTSP": {
+    "close": 1154,
+    "open": 1130,
+    "volume": 3205,
+    "name": "МГТС-4ап"
+   },
+   "MISB": {
+    "close": 54.9,
+    "open": 52.6,
+    "volume": 29400,
+    "name": "ТНСэнМарЭл"
+   },
+   "MISBP": {
+    "close": 48.5,
+    "open": 48.9,
+    "volume": 4200,
+    "name": "ТНСэМаЭл-п"
+   },
+   "MKBD": {
+    "close": 944,
+    "open": 949,
+    "volume": 138,
+    "name": "MKBD ETF"
+   },
+   "MOEX": {
+    "close": 151.58,
+    "open": 154.05,
+    "volume": 3238390,
+    "name": "МосБиржа"
+   },
+   "MONY": {
+    "close": 133.84,
+    "open": 133.98,
+    "volume": 47177,
+    "name": "MONY ETF"
+   },
+   "MRKC": {
+    "close": 0.6864,
+    "open": 0.6902,
+    "volume": 65412000,
+    "name": "РоссЦентр"
+   },
+   "MRKK": {
+    "close": 13.78,
+    "open": 13.76,
+    "volume": 1000,
+    "name": "Россети СК"
+   },
+   "MRKP": {
+    "close": 0.5304,
+    "open": 0.5362,
+    "volume": 24640000,
+    "name": "РСетиЦП ао"
+   },
+   "MRKS": {
+    "close": 0.4805,
+    "open": 0.4885,
+    "volume": 4454000,
+    "name": "РсетСиб ао"
+   },
+   "MRKU": {
+    "close": 0.652,
+    "open": 0.667,
+    "volume": 39350000,
+    "name": "Россети Ур"
+   },
+   "MRKV": {
+    "close": 0.205,
+    "open": 0.21,
+    "volume": 162670000,
+    "name": "РсетВол ао"
+   },
+   "MRKY": {
+    "close": 0.0709,
+    "open": 0.0713,
+    "volume": 20370000,
+    "name": "РоссЮг ао"
+   },
+   "MRKZ": {
+    "close": 0.13065,
+    "open": 0.13275,
+    "volume": 150250000,
+    "name": "РСетиСЗ ао"
+   },
+   "MRSB": {
+    "close": 0.99,
+    "open": 0.994,
+    "volume": 280000,
+    "name": "МордЭнСб"
+   },
+   "MSNG": {
+    "close": 1.3005,
+    "open": 1.3065,
+    "volume": 25020000,
+    "name": "+МосЭнерго"
+   },
+   "MSRS": {
+    "close": 1.6305,
+    "open": 1.6505,
+    "volume": 11093000,
+    "name": "РСетиМР ао"
+   },
+   "MSTT": {
+    "close": 69.4,
+    "open": 69.05,
+    "volume": 23490,
+    "name": "Мостотрест"
+   },
+   "MTLR": {
+    "close": 41.42,
+    "open": 43.25,
+    "volume": 19411374,
+    "name": "Мечел ао"
+   },
+   "MTLRP": {
+    "close": 38.3,
+    "open": 39.55,
+    "volume": 2444960,
+    "name": "Мечел ап"
+   },
+   "MTSS": {
+    "close": 166.7,
+    "open": 169.75,
+    "volume": 3664320,
+    "name": "МТС-ао"
+   },
+   "MVID": {
+    "close": 42.35,
+    "open": 42.75,
+    "volume": 170795,
+    "name": "М.видео"
+   },
+   "NAUK": {
+    "close": 433,
+    "open": 441,
+    "volume": 940,
+    "name": "iНПОНаука"
+   },
+   "NFAZ": {
+    "close": 198,
+    "open": 198,
+    "volume": 1100,
+    "name": "НЕФАЗ"
+   },
+   "NFKL": {
+    "close": 103.7,
+    "open": 103.7,
+    "volume": 6082,
+    "name": "NFKL ETF"
+   },
+   "NKHP": {
+    "close": 373.5,
+    "open": 377,
+    "volume": 5240,
+    "name": "НКХП ао"
+   },
+   "NKNC": {
+    "close": 43.9,
+    "open": 44.9,
+    "volume": 26470,
+    "name": "НКНХ ао"
+   },
+   "NKNCP": {
+    "close": 34.66,
+    "open": 34.6,
+    "volume": 61320,
+    "name": "НКНХ ап"
+   },
+   "NKSH": {
+    "close": 32.2,
+    "open": 33,
+    "volume": 12800,
+    "name": "Нижкамшина"
+   },
+   "NLMK": {
+    "close": 73.4,
+    "open": 75.06,
+    "volume": 12226080,
+    "name": "НЛМК ао"
+   },
+   "NMTP": {
+    "close": 6.585,
+    "open": 6.755,
+    "volume": 7233600,
+    "name": "НМТП ао"
+   },
+   "NNSB": {
+    "close": 2650,
+    "open": 2650,
+    "volume": 597,
+    "name": "ТНСэнНН ао"
+   },
+   "NNSBP": {
+    "close": 1288,
+    "open": 1274,
+    "volume": 6,
+    "name": "ТНСэнНН ап"
+   },
+   "NSVZ": {
+    "close": 189,
+    "open": 191,
+    "volume": 2790,
+    "name": "iНаукаСвяз"
+   },
+   "NVTK": {
+    "close": 1058.2,
+    "open": 1066,
+    "volume": 1460341,
+    "name": "Новатэк ао"
+   },
+   "OBLG": {
+    "close": 211.08,
+    "open": 211.12,
+    "volume": 140145,
+    "name": "OBLG ETF"
+   },
+   "OFZS": {
+    "close": 102.11,
+    "open": 102.57,
+    "volume": 156,
+    "name": "OFZS ETF"
+   },
+   "OGKB": {
+    "close": 0.2115,
+    "open": 0.2142,
+    "volume": 33098000,
+    "name": "ОГК-2 ао"
+   },
+   "OKEY": {
+    "close": 47.7,
+    "open": 47.81,
+    "volume": 10560,
+    "name": "OKEY-гдр"
+   },
+   "OLIQ": {
+    "close": 103.98,
+    "open": 103.98,
+    "volume": 10214,
+    "name": "OLIQ ETF"
+   },
+   "OMZZP": {
+    "close": 9400,
+    "open": 9480,
+    "volume": 2,
+    "name": "ОМЗ-ап"
+   },
+   "OZON": {
+    "close": 3205.5,
+    "open": 3265,
+    "volume": 1253642,
+    "name": "Озон"
+   },
+   "OZPH": {
+    "close": 44.77,
+    "open": 45.05,
+    "volume": 899950,
+    "name": "iОзонФарм"
+   },
+   "PAZA": {
+    "close": 8300,
+    "open": 8700,
+    "volume": 257,
+    "name": "ПавлАвт ао"
+   },
+   "PHOR": {
+    "close": 5206,
+    "open": 5243,
+    "volume": 103648,
+    "name": "ФосАгро ао"
+   },
+   "PIKK": {
+    "close": 545.5,
+    "open": 545.5,
+    "volume": 15735,
+    "name": "ПИК ао"
+   },
+   "PLZL": {
+    "close": 977,
+    "open": 973.6,
+    "volume": 2421001,
+    "name": "Полюс"
+   },
+   "PMSB": {
+    "close": 418.7,
+    "open": 420.7,
+    "volume": 4410,
+    "name": "ПермьЭнСб"
+   },
+   "PMSBP": {
+    "close": 469.6,
+    "open": 463,
+    "volume": 9300,
+    "name": "ПермьЭнС-п"
+   },
+   "POSI": {
+    "close": 1066,
+    "open": 1089.2,
+    "volume": 522573,
+    "name": "iПозитив"
+   },
+   "PRFN": {
+    "close": 2.926,
+    "open": 2.946,
+    "volume": 236700,
+    "name": "ТЕПЛАНТ ао"
+   },
+   "PRIE": {
+    "close": 964,
+    "open": 964,
+    "volume": 1,
+    "name": "PRIE ETF"
+   },
+   "PRMB": {
+    "close": 18000,
+    "open": 18000,
+    "volume": 2,
+    "name": "Приморье"
+   },
+   "PRMD": {
+    "close": 399.1,
+    "open": 400.65,
+    "volume": 78189,
+    "name": "iПРОМОМЕД"
+   },
+   "PSGM": {
+    "close": 13.114,
+    "open": 13.194,
+    "volume": 20683,
+    "name": "PSGM ETF"
+   },
+   "PSMM": {
+    "close": 14.791,
+    "open": 14.788,
+    "volume": 3905903,
+    "name": "PSMM ETF"
+   },
+   "PSRB": {
+    "close": 13.977,
+    "open": 13.997,
+    "volume": 134522,
+    "name": "PSRB ETF"
+   },
+   "PSRE": {
+    "close": 9.077,
+    "open": 9.17,
+    "volume": 6806,
+    "name": "PSRE ETF"
+   },
+   "RAGR": {
+    "close": 69.7,
+    "open": 70.2,
+    "volume": 2884910,
+    "name": "Русагро"
+   },
+   "RASP": {
+    "close": 126.5,
+    "open": 130.95,
+    "volume": 191200,
+    "name": "Распадская"
+   },
+   "RBCM": {
+    "close": 7.8,
+    "open": 7.755,
+    "volume": 222900,
+    "name": "ГК РБК ао"
+   },
+   "RDRB": {
+    "close": 100,
+    "open": 100.2,
+    "volume": 290,
+    "name": "РДБанк ао"
+   },
+   "RENI": {
+    "close": 68.54,
+    "open": 70.92,
+    "volume": 613670,
+    "name": "Ренессанс"
+   },
+   "RGSS": {
+    "close": 0.1794,
+    "open": 0.184,
+    "volume": 8054000,
+    "name": "РГС СК ао"
+   },
+   "RKKE": {
+    "close": 11020,
+    "open": 11030,
+    "volume": 86,
+    "name": "ЭнергияРКК"
+   },
+   "RNFT": {
+    "close": 84.2,
+    "open": 84.95,
+    "volume": 1795603,
+    "name": "РуссНфт ао"
+   },
+   "ROLO": {
+    "close": 0.371,
+    "open": 0.3834,
+    "volume": 119152000,
+    "name": "Русолово"
+   },
+   "ROSN": {
+    "close": 347,
+    "open": 348.8,
+    "volume": 6947836,
+    "name": "Роснефть"
+   },
+   "ROST": {
+    "close": 66.2,
+    "open": 66.6,
+    "volume": 1040,
+    "name": "РОСИНТЕРао"
+   },
+   "RSHU": {
+    "close": 134,
+    "open": 134.3,
+    "volume": 961,
+    "name": "RSHU ETF"
+   },
+   "RTGZ": {
+    "close": 34000,
+    "open": 34000,
+    "volume": 193,
+    "name": "ГР Ростов"
+   },
+   "RTKM": {
+    "close": 40,
+    "open": 40.72,
+    "volume": 4282550,
+    "name": "Ростел -ао"
+   },
+   "RTKMP": {
+    "close": 41.45,
+    "open": 42.2,
+    "volume": 934380,
+    "name": "Ростел -ап"
+   },
+   "RTSB": {
+    "close": 2.76,
+    "open": 2.775,
+    "volume": 14000,
+    "name": "ТНСэнРст"
+   },
+   "RTSBP": {
+    "close": 1.274,
+    "open": 1.264,
+    "volume": 68000,
+    "name": "ТНСэнРст-п"
+   },
+   "RU0005418747": {
+    "close": 179.5,
+    "open": 180,
+    "volume": 166,
+    "name": "ФондПервый"
+   },
+   "RU0006922010": {
+    "close": 124.4,
+    "open": 124.25,
+    "volume": 102165,
+    "name": "ФондКонс"
+   },
+   "RU0006922044": {
+    "close": 146.2,
+    "open": 146.8,
+    "volume": 473,
+    "name": "БКСАкцрост"
+   },
+   "RU000A0HGNG6": {
+    "close": 12318,
+    "open": 11988,
+    "volume": 264,
+    "name": "АрсагераФА"
+   },
+   "RU000A0HGNH4": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ПИФАрсСИ"
+   },
+   "RU000A0JP773": {
+    "close": 4.45,
+    "open": 4.5,
+    "volume": 697722,
+    "name": "БКС РосАкц"
+   },
+   "RU000A0JP799": {
+    "close": 4.34,
+    "open": 4.34,
+    "volume": 1554028,
+    "name": "БКС РосОбл"
+   },
+   "RU000A0JPMD2": {
+    "close": 10088,
+    "open": 10114,
+    "volume": 280,
+    "name": "ПИФАрс6.4"
+   },
+   "RU000A0JPZL7": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "АкБрс-Инв"
+   },
+   "RU000A0JPZP8": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "АкБрс-Прсп"
+   },
+   "RU000A0JR282": {
+    "close": 46.15,
+    "open": 46.65,
+    "volume": 193705,
+    "name": "ПИФ Акции"
+   },
+   "RU000A0JR290": {
+    "close": 8140,
+    "open": 8145,
+    "volume": 2,
+    "name": "ПИФИнМосБр"
+   },
+   "RU000A0JR2A5": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ПИФСбалан"
+   },
+   "RU000A0JR2C1": {
+    "close": 111.05,
+    "open": 111.7,
+    "volume": 7240,
+    "name": "ПИФКазна"
+   },
+   "RU000A0JRHC0": {
+    "close": 3000,
+    "open": 2985,
+    "volume": 13,
+    "name": "ПИФ АТРИУМ"
+   },
+   "RU000A0JRUQ3": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ТКБИП Сбал"
+   },
+   "RU000A0JUR61": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ПИФ КОНСЕР"
+   },
+   "RU000A0JUYB1": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ЗПИФЛофтин"
+   },
+   "RU000A0JVJ29": {
+    "close": 302.5,
+    "open": 303.5,
+    "volume": 6502,
+    "name": "БКСДрагМет"
+   },
+   "RU000A0JWCE7": {
+    "close": 1315,
+    "open": 1305,
+    "volume": 3,
+    "name": "Перловский"
+   },
+   "RU000A0JXP78": {
+    "close": 14900,
+    "open": 15050,
+    "volume": 3,
+    "name": "ЗПИФДОМ.РФ"
+   },
+   "RU000A0JXWF0": {
+    "close": 2800,
+    "open": 2805.5,
+    "volume": 12,
+    "name": "АрсКР1.55"
+   },
+   "RU000A0ZYC64": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "СоврАрБиз2"
+   },
+   "RU000A0ZZ5R2": {
+    "close": 862,
+    "open": 868,
+    "volume": 478,
+    "name": "СоврАрБиз3"
+   },
+   "RU000A0ZZCD8": {
+    "close": 3020,
+    "open": 3080,
+    "volume": 796,
+    "name": "ИПИФМирИнв"
+   },
+   "RU000A0ZZMD7": {
+    "close": 3320,
+    "open": 3325,
+    "volume": 3,
+    "name": "РСХБ Облиг"
+   },
+   "RU000A0ZZME5": {
+    "close": 3440.62,
+    "open": 3440.62,
+    "volume": 8,
+    "name": "РСХБКазнач"
+   },
+   "RU000A0ZZML0": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "РСХБ Сбал"
+   },
+   "RU000A0ZZMN6": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "РСХБ Акции"
+   },
+   "RU000A0ZZVH9": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ГПБУАЕОбИП"
+   },
+   "RU000A1000W4": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ХаризмИдеи"
+   },
+   "RU000A1000Y0": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "iпре-АйПиО"
+   },
+   "RU000A100EQ2": {
+    "close": 12.88,
+    "open": 13.03,
+    "volume": 86704,
+    "name": "БКС РосЕвр"
+   },
+   "RU000A100WZ5": {
+    "close": 1393,
+    "open": 1393,
+    "volume": 246,
+    "name": "АКЦЕНТ 4"
+   },
+   "RU000A101NK4": {
+    "close": 744.5,
+    "open": 728.5,
+    "volume": 2413,
+    "name": "ЗПИФ ФПР"
+   },
+   "RU000A101UK9": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ОРЕОЛСтрой"
+   },
+   "RU000A101UY0": {
+    "close": 2195,
+    "open": 2095,
+    "volume": 29,
+    "name": "ОПИФ MM"
+   },
+   "RU000A1022Z1": {
+    "close": 8547,
+    "open": 8588,
+    "volume": 121,
+    "name": "ПАРУС-ОЗН"
+   },
+   "RU000A1027E5": {
+    "close": 15280,
+    "open": 15060,
+    "volume": 10,
+    "name": "ЗПИФ ВДО"
+   },
+   "RU000A102AH5": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ЗПИФСовр 6"
+   },
+   "RU000A102N77": {
+    "close": 123500,
+    "open": 124050,
+    "volume": 13,
+    "name": "ЗПИФРД"
+   },
+   "RU000A102PE0": {
+    "close": 10000,
+    "open": 10000,
+    "volume": 78,
+    "name": "Фондсуб1"
+   },
+   "RU000A102PF7": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "Фондсуб2"
+   },
+   "RU000A102PN1": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ПИФАльфаФФ"
+   },
+   "RU000A102PQ4": {
+    "close": 12600,
+    "open": 12600,
+    "volume": 687,
+    "name": "ФондСубРуб"
+   },
+   "RU000A1034U7": {
+    "close": 89000,
+    "open": 88800,
+    "volume": 35,
+    "name": "СФНАрБиз7"
+   },
+   "RU000A103B62": {
+    "close": 1443.5,
+    "open": 1459,
+    "volume": 881,
+    "name": "РенДохПРО"
+   },
+   "RU000A103HD7": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ЗПИФРД2"
+   },
+   "RU000A104172": {
+    "close": 1720,
+    "open": 1714,
+    "volume": 290,
+    "name": "ПАРУС-СБЛ"
+   },
+   "RU000A104KU3": {
+    "close": 1186,
+    "open": 1191,
+    "volume": 1536,
+    "name": "ПАРУС-НОРД"
+   },
+   "RU000A104M43": {
+    "close": 20800,
+    "open": 21300,
+    "volume": 7,
+    "name": "ПИФ Аленка"
+   },
+   "RU000A104YX8": {
+    "close": 828,
+    "open": 834,
+    "volume": 2198,
+    "name": "ЗПИФКомНед"
+   },
+   "RU000A105153": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ХеджФондР5"
+   },
+   "RU000A105328": {
+    "close": 1139,
+    "open": 1136,
+    "volume": 2088,
+    "name": "ПАРУС-ЛОГ"
+   },
+   "RU000A105GY0": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ЗПИФПервСп"
+   },
+   "RU000A105R70": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "Аннапурна"
+   },
+   "RU000A105RJ8": {
+    "close": 1635,
+    "open": 1635,
+    "volume": 11,
+    "name": "РСХБДолРын"
+   },
+   "RU000A105TU1": {
+    "close": 475,
+    "open": 477.6,
+    "volume": 4361,
+    "name": "БКСКапитал"
+   },
+   "RU000A1068X9": {
+    "close": 1123,
+    "open": 1119,
+    "volume": 6001,
+    "name": "ПАРУС-ДВН"
+   },
+   "RU000A106CX9": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ЗПИФА-ЮМ"
+   },
+   "RU000A106G80": {
+    "close": 918.5,
+    "open": 923,
+    "volume": 1447,
+    "name": "ТКЗамещОбл"
+   },
+   "RU000A106LB6": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ВсеСзПортф"
+   },
+   "RU000A106LC4": {
+    "close": 1000,
+    "open": 1000,
+    "volume": 1,
+    "name": "МаксВозм"
+   },
+   "RU000A106MG3": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ХеджФондД5"
+   },
+   "RU000A106N57": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "Атон-Об2.0"
+   },
+   "RU000A106SA3": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "Телескоп А"
+   },
+   "RU000A106XE5": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "Саммит"
+   },
+   "RU000A1075T2": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ЗПИФ Рубин"
+   },
+   "RU000A107860": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ХеджФондЮ5"
+   },
+   "RU000A1079J5": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ХеджФондД1"
+   },
+   "RU000A107J37": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ПИФ СЖН"
+   },
+   "RU000A107RE5": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ПИФ Коллек"
+   },
+   "RU000A107U08": {
+    "close": 755,
+    "open": 770,
+    "volume": 193,
+    "name": "РазумИнвес"
+   },
+   "RU000A108751": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ПИФПромПар"
+   },
+   "RU000A108KP4": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ХеджФондА+"
+   },
+   "RU000A108TT7": {
+    "close": 66.68,
+    "open": 67.54,
+    "volume": 37139,
+    "name": "БКСДивАкци"
+   },
+   "RU000A108UH0": {
+    "close": 836,
+    "open": 834,
+    "volume": 3283,
+    "name": "ПАРУС-КРАС"
+   },
+   "RU000A108VR7": {
+    "close": 1372,
+    "open": 1350,
+    "volume": 8681,
+    "name": "ПАРУС-МАКС"
+   },
+   "RU000A108ZB2": {
+    "close": 129000,
+    "open": 131550,
+    "volume": 12,
+    "name": "2хОФЗ"
+   },
+   "RU000A1092L4": {
+    "close": 74000,
+    "open": 76000,
+    "volume": 6,
+    "name": "ПИФАКТИВ20"
+   },
+   "RU000A1095D4": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "Атон - ОФЗ"
+   },
+   "RU000A1099U0": {
+    "close": 6.81,
+    "open": 6.84,
+    "volume": 123139,
+    "name": "ЗПИФСовр 9"
+   },
+   "RU000A109G79": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ПИФГРИНФЛО"
+   },
+   "RU000A109GQ8": {
+    "close": 972,
+    "open": 968,
+    "volume": 26,
+    "name": "ПИФСкладК2"
+   },
+   "RU000A109NL5": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ТЕТИС ИН"
+   },
+   "RU000A109QR5": {
+    "close": 3130,
+    "open": 3200,
+    "volume": 10,
+    "name": "ААА Золото"
+   },
+   "RU000A109R27": {
+    "close": 591.5,
+    "open": 600,
+    "volume": 31239,
+    "name": "2х Акции"
+   },
+   "RU000A10A489": {
+    "close": 830,
+    "open": 840,
+    "volume": 10,
+    "name": "ПИФПарки2"
+   },
+   "RU000A10AN72": {
+    "close": 106400,
+    "open": 106400,
+    "volume": 2,
+    "name": "Синара"
+   },
+   "RU000A10AQT4": {
+    "close": 12.696,
+    "open": 12.656,
+    "volume": 881850,
+    "name": "Достояние"
+   },
+   "RU000A10ATA8": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ПИФАКТИВФЛ"
+   },
+   "RU000A10BBS6": {
+    "close": 735,
+    "open": 744,
+    "volume": 2139,
+    "name": "ПАРУС-НиНо"
+   },
+   "RU000A10BM31": {
+    "close": 10560,
+    "open": 10685,
+    "volume": 42,
+    "name": "ВИМ Вал пл"
+   },
+   "RU000A10BQP0": {
+    "close": 95.36,
+    "open": 95.66,
+    "volume": 27773,
+    "name": "БКС ОФЗ ВД"
+   },
+   "RU000A10BQQ8": {
+    "close": 1390,
+    "open": 1390,
+    "volume": 1,
+    "name": "ЛАХТА ПАРК"
+   },
+   "RU000A10BT26": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ЗПИФА-Т"
+   },
+   "RU000A10BT42": {
+    "close": 1240.4,
+    "open": 1240.4,
+    "volume": 1,
+    "name": "ФЖН-1"
+   },
+   "RU000A10CFM8": {
+    "close": 774,
+    "open": 775,
+    "volume": 5584,
+    "name": "ПАРУС-ЗОЛЯ"
+   },
+   "RU000A10CKQ9": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "АлфаКомНед"
+   },
+   "RU000A10CLY1": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ПИФАКТИВ21"
+   },
+   "RU000A10D7W9": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "СинараВОбл"
+   },
+   "RU000A10D814": {
+    "close": 991,
+    "open": 995.5,
+    "volume": 56,
+    "name": "ТермКап"
+   },
+   "RU000A10E3R7": {
+    "close": 106000,
+    "open": 106000,
+    "volume": 5,
+    "name": "ПИФАКТИВ22"
+   },
+   "RU000A10ECF5": {
+    "close": 1000,
+    "open": 1000,
+    "volume": 1,
+    "name": "Атон-ПфСтр"
+   },
+   "RU000A10ECJ7": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "Атон Выбор"
+   },
+   "RU000A10EVE8": {
+    "close": 876,
+    "open": 883,
+    "volume": 23389,
+    "name": "ПАРУС-МВ"
+   },
+   "RU000A10F439": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ПИФПарки3"
+   },
+   "RU000A10FDU9": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "РСХБ Смарт"
+   },
+   "RU000A10FQ17": {
+    "close": 502.7,
+    "open": 502.7,
+    "volume": 14070,
+    "name": "БКС ДР ВД"
+   },
+   "RUAL": {
+    "close": 23.54,
+    "open": 24.01,
+    "volume": 14281960,
+    "name": "РУСАЛ ао"
+   },
+   "RUFO": {
+    "close": 112.57,
+    "open": 113.04,
+    "volume": 217,
+    "name": "RUFO ETF"
+   },
+   "RUSI": {
+    "close": 57.4,
+    "open": 57.1,
+    "volume": 190,
+    "name": "ИКРУСС-ИНВ"
+   },
+   "RZSB": {
+    "close": 34.1,
+    "open": 33.96,
+    "volume": 16400,
+    "name": "РязЭнСб"
+   },
+   "SAFE": {
+    "close": 18.565,
+    "open": 18.58,
+    "volume": 84877884,
+    "name": "SAFE ETF"
+   },
+   "SAGO": {
+    "close": 2.095,
+    "open": 2.085,
+    "volume": 106000,
+    "name": "СамарЭн-ао"
+   },
+   "SAGOP": {
+    "close": 2.105,
+    "open": 2.105,
+    "volume": 34000,
+    "name": "СамарЭн-ап"
+   },
+   "SARE": {
+    "close": 0.84,
+    "open": 0.82,
+    "volume": 7540000,
+    "name": "СаратЭн-ао"
+   },
+   "SAREP": {
+    "close": 0.4245,
+    "open": 0.4205,
+    "volume": 480000,
+    "name": "СаратЭн-ап"
+   },
+   "SBBC": {
+    "close": 9.2,
+    "open": 9.273,
+    "volume": 124616,
+    "name": "SBBC ETF"
+   },
+   "SBBY": {
+    "close": 11.998,
+    "open": 12.104,
+    "volume": 252446,
+    "name": "SBBY ETF"
+   },
+   "SBCB": {
+    "close": 1456.5,
+    "open": 1463,
+    "volume": 5485,
+    "name": "SBCB ETF"
+   },
+   "SBCN": {
+    "close": 13.715,
+    "open": 13.804,
+    "volume": 288416,
+    "name": "SBCN ETF"
+   },
+   "SBDS": {
+    "close": 3.245,
+    "open": 3.275,
+    "volume": 28626,
+    "name": "SBDS ETF"
+   },
+   "SBER": {
+    "close": 280.44,
+    "open": 283.05,
+    "volume": 24699815,
+    "name": "Сбербанк"
+   },
+   "SBERP": {
+    "close": 280.92,
+    "open": 283.4,
+    "volume": 1223080,
+    "name": "Сбербанк-п"
+   },
+   "SBFR": {
+    "close": 15.654,
+    "open": 15.65,
+    "volume": 204217155,
+    "name": "SBFR ETF"
+   },
+   "SBGB": {
+    "close": 15.152,
+    "open": 15.233,
+    "volume": 191848,
+    "name": "SBGB ETF"
+   },
+   "SBGD": {
+    "close": 32.87,
+    "open": 33.045,
+    "volume": 1033927,
+    "name": "SBGD ETF"
+   },
+   "SBHI": {
+    "close": 6.482,
+    "open": 6.54,
+    "volume": 104233,
+    "name": "SBHI ETF"
+   },
+   "SBLB": {
+    "close": 11.982,
+    "open": 12.04,
+    "volume": 1188227,
+    "name": "SBLB ETF"
+   },
+   "SBMM": {
+    "close": 19.5685,
+    "open": 19.5675,
+    "volume": 132487622,
+    "name": "SBMM ETF"
+   },
+   "SBMX": {
+    "close": 16.51,
+    "open": 16.662,
+    "volume": 3185608,
+    "name": "SBMX ETF"
+   },
+   "SBPS": {
+    "close": 2.755,
+    "open": 2.78,
+    "volume": 26202,
+    "name": "SBPS ETF"
+   },
+   "SBRB": {
+    "close": 19.023,
+    "open": 19.014,
+    "volume": 20715980,
+    "name": "SBRB ETF"
+   },
+   "SBRI": {
+    "close": 9.836,
+    "open": 9.9,
+    "volume": 44303,
+    "name": "SBRI ETF"
+   },
+   "SBRS": {
+    "close": 14.18,
+    "open": 14.195,
+    "volume": 97322,
+    "name": "SBRS ETF"
+   },
+   "SBSC": {
+    "close": 6.5,
+    "open": 6.564,
+    "volume": 54482,
+    "name": "SBSC ETF"
+   },
+   "SCFT": {
+    "close": 3.902,
+    "open": 3.934,
+    "volume": 522,
+    "name": "SCFT ETF"
+   },
+   "SCLI": {
+    "close": 7.2495,
+    "open": 7.2495,
+    "volume": 428013,
+    "name": "SCLI ETF"
+   },
+   "SELG": {
+    "close": 37.73,
+    "open": 37.24,
+    "volume": 6022760,
+    "name": "Селигдар"
+   },
+   "SFIN": {
+    "close": 560.4,
+    "open": 570.6,
+    "volume": 74636,
+    "name": "ЭсЭфАй ао"
+   },
+   "SGZH": {
+    "close": 0.6755,
+    "open": 0.6815,
+    "volume": 165222200,
+    "name": "Сегежа"
+   },
+   "SIBN": {
+    "close": 579.05,
+    "open": 587.05,
+    "volume": 1460196,
+    "name": "Газпрнефть"
+   },
+   "SILA": {
+    "close": 113.26,
+    "open": 113.26,
+    "volume": 1104,
+    "name": "SILA ETF"
+   },
+   "SIPO": {
+    "close": 6.723,
+    "open": 6.725,
+    "volume": 6196,
+    "name": "SIPO ETF"
+   },
+   "SLEN": {
+    "close": 3.21,
+    "open": 3.34,
+    "volume": 411800,
+    "name": "Сахэнер ао"
+   },
+   "SMCF": {
+    "close": 997.2,
+    "open": 996.9,
+    "volume": 82,
+    "name": "SMCF ETF"
+   },
+   "SMLT": {
+    "close": 239.4,
+    "open": 236,
+    "volume": 15070698,
+    "name": "Самолет ао"
+   },
+   "SNGS": {
+    "close": 15.205,
+    "open": 15.48,
+    "volume": 21184200,
+    "name": "Сургнфгз"
+   },
+   "SNGSP": {
+    "close": 41.465,
+    "open": 42.2,
+    "volume": 17827410,
+    "name": "Сургнфгз-п"
+   },
+   "SOFL": {
+    "close": 47.8,
+    "open": 48.58,
+    "volume": 542260,
+    "name": "iСофтлайн"
+   },
+   "SPBE": {
+    "close": 154.6,
+    "open": 155.9,
+    "volume": 8574258,
+    "name": "СПБ Биржа"
+   },
+   "SPRN": {
+    "close": 9.805,
+    "open": 9.88,
+    "volume": 365360,
+    "name": "SPRN ETF"
+   },
+   "STME": {
+    "close": 4.095,
+    "open": 4.115,
+    "volume": 12307699,
+    "name": "STME ETF"
+   },
+   "STSB": {
+    "close": 3.245,
+    "open": 3.255,
+    "volume": 71000,
+    "name": "ЕГП"
+   },
+   "STSBP": {
+    "close": 3.89,
+    "open": 3.885,
+    "volume": 29880,
+    "name": "ЕГП ап"
+   },
+   "SUGB": {
+    "close": 1549.5,
+    "open": 1558,
+    "volume": 273,
+    "name": "SUGB ETF"
+   },
+   "SVAV": {
+    "close": 375.5,
+    "open": 377,
+    "volume": 28724,
+    "name": "СОЛЛЕРС"
+   },
+   "SVCB": {
+    "close": 9.815,
+    "open": 9.965,
+    "volume": 64045600,
+    "name": "Совкомбанк"
+   },
+   "SVET": {
+    "close": 9.52,
+    "open": 9.66,
+    "volume": 30662,
+    "name": "Светофор"
+   },
+   "SVETP": {
+    "close": 14.95,
+    "open": 14.95,
+    "volume": 8742,
+    "name": "Светофор п"
+   },
+   "T": {
+    "close": 265.72,
+    "open": 270.2,
+    "volume": 17570709,
+    "name": "Т-Техно ао"
+   },
+   "TASB": {
+    "close": 1.364,
+    "open": 1.364,
+    "volume": 242000,
+    "name": "ТамбЭнСб"
+   },
+   "TASBP": {
+    "close": 0.824,
+    "open": 0.824,
+    "volume": 370000,
+    "name": "ТамбЭнСб-п"
+   },
+   "TATN": {
+    "close": 634.8,
+    "open": 638.5,
+    "volume": 1749107,
+    "name": "Татнфт 3ао"
+   },
+   "TATNP": {
+    "close": 610.6,
+    "open": 611.9,
+    "volume": 424591,
+    "name": "Татнфт 3ап"
+   },
+   "TBEU": {
+    "close": 11.54,
+    "open": 11.56,
+    "volume": 2369,
+    "name": "TBEU ETF"
+   },
+   "TBRU": {
+    "close": 8.5,
+    "open": 8.49,
+    "volume": 6984,
+    "name": "TBRU ETF"
+   },
+   "TDIV": {
+    "close": 9.81,
+    "open": 9.97,
+    "volume": 5188,
+    "name": "TDIV ETF"
+   },
+   "TEUR": {
+    "close": 6.94,
+    "open": 6.93,
+    "volume": 93703,
+    "name": "TEUR ETF"
+   },
+   "TGKA": {
+    "close": 0.004272,
+    "open": 0.004382,
+    "volume": 2904300000,
+    "name": "ТГК-1"
+   },
+   "TGKB": {
+    "close": 0.004645,
+    "open": 0.00473,
+    "volume": 128000000,
+    "name": "ТГК-2"
+   },
+   "TGKBP": {
+    "close": 0.00723,
+    "open": 0.00728,
+    "volume": 15100000,
+    "name": "ТГК-2 ап"
+   },
+   "TGKN": {
+    "close": 0.00376,
+    "open": 0.00376,
+    "volume": 2796100000,
+    "name": "ТГК-14"
+   },
+   "TGLD": {
+    "close": 13.74,
+    "open": 13.78,
+    "volume": 810446,
+    "name": "TGLD ETF"
+   },
+   "TITR": {
+    "close": 4.51,
+    "open": 4.6,
+    "volume": 1620,
+    "name": "TITR ETF"
+   },
+   "TLCB": {
+    "close": 11.28,
+    "open": 11.33,
+    "volume": 1237461,
+    "name": "TLCB ETF"
+   },
+   "TMON": {
+    "close": 165.61,
+    "open": 165.62,
+    "volume": 32529,
+    "name": "TMON ETF"
+   },
+   "TMOS": {
+    "close": 5.8,
+    "open": 5.86,
+    "volume": 664676,
+    "name": "TMOS ETF"
+   },
+   "TNSE": {
+    "close": 3470,
+    "open": 3495,
+    "volume": 26,
+    "name": "ТНСэнрг ао"
+   },
+   "TOFZ": {
+    "close": 13.67,
+    "open": 13.6,
+    "volume": 1015,
+    "name": "TOFZ ETF"
+   },
+   "TOPS": {
+    "close": 108.92,
+    "open": 109.56,
+    "volume": 660,
+    "name": "TOPS ETF"
+   },
+   "TORS": {
+    "close": 0.752,
+    "open": 0.76,
+    "volume": 100000,
+    "name": "РСТомск ао"
+   },
+   "TORSP": {
+    "close": 0.525,
+    "open": 0.535,
+    "volume": 2851460,
+    "name": "РСТомск ап"
+   },
+   "TPAY": {
+    "close": 101.26,
+    "open": 101.21,
+    "volume": 3529310,
+    "name": "TPAY ETF"
+   },
+   "TRMK": {
+    "close": 58.7,
+    "open": 59.46,
+    "volume": 335110,
+    "name": "ТМК ао"
+   },
+   "TRND": {
+    "close": 8.7,
+    "open": 8.79,
+    "volume": 296,
+    "name": "TRND ETF"
+   },
+   "TRNFP": {
+    "close": 1021.2,
+    "open": 1040,
+    "volume": 705907,
+    "name": "Транснф ап"
+   },
+   "TRUR": {
+    "close": 9.89,
+    "open": 9.97,
+    "volume": 36169,
+    "name": "TRUR ETF"
+   },
+   "TSAV": {
+    "close": 5.17,
+    "open": 5.17,
+    "volume": 150,
+    "name": "TSAV ETF"
+   },
+   "TTLK": {
+    "close": 0.5745,
+    "open": 0.572,
+    "volume": 3746000,
+    "name": "Таттел. ао"
+   },
+   "TUSD": {
+    "close": 7.2,
+    "open": 7.17,
+    "volume": 115173,
+    "name": "TUSD ETF"
+   },
+   "TUZA": {
+    "close": 91.8,
+    "open": 89.8,
+    "volume": 27476,
+    "name": "ТЗА ао"
+   },
+   "UGLD": {
+    "close": 0.7251,
+    "open": 0.7249,
+    "volume": 410090000,
+    "name": "ЮГК"
+   },
+   "UKUZ": {
+    "close": 582,
+    "open": 586,
+    "volume": 342,
+    "name": "ЮжКузб. ао"
+   },
+   "UNAC": {
+    "close": 0.423,
+    "open": 0.4295,
+    "volume": 106427000,
+    "name": "iАвиастКао"
+   },
+   "UNKL": {
+    "close": 3050,
+    "open": 3060,
+    "volume": 54,
+    "name": "ЮУНК ао"
+   },
+   "UPRO": {
+    "close": 1.009,
+    "open": 1.0155,
+    "volume": 91175000,
+    "name": "Юнипро ао"
+   },
+   "URKZ": {
+    "close": 194.4,
+    "open": 196.2,
+    "volume": 260,
+    "name": "УрКузница"
+   },
+   "USBN": {
+    "close": 0.1132,
+    "open": 0.1145,
+    "volume": 4492800,
+    "name": "УралСиб ао"
+   },
+   "UTAR": {
+    "close": 8.5,
+    "open": 8.51,
+    "volume": 9800,
+    "name": "ЮТэйр ао"
+   },
+   "UWGN": {
+    "close": 19.58,
+    "open": 19.76,
+    "volume": 685199,
+    "name": "ОВК ао"
+   },
+   "VDOR": {
+    "close": 1040.16,
+    "open": 1049.51,
+    "volume": 7020,
+    "name": "VDOR ETF"
+   },
+   "VEON-RX": {
+    "close": 70.9,
+    "open": 69.1,
+    "volume": 1170,
+    "name": "VEON"
+   },
+   "VGSB": {
+    "close": 14.9,
+    "open": 14.95,
+    "volume": 11000,
+    "name": "ВолгЭнСб"
+   },
+   "VGSBP": {
+    "close": 10.45,
+    "open": 10.7,
+    "volume": 13000,
+    "name": "ВолгЭнСб-п"
+   },
+   "VJGZ": {
+    "close": 2590,
+    "open": 2545,
+    "volume": 977,
+    "name": "Варьеган"
+   },
+   "VJGZP": {
+    "close": 1158,
+    "open": 1190,
+    "volume": 1686,
+    "name": "Варьеган-п"
+   },
+   "VKCO": {
+    "close": 119.6,
+    "open": 121.95,
+    "volume": 5785629,
+    "name": "МКПАО \"ВК\""
+   },
+   "VLHZ": {
+    "close": 127.6,
+    "open": 128.6,
+    "volume": 583,
+    "name": "ВХЗ-ао"
+   },
+   "VRSB": {
+    "close": 239.5,
+    "open": 240.5,
+    "volume": 3540,
+    "name": "ТНСэнВорон"
+   },
+   "VRSBP": {
+    "close": 120.4,
+    "open": 122,
+    "volume": 1050,
+    "name": "ТНСэнВор-п"
+   },
+   "VSEH": {
+    "close": 74.66,
+    "open": 74.29,
+    "volume": 688118,
+    "name": "ВИ.ру"
+   },
+   "VSMO": {
+    "close": 22780,
+    "open": 22700,
+    "volume": 221,
+    "name": "ВСМПО-АВСМ"
+   },
+   "VSYD": {
+    "close": 9350,
+    "open": 9400,
+    "volume": 71,
+    "name": "ВыбСудЗ ао"
+   },
+   "VSYDP": {
+    "close": 6650,
+    "open": 6950,
+    "volume": 81,
+    "name": "ВыбСудЗ ап"
+   },
+   "VTBR": {
+    "close": 53.81,
+    "open": 54.74,
+    "volume": 80874300,
+    "name": "ВТБ ао"
+   },
+   "WILD": {
+    "close": 928.3,
+    "open": 941.3,
+    "volume": 292,
+    "name": "WILD ETF"
+   },
+   "WTCM": {
+    "close": 14.98,
+    "open": 15.14,
+    "volume": 1900,
+    "name": "ЦМТ ао"
+   },
+   "WTCMP": {
+    "close": 12.6,
+    "open": 12.48,
+    "volume": 6700,
+    "name": "ЦМТ ап"
+   },
+   "WUSH": {
+    "close": 34.74,
+    "open": 35.46,
+    "volume": 1636214,
+    "name": "iВУШХолднг"
+   },
+   "X5": {
+    "close": 1980.5,
+    "open": 2011,
+    "volume": 472485,
+    "name": "КЦ ИКС 5"
+   },
+   "XACCSK": {
+    "close": 847,
+    "open": 848,
+    "volume": 2624,
+    "name": "Акцент 5"
+   },
+   "XAVIUM": {
+    "close": 1000,
+    "open": 999,
+    "volume": 33,
+    "name": "Авиум"
+   },
+   "XCREDI": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ПИФКредрес"
+   },
+   "XEQTRU": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "РуАк120/80"
+   },
+   "XFMAGR": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ФАлгоритм"
+   },
+   "XFMAGY": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ФАлгоритмЮ"
+   },
+   "XFMAIN": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ФАбсолютД"
+   },
+   "XFMOMB": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ФОмегаБлнс"
+   },
+   "XHEDGE": {
+    "close": 270.45,
+    "open": 270.45,
+    "volume": 815,
+    "name": "Тактикреш"
+   },
+   "XHOUSE": {
+    "close": 1119,
+    "open": 1080,
+    "volume": 40,
+    "name": "ЗПИФ ИНВНД"
+   },
+   "XIPKSV": {
+    "close": 10548,
+    "open": 10250,
+    "volume": 30,
+    "name": "ИПИФСтабВл"
+   },
+   "XKLUCH": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "КлючАктив"
+   },
+   "XLAMIX": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "2хAMIX"
+   },
+   "XNIRUM": {
+    "close": 1055,
+    "open": 1055,
+    "volume": 5,
+    "name": "Нирум Кап"
+   },
+   "XQUANT": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ПИФ КВАНТ"
+   },
+   "XSBORA": {
+    "close": 6960,
+    "open": 6960,
+    "volume": 52,
+    "name": "Бора-Бора"
+   },
+   "XSECUR": {
+    "close": 10.45,
+    "open": 10.46,
+    "volume": 1358228,
+    "name": "XSECUR"
+   },
+   "XSKLAD": {
+    "close": 108.73,
+    "open": 108.01,
+    "volume": 580,
+    "name": "ЗПИФСовр10"
+   },
+   "XTRIUMF": {
+    "close": 820,
+    "open": 821,
+    "volume": 1536,
+    "name": "ПАРУС-ТРМ"
+   },
+   "XWIMRD": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ВИМ РД 3"
+   },
+   "XXRONE": {
+    "close": null,
+    "open": null,
+    "volume": 0,
+    "name": "ОблигацииР"
+   },
+   "XXXXXX": {
+    "close": 836,
+    "open": 845.1,
+    "volume": 6525,
+    "name": "Рентал ПРО"
+   },
+   "YAKG": {
+    "close": 33.35,
+    "open": 33.85,
+    "volume": 5550,
+    "name": "ЯТЭК ао"
+   },
+   "YDEX": {
+    "close": 3577,
+    "open": 3648,
+    "volume": 2053936,
+    "name": "ЯНДЕКС"
+   },
+   "YKEN": {
+    "close": 0.395,
+    "open": 0.407,
+    "volume": 2760000,
+    "name": "Якутскэнрг"
+   },
+   "YKENP": {
+    "close": 0.308,
+    "open": 0.317,
+    "volume": 1350000,
+    "name": "Якутскэн-п"
+   },
+   "YRSB": {
+    "close": 632,
+    "open": 646,
+    "volume": 540,
+    "name": "ТНСэнЯр"
+   },
+   "YRSBP": {
+    "close": 188,
+    "open": 188,
+    "volume": 350,
+    "name": "ТНСэнЯр-п"
+   },
+   "YUAN": {
+    "close": 132.52,
+    "open": 133,
+    "volume": 3244,
+    "name": "YUAN ETF"
+   },
+   "ZAYM": {
+    "close": 128.7,
+    "open": 130.7,
+    "volume": 198840,
+    "name": "Займер ао"
+   },
+   "ZILL": {
+    "close": 4605,
+    "open": 4730,
+    "volume": 47,
+    "name": "ЗИЛ ао"
+   },
+   "ZVEZ": {
+    "close": 5.6,
+    "open": 5.68,
+    "volume": 80000,
+    "name": "ЗВЕЗДА ао"
+   }
+  },
+  "bonds": {
+   "RU000A10DQA8": {
+    "close": 94.393,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 33 CNY",
+    "yield_close": 8.27,
+    "matdate": "2033-06-01",
+    "facevalue": 10000
+   },
+   "RU000A10DQB6": {
+    "close": 97.225,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 29 CNY",
+    "yield_close": 7.41,
+    "matdate": "2029-02-28",
+    "facevalue": 10000
+   },
+   "RU000A10FAK6": {
+    "close": 93.97,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 36 CNY",
+    "yield_close": 8.77,
+    "matdate": "2036-05-21",
+    "facevalue": 10000
+   },
+   "SU26207RMFS9": {
+    "close": 98.748,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 26207",
+    "yield_close": 12.53,
+    "matdate": "2027-02-03",
+    "facevalue": 1000
+   },
+   "SU26212RMFS9": {
+    "close": 92.7,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 26212",
+    "yield_close": 13.87,
+    "matdate": "2028-01-19",
+    "facevalue": 1000
+   },
+   "SU26218RMFS6": {
+    "close": 76.777,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 26218",
+    "yield_close": 15.97,
+    "matdate": "2031-09-17",
+    "facevalue": 1000
+   },
+   "SU26221RMFS0": {
+    "close": 68.223,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 26221",
+    "yield_close": 16.32,
+    "matdate": "2033-03-23",
+    "facevalue": 1000
+   },
+   "SU26224RMFS4": {
+    "close": 84.019,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 26224",
+    "yield_close": 14.95,
+    "matdate": "2029-05-23",
+    "facevalue": 1000
+   },
+   "SU26225RMFS1": {
+    "close": 62.164,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 26225",
+    "yield_close": 16.69,
+    "matdate": "2034-05-10",
+    "facevalue": 1000
+   },
+   "SU26228RMFS5": {
+    "close": 80.743,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 26228",
+    "yield_close": 15.46,
+    "matdate": "2030-04-10",
+    "facevalue": 1000
+   },
+   "SU26230RMFS1": {
+    "close": 55.33,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 26230",
+    "yield_close": 16.78,
+    "matdate": "2039-03-16",
+    "facevalue": 1000
+   },
+   "SU26231RMFS9": {
+    "close": null,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 26231",
+    "yield_close": null,
+    "matdate": "2044-07-20",
+    "facevalue": 1000
+   },
+   "SU26232RMFS7": {
+    "close": 93.799,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 26232",
+    "yield_close": 13.27,
+    "matdate": "2027-10-06",
+    "facevalue": 1000
+   },
+   "SU26233RMFS5": {
+    "close": 55.464,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 26233",
+    "yield_close": 16.18,
+    "matdate": "2035-07-18",
+    "facevalue": 1000
+   },
+   "SU26235RMFS0": {
+    "close": 70.852,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 26235",
+    "yield_close": 15.76,
+    "matdate": "2031-03-12",
+    "facevalue": 1000
+   },
+   "SU26236RMFS8": {
+    "close": 88.27,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 26236",
+    "yield_close": 14.6,
+    "matdate": "2028-05-17",
+    "facevalue": 1000
+   },
+   "SU26237RMFS6": {
+    "close": 84.667,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 26237",
+    "yield_close": 14.91,
+    "matdate": "2029-03-14",
+    "facevalue": 1000
+   },
+   "SU26238RMFS4": {
+    "close": 50.391,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 26238",
+    "yield_close": 16.58,
+    "matdate": "2041-05-15",
+    "facevalue": 1000
+   },
+   "SU26239RMFS2": {
+    "close": 72.692,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 26239",
+    "yield_close": 15.68,
+    "matdate": "2031-07-23",
+    "facevalue": 1000
+   },
+   "SU26240RMFS0": {
+    "close": 56.198,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 26240",
+    "yield_close": 16.62,
+    "matdate": "2036-07-30",
+    "facevalue": 1000
+   },
+   "SU26241RMFS8": {
+    "close": 76.18,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 26241",
+    "yield_close": 16.31,
+    "matdate": "2032-11-17",
+    "facevalue": 1000
+   },
+   "SU26242RMFS6": {
+    "close": 87.291,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 26242",
+    "yield_close": 15.06,
+    "matdate": "2029-08-29",
+    "facevalue": 1000
+   },
+   "SU26243RMFS4": {
+    "close": 66.751,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 26243",
+    "yield_close": 16.91,
+    "matdate": "2038-05-19",
+    "facevalue": 1000
+   },
+   "SU26244RMFS2": {
+    "close": 79.405,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 26244",
+    "yield_close": 16.74,
+    "matdate": "2034-03-15",
+    "facevalue": 1000
+   },
+   "SU26245RMFS9": {
+    "close": 80.346,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 26245",
+    "yield_close": 16.9,
+    "matdate": "2035-09-26",
+    "facevalue": 1000
+   },
+   "SU26246RMFS7": {
+    "close": 79.897,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 26246",
+    "yield_close": 16.89,
+    "matdate": "2036-03-12",
+    "facevalue": 1000
+   },
+   "SU26247RMFS5": {
+    "close": 78.778,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 26247",
+    "yield_close": 16.91,
+    "matdate": "2039-05-11",
+    "facevalue": 1000
+   },
+   "SU26248RMFS3": {
+    "close": 78.336,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 26248",
+    "yield_close": 16.9,
+    "matdate": "2040-05-16",
+    "facevalue": 1000
+   },
+   "SU26249RMFS1": {
+    "close": 82.65,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 26249",
+    "yield_close": 16.33,
+    "matdate": "2032-06-16",
+    "facevalue": 1000
+   },
+   "SU26250RMFS9": {
+    "close": 78.68,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 26250",
+    "yield_close": 16.92,
+    "matdate": "2037-06-10",
+    "facevalue": 1000
+   },
+   "SU26251RMFS7": {
+    "close": 83.719,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 26251",
+    "yield_close": 15.77,
+    "matdate": "2030-08-28",
+    "facevalue": 1000
+   },
+   "SU26252RMFS5": {
+    "close": 85.25,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 26252",
+    "yield_close": 16.73,
+    "matdate": "2033-10-12",
+    "facevalue": 1000
+   },
+   "SU26253RMFS3": {
+    "close": 83.033,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 26253",
+    "yield_close": 16.92,
+    "matdate": "2038-10-06",
+    "facevalue": 1000
+   },
+   "SU26254RMFS1": {
+    "close": 82.271,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 26254",
+    "yield_close": 16.9,
+    "matdate": "2040-10-03",
+    "facevalue": 1000
+   },
+   "SU29007RMFS0": {
+    "close": 100.559,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 29007",
+    "yield_close": null,
+    "matdate": "2027-03-03",
+    "facevalue": 1000
+   },
+   "SU29008RMFS8": {
+    "close": 102,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 29008",
+    "yield_close": null,
+    "matdate": "2029-10-03",
+    "facevalue": 1000
+   },
+   "SU29009RMFS6": {
+    "close": 103.392,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 29009",
+    "yield_close": null,
+    "matdate": "2032-05-05",
+    "facevalue": 1000
+   },
+   "SU29010RMFS4": {
+    "close": 103.999,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 29010",
+    "yield_close": null,
+    "matdate": "2034-12-06",
+    "facevalue": 1000
+   },
+   "SU29013RMFS8": {
+    "close": 98.05,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 29013",
+    "yield_close": null,
+    "matdate": "2030-09-18",
+    "facevalue": 1000
+   },
+   "SU29015RMFS3": {
+    "close": 99.388,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 29015",
+    "yield_close": null,
+    "matdate": "2028-10-18",
+    "facevalue": 1000
+   },
+   "SU29016RMFS1": {
+    "close": 100.046,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 29016",
+    "yield_close": null,
+    "matdate": "2026-12-23",
+    "facevalue": 1000
+   },
+   "SU29017RMFS9": {
+    "close": 97.075,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 29017",
+    "yield_close": null,
+    "matdate": "2032-08-25",
+    "facevalue": 1000
+   },
+   "SU29018RMFS7": {
+    "close": 97.425,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 29018",
+    "yield_close": null,
+    "matdate": "2031-11-26",
+    "facevalue": 1000
+   },
+   "SU29019RMFS5": {
+    "close": 99.195,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 29019",
+    "yield_close": null,
+    "matdate": "2029-07-18",
+    "facevalue": 1000
+   },
+   "SU29020RMFS3": {
+    "close": 100.024,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 29020",
+    "yield_close": null,
+    "matdate": "2027-09-22",
+    "facevalue": 1000
+   },
+   "SU29021RMFS1": {
+    "close": 98.15,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 29021",
+    "yield_close": null,
+    "matdate": "2030-11-27",
+    "facevalue": 1000
+   },
+   "SU29022RMFS9": {
+    "close": 96.999,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 29022",
+    "yield_close": null,
+    "matdate": "2033-07-20",
+    "facevalue": 1000
+   },
+   "SU29023RMFS7": {
+    "close": 96.006,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 29023",
+    "yield_close": null,
+    "matdate": "2034-08-23",
+    "facevalue": 1000
+   },
+   "SU29024RMFS5": {
+    "close": 94.942,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 29024",
+    "yield_close": null,
+    "matdate": "2035-04-18",
+    "facevalue": 1000
+   },
+   "SU29025RMFS2": {
+    "close": 94.175,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 29025",
+    "yield_close": null,
+    "matdate": "2037-08-12",
+    "facevalue": 1000
+   },
+   "SU29026RMFS0": {
+    "close": 95.903,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 29026",
+    "yield_close": 16.59,
+    "matdate": "2038-09-04",
+    "facevalue": 1000
+   },
+   "SU29027RMFS8": {
+    "close": 94.748,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 29027",
+    "yield_close": 16.89,
+    "matdate": "2036-09-11",
+    "facevalue": 1000
+   },
+   "SU29028RMFS6": {
+    "close": 93.927,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 29028",
+    "yield_close": 17,
+    "matdate": "2039-10-22",
+    "facevalue": 1000
+   },
+   "SU29029RMFS4": {
+    "close": 93.848,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 29029",
+    "yield_close": 16.98,
+    "matdate": "2041-10-22",
+    "facevalue": 1000
+   },
+   "SU29031RMFS0": {
+    "close": 92.777,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 29031",
+    "yield_close": null,
+    "matdate": "2042-07-29",
+    "facevalue": 1000
+   },
+   "SU46012RMFS9": {
+    "close": 96.21,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 46012",
+    "yield_close": 5.41,
+    "matdate": "2029-09-05",
+    "facevalue": 825
+   },
+   "SU46020RMFS2": {
+    "close": 61,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 46020",
+    "yield_close": 15.76,
+    "matdate": "2036-02-06",
+    "facevalue": 1000
+   },
+   "SU52002RMFS1": {
+    "close": 92.803,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 52002",
+    "yield_close": 8.55,
+    "matdate": "2028-02-02",
+    "facevalue": 1774.76
+   },
+   "SU52003RMFS9": {
+    "close": 86.899,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 52003",
+    "yield_close": 6.57,
+    "matdate": "2030-07-17",
+    "facevalue": 1613.59
+   },
+   "SU52004RMFS7": {
+    "close": 82.439,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 52004",
+    "yield_close": 6.47,
+    "matdate": "2032-03-17",
+    "facevalue": 1516.98
+   },
+   "SU52005RMFS4": {
+    "close": 80.751,
+    "open": null,
+    "volume": null,
+    "name": "ОФЗ 52005",
+    "yield_close": 6.18,
+    "matdate": "2033-05-11",
+    "facevalue": 1301.38
+   }
+  },
+  "index": {
+   "IMOEX": {
+    "close": 2310.65,
+    "open": 2338.56,
+    "volume": null,
+    "name": "Индекс МосБиржи"
+   },
+   "IMOEX2": {
+    "close": 2310.65,
+    "open": 2338.56,
+    "volume": null,
+    "name": "Индекс МосБиржи (все сессии)"
+   },
+   "MECHTR": {
+    "close": 54931.81,
+    "open": 54931.81,
+    "volume": null,
+    "name": "MOEX Chemicals Total Return"
+   },
+   "MECHTRN": {
+    "close": 48382.17,
+    "open": 48382.17,
+    "volume": null,
+    "name": "MOEX Chemicals Net TR-NR"
+   },
+   "MECHTRR": {
+    "close": 49289.44,
+    "open": 49289.44,
+    "volume": null,
+    "name": "MOEX Chemicals Net TR-Res"
+   },
+   "MECNTR": {
+    "close": 9022.42,
+    "open": 9022.42,
+    "volume": null,
+    "name": "MOEX Consumer Total Return"
+   },
+   "MECNTRN": {
+    "close": 8283.68,
+    "open": 8283.68,
+    "volume": null,
+    "name": "MOEX Consumer Net TR-NR"
+   },
+   "MECNTRR": {
+    "close": 8395.82,
+    "open": 8395.82,
+    "volume": null,
+    "name": "MOEX Consumer Net TR-Res"
+   },
+   "MEEUTR": {
+    "close": 3057.55,
+    "open": 3057.55,
+    "volume": null,
+    "name": "MOEX El.Utilities Total Return"
+   },
+   "MEEUTRN": {
+    "close": 2743.15,
+    "open": 2743.15,
+    "volume": null,
+    "name": "MOEX El. Utilities Net TR-NR"
+   },
+   "MEEUTRR": {
+    "close": 2787.82,
+    "open": 2787.82,
+    "volume": null,
+    "name": "MOEX El. Utilities Net TR-Res"
+   },
+   "MEFNTR": {
+    "close": 16404.58,
+    "open": 16404.58,
+    "volume": null,
+    "name": "MOEX Financials Total Return"
+   },
+   "MEFNTRN": {
+    "close": 14834.72,
+    "open": 14834.72,
+    "volume": null,
+    "name": "MOEX Financials Net TR-NR"
+   },
+   "MEFNTRR": {
+    "close": 15056.2,
+    "open": 15056.2,
+    "volume": null,
+    "name": "MOEX Financials Net TR-Res"
+   },
+   "MEMMTR": {
+    "close": 8951.52,
+    "open": 8951.52,
+    "volume": null,
+    "name": "MOEX Metals & Min Total Return"
+   },
+   "MEMMTRN": {
+    "close": 8028.76,
+    "open": 8028.76,
+    "volume": null,
+    "name": "MOEX Metals & Mining Net TR-NR"
+   },
+   "MEMMTRR": {
+    "close": 8165.61,
+    "open": 8165.61,
+    "volume": null,
+    "name": "MOEX Metals & Min Net TR-Res"
+   },
+   "MEOGTR": {
+    "close": 15291.19,
+    "open": 15291.19,
+    "volume": null,
+    "name": "MOEX Oil & Gas Total Return"
+   },
+   "MEOGTRN": {
+    "close": 13451.47,
+    "open": 13451.47,
+    "volume": null,
+    "name": "MOEX Oil & Gas Net TR-NR"
+   },
+   "MEOGTRR": {
+    "close": 13708.26,
+    "open": 13708.26,
+    "volume": null,
+    "name": "MOEX Oil & Gas Net TR-Res"
+   },
+   "MESMTR": {
+    "close": 2112.67,
+    "open": 2112.67,
+    "volume": null,
+    "name": "MOEX SMID Total Return"
+   },
+   "MESMTRN": {
+    "close": 1922.17,
+    "open": 1922.17,
+    "volume": null,
+    "name": "MOEX SMID Net TR-NR"
+   },
+   "MESMTRR": {
+    "close": 1950.51,
+    "open": 1950.51,
+    "volume": null,
+    "name": "MOEX SMID Net TR-Res"
+   },
+   "METNTR": {
+    "close": 2322.71,
+    "open": 2322.71,
+    "volume": null,
+    "name": "MOEX Transport Total Return"
+   },
+   "METNTRN": {
+    "close": 2120.83,
+    "open": 2120.83,
+    "volume": null,
+    "name": "MOEX Transport Net TR-NR"
+   },
+   "METNTRR": {
+    "close": 2149.07,
+    "open": 2149.07,
+    "volume": null,
+    "name": "MOEX Transport Net TR-Res"
+   },
+   "MOEX10": {
+    "close": 4504.04,
+    "open": 4528.63,
+    "volume": null,
+    "name": "Индекс МосБиржи 10"
+   },
+   "MOEXBMI": {
+    "close": 1652.59,
+    "open": 1670.19,
+    "volume": null,
+    "name": "Индекс широкого рынка"
+   },
+   "MOEXCH": {
+    "close": 23377.96,
+    "open": 23455.24,
+    "volume": null,
+    "name": "Индекс химии и нефтехимии"
+   },
+   "MOEXCN": {
+    "close": 5084.54,
+    "open": 5135.05,
+    "volume": null,
+    "name": "Индекс потребительского сектора / Индекс потребит сектора"
+   },
+   "MOEXEU": {
+    "close": 1477.18,
+    "open": 1496.97,
+    "volume": null,
+    "name": "Индекс электроэнергетики"
+   },
+   "MOEXFN": {
+    "close": 8337.51,
+    "open": 8451.12,
+    "volume": null,
+    "name": "Индекс финансов"
+   },
+   "MOEXINN": {
+    "close": 248.44,
+    "open": 251.76,
+    "volume": null,
+    "name": "Индекс МосБиржи инноваций"
+   },
+   "MOEXMM": {
+    "close": 4316.92,
+    "open": 4395.31,
+    "volume": null,
+    "name": "Индекс металлов и добычи"
+   },
+   "MOEXOG": {
+    "close": 6472.82,
+    "open": 6522.09,
+    "volume": null,
+    "name": "Индекс нефти и газа"
+   },
+   "MOEXTN": {
+    "close": 1253.55,
+    "open": 1276.48,
+    "volume": null,
+    "name": "Индекс транспорта"
+   },
+   "MRBC": {
+    "close": 1125.65,
+    "open": 1140.06,
+    "volume": null,
+    "name": "Индекс МосБиржи 15"
+   },
+   "RGBI": {
+    "close": 110.62,
+    "open": 111.11,
+    "volume": null,
+    "name": "Индекс Мосбиржи гос обл RGBI"
+   },
+   "RGBITR": {
+    "close": 760.99,
+    "open": 764.23,
+    "volume": null,
+    "name": "Индекс Мосбиржи гос обл RGBITR"
+   }
+  }
+ },
+ "cbr": {
+  "USD": 85.4811,
+  "EUR": 96.3287,
+  "CNY": 12.7516
+ },
+ "errors": []
+}
