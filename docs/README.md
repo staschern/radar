@@ -30,7 +30,8 @@
 | [knowledge/capital_growth_strategy.md](knowledge/capital_growth_strategy.md) | Личный капитал: 2,6 млн → 100 млн за 20 лет, сверка по месяцам |
 | [knowledge/crypto_market.md](knowledge/crypto_market.md) | Отдельная сфера: крипторынок, ETF-потоки |
 | [knowledge/portfolio_decisions_log.md](knowledge/portfolio_decisions_log.md) | Решения по портфелю и проверяемые гипотезы |
-| [knowledge/external_views.md](knowledge/external_views.md) | Внешние мнения аналитиков и каналов (мнения ≠ факты) |
+| [knowledge/external_views.md](knowledge/external_views.md) | Внешние мнения аналитиков и каналов (мнения ≠ факты), по дате получения |
+| [knowledge/asset_dossiers.md](knowledge/asset_dossiers.md) | Тот же материал, что в external_views.md, но в разрезе эмитента/актива — для быстрого поиска |
 | [knowledge/analyst_scorecard.md](knowledge/analyst_scorecard.md) | Учёт исходов идей: что у кого сбылось |
 | [knowledge/ideas_backlog.md](knowledge/ideas_backlog.md) | Идеи и улучшения вне текущего ТЗ |
 | [knowledge/research_log.md](knowledge/research_log.md) | Журнал исследований, включая отрицательные результаты |
@@ -58,7 +59,7 @@
 | Принято архитектурное решение | Новый ADR + ссылка из ТЗ |
 | Что-то выяснили (в т.ч. «не работает») | `knowledge/research_log.md` |
 | Появилась идея вне ТЗ | `knowledge/ideas_backlog.md` |
-| Заказчик прислал внешнее мнение | `knowledge/external_views.md` |
+| Заказчик прислал внешнее мнение | `knowledge/external_views.md` + выжимка тем же коммитом в `knowledge/asset_dossiers.md` |
 | Прислана идея с уровнями | `data/watchlist_config.json` (тикер + уровни) и `knowledge/analyst_scorecard.md` |
 | Уровень из идеи достигнут | `outcome` в watchlist_config + запись в scorecard |
 | Уточнили метод расчёта | `knowledge/methodology.md` + запись в research_log |
