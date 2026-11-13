@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Утренний радар — 13.11.2026</title>
+<style>
+  :root{
+    --bg:#0a0e16; --card:#131a26; --card-2:#0f1520; --line:#232d3d;
+    --text:#e8edf5; --muted:#8a97ab; --dim:#5d6879;
+    --gold:#e0a95c; --blue:#5b9bf5; --up:#5bd88a; --down:#e08a8a;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:"Inter","Helvetica Neue",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1040px; margin:0 auto; padding:28px 20px 64px}
+  .hero{border:1px solid var(--line); border-radius:14px; background:
+    linear-gradient(160deg,#141c2b 0%,var(--card) 60%); padding:30px 28px; margin-bottom:22px}
+  .eyebrow{color:var(--gold); font-size:12px; letter-spacing:.16em; text-transform:uppercase; font-weight:600}
+  h1{margin:10px 0 6px; font-size:clamp(28px,5vw,44px); line-height:1.1; font-weight:800; letter-spacing:-.02em}
+  .hero .date{color:var(--muted); font-size:14px}
+  .trigger{margin-top:16px; padding:14px 16px; border-left:3px solid var(--gold);
+    background:rgba(224,169,92,.07); border-radius:0 10px 10px 0; font-size:16px}
+  .pulse{display:grid; grid-template-columns:repeat(auto-fit,minmax(148px,1fr)); gap:12px; margin-top:20px}
+  .metric{background:var(--card-2); border:1px solid var(--line); border-radius:12px; padding:14px 16px}
+  .metric .k{color:var(--muted); font-size:11px; letter-spacing:.1em; text-transform:uppercase}
+  .metric .v{font-size:24px; font-weight:700; margin-top:6px; letter-spacing:-.02em}
+  .metric .d{font-size:13px; margin-top:2px; font-weight:600}
+  .up{color:var(--up)} .down{color:var(--down)} .flat{color:var(--muted)}
+  .metric.accent .v{color:var(--gold)}
+  .metric.fx .v{color:var(--blue)}
+  .nodata{color:var(--dim); font-style:italic; font-weight:400}
+  section{background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:24px 26px; margin-bottom:18px}
+  h2{margin:0 0 4px; font-size:20px; font-weight:700; color:var(--gold); letter-spacing:-.01em}
+  .sub{color:var(--muted); font-size:13px; margin-bottom:18px}
+  h3{margin:22px 0 8px; font-size:15px; font-weight:700}
+  .cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px}
+  .fact{background:var(--card-2); border:1px solid var(--line); border-radius:12px; padding:16px 18px}
+  .fact .n{color:var(--gold); font-size:12px; font-weight:700; letter-spacing:.1em}
+  .fact p{margin:8px 0 0; font-size:14px}
+  .tag{display:inline-block; font-size:10px; letter-spacing:.1em; text-transform:uppercase;
+    padding:3px 8px; border-radius:999px; font-weight:700; vertical-align:middle}
+  .tag.fact{background:rgba(91,155,245,.14); color:var(--blue); border:1px solid rgba(91,155,245,.3)}
+  .tag.est{background:rgba(224,169,92,.12); color:var(--gold); border:1px solid rgba(224,169,92,.3)}
+  .est-note{color:var(--dim); font-size:12px; font-style:italic}
+  .score{display:flex; align-items:center; gap:14px; margin:14px 0}
+  .score .bar{flex:1; height:8px; background:#1b2433; border-radius:999px; overflow:hidden}
+  .score .fill{height:100%; background:linear-gradient(90deg,var(--gold),var(--down)); border-radius:999px}
+  .score .num{font-size:26px; font-weight:800; color:var(--gold); min-width:76px; text-align:right}
+  .tablewrap{overflow-x:auto; -webkit-overflow-scrolling:touch; margin-top:12px}
+  table{width:100%; border-collapse:collapse; font-size:14px; min-width:560px}
+  th{text-align:left; color:var(--muted); font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+    font-weight:600; padding:0 12px 10px 0; border-bottom:1px solid var(--line); white-space:nowrap}
+  td{padding:11px 12px 11px 0; border-bottom:1px solid rgba(35,45,61,.55); vertical-align:top}
+  tbody tr:last-child td{border-bottom:none}
+  .ticker{font-weight:700; letter-spacing:.02em}
+  .instr{font-weight:700; letter-spacing:.02em; line-height:1.35}
+  .instr .code{display:block; font-weight:400; font-size:11px; color:var(--dim);
+    letter-spacing:.04em; margin-top:2px; font-variant-numeric:tabular-nums}
+  td .instr{white-space:normal}
+  .num{font-variant-numeric:tabular-nums}
+  .scen{border:1px solid var(--line); border-radius:12px; padding:16px 18px; background:var(--card-2)}
+  .scen .h{display:flex; justify-content:space-between; align-items:baseline; gap:10px}
+  .scen .name{font-weight:700}
+  .scen .p{font-size:20px; font-weight:800; color:var(--gold); font-variant-numeric:tabular-nums}
+  .scen.base{border-left:3px solid var(--gold)}
+  .scen.pos{border-left:3px solid var(--up)}
+  .scen.neg{border-left:3px solid var(--down)}
+  .scen dl{margin:10px 0 0; font-size:13px}
+  .scen dt{color:var(--muted); font-size:11px; letter-spacing:.08em; text-transform:uppercase; margin-top:8px}
+  .scen dd{margin:2px 0 0}
+  .chain{display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:14px}
+  .chain .node{background:var(--card-2); border:1px solid var(--line); border-radius:10px;
+    padding:10px 14px; font-size:13px; font-weight:600}
+  .chain .arrow{color:var(--gold); font-size:18px; line-height:1}
+  .empty{border:1px dashed var(--line); border-radius:12px; padding:20px;
+    color:var(--muted); font-size:14px; text-align:center; background:rgba(35,45,61,.16)}
+  .warn{margin-top:14px; padding:14px 16px; border:1px solid rgba(224,138,138,.35); border-radius:10px;
+    background:rgba(224,138,138,.08); font-size:13px}
+  .foot{display:flex; justify-content:space-between; gap:14px; margin-top:20px; padding-top:14px;
+    border-top:1px solid var(--line); color:var(--dim); font-size:11px}
+  .disclaimer{margin-top:26px; padding:16px 18px; border:1px solid var(--line); border-radius:12px;
+    background:var(--card-2); color:var(--muted); font-size:12px; line-height:1.6}
+  @media print{
+    body{background:var(--bg)}
+    .wrap{max-width:none; padding:0}
+    section,.hero,.fact,.scen,.metric{break-inside:avoid; page-break-inside:avoid}
+    h2{break-after:avoid}
+  }
+  @media (max-width:560px){
+    section{padding:18px 16px} .wrap{padding:16px 12px 40px} .hero{padding:22px 18px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- БЛОК 1. Титул + рыночный пульс -->
+  <header class="hero">
+    <div class="eyebrow">Утренний радар · Российский рынок + Крипто · аналитический материал, не индивидуальная инвестиционная рекомендация</div>
+    <h1>Биткоин проваливается в зону $62-70 тыс. — оба триггера обвала пробиты, IMOEX живёт своей историей</h1>
+    <div class="date">13 ноября 2026, пятница · снимок рынка ~14:08-14:11 мск (рынок открыт) · IMOEX/RGBI — investfuture.ru (изложение MOEX, iss.moex.com сегодня недоступен через прокси); CBR XML, FRED CSV, Yahoo Finance — прямой curl</div>
+    <div class="trigger"><strong>Триггер дня.</strong> BTC впервые пробил ВТОРОЙ breakdown-триггер источника IF+ ($72 тыс., первый — $75 тыс. — был пробит ранее) и провалился внутрь зоны негативного сценария $62-70 тыс.: живая цена $69 262 (Yahoo, -5,63% к вчерашнему снимку). ETH -4,54%, SOL -3,05%, AAVE -3,34% — сегодня уже не главный аутсайдер блока, в отличие от вчера. DXY закрепился выше 103 — второе подряд чтение выше порога 102 (methodology §5 подтверждена), золото ушло ниже $3900/унц. Российский рынок акций эту историю не транслирует: IMOEX 2517,52 (+0,46% день, +2,17% неделя) растёт на ожиданиях возобновления трёхстороннего диалога РФ-США-Украина — хотя по сегодняшним источникам сама встреча по-прежнему лишь обсуждается («после 4 ноября»), без зафиксированных параметров, не как уже идущий раунд.</div>
+
+    <div class="pulse">
+      <div class="metric"><div class="k">IMOEX</div><div class="v num">2517,52</div>
+        <div class="d up">+0,46% день · +2,17% неделя</div></div>
+      <div class="metric fx"><div class="k">USD/RUB · ЦБ</div><div class="v num">82,9803</div>
+        <div class="d up">+0,39% к 82,6617 (12.11)</div></div>
+      <div class="metric accent"><div class="k">Brent</div><div class="v num up">$95,73</div>
+        <div class="d up">+4,31% (Yahoo BZ=F) к вчерашнему снимку $91,78</div></div>
+      <div class="metric accent"><div class="k">Ключевая ставка</div><div class="v num">14,0%</div>
+        <div class="d flat">без изменений · следующее заседание 18.12.2026</div></div>
+    </div>
+  </header>
+
+  <!-- БЛОК 2. Три главных факта -->
+  <section>
+    <h2>Три главных факта дня</h2>
+    <div class="sub">Проверяемые утверждения с источником. Интерпретация — в блоках ниже.</div>
+    <div class="cards">
+      <div class="fact"><div class="n">01</div><p><span class="tag fact">факт</span> <strong>BTC $69 262,19</strong> (Yahoo BTC-USD, live) — пробит второй breakdown-триггер источника IF+ ($72 тыс.), цена уже внутри зоны негативного сценария $62-70 тыс. Явного нового катализатора не найдено.</p></div>
+      <div class="fact"><div class="n">02</div><p><span class="tag fact">факт</span> <strong>Официальное закрытие IMOEX 12.11 — 2505,95</strong> (investfuture.ru/MOEX), выше вчерашнего зафиксированного снимка (2492,52) — третий день подряд такое расхождение (methodology §24).</p></div>
+      <div class="fact"><div class="n">03</div><p><span class="tag fact">факт</span> <strong>DXY 103,258</strong> (Yahoo, live) — второй день подряд выше порога 102, закрепление подтверждено правилом «два чтения подряд» (methodology §5).</p></div>
+    </div>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 2</span></div>
+  </section>
+
+  <!-- БЛОК 3. Рыночная панель -->
+  <section>
+    <h2>Рыночная панель</h2>
+    <div class="sub">Снимок ~14:08-14:11 мск 13.11.2026.</div>
+    <div class="pulse">
+      <div class="metric"><div class="k">IMOEX</div><div class="v num">2517,52</div><div class="d up">+0,46%</div></div>
+      <div class="metric fx"><div class="k">CNY/RUB · ЦБ</div><div class="v num">12,4009</div><div class="d up">+0,08% к 12,3907 (12.11)</div></div>
+      <div class="metric"><div class="k">RGBI</div><div class="v num">111,99</div><div class="d down">-0,02% к закрытию 12.11 (112,01)</div></div>
+      <div class="metric"><div class="k">Brent</div><div class="v num up">$95,73</div><div class="d up">+4,31% (Yahoo BZ=F)</div></div>
+      <div class="metric accent"><div class="k">Золото · $/унц.</div><div class="v num down">$3 895,60</div><div class="d down">(Yahoo GC=F) — ₽/г сегодня нет данных, MOEX ISS недоступен</div></div>
+      <div class="metric"><div class="k">Движения дня</div><div class="v num nodata">нет данных</div><div class="d flat">MOEX ISS недоступен через прокси (ws_closed_mid_exchange)</div></div>
+    </div>
+
+    <h3>Движения дня</h3>
+    <div class="empty">Нет данных — iss.moex.com сегодня не отвечает через агент-прокси (подтверждено диагностикой: TLS-туннель закрывается на этапе handshake). Альтернативных источников по топ-5 движений и отдельным бумагам watchlist не нашёл. Не переношу вчерашние числа за сегодняшние.</div>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 3</span></div>
+  </section>
+
+  <!-- БЛОК 4. Ключевое событие дня -->
+  <section>
+    <h2>Ключевое событие дня</h2>
+    <div class="sub">BTC внутри зоны $62-70 тыс. — крипто-блок, не российский рынок</div>
+
+    <h3><span class="tag fact">факт</span> Что известно</h3>
+    <p>(1) BTC $69 262,19 (Yahoo, live, 13.11 ~14:11 мск) — день -5,63% к вчерашнему снимку ($73 395). Пробиты ОБА breakdown-триггера источника IF+ ($75 тыс. ранее, $72 тыс. сегодня) — цена уже внутри зоны target_negative_scenario $62-70 тыс. (2) ETH -4,54% ($1 950,97), SOL -3,05% ($80,41), AAVE -3,34% ($111,36) — весь блок в минусе, но AAVE сегодня относительно устойчивее остальных (вчера было наоборот: AAVE -6,91% было крупнейшим падением дня). (3) DXY 103,258 (Yahoo, live) — второе подряд закрытие выше порога 102 (вчера 102,804 было первым касанием). (4) Золото (Yahoo GC=F) $3 895,60/унц., ниже психологического уровня $3900. (5) IMOEX на этом фоне +0,46% день, +2,17% неделя — геополитический, не глобально-макро сюжет.</p>
+
+    <h3><span class="tag est">оценка</span> Что ещё не факт</h3>
+    <p>Конкретного нового катализатора сегодняшнего крипто-обвала не нашёл — ни регуляторной новости, ни специфического для BTC события. Контекст, который нашёлся (не по сегодняшней дате): BTC уже с начала месяца держится ниже расчётной средней цены покупки краткосрочных держателей (по Glassnode, ~$75 700 на 08.11.2026) — похоже на продолжение уже известной слабости, а не на отдельный шок дня. Рекомендация источника IF+ по BTC («держать, добавлять на откатах») формально не менялась, но факт (цена внутри негативной зоны, не у её границы) требует явно отметить расхождение, не подменяя мнение источника.</p>
+
+    <h3>Рыночный механизм</h3>
+    <p><span class="tag est">оценка</span> В отличие от двух последних дней, когда крепкий доллар синхронно давил на нефть/золото/крипту, сегодня Brent неожиданно вырос (+4,31%) одновременно с падением золота и крипты и укреплением DXY — то есть сегодняшнее движение разрозненное по классам активов, не единый «risk-off»-паттерн. IMOEX эту разноголосицу вообще не транслирует — рынок РФ живёт своей повесткой (ожидание дипломатического прогресса).</p>
+
+    <div class="score">
+      <div class="num">38</div>
+      <div class="bar"><div class="fill" style="width:38%"></div></div>
+    </div>
+    <p class="est-note">Оценка влияния 0–100 — methodology §3. Охват — умеренно широкий (крипто-блок целиком, но не российский рынок акций); необратимость — низкая (ценовое движение, не структурное/регуляторное решение); неожиданность — умеренная (пробой второго триггера ожидался при продолжении тренда, не был внезапным); скорость — эффект уже реализован сегодня для крипто-блока. Выше вчерашних 26 — из-за реального пробоя формального триггера модели, затрагивающего крипто-часть портфеля.</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 4</span></div>
+  </section>
+
+  <!-- БЛОК 5. Валюта/ликвидность -->
+  <section>
+    <h2>Валюта / ликвидность</h2>
+    <div class="sub">Официальный курс ЦБ на 13.11.2026.</div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Валюта</th><th>Официальный курс ЦБ (13.11.2026)</th><th>Δ к предыдущему чтению (12.11)</th></tr></thead>
+        <tbody>
+          <tr><td class="ticker">USD/RUB</td><td class="num">82,9803 ₽</td><td class="num up">+0,3186 ₽ / +0,39%</td></tr>
+          <tr><td class="ticker">EUR/RUB</td><td class="num">92,3322 ₽</td><td class="num nodata">не отслеживается в истории (справочно)</td></tr>
+          <tr><td class="ticker">CNY/RUB</td><td class="num">12,4009 ₽</td><td class="num up">+0,0102 ₽ / +0,08%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="est-note"><span class="tag fact">факт</span> Рубль чуть ослаб и к доллару, и к юаню — небольшое и однонаправленное движение, далеко от порога флага пересмотра портфеля (methodology §4, ≥4% за день).</p>
+
+    <h3>Ликвидность банковского сектора / операции Минфина и ЦБ</h3>
+    <p><span class="tag est">мнение источника (Alexander Polyarniy, 13.11.2026, не фактчекано в этом выпуске)</span> Покупки валюты/золота Минфином заявлены на 15,6 млрд ₽/день, фактический объём операций ЦБ — около 15,02 млрд ₽; дневные покупки выросли на ~24%. Независимой проверки этих цифр сегодня не проводилось (см. отдельный фактчек поста того же дня в external_views.md).</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 5</span></div>
+  </section>
+
+  <!-- БЛОК 6. Инфляция и ставка -->
+  <section>
+    <h2>Инфляция и ставка</h2>
+    <div class="pulse">
+      <div class="metric accent"><div class="k">Недельная инфляция РФ</div><div class="v num nodata">нет данных</div><div class="d flat">без обновления с 27.10-02.11 (дефляция -0,04%, Росстат)</div></div>
+      <div class="metric accent"><div class="k">Годовая</div><div class="v num">≈6,95%</div><div class="d flat">без изменений (оценка МЭР)</div></div>
+      <div class="metric accent"><div class="k">Ключевая ставка</div><div class="v num">14,0%</div><div class="d flat">cbr.ru; без изменений с 23.10.2026, следующее заседание 18.12.2026</div></div>
+      <div class="metric"><div class="k">RUONIA</div><div class="v num">13,92%</div><div class="d flat">на 11.11.2026 (публикация 12.11, лаг 1 день) — cbr.ru/hd_base/ruonia, получено впервые за несколько выпусков</div></div>
+    </div>
+    <p class="est-note"><span class="tag fact">факт</span> RUONIA сегодня удалось получить напрямую с cbr.ru (13,92% на 11.11, 10.11 было 13,81%) — похоже, предыдущие «9+ дней без данных» были проблемой способа запроса, не реальным пробелом публикации ЦБ. Недельный релиз Росстата целевым поиском сегодня не найден.</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 6</span></div>
+  </section>
+
+  <!-- БЛОК 7. ОФЗ/кривая доходности -->
+  <section>
+    <h2>ОФЗ / кривая доходности</h2>
+    <div class="sub">CBR ZCYC (бескупонная кривая доходности), последняя доступная точка — 12.11.2026 (лаг 1 день). iss.moex.com сегодня недоступен — отдельный бенчмарк (26238) не проверялся.</div>
+    <div class="pulse">
+      <div class="metric"><div class="k">RGBI</div><div class="v num">111,99</div><div class="d down">-0,02% к закрытию 12.11</div></div>
+      <div class="metric"><div class="k">ОФЗ ≈1 год (ZCYC)</div><div class="v num">14,04%</div><div class="d flat"><span class="tag fact">факт</span> cbr.ru/hd_base/zcyc_params, на 12.11.2026</div></div>
+      <div class="metric"><div class="k">ОФЗ ≈10 лет (ZCYC)</div><div class="v num">16,73%</div><div class="d flat">cbr.ru/hd_base/zcyc_params, на 12.11.2026</div></div>
+    </div>
+    <p class="est-note"><span class="tag est">методологическая оговорка</span> Сегодня источник для ОФЗ — официальная бескупонная кривая ЦБ (ZCYC), а не прямая котировка конкретного выпуска (как в прошлых выпусках, напр. 26238 через MOEX ISS) — цифры не обязаны совпадать 1-в-1 с прежним рядом «ofz10y» (16,2% 12.11 по прежней методике vs 16,73% по ZCYC на ту же дату). Это разные, хоть и близкие, определения кривой — помечаю смену источника явно, не как движение рынка.</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 7</span></div>
+  </section>
+
+  <!-- БЛОК 8. Корпоративные истории -->
+  <section>
+    <h2>Корпоративные истории</h2>
+    <div class="cards">
+      <div class="fact"><div class="n">BTC — пробой второго триггера модели IF+</div><p><span class="tag fact">факт</span> $69 262 — внутри зоны $62-70 тыс. (target_negative_scenario источника). Крупнейшее по значимости крипто-событие проекта с начала квартала.</p></div>
+      <div class="fact"><div class="n">Brent — резкий рост против общего крипто/золотого риск-офф</div><p><span class="tag fact">факт</span> +4,31% к вчерашнему снимку ($95,73) — не укладывается в простой нарратив «везде risk-off», направление по нефти обратное золоту/крипте сегодня.</p></div>
+      <div class="fact"><div class="n">Watchlist — слепая зона дня</div><p><span class="tag fact">факт</span> MOEX ISS недоступен весь день через агент-прокси — статус по RENI (была у границы зоны 60-70 ₽), золотым облигациям и остальным 11 бумагам сегодня не проверен.</p></div>
+    </div>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 8</span></div>
+  </section>
+
+  <!-- БЛОК 9. Логика обратной связи -->
+  <section>
+    <h2>Логика обратной связи</h2>
+    <div class="sub">Два независимых сюжета дня. <span class="tag est">оценка</span></div>
+    <div class="chain">
+      <div class="node">BTC теряет оба breakdown-триггера модели IF+ ($75 тыс. ранее, $72 тыс. сегодня)</div><div class="arrow">→</div>
+      <div class="node">Цена входит в зону негативного сценария $62-70 тыс., ETH/SOL тоже в минусе</div><div class="arrow">→</div>
+      <div class="node">Конкретного нового катализатора не найдено — похоже на продолжение уже известной слабости (ниже цены входа краткосрочных держателей с начала месяца)</div>
+    </div>
+    <div class="chain" style="margin-top:10px">
+      <div class="node">Рынок РФ ждёт возобновления диалога РФ-США-Украина («после 4 ноября», параметры не зафиксированы)</div><div class="arrow">→</div>
+      <div class="node">IMOEX растёт четвёртую сессию подряд на этой надежде, неделя закрывается на +2,17%</div><div class="arrow">→</div>
+      <div class="node">Рынок торгует не факт, а вероятность — любая конкретика может как ускорить рост, так и обнулить премию (аналитика investfuture.ru)</div>
+    </div>
+    <div class="foot"><span>Схема отражает предполагаемый механизм, а не установленную причинность</span><span>Блок 9</span></div>
+  </section>
+
+  <!-- БЛОК 10. Техническая карта индекса -->
+  <section>
+    <h2>Техническая карта индекса</h2>
+    <div class="sub">IMOEX, investfuture.ru (изложение MOEX) + внутридневной снимок 13.11 (methodology §24: снимок в моменте систематически недооценивает движение к закрытию — уже третий день подряд)</div>
+    <div class="pulse">
+      <div class="metric"><div class="k">Сейчас (внутри дня, ~14:08 мск)</div><div class="v num">2517,52</div><div class="d up">+0,46% к закрытию 12.11</div></div>
+      <div class="metric"><div class="k">Внутридневной максимум/минимум</div><div class="v num">2523,15 / 2504,49</div><div class="d flat">13.11, investfuture.ru</div></div>
+      <div class="metric"><div class="k">Закрытие 12.11 (чт)</div><div class="v num">2505,95</div><div class="d flat">база дня — заметно выше вчерашнего зафиксированного снимка 2492,52</div></div>
+      <div class="metric"><div class="k">Закрытие Пт 06.11 (пред. неделя)</div><div class="v num">2464,09</div><div class="d flat">база недели (собственная история проекта)</div></div>
+    </div>
+    <p class="est-note"><span class="tag est">оценка</span> Третий день подряд официальное закрытие предыдущего дня оказывается выше зафиксированного нами интрадей-снимка (11.11: 2444,28→2494,77; 12.11: 2492,52→2505,95). Устойчивый паттерн — стоит рассмотреть смещение времени снятия снимка (methodology §24, предложение уже звучало раньше).</p>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 10</span></div>
+  </section>
+
+  <!-- БЛОК 11. Watchlist I -->
+  <section>
+    <h2>Watchlist I · Фиксированный список</h2>
+    <div class="sub">data/watchlist_config.json. Сегодня недоступно: iss.moex.com не отвечает через агент-прокси весь день (подтверждено диагностикой).</div>
+    <div class="empty">Нет данных по 12 акциям и 2 облигациям (RU000A1062M5/RU000A108RQ7) watchlist — единственный обычный источник (MOEX ISS) недоступен, альтернативных индивидуальных котировок по этим тикерам не нашёл. Новых пробоев уровней подтвердить/опровергнуть сегодня нельзя. Не переношу вчерашние цены как сегодняшние.</div>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 11</span></div>
+  </section>
+
+  <!-- БЛОК 12. Watchlist II -->
+  <section>
+    <h2>Watchlist II · Импульсные истории</h2>
+    <div class="empty">Нет данных — топ-5 движений дня по акциям индекса сегодня не получены (тот же сбой MOEX ISS).</div>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 12</span></div>
+  </section>
+
+  <!-- БЛОК 13. Календарь недели -->
+  <section>
+    <h2>Календарь недели</h2>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Дата</th><th>Событие</th></tr></thead>
+        <tbody>
+          <tr><td class="num">обсуждается</td><td>Возобновление трёхстороннего диалога РФ-США-Украина — по сегодняшним источникам встреча лишь обсуждается («после 4 ноября»), параметры не зафиксированы; независимого подтверждения активного раунда 12-13.11 не нашёл.</td></tr>
+          <tr><td class="num">09-26.11</td><td>Маркетинговая неделя и ожидаемое IPO Anthropic (цель — до Дня благодарения, 26.11.2026), оценка в диапазоне $1,5-2 трлн — ещё не состоялось.</td></tr>
+          <tr><td class="num">13.11 (Пт)</td><td>Сегодня — предварительный план ребалансировки крипто-портфеля заказчика на завтра (см. крипто-блок 16б): докупка AAVE/ETH.</td></tr>
+          <tr><td class="num">14.11 (Сб)</td><td>Ребалансировка фактического крипто-портфеля заказчика по собственному ритму.</td></tr>
+          <tr><td class="num">18-19.11</td><td>Саммит АТЭС в Шэньчжэне.</td></tr>
+          <tr><td class="num">22.11</td><td>По мнению источника (Alexander Polyarniy, не подтверждено независимо) — дата, с которой ЦБ РФ разрешил биржам запускать криптоторги.</td></tr>
+          <tr><td class="num">29.11</td><td>Ожидаемая публикация МСФО Селигдара за 3 кв. 2026.</td></tr>
+          <tr><td class="num">01.12</td><td>Плановый старт пилотных крипто-торгов на Мосбирже (BTC/ETH/USDT) — подтверждено официально (конференция «Смартлаб», 31.10.2026).</td></tr>
+          <tr><td class="num">02.12</td><td>ВОСА ФосАгро — решение по дивидендам (309/231/156 ₽ или отказ).</td></tr>
+          <tr><td class="num">04.12</td><td>Окончание текущей программы покупок валюты/золота Минфином.</td></tr>
+          <tr><td class="num">09.12</td><td>Последнее в году заседание ФРС.</td></tr>
+          <tr><td class="num">18.12</td><td>Следующее (последнее в году) заседание Банка России по ключевой ставке.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 13</span></div>
+  </section>
+
+  <!-- БЛОК 16а. Глобальный макро-блок -->
+  <section>
+    <h2>Глобальный макро-блок</h2>
+    <div class="sub">Устойчивость госдолга США, доллар как резервная валюта, защитные активы — ТЗ §4б.</div>
+
+    <h3>Дневные поля</h3>
+    <div class="pulse">
+      <div class="metric"><div class="k">UST 2 года</div><div class="v num">4,73%</div><div class="d flat">FRED DGS2, на 10.11.2026 (лаг публикации 3 дня)</div></div>
+      <div class="metric"><div class="k">UST 10 лет</div><div class="v num">4,98%</div><div class="d flat">FRED DGS10, на 10.11.2026; живой Yahoo ^TNX на закрытие 12.11 — уже 5,103% (выше 5%, не официальная точка)</div></div>
+      <div class="metric accent"><div class="k">DXY</div><div class="v num up">103,258</div><div class="d up">выше 102,804 (12.11) — второй день подряд выше 102, закрепление подтверждено</div></div>
+      <div class="metric accent"><div class="k">Золото · $/унц.</div><div class="v num down">$3 895,60</div><div class="d down">Yahoo GC=F, ниже психологического уровня $3900</div></div>
+      <div class="metric"><div class="k">Биткоин · $</div><div class="v num down">$69 262</div><div class="d down">-5,63% за 24ч к вчерашнему снимку</div></div>
+    </div>
+    <p class="est-note"><span class="tag fact">факт</span> DXY — подтверждённое закрепление выше 102 (второе чтение). <span class="tag fact">факт</span> Баланс ФРС (FRED WALCL) получил НОВУЮ недельную точку: $6,758867 трлн на 11.11.2026 (+$10,722 млрд к 04.11.2026, $6,748145 трлн) — третья неделя подряд роста после паузы.</p>
+
+    <h3>Неежедневные поля</h3>
+    <p><span class="tag fact">факт</span> Баланс ФРС обновлён (см. выше). Остальные неежедневные поля (стоимость обслуживания долга/дефицит/TIC/COFER/CPI-индексы) — без изменений с последних зафиксированных точек, новых официальных релизов не найдено.</p>
+
+    <h3>Сверка защитных активов</h3>
+    <p><span class="tag est">оценка</span> Золото снижается (-2,08% за сутки) одновременно с ростом баланса ФРС (который обычно читается как «мягкое» событие для золота) — то есть сегодняшнее падение золота не объясняется макро-блоком, скорее крепким долларом и, возможно, перетоком из защитных активов в наличные/рисковые инструменты на фоне общей крипто-слабости. BTC падает сильнее золота — оба «альтернативных» актива сегодня ведут себя как рисковые, не как хедж, хотя Brent при этом неожиданно растёт — смешанная, не единая картина риск-офф.</p>
+
+    <h3>Рамка длинного макроцикла</h3>
+    <p><span class="tag est">аналитическая гипотеза, не факт</span> Без изменений — новых данных нет сегодня.</p>
+
+    <h3>Watchlist III · Устойчивые к инфляции акции</h3>
+    <div class="empty">Тематический список пуст (data/watchlist_inflation_hedge.json). Сегодня кандидаты не добавлялись.</div>
+
+    <div class="foot"><span>Аналитический материал, не индивидуальная инвестиционная рекомендация</span><span>Блок 16а</span></div>
+  </section>
+
+  <!-- БЛОК 16б. Крипто-блок -->
+  <section>
+    <h2>Крипто-блок</h2>
+    <div class="sub">Отдельная сфера. Модель — InvestFuture (IF+, Е. Попов), не собственный прогноз агента. Сегодня пятница — предварительный план ребалансировки на субботу.</div>
+
+    <h3>Цены на 13.11.2026</h3>
+    <div class="pulse">
+      <div class="metric accent"><div class="k">BTC</div><div class="v num down">$69 262,19</div><div class="d down">-5,63% за 24ч</div></div>
+      <div class="metric"><div class="k">ETH</div><div class="v num down">$1 950,97</div><div class="d down">-4,54% за 24ч</div></div>
+      <div class="metric"><div class="k">SOL</div><div class="v num down">$80,41</div><div class="d down">-3,05% за 24ч</div></div>
+      <div class="metric"><div class="k">AAVE</div><div class="v num down">$111,36</div><div class="d down">-3,34% за 24ч</div></div>
+    </div>
+    <p class="est-note"><span class="tag fact">факт</span> <strong>BTC пробил ВТОРОЙ breakdown-триггер источника ($72 000) — цена уже внутри зоны негативного сценария $62-70 тыс.</strong>, не просто у её границы (вчера запас был ≈1,94%).</p>
+
+    <h3>Главное крипто-событие дня</h3>
+    <p><span class="tag fact">факт</span> Пробой $72 тыс. — ключевое изменение статуса модели IF+ за весь период наблюдений с 01.10.2026: оба заявленных breakdown-триггера теперь позади, цена внутри целевого диапазона падения. Специфического триггера именно сегодняшнего обвала не найдено — контекст (BTC ниже цены входа краткосрочных держателей с начала ноября, по Glassnode) говорит скорее о продолжении тренда.</p>
+
+    <h3>AAVE buyback</h3>
+    <p><span class="tag est">без изменений</span> Целевая проверка сегодня не проводилась — статус без изменений с 05.11: «подтверждено близко», активация Aavenomics 3.0 — 27.06.2026.</p>
+
+    <h3>Фактический портфель и предварительный план на завтра (пятница → суббота)</h3>
+    <p><span class="tag fact">факт</span> Последний снимок портфеля — 07.11.2026 (allocation_pct: BTC 44,65% / USDC 18,65% / ETH 13,97% / USDT 12,74% / SOL 5,0% / AAVE 3,06% + мелкие вне модели). Против target_allocation_pct (BTC 45 / ETH 15 / AAVE 5 / SOL 5 / stablecoins 30): стейблкоины (USDC+USDT=31,39%) — лёгкий перевес +1,4 п.п.; ETH −1,0 п.п.; <strong>AAVE −1,9 п.п. — крупнейший недовес</strong>; SOL точно на таргете; BTC −0,35 п.п. (в пределах шума).</p>
+    <p><span class="tag est">предварительный план, не факт исполнения</span> По ритму заказчика (продажи перевеса сразу по рынку, покупки недовеса лимитками ~2-4% ниже рынка, ~100 USDT за заявку): сократить небольшой перевес стейблкоинов; докупить AAVE (ориентир лимиток ~$107-109 от текущих $111,36) и ETH (ориентир ~$1870-1910 от текущих $1 950,97). План будет сверен по факту с новым снимком заказчика после субботней ребалансировки.</p>
+
+    <h3>Рекомендации источника по каждому тикеру</h3>
+    <p><span class="tag est">мнение источника с атрибуцией (IF+)</span> BTC — держать, добавлять на откатах (формально без изменений, хотя цена уже в зоне негативного сценария — расхождение факта с благодушной частью логики отмечено явно). ETH — держать, добавлять на откатах. SOL — держать, НЕ наращивать. AAVE — наращивать долю, без изменений.</p>
+    <div class="foot"><span>Мнение источника с атрибуцией (IF+, Евгений Попов), не индивидуальная инвестиционная рекомендация</span><span>Блок 16б</span></div>
+  </section>
+
+  <!-- БЛОК 15. Три сценария дня -->
+  <section>
+    <h2>Три сценария дня</h2>
+    <div class="sub">На остаток 13.11. Вероятности в сумме 100%. <span class="tag est">оценка</span></div>
+    <div class="cards">
+      <div class="scen base">
+        <div class="h"><span class="name">Базовый</span><span class="p">50%</span></div>
+        <dl><dt>Триггер</dt><dd>Боковик вблизи текущих уровней, геополитический фон без резких заголовков до закрытия.</dd>
+            <dt>Диапазон IMOEX</dt><dd class="num">2500–2535</dd></dl>
+      </div>
+      <div class="scen pos">
+        <div class="h"><span class="name">Позитивный</span><span class="p">25%</span></div>
+        <dl><dt>Триггер</dt><dd>Конкретное подтверждение прогресса на переговорах РФ-США-Украина.</dd>
+            <dt>Диапазон IMOEX</dt><dd class="num">выше 2535</dd></dl>
+      </div>
+      <div class="scen neg">
+        <div class="h"><span class="name">Негативный</span><span class="p">25%</span></div>
+        <dl><dt>Триггер</dt><dd>Эскалация вокруг Ирана или срыв переговоров переключает рынок на нефтяной/риск-офф сценарий.</dd>
+            <dt>Диапазон IMOEX</dt><dd class="num">ниже 2500</dd></dl>
+      </div>
+    </div>
+    <h3>Что подтвердилось из прошлого выпуска (12.11.2026)</h3>
+    <p>DXY выше 102 (первое касание 11.11): <strong>подтверждено закрепление</strong> — сегодня второе чтение подряд, ещё выше (103,258). UST10Y вплотную к порогу 5% (вчера, живой Yahoo 4,998%): <strong>подтвердилось и пройдено</strong> — закрытие 12.11 (Yahoo ^TNX) 5,103%. AAVE -6,91% без триггера (вчера, крупнейшее падение дня): сегодня AAVE упал заметно МЕНЬШЕ остального крипто-блока — вчерашний всплеск слабости выглядит более идиосинкратичным для AAVE, чем сегодняшний общий крипто-отступ. RENI/золотые облигации/движения дня: нет данных третий выпуск подряд по части полей, сегодня — весь блок watchlist (сбой MOEX ISS).</p>
+    <div class="foot"><span>Сценарии — вероятностные суждения, не прогноз и не рекомендация</span><span>Блок 15</span></div>
+  </section>
+
+  <!-- БЛОК 16. Итог -->
+  <section>
+    <h2>Итоговый watchlist и главный риск</h2>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Инструмент</th><th>Ключевой уровень</th><th>Что подтверждает</th><th>Что отменяет</th></tr></thead>
+        <tbody>
+          <tr><td class="ticker">IMOEX</td><td class="num">2535 / 2500</td><td>Закрепление выше 2535 — конкретика по переговорам материализуется в рост</td><td>Уход ниже 2500 — надежда на дипломатический прогресс ослабевает</td></tr>
+          <tr><td class="ticker">DXY</td><td class="num">103 / 102</td><td>Третье подряд чтение выше 103 — тренд на укрепление доллара продолжается</td><td>Возврат ниже 102 — сегодняшний уровень был разовым пиком</td></tr>
+          <tr><td class="ticker">BTC</td><td class="num">$72 000 / $62-70 тыс.</td><td>Возврат выше $72 тыс. — опровержение пробоя, выход из негативной зоны</td><td>Устойчивое закрепление в $62-70 тыс. или ниже — полная реализация негативного сценария IF+</td></tr>
+          <tr><td class="ticker">USD/RUB</td><td class="num">83 / 85</td><td>Удержание около 83 — спокойный валютный фон сохраняется</td><td>Движение к 85 и выше — структурное давление на рубль возобновляется</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>Главный риск</h3>
+    <p><span class="tag est">оценка</span> Главный риск дня — крипто-специфический: BTC внутри зоны $62-70 тыс. может продолжить движение глубже без явного катализатора, что требует внимания к субботней ребалансировке. Для российского рынка риск остаётся прежним — неопределённость исхода диалога РФ-США-Украина, который по сегодняшним источникам всё ещё на стадии обсуждения, а не зафиксированных договорённостей.</p>
+    <h3>Флаг внепланового пересмотра портфеля — НЕТ</h3>
+    <p><span class="tag fact">основание</span> methodology §4, пороги не пройдены для основного (акционного) портфеля. IMOEX за день +0,46%, за неделю +2,17% — ниже порогов 3%/7%. Ключевая ставка — без изменений (14,0%). USD/RUB ЦБ +0,39% &lt; 4%. ОФЗ 10л — недельного скачка ≥100 б.п. не зафиксировано. Ни одна позиция основного портфеля не достигла доли ≥10% с меняющим инвесткейс событием. Крипто-блок — отдельная зона решений, там же пробит триггер источника (см. блок 16б), но это не формальный критерий §4 для основного портфеля.</p>
+    <h3>Методология</h3>
+    <p class="est-note">Источники — docs/knowledge/methodology.md, data_sources.md; крипто — crypto_if_strategy_q4_2026.md. Сегодня iss.moex.com не отвечает через агент-прокси весь день (подтверждено диагностикой __agentproxy/status: ws_closed_mid_exchange) — весь блок watchlist, топ-5 движений дня и ₽/г золото честно помечены «нет данных», не унаследованы со вчера. IMOEX/RGBI получены через investfuture.ru (структурированные данные на основе MOEX), ОФЗ — через официальную кривую ЦБ (ZCYC) вместо обычного прямого бенчмарка.</p>
+    <div class="foot"><span>Пересмотр портфеля по флагу радара: НЕТ</span><span>Блок 16</span></div>
+  </section>
+
+  <div class="disclaimer">
+    <strong>Дисклеймер.</strong> Материал носит информационно-аналитический характер и
+    <strong>не является индивидуальной инвестиционной рекомендацией</strong>. Уровни —
+    зоны подтверждения гипотез, а не сигналы к сделкам. Факты отделены от оценок и
+    сценариев пометками; оценки получены эвристически и могут быть ошибочны. Крипто-блок
+    отражает мнение стороннего источника (InvestFuture/IF+) с атрибуцией. Криптовалюты —
+    высокорисковые активы, которые могут полностью обесцениться. Данные собраны из
+    открытых источников (CBR, FRED, Yahoo Finance, investfuture.ru) ~14:08-14:11 мск
+    13.11.2026: рынок открыт, снимок внутридневной и предварительный, к моменту чтения
+    данные могли измениться. iss.moex.com сегодня был недоступен — часть разделов (watchlist,
+    топ-движений дня, ₽/г золото) не заполнена честно, вместо выдумывания чисел.
+  </div>
+
+</div>
+</body>
+</html>
